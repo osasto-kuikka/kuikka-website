@@ -12,6 +12,7 @@ defmodule Frontend.ConnCase do
   inside a transaction which is reset at the beginning
   of the test unless the test case is marked as async.
   """
+  alias Phoenix.ConnTest
 
   use ExUnit.CaseTemplate
 
@@ -29,6 +30,6 @@ defmodule Frontend.ConnCase do
 
   setup tags do
 
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    {:ok, conn: ConnTest.build_conn()}
   end
 end

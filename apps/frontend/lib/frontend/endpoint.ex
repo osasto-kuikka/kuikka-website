@@ -1,4 +1,7 @@
 defmodule Frontend.Endpoint do
+  @moduledoc """
+  Frontend endpoint initialization
+  """
   use Phoenix.Endpoint, otp_app: :frontend
 
   socket "/socket", Frontend.UserSocket

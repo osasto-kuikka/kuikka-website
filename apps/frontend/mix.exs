@@ -1,4 +1,7 @@
 defmodule Frontend.Mixfile do
+  @moduledoc """
+  Frontend mix configs
+  """
   use Mix.Project
 
   def project do
@@ -22,7 +25,8 @@ defmodule Frontend.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Frontend, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html,
+      :cowboy, :logger, :gettext]]
   end
 
   # Specifies which paths to compile per environment.
