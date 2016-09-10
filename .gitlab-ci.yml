@@ -60,3 +60,26 @@ coverage:
     - mix deps.get
     - mix compile
     - mix coveralls
+
+deploy:
+  stage: deploy
+  tags:
+    - osastokuikka
+    - shell
+  only:
+    - branches@osasto-kuikka/kuikka-website
+  variables:
+    MIX_ENV: prod
+    NODE_ENV: prod
+    HOST: osastokuikka.com
+    PORT: 4000
+  script:
+    - mix deps.get
+    - mix compile
+    - cd apps/frontend && npm install && npm build && cd ../..
+    - mix phoenix.digest
+    - mix release
+    - rel/kuikka_website/bin/kuikka_website stop
+    - rel/kuikka_website/bin/kuikka_website start
+
+
