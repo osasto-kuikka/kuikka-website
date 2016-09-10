@@ -1,0 +1,60 @@
+stages:
+  - test
+  - deploy
+
+cache:
+  paths:
+    - _build
+    - deps
+    - apps/frontend/node_modules
+
+mix:test:
+  stage: test
+  tags:
+    - docker
+  image: nikolauska/phoenix:latest
+  variables:
+    MIX_ENV: test
+  script:
+    - mix deps.get
+    - mix compile
+    - mix test --cover
+
+mix:lint:
+  stage: test
+  tags:
+    - docker
+  image: nikolauska/phoenix:latest
+  variables:
+    MIX_ENV: test
+  script:
+    - mix deps.get
+    - mix compile
+    - mix credo -a --strict
+
+mix:release:
+  stage: test
+  tags:
+    - docker
+  image: nikolauska/phoenix:latest
+  variables:
+    MIX_ENV: prod
+    NODE_ENV: prod
+  script:
+    - mix deps.get
+    - mix compile
+    - mix release --warnings-as-errors
+
+coverage:
+  stage: deploy
+  tags:
+    - docker
+  image: nikolauska/phoenix:latest
+  only:
+    - branches@osasto-kuikka/kuikka-website
+  variables:
+    MIX_ENV: test
+  script:
+    - mix deps.get
+    - mix compile
+    - mix coveralls

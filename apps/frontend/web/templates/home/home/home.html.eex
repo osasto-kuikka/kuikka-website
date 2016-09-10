@@ -1,0 +1,58 @@
+<div class="row home-banner">
+  <div class="row">
+    <img class="twelve columns home-banner-logo" src="/images/logo.svg"></img>
+  <div class="row">
+    <p class="twelve columns home-banner-text">Suomen erikoisimmat joukot</p>
+  </div>
+</div>
+<div class="row home-content">
+  <p class="twelve columns home-content-text">
+    Osasto Kuikka on kahdesti viikossa järjestäytyvä, aktiivinen kaikille
+    avoin Arma 3 peliyhteisö.  Pelaamme Co-Op tehtäviä jotka pelaamme
+    realistisuuteen tähtäävällä modisetillä (esim. ACE,Taskforce,RHS).
+    Pelipäiviksemme on vakiintunut keskiviikko ja sunnuntai klo 19:30.
+    Arvostamme yhteisen hauskanpidon ja tiimityön lisäksi aktiivisuutta.
+  </p>
+</div>
+<div class="row home-short-content">
+  <div class="row">
+    <p class="twelve columns home-short-header">
+      Mitä kuikka tarjoaa
+    </p>
+  </div>
+  <div class="row">
+    <div class="six columns home-short-block">
+      <i class="material-icons">mic</i>
+      <p>
+        Oma teamspeak serveri kommunikointiin peleissä ja pelien ulkopuolella
+      </p>
+    </div>
+    <div class="six columns home-short-block">
+      <i class="material-icons">thumb_up</i>
+      <p>
+        Kuikkalaisten omia tekemiä tehtäviä
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="six columns home-short-block">
+      <i class="material-icons">chat</i>
+      <p>
+        Slack kanava chattaamiseen kuikkalaisten kanssa
+      </p>
+    </div>
+    <div class="six columns home-short-block">
+      <i class="material-icons">perm_identity</i>
+      <p>
+        Osaavia henkilöitä auttamaan uusia pelaajia
+      </p>
+    </div>
+  </div>
+</div>
+<div class="row home-join-content">
+  <a href="/join">
+    <button class="twelve columns home-join-button">
+      Liity nyt
+    </button>
+  </a>
+</div>
