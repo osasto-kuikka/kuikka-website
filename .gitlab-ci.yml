@@ -41,8 +41,6 @@ mix:release:
     NODE_ENV: prod
   script:
     - mix setup
-    - cd apps/frontend && npm install && npm deploy && cd ../..
-    - mix phoenix.digest
     - mix release --warnings-as-errors
 
 coverage:
