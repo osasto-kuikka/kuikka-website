@@ -45,7 +45,7 @@ defmodule KuikkaWebsite.Mixfile do
   end
 
   defp npm_deploy(_) do
-    Mix.Shell.IO.cmd("cd apps/frontend && npm deploy")
+    Mix.Shell.IO.cmd("cd apps/frontend && npm run deploy")
     Mix.Shell.IO.cmd("cd apps/frontend && mix phoenix.digest")
   end
 end
