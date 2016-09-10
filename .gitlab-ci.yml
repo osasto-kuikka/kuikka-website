@@ -28,9 +28,8 @@ mix:lint:
   variables:
     MIX_ENV: test
   script:
-    - mix deps.get
-    - mix compile
-    - mix credo -a --strict
+    - mix setup
+    - mix lint
 
 mix:release:
   stage: test
@@ -41,8 +40,7 @@ mix:release:
     MIX_ENV: prod
     NODE_ENV: prod
   script:
-    - mix deps.get
-    - mix compile
+    - mix setup
     - cd apps/frontend && npm install && npm deploy && cd ../..
     - mix phoenix.digest
     - mix release --warnings-as-errors
@@ -57,8 +55,7 @@ coverage:
   variables:
     MIX_ENV: test
   script:
-    - mix deps.get
-    - mix compile
+    - mix setup
     - mix coveralls
 
 deploy:
@@ -74,10 +71,7 @@ deploy:
     HOST: "osastokuikka.com"
     PORT: "4000"
   script:
-    - mix deps.get
-    - mix compile
-    - cd apps/frontend && npm install && npm deploy && cd ../..
-    - mix phoenix.digest
+    - mix setup
     - mix release
     - rel/kuikka_website/bin/kuikka_website stop
     - rel/kuikka_website/bin/kuikka_website start

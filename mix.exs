@@ -6,7 +6,7 @@ defmodule KuikkaWebsite.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: ["coveralls": :test, "coveralls.post": :test],
+     aliases: aliases,
      deps: deps]
   end
 
@@ -28,5 +28,24 @@ defmodule KuikkaWebsite.Mixfile do
       {:credo, "~> 0.4", only: [:dev, :test]},
       {:excoveralls, "~> 0.5", only: :test}
     ]
+  end
+
+  defp aliases do
+    [
+      "setup": ["deps.get", "compile"],
+      "release": ["npm.install", "npm.deploy", "release"],
+      "npm.install": [&npm_install/1],
+      "npm.deploy": [&npm_deploy/1],
+      "lint": ["credo -a --strict"]
+    ]
+  end
+
+  defp npm_install(_) do
+    Mix.Shell.IO.cmd("cd apps/frontend && npm install")
+  end
+
+  defp npm_deploy(_) do
+    Mix.Shell.IO.cmd("cd apps/frontend && npm deploy")
+    Mix.Shell.IO.cmd("cd apps/frontend && mix phoenix.digest")
   end
 end
