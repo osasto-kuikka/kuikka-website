@@ -43,7 +43,7 @@ mix:release:
   script:
     - mix deps.get
     - mix compile
-    - cd apps/frontend && npm install && npm build && cd ../..
+    - cd apps/frontend && npm install && npm deploy && cd ../..
     - mix phoenix.digest
     - mix release --warnings-as-errors
 
@@ -76,7 +76,7 @@ deploy:
   script:
     - mix deps.get
     - mix compile
-    - cd apps/frontend && npm install && npm build && cd ../..
+    - cd apps/frontend && npm install && npm deploy && cd ../..
     - mix phoenix.digest
     - mix release
     - rel/kuikka_website/bin/kuikka_website stop
