@@ -1,12 +1,14 @@
-.home-banner {
+body {
   position: absolute;
   top: 50px;
   left: 0;
-  background-image: url("/images/kuikkaheader.jpg");
+  right: 0;
+  background-image: url("/images/kuikkaheader2.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 290px;
+  height: 305px;
+  width: 100%;
 }
 
 .home-banner-logo {
