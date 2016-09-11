@@ -49,7 +49,7 @@ coverage:
     - docker
   image: nikolauska/phoenix:latest
   only:
-    - branches@osasto-kuikka/kuikka-website
+    - master@osasto-kuikka/kuikka-website
   variables:
     MIX_ENV: test
   script:
@@ -62,7 +62,7 @@ deploy:
     - osastokuikka
     - shell
   only:
-    - branches@osasto-kuikka/kuikka-website
+    - master@osasto-kuikka/kuikka-website
   variables:
     MIX_ENV: prod
     NODE_ENV: prod
