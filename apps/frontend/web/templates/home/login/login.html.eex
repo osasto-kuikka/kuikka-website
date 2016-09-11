@@ -11,15 +11,17 @@
 <div class="row login-form">
   <form>
     <div class="row">
-      <div class="twelve columns">
-        <label for="login-email">Sähköposti</label>
-        <input class="u-full-width" type="email" placeholder="esimerkki@email.com" id="login-email">
+      <div class="six columns">
+        <div class="login-area-1">
+          <label for="login-email">Sähköposti</label>
+          <input class="login-input" type="email" placeholder="esimerkki@email.com" id="login-email">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="twelve columns">
-        <label for="login-password">Salasana</label>
-        <input class="u-full-width" type="password" placeholder="Salasana" id="login-password">
+      <div class="six columns">
+        <div class="login-area-2">
+          <label for="login-password">Salasana</label>
+          <input class="login-input" type="password" placeholder="Salasana" id="login-password">
+        </div>
       </div>
     </div>
     <div class="row">
