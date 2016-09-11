@@ -1,0 +1,9 @@
+<div class="row home-banner">
+  <div class="row">
+    <img class="twelve columns home-banner-logo" src="/images/logo.svg"></img>
+  <div class="row">
+    <div class="twelve columns">
+      <p class="home-banner-text">Liity Kuikkaan</p>
+    </div>
+  </div>
+</div>

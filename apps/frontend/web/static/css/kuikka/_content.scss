@@ -17,10 +17,12 @@ body {
 }
 
 .home-banner-text {
+  width: 50%;
+  min-width: 300px;
   margin: 0 auto;
   text-align: center;
   font-size: 28px;
-  background-color: rgb(215, 148, 0);
+  background-color: rgba(215, 148, 0, 0.8);
 }
 
 .home-banner-headline {
@@ -60,13 +62,31 @@ body {
   }
 }
 
-
 .home-join-button {
   margin-top: 40px;
   color: #CCC;
   font-size: 18px;
   transition: all .15s ease;
   height: 52px;
+  width: 100%;
+}
+
+.home-join-button:hover {
+  color: rgba(240,180,40,1);
+  border-color: rgba(240,180,40,1);
+}
+
+.login-form {
+  margin-top: 25px;
+}
+
+.login-button {
+  margin-top: 40px;
+  color: #CCC;
+  font-size: 18px;
+  transition: all .15s ease;
+  height: 52px;
+  background-color: #222;
 }
 
 .home-join-button:hover {

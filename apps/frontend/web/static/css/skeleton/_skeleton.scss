@@ -65,7 +65,7 @@
   .three.columns                  { width: 22%;            }
   .four.columns                   { width: 33.3333333333%; }
   .five.columns                   { width: 39.3333333333%; }
-  .six.columns                    { width: 50%;            }
+  .six.columns                    { width: 50%; }
   .seven.columns                  { width: 56.6666666667%; }
   .eight.columns                  { width: 65.3333333333%; }
   .nine.columns                   { width: 74.0%;          }
@@ -173,7 +173,7 @@ input[type="button"] {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
-  color: #555;
+  color: #CCC;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -197,17 +197,17 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  color: #333;
-  border-color: #888;
+  color: #CCC;
+  border-color: #222;
   outline: 0; }
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  color: #FFF;
-  background-color: #33C3F0;
-  border-color: #33C3F0; }
+  color: #CCC;
+  background-color: #222;
+  border-color: #FFF; }
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -218,9 +218,8 @@ button.button-primary:focus,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  color: #FFF;
-  background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  color: rgb(240, 180, 40);
+  border-color: rgb(240, 180, 40); }
 
 
 /* Forms

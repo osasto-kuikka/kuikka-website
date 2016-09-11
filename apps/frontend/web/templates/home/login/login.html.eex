@@ -1,0 +1,29 @@
+<div class="row home-banner">
+  <div class="row">
+    <img class="twelve columns home-banner-logo" src="/images/logo.svg"></img>
+  <div class="row">
+    <div class="twelve columns">
+      <p class="home-banner-text">Sisäänkirjautuminen</p>
+    </div>
+  </div>
+</div>
+
+<div class="row login-form">
+  <form>
+    <div class="row">
+      <div class="twelve columns">
+        <label for="login-email">Sähköposti</label>
+        <input class="u-full-width" type="email" placeholder="esimerkki@email.com" id="login-email">
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <label for="login-password">Salasana</label>
+        <input class="u-full-width" type="password" placeholder="Salasana" id="login-password">
+      </div>
+    </div>
+    <div class="row">
+      <input class="twelve columns button-primary login-button" type="submit" value="Kirjaudu Sisään">
+    </div>
+  </form>
+</div>

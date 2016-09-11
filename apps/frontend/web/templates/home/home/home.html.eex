@@ -1,9 +1,10 @@
-
 <div class="row home-banner">
   <div class="row">
     <img class="twelve columns home-banner-logo" src="/images/logo.svg"></img>
   <div class="row">
-    <p class="twelve columns home-banner-text">Suomen erikoisimmat joukot</p>
+    <div class="twelve columns">
+      <p class="home-banner-text">Suomen erikoisimmat joukot</p>
+    </div>
   </div>
 </div>
 
@@ -47,8 +48,8 @@
       <h5>Kommunikointi</h5>
       <p>
         Kuikalla käytetään
-        <a href="/slack">Slackkiä</a> viestittelemiseen ja
-        <a href="/teamspeak">Teamspeakkia</a> keskusteluun peleissä ja
+        <a href="/wiki/slack">Slackkiä</a> viestittelemiseen ja
+        <a href="/wiki/teamspeak">Teamspeakkia</a> keskusteluun peleissä ja
         pelien ulkopuolella
       </p>
     </div>
@@ -56,9 +57,9 @@
 </div>
 
 <div class="row home-join-content">
-  <a href="/signup">
-    <button class="twelve columns home-join-button">
-      Liity nyt
-    </button>
-  </a>
+  <div class="twelve columns">
+    <a href="/wiki/join">
+      <button class="home-join-button">Pelaamaan</button>
+    </a>
+  </div>
 </div>
