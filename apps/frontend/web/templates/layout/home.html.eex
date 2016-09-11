@@ -33,10 +33,6 @@
       <div class="row">
         <main id="layout-content">
           <div class="row">
-            <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %>Mahdollinen info viesti</p>
-            <p class="alert alert-error" role="alert"><%= get_flash(@conn, :error) %>Mahdollinen virhe viesti</p>
-          </div>
-          <div class="row">
             <%= render @view_module, @view_template, assigns %>
           </div>
         </main>
