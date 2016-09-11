@@ -17,6 +17,7 @@ body {
 }
 
 .home-banner-text {
+  color: #222;
   width: 50%;
   min-width: 300px;
   margin: 0 auto;
@@ -81,9 +82,9 @@ body {
 }
 
 .login-button {
-  margin-top: 40px;
+  margin-top: 10px;
   color: #CCC;
-  font-size: 18px;
+  font-size: 16px;
   transition: all .15s ease;
   height: 52px;
   background-color: #222;
