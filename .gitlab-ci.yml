@@ -75,7 +75,6 @@ deploy:restart:
     - mix release
     - rel/kuikka_website/bin/kuikka_website start
     - rel/kuikka_website/bin/kuikka_website start
-  allow_failure: true
 
 deploy:start:
   stage: deploy-start
