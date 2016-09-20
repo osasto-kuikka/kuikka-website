@@ -1,6 +1,5 @@
 stages:
   - test
-  - release
   - deploy
   - deploy-start
 
@@ -47,7 +46,7 @@ mix:release:
     - mix release --warnings-as-errors
 
 coverage:
-  stage: release
+  stage: deploy
   tags:
     - docker
   image: nikolauska/phoenix:latest
@@ -58,22 +57,6 @@ coverage:
   script:
     - mix setup
     - mix coveralls
-
-release:
-  stage: release
-  tags:
-    - osastokuikka
-    - shell
-  only:
-    - master@osasto-kuikka/kuikka-website
-  variables:
-    MIX_ENV: prod
-    NODE_ENV: prod
-    HOST: "osastokuikka.com"
-    PORT: "4000"
-  script:
-    - mix setup
-    - mix release
 
 deploy:restart:
   stage: deploy
@@ -88,6 +71,8 @@ deploy:restart:
     HOST: "osastokuikka.com"
     PORT: "4000"
   script:
+    - mix setup
+    - mix release
     - rel/kuikka_website/bin/kuikka_website start
     - rel/kuikka_website/bin/kuikka_website start
   allow_failure: true
@@ -106,4 +91,6 @@ deploy:start:
     HOST: "osastokuikka.com"
     PORT: "4000"
   script:
+    - mix setup
+    - mix release
     - rel/kuikka_website/bin/kuikka_website start
