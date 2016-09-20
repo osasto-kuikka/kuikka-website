@@ -6,9 +6,10 @@ stages:
 
 cache:
   paths:
-    - _build
-    - deps
+    - _build/
+    - deps/
     - apps/frontend/node_modules
+    - rel/
 
 mix:test:
   stage: test
