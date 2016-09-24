@@ -21,6 +21,9 @@ mix:test:
     POSTGRES_DB: "kuikka_test"
     POSTGRES_USER: "postgres"
     POSTGRES_PASSWORD: "postgres"
+    KUIKKADB_DB: "kuikka_test"
+    KUIKKADB_USER: "postgres"
+    KUIKKADB_PASSWORD: "postgres"
     MIX_ENV: test
   script:
     - mix setup.min
@@ -47,7 +50,8 @@ mix:release:
     MIX_ENV: prod
     NODE_ENV: prod
   script:
-    - mix setup
+    - mix setup.min
+    - mix db.setup
     - mix release --warnings-as-errors
 
 coverage:
