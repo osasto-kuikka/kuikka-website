@@ -18,12 +18,12 @@ mix:test:
   services:
     - postgres:9.5
   variables:
-    POSTGRES_DB: "kuikka_test"
-    POSTGRES_USER: "postgres"
-    POSTGRES_PASSWORD: "postgres"
-    KUIKKADB_DB: "kuikka_test"
-    KUIKKADB_USER: "postgres"
-    KUIKKADB_PASSWORD: "postgres"
+    POSTGRES_DB: kuikka_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    KUIKKADB_DB: kuikka_test
+    KUIKKADB_USER: postgres
+    KUIKKADB_PASSWORD: postgres
     MIX_ENV: test
   script:
     - mix setup.min
