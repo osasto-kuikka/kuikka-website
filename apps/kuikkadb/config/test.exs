@@ -5,5 +5,4 @@ config :kuikkadb, KuikkaDB.Repo,
   database: System.get_env("KUIKKADB_DB") || "kuikka_test",
   username: System.get_env("KUIKKADB_USER") || "postgres",
   password: System.get_env("KUIKKADB_PASSWORD") || "postgres",
-  host: System.get_env("KUIKKADB_HOST") || "localhost",
-  port: System.get_env("KUIKKADB_PORT") || "5432"
+  host: System.get_env("KUIKKADB_HOST") || "localhost"
