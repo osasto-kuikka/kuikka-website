@@ -19,6 +19,7 @@ mix:test:
     MIX_ENV: test
   script:
     - mix setup.min
+    - mix db.setup
     - mix test --cover
 
 mix:lint:

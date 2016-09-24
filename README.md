@@ -11,7 +11,9 @@
 ## Setting up the development environment
 1. Download dev requirements
 2. Run `mix.setup`
-  - If you don't want npm install run `mix setup.min`
+  - If you don't want npm install or database run `mix setup.min`
+  - To setup database `mix db.setup` (this is also run in `mix setup`)
+  - To reset database `mix db.reset`
 
 ## Running the application
 - `iex -S mix` to start with console
