@@ -1,4 +1,7 @@
 defmodule KuikkaDB do
+  @moduledoc """
+  Starts kuikkadb application supervisor
+  """
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
