@@ -6,6 +6,7 @@
 - [Erlang 19](https://www.erlang.org/downloads)
 - [Elixir 1.3.3](http://elixir-lang.org/install.html)
 - [Phoenix Framework](http://www.phoenixframework.org/docs/installation)
+- [NodeJS 6.6.0](https://nodejs.org/en/download/current/)
 
 ## Setting up the development environment
 1. Download dev requirements
