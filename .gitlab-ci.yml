@@ -18,8 +18,7 @@ mix:test:
   variables:
     MIX_ENV: test
   script:
-    - mix deps.get
-    - mix compile
+    - mix setup.min
     - mix test --cover
 
 mix:lint:
@@ -30,7 +29,7 @@ mix:lint:
   variables:
     MIX_ENV: test
   script:
-    - mix setup
+    - mix setup.min
     - mix lint
 
 mix:release:
@@ -55,7 +54,7 @@ coverage:
   variables:
     MIX_ENV: test
   script:
-    - mix setup
+    - mix setup.min
     - mix coveralls
 
 deploy:restart:
