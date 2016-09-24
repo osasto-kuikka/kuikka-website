@@ -51,7 +51,6 @@ mix:release:
     NODE_ENV: prod
   script:
     - mix setup.min
-    - mix db.setup
     - mix release --warnings-as-errors
 
 coverage:
