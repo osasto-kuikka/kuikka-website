@@ -33,8 +33,9 @@ defmodule KuikkaWebsite.Mixfile do
 
   defp aliases do
     [
-      "setup": ["deps.get", "compile"],
-      "release": ["npm.install", "npm.deploy", "release"],
+      "setup": ["deps.get", "compile", "npm.install"],
+      "setup.min": ["deps.get", "compile"],
+      "release": ["npm.deploy", "release"],
       "npm.install": [&npm_install/1],
       "npm.deploy": [&npm_deploy/1],
       "lint": ["credo -a --strict"]
