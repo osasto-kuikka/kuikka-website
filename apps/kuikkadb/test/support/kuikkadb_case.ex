@@ -11,8 +11,9 @@ defmodule KuikkaDB.TestCase do
   inside a transaction which is reset at the beginning
   of the test unless the test case is marked as async.
   """
-
   use ExUnit.CaseTemplate
+
+  alias Ecto.Adapters.SQL.Sandbox
 
   using do
     quote do
@@ -26,10 +27,10 @@ defmodule KuikkaDB.TestCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(KuikkaDB.Repo)
+    :ok = Sandbox.checkout(KuikkaDB.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(KuikkaDB.Repo, {:shared, self()})
+      Sandbox.mode(KuikkaDB.Repo, {:shared, self()})
     end
 
     :ok
