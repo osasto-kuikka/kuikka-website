@@ -21,7 +21,7 @@ mix:test:
     POSTGRES_DB: kuikka_test
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: postgres
-    KUIKKADB_URL: "postgres://postgres:postgres@postgres/kuikka_test",
+    KUIKKADB_URL: "postgres://postgres:postgres@postgres/kuikka_test"
     MIX_ENV: test
   script:
     - mix setup.min
