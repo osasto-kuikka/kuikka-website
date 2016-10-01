@@ -33,8 +33,10 @@ defmodule KuikkaWebsite.Mixfile do
 
   defp aliases do
     [
-      "setup": ["deps.get", "compile", "npm.install"],
+      "setup": ["deps.get", "compile", "db.setup", "npm.install"],
       "setup.min": ["deps.get", "compile"],
+      "db.setup": ["ecto.create", "ecto.migrate"],
+      "db.reset": ["ecto.drop", "db.setup"],
       "release": ["npm.deploy", "release"],
       "npm.install": [&npm_install/1],
       "npm.deploy": [&npm_deploy/1],

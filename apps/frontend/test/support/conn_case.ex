@@ -28,8 +28,7 @@ defmodule Frontend.ConnCase do
     end
   end
 
-  setup tags do
-
+  setup _tags do
     {:ok, conn: ConnTest.build_conn()}
   end
 end

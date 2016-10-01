@@ -15,10 +15,17 @@ mix:test:
   tags:
     - docker
   image: nikolauska/phoenix:latest
+  services:
+    - postgres:9.5
   variables:
+    POSTGRES_DB: kuikka_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    KUIKKADB_URL: "postgres://postgres:postgres@postgres/kuikka_test"
     MIX_ENV: test
   script:
     - mix setup.min
+    - mix db.setup
     - mix test --cover
 
 mix:lint:
@@ -41,7 +48,7 @@ mix:release:
     MIX_ENV: prod
     NODE_ENV: prod
   script:
-    - mix setup
+    - mix setup.min
     - mix release --warnings-as-errors
 
 coverage:
@@ -70,7 +77,8 @@ deploy:restart:
     HOST: "osastokuikka.com"
     PORT: "4000"
   script:
-    - mix setup
+    - mix setup.min
+    - mix npm.install
     - mix release
     - rel/kuikka_website/bin/kuikka_website start
     - rel/kuikka_website/bin/kuikka_website start
