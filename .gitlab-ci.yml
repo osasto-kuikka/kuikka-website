@@ -56,6 +56,14 @@ coverage:
   tags:
     - docker
   image: nikolauska/phoenix:latest
+  services:
+    - postgres:9.5
+  variables:
+    POSTGRES_DB: kuikka_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    KUIKKADB_URL: "postgres://postgres:postgres@postgres/kuikka_test"
+    MIX_ENV: test
   only:
     - master@osasto-kuikka/kuikka-website
   variables:
@@ -80,7 +88,7 @@ deploy:restart:
     - mix setup.min
     - mix npm.install
     - mix release
-    - rel/kuikka_website/bin/kuikka_website start
+    - rel/kuikka_website/bin/kuikka_website stop
     - rel/kuikka_website/bin/kuikka_website start
 
 deploy:start:
