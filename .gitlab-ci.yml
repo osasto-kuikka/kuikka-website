@@ -66,8 +66,6 @@ coverage:
     MIX_ENV: test
   only:
     - master@osasto-kuikka/kuikka-website
-  variables:
-    MIX_ENV: test
   script:
     - mix setup.min
     - mix coveralls
