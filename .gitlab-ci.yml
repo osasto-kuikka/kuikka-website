@@ -98,7 +98,7 @@ deploy:start:
     - shell
   only:
     - master@osasto-kuikka/kuikka-website
-  when: on_failure
+  when: manual
   variables:
     MIX_ENV: prod
     NODE_ENV: prod
