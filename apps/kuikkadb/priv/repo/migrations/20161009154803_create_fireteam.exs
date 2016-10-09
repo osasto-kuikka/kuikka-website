@@ -3,7 +3,8 @@ defmodule KuikkaDB.Repo.Migrations.CreateFireteam do
 
   def change do
     create table(:fireteam) do
-        add :name, :string, size: 50
-        add :description, :string, size: 250
+        add :name, :string, size: 50, null: false
+        add :description, :string, size: 250, null: true
+    end
   end
 end
