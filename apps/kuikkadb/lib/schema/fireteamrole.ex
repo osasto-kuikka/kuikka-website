@@ -1,7 +1,7 @@
-defmodule KuikkaDB.Schema.fireteamrole do
+defmodule KuikkaDB.Schema.Fireteamrole do
     use Ecto.Schema
     
-    schema fireteamrole do
+    schema "fireteamrole" do
         field :name, :string
         field :description, :string 
         field :is_leader, :boolean       
