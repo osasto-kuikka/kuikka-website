@@ -1,4 +1,4 @@
-defmodule KuikkaDB.Schema.Role_permission do
+defmodule KuikkaDB.Schema.RolePermission do
     use Ecto.Schema
     
     schema "role_permission" do
