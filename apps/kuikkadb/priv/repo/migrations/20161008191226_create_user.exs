@@ -9,8 +9,6 @@ defmodule KuikkaDB.Repo.Migrations.CreateUser do
         add :username, :string, size: 50, null: false
         add :password, :string, size: 50, null: false
         add :email, :string, size: 60, null: false
-      #  add :created_at, :datetime, default: fragment("now()")
-      #  add :updated_at, :datetime, default: fragment("now()")
         add :imageurl, :string, size: 100, null: false
         add :signature, :string, size: 250, null: true
        
