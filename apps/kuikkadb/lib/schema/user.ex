@@ -10,6 +10,5 @@ defmodule KuikkaDB.Schema.User do
         field :email, :string
         field :imageurl, :string
         field :signature, :string
-        
     end
 end
