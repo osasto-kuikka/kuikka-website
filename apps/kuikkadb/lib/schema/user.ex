@@ -14,7 +14,7 @@ defmodule KuikkaDB.Schema.User do
     end
     def changeset(user, params \\%{}) do
         user
-        |> cast(params, [:username, :password, :email,:imageurl, :signature])
+        |> cast(params, [:username, :password, :email,:imageurl, :signature, :permission_id, :fireteam_id, :fireteamrole_id])
         |> validate_required([:username, :email, :password])
         |> validate_format(:email, ~r/@/)
         |> foreing_key_constrait([:permission_id, :fireteam_id,:fireteamrole_id])
