@@ -37,7 +37,7 @@ defmodule KuikkaWebsite.Mixfile do
       "setup.min": ["deps.get", "compile"],
       "db.setup": ["ecto.create", "ecto.migrate"],
       "db.reset": ["ecto.drop", "db.setup"],
-      "release": ["frontend.deploy", "release"],
+      "release": ["frontend.build", "release"],
       "lint": ["credo -a --strict"]
     ]
   end
