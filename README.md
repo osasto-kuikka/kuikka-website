@@ -7,6 +7,8 @@
 - [Elixir 1.3.3](http://elixir-lang.org/install.html)
 - [Phoenix Framework](http://www.phoenixframework.org/docs/installation)
 - [NodeJS 6.6.0](https://nodejs.org/en/download/current/)
+    - After installing nodejs run `npm install -g yarnpkg`
+      - Without this you will get `yarn not found` error on `mix setup`
 
 ## Setting up the development environment
 1. Download dev requirements
