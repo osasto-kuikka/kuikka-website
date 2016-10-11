@@ -6,7 +6,7 @@ defmodule KuikkaDB.Schema.Fireteam do
         field :name, :string
         field :description, :string        
     end
-    def changeset(fireteam, params \\%{}) do
+    def changeset(fireteam, params \\ %{}) do
         fireteam
         |> cast(params, [:name,:description])
         |> validate_required([:name])       

@@ -8,7 +8,7 @@ defmodule KuikkaDB.Schema.RolePermission do
         field :name, :string
         field :description, :string    
     end
-    def changeset(role_permission, params \\%{}) do
+    def changeset(role_permission, params \\ %{}) do
         role_permission
         |> cast(params, [:name,:description, :role_id, :permission_id])
         |> validate_required([:name])
