@@ -1,5 +1,6 @@
 defmodule KuikkaDB.Schema.User do
     use Ecto.Schema
+    import Ecto.Changeset
     
     schema "user" do
         belongs_to :permission_id, KuikkaDB.Schema.Permission
@@ -10,5 +11,12 @@ defmodule KuikkaDB.Schema.User do
         field :email, :string
         field :imageurl, :string
         field :signature, :string
+    end
+    def changeset(user, params \\%{}) do
+        user
+        |> cast(params, [:username, :password, :email,:imageurl, :signature])
+        |> validate_required([:username, :email, :password])
+        |> validate_format(:email, ~r/@/)
+        |> foreing_key_constrait([:permission_id, :fireteam_id,:fireteamrole_id])
     end
 end
