@@ -12,6 +12,7 @@ defmodule KuikkaDB.Schema.RolePermission do
         role_permission
         |> cast(params, [:name,:description, :role_id, :permission_id])
         |> validate_required([:name])
-        |> foreing_key_constrait([:role_id,:permission_id])       
+        |> foreing_key_constrait([:role_id,:permission_id])  
+        |> unique_constraint([:name, :role_id, :permission_id])     
     end
 end

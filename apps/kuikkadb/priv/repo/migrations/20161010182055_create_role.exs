@@ -7,5 +7,6 @@ defmodule KuikkaDB.Repo.Migrations.CreateRole do
         add :name, :string, size: 50, null: false
         add :description, :string, size: 250, null: true
     end
+    create index(:role, [:role_permission_id, :name], unique: true)
   end
 end

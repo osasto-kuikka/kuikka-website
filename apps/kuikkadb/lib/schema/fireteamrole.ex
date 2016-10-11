@@ -11,6 +11,7 @@ defmodule KuikkaDB.Schema.Fireteamrole do
         fireteamrole
         |> cast(params, [:name, :description,:is_leader])
         |> validate_required([:name, :is_leader])
+        |> unique_constraint([:name])
         
     end    
 end

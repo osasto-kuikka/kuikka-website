@@ -9,6 +9,7 @@ defmodule KuikkaDB.Schema.Permission do
     def changeset(permission, params \\ %{}) do
         permission
         |> cast(params, [:name,:description])
-        |> validate_required([:name])       
+        |> validate_required([:name])
+        |> unique_constraint(:name)       
     end
 end

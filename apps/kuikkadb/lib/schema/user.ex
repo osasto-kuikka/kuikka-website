@@ -18,5 +18,6 @@ defmodule KuikkaDB.Schema.User do
         |> validate_required([:username, :email, :password])
         |> validate_format(:email, ~r/@/)
         |> foreing_key_constrait([:permission_id, :fireteam_id,:fireteamrole_id])
+        |> unique_constraint([:username, :email])
     end
 end
