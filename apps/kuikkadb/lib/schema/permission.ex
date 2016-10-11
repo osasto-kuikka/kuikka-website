@@ -4,7 +4,8 @@ defmodule KuikkaDB.Schema.Permission do
     
     schema "permission" do
         field :name, :string
-        field :description, :string        
+        field :description, :string 
+        many to many  :role_permission_id, joins_through: KuikkaDB.Schema.RolePermission       
     end
     def changeset(permission, params \\ %{}) do
         permission

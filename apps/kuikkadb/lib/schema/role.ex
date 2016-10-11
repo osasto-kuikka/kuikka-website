@@ -3,7 +3,7 @@ defmodule KuikkaDB.Schema.Role do
     import Ecto.Changeset
     
     schema "role" do
-       # korvaa many to many belongs_to :role_permission_id, KuikkaDB.Schema.Role_permission
+        many to many  :role_permission_id, joins_through: KuikkaDB.Schema.RolePermission
         field :name, :string
         field :description, :string    
     end
