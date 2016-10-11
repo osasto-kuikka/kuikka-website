@@ -33,18 +33,11 @@ defmodule KuikkaWebsite.Mixfile do
 
   defp aliases do
     [
-<<<<<<< Updated upstream
-      "setup": ["deps.get", "compile", "db.setup", "npm.install"],
+      "setup": ["deps.get", "compile", "db.setup", "frontend.install"],
       "setup.min": ["deps.get", "compile"],
       "db.setup": ["ecto.create", "ecto.migrate"],
       "db.reset": ["ecto.drop", "db.setup"],
-      "release": ["npm.deploy", "release"],
-      "npm.install": [&npm_install/1],
-      "npm.deploy": [&npm_deploy/1],
-=======
-      "setup": ["deps.get", "compile", "frontend.install", "frontend.build"],
-      "release": ["frontend.install", "frontend.build", "release"],
->>>>>>> Stashed changes
+      "release": ["frontend.deploy", "release"],
       "lint": ["credo -a --strict"]
     ]
   end
