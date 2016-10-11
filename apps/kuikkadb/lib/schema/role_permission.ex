@@ -8,10 +8,10 @@ defmodule KuikkaDB.Schema.RolePermission do
         field :name, :string
         field :description, :string    
     end
-    def changeset(permission, params \\%{}) do
-        permission
-        |> cast(params, [:name,:description])
+    def changeset(role_permission, params \\%{}) do
+        role_permission
+        |> cast(params, [:name,:description, :role_id, :permission_id])
         |> validate_required([:name])
-        |> foreing_key_constrait([:role_id,:role_permission])       
+        |> foreing_key_constrait([:role_id,:permission_id])       
     end
 end
