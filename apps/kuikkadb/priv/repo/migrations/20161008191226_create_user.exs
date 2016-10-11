@@ -14,6 +14,6 @@ defmodule KuikkaDB.Repo.Migrations.CreateUser do
        
         timestamps
     end
-    create index(:user, [:email], unique: true)
+    create index(:user, [:email, :username, :role_id, :fireteam_id, :fireteamrole_id], unique: true)
   end
 end
