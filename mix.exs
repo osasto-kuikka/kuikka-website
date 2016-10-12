@@ -33,23 +33,12 @@ defmodule KuikkaWebsite.Mixfile do
 
   defp aliases do
     [
-      "setup": ["deps.get", "compile", "db.setup", "npm.install"],
+      "setup": ["deps.get", "compile", "db.setup", "frontend.install"],
       "setup.min": ["deps.get", "compile"],
       "db.setup": ["ecto.create", "ecto.migrate"],
       "db.reset": ["ecto.drop", "db.setup"],
-      "release": ["npm.deploy", "release"],
-      "npm.install": [&npm_install/1],
-      "npm.deploy": [&npm_deploy/1],
+      "release": ["frontend.build", "release"],
       "lint": ["credo -a --strict"]
     ]
-  end
-
-  defp npm_install(_) do
-    Mix.Shell.IO.cmd("cd apps/frontend && npm install")
-  end
-
-  defp npm_deploy(_) do
-    Mix.Shell.IO.cmd("cd apps/frontend && npm run deploy")
-    Mix.Shell.IO.cmd("cd apps/frontend && mix phoenix.digest")
   end
 end
