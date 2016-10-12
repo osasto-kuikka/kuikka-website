@@ -13,6 +13,7 @@ defmodule KuikkaDB.Schema.Permission do
         field :description, :string
         many to many  :role_permission_id, joins_through: KuikkaDB.Schema.RolePermission
     end
+
     def changeset(permission, params \\  %{}) do
         permission
         |> cast(params, [:name,:description])

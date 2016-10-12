@@ -13,6 +13,7 @@ defmodule KuikkaDB.Schema.Role do
         field :name, :string
         field :description, :string
     end
+
     def changeset(role, params \\  %{}) do
         role
         |> cast(params, [:name,:description, :role_permission_id])

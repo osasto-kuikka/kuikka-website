@@ -13,6 +13,7 @@ defmodule KuikkaDB.Schema.Fireteamrole do
         field :description, :string
         field :is_leader, :boolean
     end
+
     def changeset(fireteamrole, params \\ %{}) do
         fireteamrole
         |> cast(params, [:name, :description,:is_leader])

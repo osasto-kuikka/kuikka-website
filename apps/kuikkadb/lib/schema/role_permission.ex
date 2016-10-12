@@ -12,6 +12,7 @@ defmodule KuikkaDB.Schema.RolePermission do
         belongs_to :role_id, KuikkaDB.Schema.Role
         belongs_to :permission_id, KuikkaDB.Schema.Permission
     end
+
     def changeset(role_permission, params \\ %{}) do
         role_permission
         |> cast(params, [role_id, :permission_id])

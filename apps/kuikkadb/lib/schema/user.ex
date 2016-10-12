@@ -18,6 +18,7 @@ defmodule KuikkaDB.Schema.User do
         field :imageurl, :string
         field :signature, :string
     end
+
     def changeset(user, params \\ %{}) do
         user
         |> cast(params, [:username, :password, :email,:imageurl, :signature, :permission_id, :fireteam_id, :fireteamrole_id])
