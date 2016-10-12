@@ -17,7 +17,7 @@ defmodule KuikkaDB.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [applications: [:logger, :postgrex, :ecto],
+    [applications: [:logger, :postgrex, :ecto, :comeonin],
      mod: {KuikkaDB, []}]
   end
 
@@ -28,6 +28,7 @@ defmodule KuikkaDB.Mixfile do
   # Dependencies
   defp deps do
     [
+      {:comeonin, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.0.0"}
     ]
