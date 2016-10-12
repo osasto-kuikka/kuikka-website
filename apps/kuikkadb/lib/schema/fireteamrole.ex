@@ -1,9 +1,11 @@
 defmodule KuikkaDB.Schema.Fireteamrole do
   @moduledoc """
-  A module providing tables by using [Schema](https://hexdocs.pm/ecto/Ecto.Schema.html)
+  A module providing tables
+  by using [Schema](https://hexdocs.pm/ecto/Ecto.Schema.html)
   and [Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html)
 
-  This Schema and changeset is for fireteam roles. Please see fireteamrole table for further details.
+  This Schema and changeset is for fireteam roles.
+  Please see fireteamrole table for further details.
   """
     use Ecto.Schema
     import Ecto.Changeset

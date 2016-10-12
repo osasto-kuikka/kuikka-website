@@ -1,6 +1,7 @@
 defmodule KuikkaDB.Repo.Migrations.CreatePermission do
   @moduledoc """
-  A module providing tables by using [Migration](https://hexdocs.pm/ecto/Ecto.Migration.html)
+  A module providing tables
+  by using [Migration](https://hexdocs.pm/ecto/Ecto.Migration.html)
 
   This table is for creating permissions to users in webpage.
   For example ability to remove post from the forum to moderators.
