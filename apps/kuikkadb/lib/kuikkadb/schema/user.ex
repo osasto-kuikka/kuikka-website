@@ -7,6 +7,7 @@ defmodule KuikkaDB.Schema.User do
   """
   use Ecto.Schema
   import Ecto.Changeset
+  import Comeonin.Bcrypt
 
   alias KuikkaDB.Schema
 
@@ -54,7 +55,9 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add password hashing
   defp hash_password(changeset) do
-    changeset
+    hash = hashpwsalt(fetch_field(changeset, :password))
+    changeset = change(changeset, %{password: hash})
+
   end
 
   # TODO: Add default image
