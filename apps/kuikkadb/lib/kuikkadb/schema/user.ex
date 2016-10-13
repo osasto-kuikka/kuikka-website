@@ -57,7 +57,7 @@ defmodule KuikkaDB.Schema.User do
   defp hash_password(changeset) do
     hash = hashpwsalt(fetch_field(changeset, :password))
     changeset = change(changeset, %{password: hash})
-
+    apply_changes(changeset)1
   end
 
   # TODO: Add default image
