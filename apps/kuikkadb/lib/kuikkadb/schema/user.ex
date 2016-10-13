@@ -67,7 +67,11 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default role
   defp add_default_role(changeset) do
-    changeset
+    when is_valid(KuikkaDB.Role.Changeset) do
+        drole_id = fetch_field(KuikkaDB.Role.Changeset, :role_id)
+        changeset = change(changeset, %{role_id: drole_id }
+    end
+
   end
 
   # TODO: Add default fireteam
