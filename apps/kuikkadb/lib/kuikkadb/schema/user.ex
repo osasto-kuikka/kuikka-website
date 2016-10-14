@@ -8,6 +8,8 @@ defmodule KuikkaDB.Schema.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Comeonin.Bcrypt
+  import Ecto.Query, only: [from: 2]
+
 
   alias KuikkaDB.Schema
 
@@ -67,8 +69,10 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default role
   defp add_default_role(changeset) do
-    drole_id = fetch_field(KuikkaDB.Role.Changeset, :role_id)
-    changeset = change(changeset, %{role_id: drole_id })
+    query = from r in "role",
+                 where: r.name == "user",
+                 select: r.id
+    changeset = change(changeset, %{role_id: query})
 
   end
 
