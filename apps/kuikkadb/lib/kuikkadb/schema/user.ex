@@ -76,17 +76,23 @@ defmodule KuikkaDB.Schema.User do
         query = from r in "role",
                      where: r.name == "user",
                      select: r.id
-        role_id = KuikkaDB.Repo(query)
+        role_id = KuikkaDB.Repo.one(query)
         changeset = change(changeset, %{role_id: query})
     end
   end
 
   # TODO: Add default fireteam
   defp add_default_fireteam(changeset) do
-    changeset
+    if fetch_change(changeset, :fireteam_id) != :error do
+        query = from f in "fireteam",
+                    where: f.name == "Muut",
+                    select: f.id
+        fireteam_id = KuikkaDB.Repo.one(query)
+        changeset = change(changeset, %{fireteam_id: query})
+    end
   end
 
-  # TODO: Add default fireteam
+  # TODO: Add default fireteamrole
   defp add_default_fireteamrole(changeset) do
     changeset
   end
