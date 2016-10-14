@@ -67,7 +67,7 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default image
   defp add_default_image(changeset) do
-    changeset
+    "TODO: replace with proper url"
   end
 
   # TODO: Add default role
@@ -85,7 +85,7 @@ defmodule KuikkaDB.Schema.User do
   defp add_default_fireteam(changeset) do
     if fetch_change(changeset, :fireteam_id) != :error do
         query = from f in "fireteam",
-                    where: f.name == "Muut",
+                    where: f.name == "No group",
                     select: f.id
         fireteam_id = KuikkaDB.Repo.one(query)
         changeset = change(changeset, %{fireteam_id: query})
