@@ -72,28 +72,36 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default role
   defp add_default_role(changeset) do
-    if fetch_change(changeset, :role_id) != :error do
+    if fetch_field(changeset, :role_id) == :error do
         query = from r in "role",
                      where: r.name == "user",
                      select: r.id
         role_id = KuikkaDB.Repo.one(query)
         changeset = change(changeset, %{role_id: query})
+        apply_changes(changeset)
     end
   end
 
   # TODO: Add default fireteam
   defp add_default_fireteam(changeset) do
-    if fetch_change(changeset, :fireteam_id) != :error do
+    if fetch_field(changeset, :fireteam_id) == :error do
         query = from f in "fireteam",
                     where: f.name == "No group",
                     select: f.id
         fireteam_id = KuikkaDB.Repo.one(query)
         changeset = change(changeset, %{fireteam_id: query})
+        apply_changes(changeset)
     end
   end
 
   # TODO: Add default fireteamrole
   defp add_default_fireteamrole(changeset) do
-    changeset
+    if fetch_field(changeset, :fireteamrole_id) == :error do
+        query = from f in "firetamrole",
+            where: f.name == "No role",
+            select: f.id
+        fireteamrole_id = KuikkaDB.Repo.one(query)
+        changeset = change(changeset, %{fireteamrole_id: query})
+    end
   end
 end
