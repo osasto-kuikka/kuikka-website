@@ -11,8 +11,8 @@ defmodule KuikkaDB.Schema.RolePermission do
   alias KuikkaDB.Schema
 
   schema "role_permission" do
-      belongs_to :role_id, Schema.Role
-      belongs_to :permission_id, Schema.Permission
+      belongs_to :role, Schema.Role
+      belongs_to :permission, Schema.Permission
   end
 
   @doc """
@@ -26,9 +26,9 @@ defmodule KuikkaDB.Schema.RolePermission do
   """
   def changeset(role_permission, params) when is_map(params) do
       role_permission
-      |> cast(params, [])
-      |> cast_assoc(:role_id, required: true)
-      |> cast_assoc(:permission_id, required: true)
+      |> cast(params, [:role_id, :permission])
+      |> cast_assoc(:role, required: true)
+      |> cast_assoc(:permission, required: true)
       |> foreign_key_constraint(:role_id)
       |> foreign_key_constraint(:permission_id)
       |> unique_constraint([:role_id, :permission_id])
