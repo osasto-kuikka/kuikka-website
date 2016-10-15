@@ -68,7 +68,8 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default image
   defp add_default_image(changeset) do
-    "TODO: replace with proper url"
+    changeset = change(changeset, %{imageurl: "TODO: replace with proper url"})
+    apply_changes(changeset)
   end
 
   # TODO: Add default role
