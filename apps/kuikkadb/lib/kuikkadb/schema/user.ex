@@ -57,10 +57,11 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add password hashing
   defp hash_password(changeset) do
-    if fetch_change(changeset, :password) != :error do
-        pass = fetch_field(changeset, :password)
-        hash = hashpwsalt(pass)
-        changeset = change(changeset, %{password: hash})
+    pass = get_change(changeset, :password)
+    case pass do
+        nil  -> changeset
+        ""   -> add_error(changeset, :password, "empty")
+        pass -> change(changeset, %{password: hashpwsalt(pass)})
         apply_changes(changeset)
     end
   end
