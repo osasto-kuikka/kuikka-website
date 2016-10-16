@@ -31,7 +31,7 @@ defmodule KuikkaDB.Schema.User do
 
   ## Examples
 
-      iex> KuikkaDB.Schema.RolePermission.changeset(
+      iex> KuikkaDB.Schema.User.changeset(
                                       %KuikkaDB.Schema.User{},
                                       %{username: "example",
                                         password: "example",
@@ -41,15 +41,16 @@ defmodule KuikkaDB.Schema.User do
       user
       |> cast(params, [:username, :password, :email, :imageurl,
                        :signature, :role_id, :fireteam_id, :fireteamrole_id])
-      |> cast_assoc(:role_id, required: true)
-      |> cast_assoc(:fireteam_id, required: true)
-      |> cast_assoc(:fireteamrole_id, required: true)
+      |> cast_assoc(:role, required: true)
+      |> cast_assoc(:fireteam, required: true)
+      |> cast_assoc(:fireteamrole, required: true)
       |> validate_required([:username, :email, :password])
       |> validate_format(:email, ~r/@/)
       |> foreign_key_constraint(:role_id)
       |> foreign_key_constraint(:fireteam_id)
       |> foreign_key_constraint(:fireteamrole_id)
-      |> unique_constraint([:username, :email])
+      |> unique_constraint(:username)
+      |> unique_constraint(:email)
       |> hash_password
       |> add_default_image
       |> add_default_role
