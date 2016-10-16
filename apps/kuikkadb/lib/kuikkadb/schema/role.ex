@@ -13,7 +13,7 @@ defmodule KuikkaDB.Schema.Role do
   schema "role" do
       field :name, :string
       field :description, :string
-      many_to_many :roles, Schema.Permission, join_through: "role_permission"
+      many_to_many :permissions, Schema.Permission, join_through: "role_permission"
       has_many :users, Schema.User
   end
 

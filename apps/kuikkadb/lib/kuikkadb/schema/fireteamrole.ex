@@ -13,7 +13,7 @@ defmodule KuikkaDB.Schema.Fireteamrole do
   schema "fireteamrole" do
       field :name, :string
       field :description, :string
-      field :is_leader, :boolean
+      field :is_leader, :boolean, virtual: true
       has_many :users, KuikkaDB.Schema.User
   end
 

@@ -19,9 +19,9 @@ defmodule KuikkaDB.Schema.User do
       field :email, :string
       field :imageurl, :string
       field :signature, :string
-      belongs_to :role_id, Schema.Role
-      belongs_to :fireteam_id, Schema.Fireteam
-      belongs_to :fireteamrole_id, Schema.Fireteamrole
+      belongs_to :role, Schema.Role
+      belongs_to :fireteam, Schema.Fireteam
+      belongs_to :fireteamrole, Schema.Fireteamrole
   end
 
   @doc """
@@ -40,8 +40,10 @@ defmodule KuikkaDB.Schema.User do
   def changeset(user, params) when is_map(params) do
       user
       |> cast(params, [:username, :password, :email, :imageurl,
-                       :signature, :role_id, :fireteam_id,
-                       :fireteamrole_id])
+                       :signature, :role_id, :fireteam_id, :fireteamrole_id])
+      |> cast_assoc(:role_id, required: true)
+      |> cast_assoc(:fireteam_id, required: true)
+      |> cast_assoc(:fireteamrole_id, required: true)
       |> validate_required([:username, :email, :password])
       |> validate_format(:email, ~r/@/)
       |> foreign_key_constraint(:role_id)
