@@ -77,14 +77,17 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default role
   defp add_default_role(changeset) do
-    if fetch_field(changeset, :role) == :error do
-        query = from r in "role",
-                     where: r.name == "user",
-                     select: r.id
-        role_query = KuikkaDB.Repo.one(query)
-        role = role_query.id
-        changeset = change(changeset, %{role: role})
-        apply_changes(changeset)
+    c_role = get_change(changeset, :role_id)
+    case c_role do
+        nil -> changeset
+        ""  -> add_error(changeset, :role_id, "empty")
+        c_role -> query = from r in "role",
+                             where: r.name == "user",
+                             select: r.id
+                        role_query = KuikkaDB.Repo.one(query)
+                        role = role_query.id
+                        changeset = change(changeset, %{role: role})
+                        apply_changes(changeset)
     end
   end
 
