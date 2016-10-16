@@ -41,9 +41,9 @@ defmodule KuikkaDB.Schema.User do
       user
       |> cast(params, [:username, :password, :email, :imageurl,
                        :signature, :role_id, :fireteam_id, :fireteamrole_id])
-      |> cast_assoc(:role, required: true)
-      |> cast_assoc(:fireteam, required: true)
-      |> cast_assoc(:fireteamrole, required: true)
+      |> cast_assoc(:role)
+      |> cast_assoc(:fireteam)
+      |> cast_assoc(:fireteamrole)
       |> validate_required([:username, :email, :password])
       |> validate_format(:email, ~r/@/)
       |> foreign_key_constraint(:role_id)
@@ -77,12 +77,13 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default role
   defp add_default_role(changeset) do
-    if fetch_field(changeset, :role_id) == :error do
+    if fetch_field(changeset, :role) == :error do
         query = from r in "role",
                      where: r.name == "user",
                      select: r.id
-        role_id = KuikkaDB.Repo.one(query)
-        changeset = change(changeset, %{role_id: query})
+        role_query = KuikkaDB.Repo.one(query)
+        role = role_query.id
+        changeset = change(changeset, %{role: role})
         apply_changes(changeset)
     end
   end
@@ -93,8 +94,9 @@ defmodule KuikkaDB.Schema.User do
         query = from f in "fireteam",
                     where: f.name == "No group",
                     select: f.id
-        fireteam_id = KuikkaDB.Repo.one(query)
-        changeset = change(changeset, %{fireteam_id: query})
+        fireteam_query = KuikkaDB.Repo.one(query)
+        fireteam = fireteam_query.id
+        changeset = change(changeset, %{fireteam_id: fireteam})
         apply_changes(changeset)
     end
   end
@@ -102,11 +104,12 @@ defmodule KuikkaDB.Schema.User do
   # TODO: Add default fireteamrole
   defp add_default_fireteamrole(changeset) do
     if fetch_field(changeset, :fireteamrole_id) == :error do
-        query = from f in "firetamrole",
+        query = from f in "fireteamrole",
             where: f.name == "No role",
             select: f.id
-        fireteamrole_id = KuikkaDB.Repo.one(query)
-        changeset = change(changeset, %{fireteamrole_id: query})
+        fireteamrole_query = KuikkaDB.Repo.one(query)
+        fireteamrole = fireteamrole_query.id
+        changeset = change(changeset, %{fireteamrole_id: fireteamrole})
     end
   end
 end

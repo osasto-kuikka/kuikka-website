@@ -30,10 +30,8 @@ defmodule KuikkaDB.Repo.Migrations.CreateUser do
         add :fireteam_id, references(:fireteam), null: false
         add :fireteamrole_id, references(:fireteamrole), null: false
 
-
         timestamps
     end
-    create index(:user, [:email, :username, :role_id,
-    :fireteam_id, :fireteamrole_id], unique: true)
+    create index(:user, [:email, :username, :role_id], unique: true)
   end
 end

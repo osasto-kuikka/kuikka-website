@@ -21,6 +21,5 @@ defmodule KuikkaDB.Repo.Migrations.CreateFireteamrole do
         add :description, :string, size: 250, null: true
         add :is_leader, :boolean, null: false
     end
-    create index(:fireteamrole, [:fireteam_id, :name], unique: true)
   end
 end

@@ -29,7 +29,8 @@ defmodule KuikkaDB.Schema.Fireteamrole do
   def changeset(fireteamrole, params) when is_map(params) do
       fireteamrole
       |> cast(params, [:name, :description,:is_leader])
-      |> validate_required([:name, :is_leader])
-      |> unique_constraint([:name])
+      |> validate_required(:name)
+      |> validate_required(:is_leader)
+      |> unique_constraint(:name)
   end
 end

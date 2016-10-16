@@ -27,8 +27,8 @@ defmodule KuikkaDB.Schema.RolePermission do
   def changeset(role_permission, params) when is_map(params) do
       role_permission
       |> cast(params, [:role_id, :permission_id])
-      |> cast_assoc(:role, required: true)
-      |> cast_assoc(:permission, required: true)
+      |> cast_assoc(:role )
+      |> cast_assoc(:permission)
       |> assoc_constraint(:role)
       |> assoc_constraint(:permission)
     #  |> unique_constraint(:role_id)
