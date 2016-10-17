@@ -11,7 +11,9 @@ defmodule KuikkaDB.Schema.User do
   import Ecto.Query, only: [from: 2]
 
 
+
   alias KuikkaDB.Schema
+  alias KuikkaDB.Schema.Role, as: RoleSchema
 
   schema "user" do
       field :username, :string
@@ -53,7 +55,7 @@ defmodule KuikkaDB.Schema.User do
       |> unique_constraint(:email)
       |> hash_password
       |> add_default_image
-      |> add_default_role
+      |> get_role
       |> add_default_fireteam
       |> add_default_fireteamrole
   end
@@ -77,20 +79,16 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default role
   defp add_default_role(changeset) do
-    c_role = get_change(changeset, :role_id)
-    case c_role do
-        nil -> changeset
-        ""  -> add_error(changeset, :role_id, "empty")
-        c_role -> query = from r in "role",
-                             where: r.name == "user",
-                             select: r.id
-                        role_query = KuikkaDB.Repo.one(query)
-                        role = role_query.id
-                        changeset = change(changeset, %{role: role})
-                        apply_changes(changeset)
-    end
+    get_role(changeset)
   end
+  defp get_role(changeset),
+    do: RoleSchema |> Repo.get_by(name: "user") |> get_role(changeset)
 
+  defp get_role(role = %RoleSchema{}, changeset),
+    do: changeset |> put_assoc(:role, role)
+
+  defp get_role(_, changeset),
+    do: changeset |> add_error(:role,"Unable to find role user")
   # TODO: Add default fireteam
   defp add_default_fireteam(changeset) do
     if fetch_field(changeset, :fireteam_id) == :error do
