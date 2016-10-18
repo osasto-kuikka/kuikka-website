@@ -122,4 +122,14 @@ defmodule KuikkaDB.Schema.User do
         changeset = change(changeset, %{fireteamrole_id: fireteamrole})
     end
   end
+
+  defp get_fireteamrole(changeset),
+    do: FireteamRoleSchema |> KuikkaDB.Repo.get_by(name: "Kiväärimies") |> get_fireteamrole(changeset)
+
+  defp get_fireteamrole(fireteamrole = %FireteamRoleSchema{}, changeset),
+    do: put_assoc(:fireteamrole, fireteam)
+
+  defp get_fireteamrole(_, changeset),
+    do: changeset |> add_error(fireteam, "Unable to find fireteam role Kiväärimies")
+
 end
