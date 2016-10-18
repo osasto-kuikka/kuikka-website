@@ -20,7 +20,7 @@ defmodule KuikkaDB.Schema.Fireteam do
   ## Examples
 
       iex> KuikkaDB.Schema.Fireteam.changeset(%KuikkaDB.Schema.Fireteam{},
-                                              %{name: "example"})
+                                              %{name: "No group"})
   """
   def changeset(fireteam, params) when is_map(params) do
     fireteam

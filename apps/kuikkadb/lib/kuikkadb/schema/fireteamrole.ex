@@ -24,7 +24,7 @@ defmodule KuikkaDB.Schema.Fireteamrole do
 
       iex> KuikkaDB.Schema.Fireteamrole.changeset(
                                         %KuikkaDB.Schema.Fireteamrole{},
-                                        %{name: "example", is_leader: false})
+                                        %{name: "Kiväärimies", is_leader: false})
   """
   def changeset(fireteamrole, params) when is_map(params) do
       fireteamrole
