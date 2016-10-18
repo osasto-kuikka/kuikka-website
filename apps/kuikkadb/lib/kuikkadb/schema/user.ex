@@ -134,5 +134,4 @@ defmodule KuikkaDB.Schema.User do
 
   defp get_fireteamrole(_, changeset),
     do: changeset |> add_error(:fireteamrole, "Unable to find fireteam role Kiväärimies")
-
 end
