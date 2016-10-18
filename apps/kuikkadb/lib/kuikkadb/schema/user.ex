@@ -14,7 +14,8 @@ defmodule KuikkaDB.Schema.User do
 
   alias KuikkaDB.Schema
   alias KuikkaDB.Schema.Role, as: RoleSchema
-  alias KuikkaDB.Schema.Fireteam as: FireteamSchema
+  alias KuikkaDB.Schema.Fireteam, as: FireteamSchema
+  alias KuikkaDB.Schema.Fireteamrole, as: FireteamRoleSchema
 
   schema "user" do
       field :username, :string
@@ -57,8 +58,10 @@ defmodule KuikkaDB.Schema.User do
       |> hash_password
       |> add_default_image
       |> get_role
-      |> add_default_fireteam
-      |> add_default_fireteamrole
+      |> get_fireteam
+      |> get_fireteamrole
+      #|> add_default_fireteam
+      #|> add_default_fireteamrole
   end
 
   # TODO: Add password hashing
@@ -127,9 +130,9 @@ defmodule KuikkaDB.Schema.User do
     do: FireteamRoleSchema |> KuikkaDB.Repo.get_by(name: "Kiväärimies") |> get_fireteamrole(changeset)
 
   defp get_fireteamrole(fireteamrole = %FireteamRoleSchema{}, changeset),
-    do: put_assoc(:fireteamrole, fireteam)
+    do: changeset |> put_assoc(:fireteamrole, fireteamrole)
 
   defp get_fireteamrole(_, changeset),
-    do: changeset |> add_error(fireteam, "Unable to find fireteam role Kiväärimies")
+    do: changeset |> add_error(:fireteamrole, "Unable to find fireteam role Kiväärimies")
 
 end
