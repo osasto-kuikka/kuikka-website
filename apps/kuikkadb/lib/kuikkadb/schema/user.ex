@@ -14,6 +14,7 @@ defmodule KuikkaDB.Schema.User do
 
   alias KuikkaDB.Schema
   alias KuikkaDB.Schema.Role, as: RoleSchema
+  alias KuikkaDB.Schema.Fireteam as: FireteamSchema
 
   schema "user" do
       field :username, :string
@@ -82,7 +83,7 @@ defmodule KuikkaDB.Schema.User do
     get_role(changeset)
   end
   defp get_role(changeset),
-    do: RoleSchema |> Repo.get_by(name: "user") |> get_role(changeset)
+    do: RoleSchema |> KuikkaDB.Repo.get_by(name: "user") |> get_role(changeset)
 
   defp get_role(role = %RoleSchema{}, changeset),
     do: changeset |> put_assoc(:role, role)
@@ -101,6 +102,14 @@ defmodule KuikkaDB.Schema.User do
         apply_changes(changeset)
     end
   end
+  defp get_fireteam(changeset),
+    do: FireteamSchema |> KuikkaDB.Repo.get_by(name: "No group") |> get_fireteam(changeset)
+
+  defp get_fireteam(fireteam = %FireteamSchema{},changeset),
+    do: changeset |> put_assoc(:fireteam, fireteam)
+
+  defp get_fireteam(_, changeset),
+    do: changeset |> add_error(:fireteam, "Unable to find fireteam No group")
 
   # TODO: Add default fireteamrole
   defp add_default_fireteamrole(changeset) do

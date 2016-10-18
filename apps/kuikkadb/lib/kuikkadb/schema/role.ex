@@ -23,7 +23,7 @@ defmodule KuikkaDB.Schema.Role do
   ## Examples
 
       iex> KuikkaDB.Schema.Role.changeset(%KuikkaDB.Schema.Role{},
-                                          %{name: "example"})
+                                          %{name: "user"})
   """
   def changeset(role, params) when is_map(params) do
       role
