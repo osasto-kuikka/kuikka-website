@@ -85,6 +85,7 @@ defmodule KuikkaDB.Schema.User do
   defp add_default_role(changeset) do
     get_role(changeset)
   end
+
   defp get_role(changeset),
     do: RoleSchema |> KuikkaDB.Repo.get_by(name: "user") |> get_role(changeset)
 
@@ -93,6 +94,7 @@ defmodule KuikkaDB.Schema.User do
 
   defp get_role(_, changeset),
     do: changeset |> add_error(changeset, :role,"Unable to find role user")
+
   # TODO: Add default fireteam
   defp add_default_fireteam(changeset) do
     if fetch_field(changeset, :fireteam_id) == :error do
@@ -105,6 +107,7 @@ defmodule KuikkaDB.Schema.User do
         apply_changes(changeset)
     end
   end
+
   defp get_fireteam(changeset),
     do: FireteamSchema |> KuikkaDB.Repo.get_by(name: "No group") |> get_fireteam(changeset)
 
