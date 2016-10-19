@@ -71,14 +71,21 @@ defmodule KuikkaDB.Schema.User do
         nil  -> changeset
         ""   -> add_error(changeset, :password, "empty")
         pass -> change(changeset, %{password: hashpwsalt(pass)})
-        apply_changes(changeset)
+                apply_changes(changeset)
     end
   end
 
   # TODO: Add default image
   defp add_default_image(changeset) do
-    changeset = change(changeset, %{imageurl: "TODO: replace with proper url"})
-    apply_changes(changeset)
+    image = get_field(changeset, :imageurl)
+    case image do
+        nil -> changeset = change(changeset, %{imageurl: "TODO: replace with proper url"})
+                  apply_changes(changeset)
+        "" -> changeset = change(changeset, %{imageurl: "TODO: replace with proper url"})
+                  apply_changes(changeset)
+        image -> changeset
+
+
   end
 
   # TODO: Add default role
