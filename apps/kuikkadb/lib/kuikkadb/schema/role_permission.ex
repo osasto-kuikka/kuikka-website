@@ -29,8 +29,8 @@ defmodule KuikkaDB.Schema.RolePermission do
       |> cast(params, [:role_id, :permission_id])
       |> cast_assoc(:role )
       |> cast_assoc(:permission)
-      |> assoc_constraint(:role)
-      |> assoc_constraint(:permission)
+      |> foreign_key_constraint(:role)
+      |> foreign_key_constraint(:permission)
     #  |> unique_constraint(:role_id)
     #  |> unique_constraint(:permission_id)
   end
