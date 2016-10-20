@@ -84,8 +84,7 @@ defmodule KuikkaDB.Schema.User do
         "" -> changeset = change(changeset, %{imageurl: "TODO: replace with proper url"})
                   apply_changes(changeset)
         image -> changeset
-
-
+   end
   end
 
   # TODO: Add default role
@@ -100,7 +99,7 @@ defmodule KuikkaDB.Schema.User do
     do: changeset |> put_assoc(:role, role)
 
   defp get_role(_, changeset),
-    do: changeset |> add_error(changeset, :role,"Unable to find role user")
+    do: changeset |> add_error(:role,"Unable to find role user")
 
   # TODO: Add default fireteam
   defp add_default_fireteam(changeset) do
@@ -114,7 +113,7 @@ defmodule KuikkaDB.Schema.User do
     do: changeset |> put_assoc(:fireteam, fireteam)
 
   defp get_fireteam(_, changeset),
-    do: changeset |> add_error(changeset, :fireteam, "Unable to find fireteam No group")
+    do: changeset |> add_error(:fireteam, "Unable to find fireteam No group")
 
   # TODO: Add default fireteamrole
   defp add_default_fireteamrole(changeset) do
@@ -128,5 +127,5 @@ defmodule KuikkaDB.Schema.User do
     do: changeset |> put_assoc(:fireteamrole, fireteamrole)
 
   defp get_fireteamrole(_, changeset),
-    do: changeset |> add_error(changeset, :fireteamrole, "Unable to find fireteam role Kiväärimies")
+    do: changeset |> add_error(:fireteamrole, "Unable to find fireteam role Kiväärimies")
 end
