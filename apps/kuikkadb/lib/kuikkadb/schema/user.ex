@@ -77,7 +77,7 @@ defmodule KuikkaDB.Schema.User do
 
   # TODO: Add default image
   defp add_default_image(changeset) do
-    image = get_field(changeset, :imageurl)
+    image = fetch_field(changeset, :imageurl)
     case image do
         nil -> changeset = change(changeset, %{imageurl: "TODO: replace with proper url"})
                   apply_changes(changeset)
