@@ -21,17 +21,16 @@ defmodule KuikkaDB.Repo.Migrations.CreateUser do
 
   def change do
     create table(:user) do
-        add :username, :string, size: 50, null: false
-        add :password, :string, size: 50, null: false
-        add :email, :string, size: 60, null: false
-        add :imageurl, :string, size: 100, null: false
-        add :signature, :string, size: 250, null: true
-        add :role_id, references(:role), null: false
-        add :fireteam_id, references(:fireteam), null: false
-        add :fireteamrole_id, references(:fireteamrole), null: false
-
-        timestamps
+      add :username, :string, size: 50, null: false
+      add :password, :string, size: 60, null: false
+      add :email, :string, size: 60, null: false
+      add :imageurl, :string, size: 100, null: false
+      add :signature, :string, size: 250, null: true
+      add :role_id, references(:role), null: false
+      add :fireteam_id, references(:fireteam), null: false
+      add :fireteamrole_id, references(:fireteamrole), null: false
+      timestamps
     end
-    create index(:user, [:email, :username, :role_id], unique: true)
+    create index(:user, [:email, :username], unique: true)
   end
 end

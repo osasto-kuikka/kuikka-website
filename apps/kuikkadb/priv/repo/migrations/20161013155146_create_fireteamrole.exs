@@ -16,10 +16,11 @@ defmodule KuikkaDB.Repo.Migrations.CreateFireteamrole do
 
   def change do
     create table(:fireteamrole) do
-        add :fireteam_id, references(:fireteam), null: false
-        add :name, :string, size: 50, null: false
-        add :description, :string, size: 250, null: true
-        add :is_leader, :boolean, null: false
+      add :name, :string, size: 50, null: false
+      add :description, :string, size: 250, null: true
+      add :is_leader, :boolean, null: false
+      add :fireteam_id, references(:fireteam), null: false
     end
+    create index(:fireteamrole, [:name], unique: true)
   end
 end

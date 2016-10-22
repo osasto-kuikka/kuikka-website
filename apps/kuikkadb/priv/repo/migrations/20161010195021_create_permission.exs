@@ -13,8 +13,8 @@ defmodule KuikkaDB.Repo.Migrations.CreatePermission do
 
   def change do
     create table(:permission) do
-        add :name, :string, size: 50, null: false
-        add :description, :string, size: 250, null: true
+      add :name, :string, size: 50, null: false
+      add :description, :string, size: 250, null: true
     end
     create index(:permission, [:name], unique: true)
   end

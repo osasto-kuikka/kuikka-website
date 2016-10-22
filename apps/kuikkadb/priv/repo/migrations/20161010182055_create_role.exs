@@ -14,8 +14,8 @@ defmodule KuikkaDB.Repo.Migrations.CreateRole do
 
   def change do
     create table(:role) do
-        add :name, :string, size: 50, null: false
-        add :description, :string, size: 250, null: true
+      add :name, :string, size: 50, null: false
+      add :description, :string, size: 250, null: true
     end
     create index(:role, [:name], unique: true)
   end
