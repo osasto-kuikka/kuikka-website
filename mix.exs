@@ -35,9 +35,13 @@ defmodule KuikkaWebsite.Mixfile do
     [
       "setup": ["deps.get", "compile", "db.setup", "frontend.install"],
       "setup.min": ["deps.get", "compile"],
-      "db.setup": ["ecto.create", "ecto.migrate"],
+      "db.setup": ["ecto.create", "ecto.migrate", "db.seeds"],
+      "db.setup.quiet": ["ecto.create --quiet", "ecto.migrate --quiet"],
+      "db.seeds": ["run apps/kuikkadb/priv/seeds.exs", "db.seeds.windows"],
+      "db.seeds.windows": ["run apps\\kuikkadb\\priv\\seeds.exs"],
       "db.reset": ["ecto.drop", "db.setup"],
       "release": ["frontend.build", "release"],
+      "test": ["db.setup.quiet", "db.seeds", "test"],
       "lint": ["credo -a --strict"]
     ]
   end
