@@ -39,6 +39,7 @@ defmodule Frontend.Mixfile do
   defp deps do
     [
       {:kuikkadb, in_umbrella: true},
+      {:user, in_umbrella: true},
       {:phoenix, "~> 1.2.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_html, "~> 2.6"},

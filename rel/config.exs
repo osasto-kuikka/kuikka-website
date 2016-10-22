@@ -31,7 +31,9 @@ end
 release :kuikka_website do
   set version: "0.1.0"
   set applications: [
-    frontend: :permanent
+    frontend: :permanent,
+    kuikkadb: :permanent,
+    user: :permanent
   ]
 end
 
