@@ -28,6 +28,7 @@ defmodule KuikkaDB.Mixfile do
   # Dependencies
   defp deps do
     [
+      {:user, in_umbrella: true},
       {:comeonin, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.0.0"}

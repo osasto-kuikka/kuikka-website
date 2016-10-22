@@ -1,31 +1,74 @@
 defmodule KuikkaDB.Schema.Fireteam do
   @moduledoc """
-  A module providing tables by using [Schema](https://hexdocs.pm/ecto/Ecto.Schema.html)
-  and [Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html)
+  A module providing tables by using:
+  [Schema](https://hexdocs.pm/ecto/Ecto.Schema.html)
+  [Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html)
 
-  This Schema and changeset is for fireteams. Please see fireteam table for further details.
+  This Schema and changeset is for fireteams.
+  Please see fireteam table for further details.
   """
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias KuikkaDB.{Repo, Schema}
+  alias Schema.{User, Fireteamrole}
+
   schema "fireteam" do
     field :name, :string
     field :description, :string
-    has_many :users, KuikkaDB.Schema.User
+    has_many :fireteamroles, Fireteamrole
+    has_many :users, User
+    field :delete, :boolean, virtual: true
   end
 
   @doc """
-  Generate changeset to update or insert row to fireteam
-
-  ## Examples
-
-      iex> KuikkaDB.Schema.Fireteam.changeset(%KuikkaDB.Schema.Fireteam{},
-                                              %{name: "No group"})
+  Add new fireteam.
   """
-  def changeset(fireteam, params) when is_map(params) do
+  def new(params) do
+    params = Map.put(params, :new, true)
+    %__MODULE__{} |> changeset(params) |> Repo.insert
+  end
+
+  @doc """
+  Update fireteam
+  """
+  def update(struct, params) do
+    struct |> changeset(params) |> Repo.update
+  end
+
+  @doc """
+  Delete fireteam
+  """
+  def delete(struct) do
+    struct |> changeset(%{delete: true}) |> Repo.update
+  end
+
+  @doc """
+  Get one fireteam with id or name
+  """
+  def one(id: id),
+    do: Repo.get(__MODULE__, id)
+  def one(opts),
+    do: Repo.get_by(__MODULE__, opts)
+
+  @doc """
+  Get all fireteams
+  """
+  def all(),
+    do: Repo.all(__MODULE__)
+
+  defp changeset(fireteam, params) when is_map(params) do
     fireteam
-    |> cast(params, [:name,:description])
+    |> cast(params, [:name, :description])
     |> validate_required([:name])
     |> unique_constraint(:name)
+    |> changeset_delete
+  end
+  defp changeset_delete(changeset) do
+    if get_change(changeset, :delete) do
+      %{changeset | action: :delete}
+    else
+      changeset
+    end
   end
 end
