@@ -49,11 +49,8 @@ defmodule KuikkaDB.Schema.User do
   @doc """
   Delete user
   """
-  #def delete(struct) do
-   # struct |> changeset(%{delete: true}) |> Repo.update
-  #end
   def delete(schema = %__MODULE__{}) do
-    schema |> change(%{delete: true}) |> Repo.update
+    schema |> change(%{delete: true}) |> Repo.delete
   end
 
   @doc """
