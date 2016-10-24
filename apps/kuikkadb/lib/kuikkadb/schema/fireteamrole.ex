@@ -34,16 +34,16 @@ defmodule KuikkaDB.Schema.Fireteamrole do
   @doc """
   Update fireteam role
   """
-  def update(struct, params) do
+  def update(schema =  %__MODULE__{} , params) do
     params = Map.put(params, :new, true)
-    struct |> changeset(params) |> Repo.update
+    schema |> changeset(params) |> Repo.update
   end
 
   @doc """
   Delete fireteam role
   """
-  def delete(struct) do
-    struct |> changeset(%{delete: true}) |> Repo.update
+  def delete(schema =  %__MODULE__{}) do
+    schema |> changeset(%{delete: true}) |> Repo.delete
   end
 
   @doc """

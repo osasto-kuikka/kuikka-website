@@ -31,15 +31,15 @@ defmodule KuikkaDB.Schema.Role do
   @doc """
   Update role
   """
-  def update(struct, params) do
-    struct |> changeset(params) |> Repo.update
+  def update(schema = %__MODULE__{}, params) do
+    schema |> changeset(params) |> Repo.update
   end
 
   @doc """
   Delete role
   """
-  def delete(struct) do
-    struct |> changeset(%{delete: true}) |> Repo.update
+  def delete(schema = %__MODULE__{}) do
+    schema |> changeset(%{delete: true}) |> Repo.delete
   end
 
   @doc """
