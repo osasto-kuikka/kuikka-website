@@ -23,4 +23,15 @@ defmodule KuikkaDBTest do
 
     assert delete_cantidate == nil
   end
+  test "update user" do
+    UserSchema.new(%{username: "test", email: "test@test.com",
+                      password: "test"})
+    user = UserSchema.one(username: "test")
+
+    user = UserSchema.update(user, %{username: "jokuAIVANmuu", email: "newmail@mail.com"})
+    updated_user_struct = UserSchema.struct(username: "jokuAIVANmuu")
+
+    assert updated_user_struct.username == "jokuAIVANmuu"
+    assert updated_user_struct.email == "newmail@mail.com"
+  end
 end
