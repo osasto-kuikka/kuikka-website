@@ -59,7 +59,7 @@ defmodule KuikkaDB.Schema.Fireteam do
 
   defp changeset(fireteam, params) when is_map(params) do
     fireteam
-    |> cast(params, [:name, :description])
+    |> cast(params, [:name, :description, :delete])
     |> validate_required([:name])
     |> unique_constraint(:name)
     |> changeset_delete

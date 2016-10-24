@@ -91,7 +91,7 @@ defmodule KuikkaDB.Schema.User do
     |> User.to_struct
   end
 
-  defp changeset(user, params) when is_map(params) do
+  def changeset(user, params) when is_map(params) do
       user
       |> cast(params, [:username, :password, :email, :imageurl,
                        :signature, :role_id, :fireteam_id, :fireteamrole_id,

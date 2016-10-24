@@ -49,7 +49,7 @@ defmodule KuikkaDB.Schema.Permission do
 
   defp changeset(permission, params) when is_map(params) do
     permission
-    |> cast(params, [:name,:description])
+    |> cast(params, [:name,:description, :delete])
     |> validate_required([:name])
     |> unique_constraint(:name)
   end

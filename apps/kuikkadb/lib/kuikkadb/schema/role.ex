@@ -58,7 +58,7 @@ defmodule KuikkaDB.Schema.Role do
 
   defp changeset(role, params) do
     role
-    |> cast(params, [:name, :description])
+    |> cast(params, [:name, :description, :delete])
     |> validate_required([:name])
     |> unique_constraint(:name)
     |> changeset_delete
