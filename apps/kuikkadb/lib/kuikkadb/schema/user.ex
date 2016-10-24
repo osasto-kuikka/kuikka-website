@@ -42,24 +42,35 @@ defmodule KuikkaDB.Schema.User do
   @doc """
   Update user
   """
-  def update(struct, params) do
-    struct |> changeset(params) |> Repo.update
+  def update(schema = %__MODULE__{}, params) do
+    schema |> changeset(params) |> Repo.update
   end
 
   @doc """
   Delete user
   """
-  def delete(struct) do
-    struct |> changeset(%{delete: true}) |> Repo.update
+  #def delete(struct) do
+   # struct |> changeset(%{delete: true}) |> Repo.update
+  #end
+  def delete(schema = %__MODULE__{}) do
+    schema |> change(%{delete: true}) |> Repo.update
   end
 
   @doc """
-  Get one user with id, email or username
+  Get one user sturct with id, email or username
+  """
+  def sturct(id: id),
+    do: __MODULE__ |> Repo.get(id) |> to_struct
+  def struct(opts),
+    do: __MODULE__ |> Repo.get_by(opts) |> to_struct
+
+  @doc """
+  Get one user schema with id, email or username
   """
   def one(id: id),
-    do: __MODULE__ |> Repo.get(id) |> to_struct
+    do: __MODULE__ |> Repo.get(id)
   def one(opts),
-    do: __MODULE__ |> Repo.get_by(opts) |> to_struct
+    do: __MODULE__ |> Repo.get_by(opts)
 
   @doc """
   Get all users
