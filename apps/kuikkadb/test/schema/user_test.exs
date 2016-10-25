@@ -1,4 +1,4 @@
-defmodule KuikkaDBTest do
+defmodule KuikkaDBTest.User do
   use KuikkaDB.TestCase
 
   alias KuikkaDB.Schema.User, as: UserSchema
@@ -8,10 +8,9 @@ defmodule KuikkaDBTest do
     UserSchema.new(%{username: "test", email: "test@test.com",
                           password: "test"})
     {:ok, user: UserSchema.one(username: "test")}
-   # {:ok, user_struct: UserSchema.struct(username: "test")}
   end
   test "new user", state do
-    user = UserSchema.struct(username: "test")
+    user = state[:user]
     assert user.username == "test"
     assert user.email == "test@test.com"
     assert user.imageurl == "http://test.osastokuikka.com/images/logo.svg"
@@ -26,10 +25,11 @@ defmodule KuikkaDBTest do
   end
   test "update user", state do
     user = state[:user]
-    user = UserSchema.update(user, %{username: "jokuAIVANmuu", email: "newmail@mail.com"})
-    updated_user_struct = UserSchema.struct(username: "jokuAIVANmuu")
+    user = UserSchema.update(user, %{username: "jokuAIVANmuu", email: "newmail@mail.com",
+                                    new: false})
+    user = UserSchema.one(username: "jokuAIVANmuu")
 
-    assert updated_user_struct.username == "jokuAIVANmuu"
-    assert updated_user_struct.email == "newmail@mail.com"
+    assert user.username == "jokuAIVANmuu"
+    assert user.email == "newmail@mail.com"
   end
 end

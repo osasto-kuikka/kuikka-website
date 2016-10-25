@@ -20,17 +20,24 @@ defmodule KuikkaDB.Schema.Permission do
   end
 
   @doc """
-  Add new role. SEED FILE USAGE ONLY!
+  Add new permission. SEED FILE USAGE ONLY!
   """
   def new(params) do
     %__MODULE__{} |> changeset(params) |> Repo.insert
   end
 
   @doc """
-  Delete fireteam role
+  Update permission
   """
-  def delete(struct) do
-    struct |> changeset(%{delete: true}) |> Repo.update
+  def update(schema =  %__MODULE__{}, params) do
+    schema |> changeset(params) |> Repo.update
+  end
+
+  @doc """
+  Delete permission
+  """
+  def delete(schema =  %__MODULE__{}) do
+    schema |> changeset(%{delete: true}) |> Repo.delete
   end
 
   @doc """
