@@ -26,8 +26,7 @@ defmodule KuikkaDBTest.Role do
   test "update role", state do
     role = state[:role]
 
-    role = RoleSchema.update(role, %{name: "new test", description: "nothing",
-                             new: false})
+    role = RoleSchema.update(role, %{name: "new test", description: "nothing"})
     role = RoleSchema.one(name: "new test")
 
     assert role.name == "new test"

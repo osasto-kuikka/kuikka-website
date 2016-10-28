@@ -30,8 +30,7 @@ defmodule KuikkaDBTest.Fireteamrole do
    # fireteamrole = state[:fireteamrole]
     #fireteam = FireteamSchema.one(name: "test fireteam")
 
-    #fireteamrole = FireteamroleSchema.update(fireteamrole, %{name: "new test", description: "nothing",
-                             #   is_leader: true, fireteam: fireteam, new: false})
+    #fireteamrole = FireteamroleSchema.update(fireteamrole, %{name: "new test", description: "nothing"})
     #fireteamrole = FireteamroleSchema.one(name: "new test")
 
     #assert fireteamrole.name == "new test"

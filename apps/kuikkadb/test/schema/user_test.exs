@@ -25,8 +25,7 @@ defmodule KuikkaDBTest.User do
   end
   test "update user", state do
     user = state[:user]
-    user = UserSchema.update(user, %{username: "jokuAIVANmuu", email: "newmail@mail.com",
-                                    new: false})
+    user = UserSchema.update(user, %{username: "jokuAIVANmuu", email: "newmail@mail.com"})
     user = UserSchema.one(username: "jokuAIVANmuu")
 
     assert user.username == "jokuAIVANmuu"

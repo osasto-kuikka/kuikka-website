@@ -43,6 +43,7 @@ defmodule KuikkaDB.Schema.User do
   Update user
   """
   def update(schema = %__MODULE__{}, params) when is_map(params) do
+    params = Map.put(params, :new, false)
     schema |> changeset(params) |> Repo.update
   end
 

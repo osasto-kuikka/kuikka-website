@@ -32,6 +32,7 @@ defmodule KuikkaDB.Schema.Role do
   Update role
   """
   def update(schema = %__MODULE__{}, params) when is_map(params) do
+    params = Map.put(params, :new, false)
     schema |> changeset(params) |> Repo.update
   end
 

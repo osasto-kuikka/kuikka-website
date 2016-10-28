@@ -25,8 +25,7 @@ defmodule KuikkaDBTest.Fireteam do
   test "update fireteam", state do
     fireteam = state[:fireteam]
 
-    fireteam = FireteamSchema.update(fireteam, %{name: "new test", description: "nothing",
-                                     new: false})
+    fireteam = FireteamSchema.update(fireteam, %{name: "new test", description: "nothing"})
     fireteam = FireteamSchema.one(name: "new test")
 
     assert fireteam.name == "new test"
