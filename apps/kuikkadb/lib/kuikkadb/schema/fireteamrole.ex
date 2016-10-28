@@ -34,8 +34,8 @@ defmodule KuikkaDB.Schema.Fireteamrole do
   @doc """
   Update fireteam role
   """
-  def update(schema =  %__MODULE__{} , params) do
-    params = Map.put(params, :new, true)
+  def update(schema =  %__MODULE__{} , params) when is_map(params) do
+    params = Map.put(params, :new, false)
     schema |> changeset(params) |> Repo.update
   end
 
