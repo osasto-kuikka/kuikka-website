@@ -26,14 +26,14 @@ defmodule KuikkaDBTest.Fireteamrole do
 
     assert fireteamrole == nil
   end
-  #test "update fireteam", state do
-   # fireteamrole = state[:fireteamrole]
-    #fireteam = FireteamSchema.one(name: "test fireteam")
+  test "update fireteam", state do
+    fireteamrole = state[:fireteamrole]
+    fireteam = FireteamSchema.one(name: "test fireteam")
 
-    #fireteamrole = FireteamroleSchema.update(fireteamrole, %{name: "new test", description: "nothing"})
-    #fireteamrole = FireteamroleSchema.one(name: "new test")
+    fireteamrole = FireteamroleSchema.update(fireteamrole, %{name: "new test", description: "nothing"})
+    fireteamrole = FireteamroleSchema.one(name: "new test")
 
-    #assert fireteamrole.name == "new test"
-    #assert fireteamrole.description == "nothing"
-  #end
+    assert fireteamrole.name == "new test"
+    assert fireteamrole.description == "nothing"
+  end
 end
