@@ -19,7 +19,7 @@ defmodule KuikkaDBTest.Role do
     assert role == nil
   end
   test "update role", %{role: role} do
-    role = RoleSchema.update(role, %{name: "new test", description: "nothing"})
+    RoleSchema.update(role, %{name: "new test", description: "nothing"})
     role = RoleSchema.one(name: "new test")
 
     assert role.name == "new test"

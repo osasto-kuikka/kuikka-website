@@ -23,7 +23,7 @@ defmodule KuikkaDBTest.Fireteamrole do
     assert fireteamrole == nil
   end
   test "update fireteam", %{fireteamrole: fireteamrole} do
-    fireteamrole = FireteamroleSchema.update(fireteamrole, %{name: "new test", description: "nothing"})
+    FireteamroleSchema.update(fireteamrole, %{name: "new test", description: "nothing"})
     fireteamrole = FireteamroleSchema.one(name: "new test")
 
     assert fireteamrole.name == "new test"

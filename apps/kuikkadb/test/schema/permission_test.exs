@@ -19,7 +19,7 @@ defmodule KuikkaDBTest.Permission do
     assert permission == nil
   end
   test "update permission", %{permission: permission} do
-    permission = PermissionSchema.update(permission, %{name: "new test", description: "nothing"})
+    PermissionSchema.update(permission, %{name: "new test", description: "nothing"})
     permission = PermissionSchema.one(name: "new test")
 
     assert permission.name == "new test"
