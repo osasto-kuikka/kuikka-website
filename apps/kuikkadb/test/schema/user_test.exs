@@ -1,4 +1,9 @@
 defmodule KuikkaDBTest.User do
+  @moduledoc """
+  Tests for user data adding, updating,
+  correct password, correct email
+  and removing on kuikkadb.
+  """
   use KuikkaDB.TestCase
 
   alias KuikkaDB.Schema.User, as: UserSchema
@@ -22,7 +27,8 @@ defmodule KuikkaDBTest.User do
     assert user == nil
   end
   test "update user", %{user: user} do
-    UserSchema.update(user, %{username: "jokuAIVANmuu", email: "newmail@mail.com"})
+    UserSchema.update(user, %{username: "jokuAIVANmuu",
+                      email: "newmail@mail.com"})
     user = UserSchema.one(username: "jokuAIVANmuu")
     assert user.username == "jokuAIVANmuu"
     assert user.email == "newmail@mail.com"

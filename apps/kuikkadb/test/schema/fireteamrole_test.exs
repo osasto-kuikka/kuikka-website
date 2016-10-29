@@ -1,4 +1,8 @@
 defmodule KuikkaDBTest.Fireteamrole do
+  @moduledoc """
+  Tests for Fireteamrole data adding, removing
+  and updating on kuikkadb.
+  """
   use KuikkaDB.TestCase
 
   alias KuikkaDB.Schema.Fireteamrole, as: FireteamroleSchema
@@ -7,7 +11,8 @@ defmodule KuikkaDBTest.Fireteamrole do
   setup do
     FireteamSchema.new(%{name: "test fireteam"})
     fireteam = FireteamSchema.one(name: "test fireteam")
-    FireteamroleSchema.new(%{name: "test fireteamrole", description: "Testdescription",
+    FireteamroleSchema.new(%{name: "test fireteamrole",
+                                 description: "Testdescription",
                                  is_leader: false, fireteam: fireteam})
 
     {:ok, fireteamrole: FireteamroleSchema.one(name: "test fireteamrole")}
@@ -23,7 +28,8 @@ defmodule KuikkaDBTest.Fireteamrole do
     assert fireteamrole == nil
   end
   test "update fireteam", %{fireteamrole: fireteamrole} do
-    FireteamroleSchema.update(fireteamrole, %{name: "new test", description: "nothing"})
+    FireteamroleSchema.update(fireteamrole, %{name: "new test",
+                                         description: "nothing"})
     fireteamrole = FireteamroleSchema.one(name: "new test")
 
     assert fireteamrole.name == "new test"

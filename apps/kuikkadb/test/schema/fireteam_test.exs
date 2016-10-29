@@ -1,4 +1,8 @@
 defmodule KuikkaDBTest.Fireteam do
+  @moduledoc """
+  Tests for Fireteam data adding, updating
+  and removing on kuikkadb.
+  """
   use KuikkaDB.TestCase
 
   alias KuikkaDB.Schema.Fireteam, as: FireteamSchema

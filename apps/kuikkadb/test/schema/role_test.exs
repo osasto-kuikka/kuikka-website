@@ -1,4 +1,8 @@
 defmodule KuikkaDBTest.Role do
+  @moduledoc """
+  Tests for role data adding, updating
+  and removing on kuikkadb.
+  """
   use KuikkaDB.TestCase
 
   alias KuikkaDB.Schema.Role, as: RoleSchema

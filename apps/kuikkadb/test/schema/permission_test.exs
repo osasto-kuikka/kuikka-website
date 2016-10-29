@@ -1,10 +1,15 @@
 defmodule KuikkaDBTest.Permission do
+  @moduledoc """
+  Tests for permissions data adding, updating
+  and removing on kuikkadb..
+  """
   use KuikkaDB.TestCase
 
   alias KuikkaDB.Schema.Permission, as: PermissionSchema
 
   setup do
-    PermissionSchema.new(%{name: "test permission", description: "Testdescription"})
+    PermissionSchema.new(%{name: "test permission",
+                        description: "Testdescription"})
 
     {:ok, permission: PermissionSchema.one(name: "test permission")}
   end
@@ -19,7 +24,8 @@ defmodule KuikkaDBTest.Permission do
     assert permission == nil
   end
   test "update permission", %{permission: permission} do
-    PermissionSchema.update(permission, %{name: "new test", description: "nothing"})
+    PermissionSchema.update(permission, %{name: "new test",
+                                description: "nothing"})
     permission = PermissionSchema.one(name: "new test")
 
     assert permission.name == "new test"
