@@ -8,22 +8,19 @@ defmodule KuikkaDBTest.Fireteam do
 
     {:ok, fireteam: FireteamSchema.one(name: "test Team")}
   end
-  test "new fireteam", state do
-    fireteam = state[:fireteam]
+  test "new fireteam", %{fireteam: fireteam} do
 
     assert fireteam.name == "test Team"
     assert fireteam.description == "Testdescription"
   end
-  test "delete fireteam", state do
-    fireteam = state[:fireteam]
+  test "delete fireteam", %{fireteam: fireteam} do
 
     FireteamSchema.delete(fireteam)
     fireteam = FireteamSchema.one(name: "test Team")
 
     assert fireteam == nil
   end
-  test "update fireteam", state do
-    fireteam = state[:fireteam]
+  test "update fireteam", %{fireteam: fireteam} do
 
     fireteam = FireteamSchema.update(fireteam, %{name: "new test", description: "nothing"})
     fireteam = FireteamSchema.one(name: "new test")

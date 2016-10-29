@@ -8,24 +8,17 @@ defmodule KuikkaDBTest.Role do
 
     {:ok, role: RoleSchema.one(name: "testRole")}
   end
-  test "new role", state do
-    role = state[:role]
-
+  test "new role", %{role: role} do
     assert role.name == "testRole"
     assert role.description == "Testdescription"
   end
-  test "delete role", state do
-    role = state[:role]
-
+  test "delete role", %{role: role} do
     RoleSchema.delete(role)
     role = RoleSchema.one(name: "testRole")
 
     assert role == nil
   end
-
-  test "update role", state do
-    role = state[:role]
-
+  test "update role", %{role: role} do
     role = RoleSchema.update(role, %{name: "new test", description: "nothing"})
     role = RoleSchema.one(name: "new test")
 

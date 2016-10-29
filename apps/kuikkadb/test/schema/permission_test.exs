@@ -8,23 +8,17 @@ defmodule KuikkaDBTest.Permission do
 
     {:ok, permission: PermissionSchema.one(name: "test permission")}
   end
-  test "new permission", state do
-    permission = state[:permission]
-
+  test "new permission", %{permission: permission} do
     assert permission.name == "test permission"
     assert permission.description == "Testdescription"
   end
-  test "delete permission", state do
-    permission = state[:permission]
-
+  test "delete permission", %{permission: permission} do
     PermissionSchema.delete(permission)
     permission = PermissionSchema.one(name: "test permission")
 
     assert permission == nil
   end
-  test "update permission", state do
-    permission = state[:permission]
-
+  test "update permission", %{permission: permission} do
     permission = PermissionSchema.update(permission, %{name: "new test", description: "nothing"})
     permission = PermissionSchema.one(name: "new test")
 
