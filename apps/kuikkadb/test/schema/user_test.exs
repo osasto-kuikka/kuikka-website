@@ -31,4 +31,20 @@ defmodule KuikkaDBTest.User do
     assert user.username == "jokuAIVANmuu"
     assert user.email == "newmail@mail.com"
   end
+  test "password is not in plaintext", state do
+    user = state[:user]
+    assert user.password != "test"
+  end
+  test "invalid email type" do
+    UserSchema.new(%{username: "super", email: "super.useratluukku.com",
+                            password: "moi"})
+    user = UserSchema.one(username: "super")
+    assert user == nil
+  end
+  test "empty password" do
+    UserSchema.new(%{username: "super", email: "email@email.email"})
+    user = UserSchema.one(username: "super")
+
+    assert user == nil
+  end
 end
