@@ -83,8 +83,7 @@ deploy:restart:
     HOST: "osastokuikka.com"
     PORT: "4000"
   script:
-    - mix setup.min
-    - mix frontend.install
+    - mix setup
     - mix release
     - rel/kuikka_website/bin/kuikka_website stop
     - rel/kuikka_website/bin/kuikka_website start
@@ -103,6 +102,6 @@ deploy:start:
     HOST: "osastokuikka.com"
     PORT: "4000"
   script:
-    - mix setup.min
-    - mix frontend.install
+    - mix setup
+    - mix release
     - rel/kuikka_website/bin/kuikka_website start
