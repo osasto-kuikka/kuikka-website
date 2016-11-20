@@ -8,7 +8,6 @@
 2. `choco install erlang`
 3. `choco install elixir`
 4. `choco install nodejs`
-5. `choco install yarn`
 6. `choco install VisualCppBuildTools`
 7. Install [postgresql 9.5](http://www.enterprisedb.com/products-services-training/pgdownload#windows)
   * Set username and password as `postgres`
@@ -17,18 +16,14 @@
 1. `pacman -S install erlang`
 2. `pacman -S install elixir`
 3. `pacman -S install nodejs`
-4. `npm -g install yarn`
-  * yarn is not yet in arch repository so it needs be installed with npm
-7. Install [postgresql 9.5](http://www.enterprisedb.com/products-services-training/pgdownload#linux)
+4. Install [postgresql 9.5](http://www.enterprisedb.com/products-services-training/pgdownload#linux)
   * Set username and password as `postgres`
 
 ### Linux (Fedora 25)
 1. `dnf install erlang`
 2. `dnf install elixir`
 3. `dnf install nodejs`
-4. `npm -g install yarn`
-  * yarn is not yet in fedora repository so it needs be installed with npm
-7. Install [postgresql 9.5](http://www.enterprisedb.com/products-services-training/pgdownload#linux)
+4. Install [postgresql 9.5](http://www.enterprisedb.com/products-services-training/pgdownload#linux)
   * Set username and password as `postgres`
 
 ## Setup development environment
