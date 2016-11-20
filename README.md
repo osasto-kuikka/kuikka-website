@@ -32,9 +32,12 @@
   * Set username and password as `postgres`
 
 ## Setup development environment
+
 ### NOTICE:
 ##### On windows you need to run dev.bat in cmd to get compiling to work
 
+* Install phoenix
+  * Run `mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez`
 * Run `mix setup`
   * If you don't want npm install or database run `mix setup.min`
   * To setup database `mix db.setup` (this is also run in `mix setup`)
