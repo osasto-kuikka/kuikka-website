@@ -33,7 +33,7 @@
 
 ## Setup development environment
 ### NOTICE:
-On windows you need to run dev.bat in cmd to get compiling work
+##### On windows you need to run dev.bat in cmd to get compiling to work
 
 * Run `mix setup`
   * If you don't want npm install or database run `mix setup.min`
