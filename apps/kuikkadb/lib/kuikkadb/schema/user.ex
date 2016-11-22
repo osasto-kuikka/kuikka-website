@@ -9,7 +9,6 @@ defmodule KuikkaDB.Schema.User do
   """
   use Ecto.Schema
   import Ecto.Changeset
-  import Comeonin.Bcrypt
 
   alias KuikkaDB.{Repo, Schema}
   alias Schema.Role, as: RoleSchema
@@ -18,24 +17,19 @@ defmodule KuikkaDB.Schema.User do
 
   @timestamps_opts [usec: true]
   schema "user" do
-    field :username, :string
-    field :password, :string
-    field :email, :string
-    field :imageurl, :string
-    field :signature, :string
+    field :steamid, :decimal
     belongs_to :role, Schema.Role
     belongs_to :fireteam, Schema.Fireteam
     belongs_to :fireteamrole, Schema.Fireteamrole
     field :new, :boolean, virtual: true
-    field :delete, :boolean, virtual: true
     timestamps()
   end
 
   @doc """
   Add new user
   """
-  def new(params) do
-    params = Map.put(params, :new, true)
+  def new(steamid) do
+    params = %{steamid: steamid, new: true}
     %__MODULE__{} |> changeset(params) |> Repo.insert
   end
 
@@ -48,45 +42,26 @@ defmodule KuikkaDB.Schema.User do
   end
 
   @doc """
-  Delete user
+  Get one user struct from database
   """
-  def delete(schema = %__MODULE__{}) do
-    schema |> change(%{delete: true}) |> Repo.delete
-  end
+  def one(id: id), do: Repo.get(__MODULE__, id) |> to_struct
+  def one(opts), do: Repo.get_by(__MODULE__, opts) |> to_struct
 
   @doc """
-  Get one user sturct with id, email or username
+  Get all users from database
   """
-  def sturct(id: id),
-    do: __MODULE__ |> Repo.get(id) |> to_struct
-  def struct(opts),
-    do: __MODULE__ |> Repo.get_by(opts) |> to_struct
+  def all(), do: __MODULE__ |> Repo.all |> Enum.map(&to_struct/1)
 
   @doc """
-  Get one user schema with id, email or username
-  """
-  def one(id: id),
-    do: __MODULE__ |> Repo.get(id)
-  def one(opts),
-    do: __MODULE__ |> Repo.get_by(opts)
-
-  @doc """
-  Get all users
-  """
-  def all(),
-    do: __MODULE__ |> Repo.all |> Enum.map(&to_struct/1)
-
-  @doc """
-  Transform user schema to struct
+  Transform user schema to user struct
   """
   def to_struct(schema = %__MODULE__{}) do
+    steam = Steam.get_user(schema.steamid)
     schema = Repo.preload(schema, [:fireteamrole,
                                    role: [:permissions],
                                    fireteam: [:fireteamroles]])
     %{
-      username: schema.username,
-      email: schema.email,
-      imageurl: schema.imageurl,
+      steam: steam,
       role: %{
         name: schema.role.name,
         permissions: Enum.map(schema.role.permissions, fn p -> p.name end)
@@ -99,47 +74,29 @@ defmodule KuikkaDB.Schema.User do
     }
     |> User.to_struct
   end
+  def to_struct(_) do
+    nil
+  end
 
   def changeset(user, params) when is_map(params) do
       user
-      |> cast(params, [:username, :password, :email, :imageurl,
-                       :signature, :role_id, :fireteam_id, :fireteamrole_id,
-                       :new, :delete])
-      |> validate_required([:username, :email, :password])
-      |> validate_format(:email, ~r/@/)
-      |> unique_constraint(:username)
-      |> unique_constraint(:email)
-      |> changeset_password
+      |> cast(params, [:steamid, :role_id, :fireteam_id,
+                       :fireteamrole_id, :new])
+      |> validate_required([:steamid])
       |> changeset_new
-      |> changeset_delete
-  end
-  defp changeset_password(changeset) do
-    case get_change(changeset, :password) do
-      nil -> changeset
-      "" -> add_error(changeset, :password, "empty")
-      pass -> change(changeset, %{password: hashpwsalt(pass)})
-    end
   end
   defp changeset_new(changeset) do
     if get_change(changeset, :new) do
       with role <- RoleSchema.one(name: "user"),
-           fireteam <- FireteamSchema.one(name: "none")
+           fireteam <- FireteamSchema.one(name: "none"),
+           fireteamrole <- FireteamRoleSchema.one(name: "none",
+                                                  fireteam_id: fireteam.id)
       do
-        fireteamrole = FireteamRoleSchema.one(name: "none",
-                                              fireteam_id: fireteam.id)
         changeset
-        |> change(%{imageurl: "http://test.osastokuikka.com/images/logo.svg"})
         |> put_assoc(:role, role)
         |> put_assoc(:fireteam, fireteam)
         |> put_assoc(:fireteamrole, fireteamrole)
       end
-    else
-      changeset
-    end
-  end
-  defp changeset_delete(changeset) do
-    if get_change(changeset, :delete) do
-      %{changeset | action: :delete}
     else
       changeset
     end

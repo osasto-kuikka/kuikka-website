@@ -34,6 +34,7 @@ defmodule Frontend.Web do
   def view do
     quote do
       use Phoenix.View, root: "lib/frontend/web/templates"
+      use Steamex.Auth.Phoenix, :view
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0,
@@ -51,6 +52,7 @@ defmodule Frontend.Web do
 
   def router do
     quote do
+      use Steamex.Auth.Phoenix, :router
       use Phoenix.Router
     end
   end

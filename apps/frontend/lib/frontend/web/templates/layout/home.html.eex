@@ -25,7 +25,14 @@
               <a class="header-link" href="/roster">Rosteri</a>
               <a class="header-link" href="/wiki">Wiki</a>
               <div id="header-nav-right">
-                <a class="header-link" href="/login">Kirjaudu sisään</a>
+                <%= if is_nil(@user) do %>
+                  <a class="header-link" href="<%= steamex_auth_url(@conn) %>">
+                    <img class="steam-image" src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" />
+                  </a>
+                <% else %>
+                  <img src="<%= @user.steam.avatar %>" class="steam-image"></img>
+                  <a href="/" class="header-link"><%= @user.steam.personaname %></a>
+                <% end %>
               </div>
             </nav>
           <div>

@@ -7,32 +7,26 @@ defmodule Frontend.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Frontend.Auth.GetUser
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :require_user do
+    plug Frontend.Auth.RequireUser
   end
+
+  # Generate steamex auth route
+  steamex_route_auth
 
   scope "/", Frontend do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser]
 
     scope "/", Home do
       get "/", HomeController, :get
 
-      get "/login", LoginController, :get
-      post "/login", LoginController, :post
-
-      get "/signup", SignupController, :get
-      post "/signup", SignupController, :post
-
       get "/news", NewsController, :get
-
       get "/forum", ForumController, :get
-
       get "/media", MediaController, :get
-
       get "/roster", RosterController, :get
-
       get "/wiki", WikiController, :get
     end
 
@@ -42,9 +36,4 @@ defmodule Frontend.Router do
       post "/profile", ProfileController, :post
     end
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Frontend do
-  #   pipe_through :api
-  # end
 end
