@@ -17,7 +17,8 @@ defmodule KuikkaDB.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [applications: [:logger, :postgrex, :ecto, :timex, :timex_ecto],
+    [applications: [:logger, :postgrex, :timex, :timex_ecto, :ecto,
+                    :user, :steam],
      mod: {KuikkaDB.App, []}]
   end
 
