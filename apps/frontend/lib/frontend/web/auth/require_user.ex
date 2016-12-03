@@ -1,6 +1,8 @@
 defmodule Frontend.Auth.RequireUser do
   @moduledoc """
-  Plug for checking if user is not nil. When user is nil, home page will be shown with error message that tells user to login.
+  Plug for checking if user is not nil.
+  When user is nil, home page will be shown with error message
+  that tells user to login.
   """
   import Phoenix.Controller
 
