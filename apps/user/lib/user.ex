@@ -20,7 +20,7 @@ defmodule User do
   def user_struct(user = %{role: role, fireteam: fireteam}) do
     user = user
            |> Map.put(:role, role_struct(role))
-           |> Map.put(:fireteam, fireteam_struct(role))
+           |> Map.put(:fireteam, fireteam_struct(fireteam))
     {:ok, struct!(__MODULE__, user)}
   end
 

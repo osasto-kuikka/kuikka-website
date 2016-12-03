@@ -3,7 +3,7 @@ defmodule UserTest do
   doctest User
 
   test "map to struct" do
-    user = %{
+    {:ok, user} = %{
       steamid: 123,
       personaname: "test",
       avatar: "test",
@@ -22,7 +22,7 @@ defmodule UserTest do
     }
     |> User.user_struct
 
-    assert user.steam.steamid == 123
+    assert user.steamid == 123
 
     assert is_map(user.role)
     assert user.role.name == "test"
@@ -33,9 +33,9 @@ defmodule UserTest do
     assert is_map(user.fireteam)
     assert user.fireteam.name == "test"
     assert user.fireteam.leader == true
-    assert user.fireteam.role == "test1"
-    assert is_list(user.fireteam.roles)
-    assert Enum.at(user.fireteam.roles, 0) == "test1"
-    assert Enum.at(user.fireteam.roles, 1) == "test2"
+    assert user.fireteam.fireteamrole == "test1"
+    assert is_list(user.fireteam.fireteamroles)
+    assert Enum.at(user.fireteam.fireteamroles, 0) == "test1"
+    assert Enum.at(user.fireteam.fireteamroles, 1) == "test2"
   end
 end

@@ -5,8 +5,7 @@ defmodule User.Fireteam do
   defstruct name: nil,
             leader: nil,
             fireteamrole: nil,
-            fireteamroles: [],
-            permissions: []
+            fireteamroles: []
 
   @doc """
   Transform map to user role struct
