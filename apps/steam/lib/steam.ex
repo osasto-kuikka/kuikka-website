@@ -1,4 +1,8 @@
 defmodule Steam do
+  @moduledoc """
+  Steam app handles quering data from steam api
+  """
+
   @doc """
   Transform Steam struct from steam api response
 

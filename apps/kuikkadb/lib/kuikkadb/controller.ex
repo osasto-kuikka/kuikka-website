@@ -124,7 +124,7 @@ defmodule KuikkaDB.Controller do
           fireteamrole: ftrole.name,
           fireteamroles: Enum.map(ft.fireteamroles, fn f -> f.name end)
         }
-      } |> User.user_struct |> IO.inspect
+      } |> User.user_struct
     end
   end
 end

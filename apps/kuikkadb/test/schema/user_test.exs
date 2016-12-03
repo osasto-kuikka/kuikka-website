@@ -14,7 +14,6 @@ defmodule KuikkaDBTest.User do
   end
 
   test "new user", %{user: user} do
-    IO.inspect user
     assert user.steam.steamid == 123
   end
 
