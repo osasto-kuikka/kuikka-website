@@ -5,5 +5,11 @@
     <div class="twelve columns">
       <p class="home-banner-text">Wiki</p>
     </div>
+    <div class="row">
+        <h5>Etusivu</h5>
+            <p>
+            Tässä nyt on jotain tekstiä kivasti tutkittavaksi miltä tää sivu nyt näyttää
+            </p>
+    </div>
   </div>
 </div>
