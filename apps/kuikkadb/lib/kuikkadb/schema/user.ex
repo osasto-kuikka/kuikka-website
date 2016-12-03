@@ -6,18 +6,15 @@ defmodule KuikkaDB.Schema.User do
   use Timex.Ecto.Timestamps
   import Ecto.Changeset
 
-  alias KuikkaDB.{Repo, Schema}
-  alias Schema.Role, as: RoleSchema
-  alias Schema.Fireteam, as: FireateamSchema
-  alias Schema.Fireteamrole, as: FireateamroleSchema
+  alias KuikkaDB.Repo
 
   schema "user" do
     field :steamid, :decimal
     field :createtime, Timex.Ecto.DateTime
     field :modifytime, Timex.Ecto.DateTime
-    belongs_to :role, RoleSchema
-    belongs_to :fireteam, FireteamSchema
-    belongs_to :fireteamrole, FireteamroleSchema
+    belongs_to :role, KuikkaDB.Schema.Role
+    belongs_to :fireteam, KuikkaDB.Schema.Fireteam
+    belongs_to :fireteamrole, KuikkaDB.Schema.Fireteamrole
   end
 
   @params [:steamid, :role_id, :fireteam_id, :fireteamrole_id,
