@@ -4,9 +4,11 @@ defmodule UserTest do
 
   test "map to struct" do
     user = %{
-      username: "test",
-      email: "test@test.com",
-      imageurl: "http://example.com/test.jpg",
+      steamid: 123,
+      personaname: "test",
+      avatar: "test",
+      avatarmedium: "test",
+      avatarfull: "test",
       role: %{
         name: "test",
         permissions: ["test1", "test2"]
@@ -14,15 +16,13 @@ defmodule UserTest do
       fireteam: %{
         name: "test",
         leader: true,
-        role: "test1",
-        roles: ["test1", "test2"]
+        fireteamrole: "test1",
+        fireteamroles: ["test1", "test2"]
       }
     }
-    |> User.to_struct
+    |> User.user_struct
 
-    assert user.username == "test"
-    assert user.email == "test@test.com"
-    assert user.imageurl == "http://example.com/test.jpg"
+    assert user.steam.steamid == 123
 
     assert is_map(user.role)
     assert user.role.name == "test"

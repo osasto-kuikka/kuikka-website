@@ -31,9 +31,11 @@ defmodule Frontend.Router do
     end
 
     scope "/kuikka", Kuikka do
-      get "/profile", ProfileController, :get
-      put "/profile", ProfileController, :put
-      post "/profile", ProfileController, :post
+    end
+
+    scope "/profile/", Profile do
+      get "/logout", ProfileController, :logout
+      get "/user/:id", ProfileController, :get
     end
   end
 end

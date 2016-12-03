@@ -1,104 +1,66 @@
 defmodule KuikkaDB.Schema.User do
   @moduledoc """
-  A module providing tables for user:
-  [Schema](https://hexdocs.pm/ecto/Ecto.Schema.html)
-  and [Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html)
-
-  This Schema and changeset is for users.
-  Please see user table for further details.
+  Database schema for user table
   """
   use Ecto.Schema
+  use Timex.Ecto.Timestamps
   import Ecto.Changeset
 
   alias KuikkaDB.{Repo, Schema}
   alias Schema.Role, as: RoleSchema
-  alias Schema.Fireteam, as: FireteamSchema
-  alias Schema.Fireteamrole, as: FireteamRoleSchema
+  alias Schema.Fireteam, as: FireateamSchema
+  alias Schema.Fireteamrole, as: FireateamroleSchema
 
-  @timestamps_opts [usec: true]
   schema "user" do
     field :steamid, :decimal
-    belongs_to :role, Schema.Role
-    belongs_to :fireteam, Schema.Fireteam
-    belongs_to :fireteamrole, Schema.Fireteamrole
-    field :new, :boolean, virtual: true
-    timestamps()
+    field :createtime, Timex.Ecto.DateTime
+    field :modifytime, Timex.Ecto.DateTime
+    belongs_to :role, RoleSchema
+    belongs_to :fireteam, FireteamSchema
+    belongs_to :fireteamrole, FireteamroleSchema
+  end
+
+  @params [:steamid, :role_id, :fireteam_id, :fireteamrole_id,
+           :createtime, :modifytime]
+  @required [:steamid, :role_id, :fireteam_id, :fireteamrole_id]
+
+  @doc """
+  Validate changes to user
+  """
+  def changeset(user, params) when is_map(params) do
+    user
+    |> cast(params, @params)
+    |> validate_required(@required)
+    |> add_timestamps
+  end
+  defp add_timestamps(changeset) do
+    if is_nil(get_field(changeset, :createtime)) do
+      put_change(changeset, :createtime, Timex.now)
+    else
+      put_change(changeset, :modifytime, Timex.now)
+    end
   end
 
   @doc """
-  Add new user
+  Insert new user to database
   """
-  def new(steamid) do
-    params = %{steamid: steamid, new: true}
-    %__MODULE__{} |> changeset(params) |> Repo.insert
-  end
+  def insert(params), do: %__MODULE__{} |> changeset(params) |> Repo.insert
 
   @doc """
-  Update user
+  Update user to database
   """
-  def update(schema = %__MODULE__{}, params) when is_map(params) do
-    params = Map.put(params, :new, false)
-    schema |> changeset(params) |> Repo.update
-  end
+  def update(schema, params), do: schema |> changeset(params) |> Repo.update
 
   @doc """
   Get one user struct from database
   """
-  def one(id: id), do: Repo.get(__MODULE__, id) |> to_struct
-  def one(opts), do: Repo.get_by(__MODULE__, opts) |> to_struct
+  def one(id: id), do: __MODULE__ |> Repo.get(id) |> one_tuple
+  def one(opts), do: __MODULE__ |> Repo.get_by(opts) |> one_tuple
+  defp one_tuple(nil), do: {:error, "Failed to find user"}
+  defp one_tuple(user), do: {:ok, user}
 
   @doc """
   Get all users from database
   """
-  def all(), do: __MODULE__ |> Repo.all |> Enum.map(&to_struct/1)
-
-  @doc """
-  Transform user schema to user struct
-  """
-  def to_struct(schema = %__MODULE__{}) do
-    steam = Steam.get_user(schema.steamid)
-    schema = Repo.preload(schema, [:fireteamrole,
-                                   role: [:permissions],
-                                   fireteam: [:fireteamroles]])
-    %{
-      steam: steam,
-      role: %{
-        name: schema.role.name,
-        permissions: Enum.map(schema.role.permissions, fn p -> p.name end)
-      },
-      fireteam: %{
-        name: schema.fireteam.name,
-        role: schema.fireteamrole.name,
-        roles: Enum.map(schema.fireteam.fireteamroles, fn r -> r.name end)
-      }
-    }
-    |> User.to_struct
-  end
-  def to_struct(_) do
-    nil
-  end
-
-  def changeset(user, params) when is_map(params) do
-      user
-      |> cast(params, [:steamid, :role_id, :fireteam_id,
-                       :fireteamrole_id, :new])
-      |> validate_required([:steamid])
-      |> changeset_new
-  end
-  defp changeset_new(changeset) do
-    if get_change(changeset, :new) do
-      with role <- RoleSchema.one(name: "user"),
-           fireteam <- FireteamSchema.one(name: "none"),
-           fireteamrole <- FireteamRoleSchema.one(name: "none",
-                                                  fireteam_id: fireteam.id)
-      do
-        changeset
-        |> put_assoc(:role, role)
-        |> put_assoc(:fireteam, fireteam)
-        |> put_assoc(:fireteamrole, fireteamrole)
-      end
-    else
-      changeset
-    end
-  end
+  def all(), do: Repo.all(__MODULE__)
 end

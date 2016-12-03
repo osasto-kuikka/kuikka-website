@@ -25,7 +25,7 @@ defmodule KuikkaWebsite.Mixfile do
   defp deps do
     [
       {:distillery, "~> 0.9"},
-      {:credo, "~> 0.4", only: [:dev, :test]},
+      {:credo, "~> 0.5", only: [:dev, :test]},
       {:excoveralls, "~> 0.5", only: :test},
       {:inch_ex, "~> 0.5", only: [:dev, :test]}
     ]

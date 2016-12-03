@@ -1,23 +1,37 @@
 defmodule Frontend.Auth.GetUser do
+  @moduledoc """
+  Plug that will assign user when valid steamid is stored in session
+
+  This allows pages to check if logged in when user is not nil and use
+  user struct to show avatar, username etc.
+  """
   import Plug.Conn
+  import Phoenix.Controller
 
   require Logger
-
-  alias KuikkaDB.Schema.User
 
   def init(_), do: []
 
   def call(conn, _options) do
-    conn
-    |> get_session(:steamex_steamid64)
+    steamid = get_session(conn, :steamex_steamid64)
+
+    steamid
     |> case do
       nil -> nil
-      steamid -> {steamid, User.one(steamid: steamid)}
+      steamid -> KuikkaDB.new_user(steamid)
     end
     |> case do
-      {steamid, nil} -> assign(conn, :user, User.new(steamid))
-      {_, user} -> assign(conn, :user, user)
-      _ -> conn
+      nil -> {:ready, assign(conn, :user, nil)}
+      {:ok, _} -> KuikkaDB.get_user(steamid)
+      tuple -> tuple
+    end
+    |> case do
+      {:ready, conn} -> conn
+      {:ok, user} -> assign(conn, :user, user)
+      {:error, msg} ->
+        conn
+        |> put_flash(:error, msg)
+        |> assign(:user, nil)
     end
   end
 end

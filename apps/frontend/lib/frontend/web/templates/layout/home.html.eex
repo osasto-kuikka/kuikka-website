@@ -30,8 +30,13 @@
                     <img class="steam-image" src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" />
                   </a>
                 <% else %>
-                  <img src="<%= @user.steam.avatar %>" class="steam-image"></img>
-                  <a href="/" class="header-link"><%= @user.steam.personaname %></a>
+                  <img src="<%= @user.avatar %>" class="steam-image"></img>
+                  <div class="header-link dropdown">
+                    <span><%= @user.personaname %></span>
+                    <div class="dropdown-content">
+                      <a href="<%= profile_path(@conn, :get, @user.steamid) %>">Profiili</a>
+                      <a href="<%= profile_path(@conn, :logout) %>">Kirjaudu ulos</a>
+                    </div>
                 <% end %>
               </div>
             </nav>

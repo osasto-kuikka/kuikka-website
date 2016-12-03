@@ -2,13 +2,11 @@ defmodule User.Fireteam do
   @moduledoc """
   Defines user fireteam struct for usage to other components
   """
-
-  defstruct [
-    :name,
-    :leader,
-    :role,
-    :roles
-  ]
+  defstruct name: nil,
+            leader: nil,
+            fireteamrole: nil,
+            fireteamroles: [],
+            permissions: []
 
   @doc """
   Transform map to user role struct
