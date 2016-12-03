@@ -2,7 +2,7 @@ use Mix.Releases.Config,
     # This sets the default release built by `mix release`
     default_release: :default,
     # This sets the default environment used by `mix release`
-    default_environment: :prod
+    default_environment: :dev
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/configuration.html
@@ -16,11 +16,13 @@ use Mix.Releases.Config,
 environment :dev do
   set dev_mode: true
   set include_erts: false
+  set cookie: :"r0TeuTIQR]VqJp<O;P32a)KU}{8!g[Rz}OF8}/F%4E>:T:fk@r}9oNNQ,,%|z^kc"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
+  set cookie: :"r0TeuTIQR]VqJp<O;P32a)KU}{8!g[Rz}OF8}/F%4E>:T:fk@r}9oNNQ,,%|z^kc"
 end
 
 # You may define one or more releases in this file.
@@ -29,10 +31,11 @@ end
 # will be used by default
 
 release :kuikka_website do
-  set version: "0.1.0"
+  set version: System.get_env("KUIKKA_WEBSITE_VERSION") || "0.1.0"
   set applications: [
     frontend: :permanent,
     kuikkadb: :permanent,
+    steam: :permanent,
     user: :permanent
   ]
 end

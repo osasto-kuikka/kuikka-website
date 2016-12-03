@@ -10,79 +10,46 @@ defmodule KuikkaDB.Schema.Fireteamrole do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias KuikkaDB.{Repo, Schema}
-  alias Schema.{User, Fireteam}
+  alias KuikkaDB.Repo
 
   schema "fireteamrole" do
     field :name, :string
     field :description, :string
     field :is_leader, :boolean
-    belongs_to :fireteam, Fireteam
-    has_many :users, User
-    field :new, :boolean, virtual: true
-    field :delete, :boolean, virtual: true
+    belongs_to :fireteam, KuikkaDB.Schema.Fireteam
+    has_many :users, KuikkaDB.Schema.User
   end
 
-  @doc """
-  Add new fireteam role.
-  """
-  def new(params) do
-    params = Map.put(params, :new, true)
-    %__MODULE__{} |> changeset(params) |> Repo.insert
-  end
+  @params [:name, :description, :is_leader, :fireteam_id]
+  @required [:name, :is_leader, :fireteam_id]
 
-  @doc """
-  Update fireteam role
-  """
-  def update(schema =  %__MODULE__{} , params) when is_map(params) do
-    params = Map.put(params, :new, false)
-    schema |> changeset(params) |> Repo.update
-  end
-
-  @doc """
-  Delete fireteam role
-  """
-  def delete(schema =  %__MODULE__{}) do
-    schema |> changeset(%{delete: true}) |> Repo.delete
-  end
-
-  @doc """
-  Get one fireteam role with id or name
-  """
-  def one(id: id),
-    do: Repo.get(__MODULE__, id)
-  def one(opts),
-    do: Repo.get_by(__MODULE__, opts)
-
-  @doc """
-  Get all fireteam roles
-  """
-  def all,
-    do: Repo.all(__MODULE__)
-
-  defp changeset(fireteamrole, params) when is_map(params) do
+  def changeset(fireteamrole, params) when is_map(params) do
     fireteamrole
-    |> cast(params, [:name, :description, :is_leader, :fireteam_id,
-                     :new, :delete])
-    |> validate_required(:name)
-    |> validate_required(:is_leader)
+    |> cast(params, @params)
+    |> validate_required(@required)
     |> unique_constraint(:name)
-    |> changeset_new(params)
-    |> changeset_delete
   end
-  defp changeset_new(changeset, params) do
-    if get_change(changeset, :new) do
-      changeset
-      |> put_assoc(:fireteam, params.fireteam)
-    else
-      changeset
-    end
-  end
-  defp changeset_delete(changeset) do
-    if get_change(changeset, :delete) do
-      %{changeset | action: :delete}
-    else
-      changeset
-    end
-  end
+
+  @doc """
+  Insert new fireteamrole to database
+  """
+  def insert(params), do: %__MODULE__{} |> changeset(params) |> Repo.insert
+
+  @doc """
+  Update fireteamrole to database
+  """
+  def update(schema, params), do: schema |> changeset(params) |> Repo.update
+
+  @doc """
+  Get one fireteamrole from database
+  """
+  def one(id: id), do: __MODULE__ |> Repo.get(id) |> one_tuple
+  def one(opts), do: __MODULE__ |> Repo.get_by(opts) |> one_tuple
+  defp one_tuple(nil), do: {:error, "Failed to find fireteamrole"}
+  defp one_tuple(user), do: {:ok, user}
+
+  @doc """
+  Get all fireteamroles from database
+  """
+  def all(), do: Repo.all(__MODULE__)
 end

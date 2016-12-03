@@ -49,7 +49,7 @@ mix:release:
     NODE_ENV: prod
   script:
     - mix setup.min
-    - mix release --warnings-as-errors
+    - mix release --warnings-as-errors --env=prod
 
 coverage:
   stage: deploy
@@ -103,5 +103,5 @@ deploy:start:
     PORT: "4000"
   script:
     - PORT=4001 mix setup
-    - mix release
+    - mix release --env=prod
     - rel/kuikka_website/bin/kuikka_website start

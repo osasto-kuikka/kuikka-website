@@ -1,75 +1,54 @@
 defmodule KuikkaDB.Schema.Role do
   @moduledoc """
-  A module providing tables for role:
-  [Schema](https://hexdocs.pm/ecto/Ecto.Schema.html)
-  [Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html)
-
   This Schema and changeset is for roles.
   Please see role table for further details.
   """
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias KuikkaDB.{Repo, Schema}
-  alias Schema.{Permission, User}
+  alias KuikkaDB.Repo
 
   schema "role" do
     field :name, :string
     field :description, :string
-    many_to_many :permissions, Permission, join_through: "role_permission"
-    has_many :users, User
-    field :delete, :boolean, virtual: true
+    many_to_many :permissions, KuikkaDB.Schema.Permission,
+                               join_through: "role_permission"
+    has_many :users, KuikkaDB.Schema.User
   end
 
-  @doc """
-  Add new role.
-  """
-  def new(params) do
-    %__MODULE__{} |> changeset(params) |> Repo.insert
-  end
+  @params [:name, :description]
+  @required [:name]
 
   @doc """
-  Update role
+  Validate changes to role
   """
-  def update(schema = %__MODULE__{}, params) when is_map(params) do
-    params = Map.put(params, :new, false)
-    schema |> changeset(params) |> Repo.update
-  end
-
-  @doc """
-  Delete role
-  """
-  def delete(schema = %__MODULE__{}) do
-    schema |> changeset(%{delete: true}) |> Repo.delete
-  end
-
-  @doc """
-  Get one role with id or name
-  """
-  def one(id: id),
-    do: Repo.get(__MODULE__, id)
-  def one(opts),
-    do: Repo.get_by(__MODULE__, opts)
-
-  @doc """
-  Get all roles
-  """
-  def all(),
-    do: Repo.all(__MODULE__)
-
-  defp changeset(role, params) do
+  def changeset(role, params) do
     role
-    |> cast(params, [:name, :description, :delete])
-    |> validate_required([:name])
+    |> cast(params, @params)
+    |> validate_required(@required)
     |> unique_constraint(:name)
-    |> changeset_delete
   end
-  # Delete role
-  defp changeset_delete(changeset) do
-    if get_change(changeset, :delete) do
-      %{changeset | action: :delete}
-    else
-      changeset
-    end
-  end
+
+  @doc """
+  Insert new role to database
+  """
+  def insert(params), do: %__MODULE__{} |> changeset(params) |> Repo.insert
+
+  @doc """
+  Update role to database
+  """
+  def update(schema, params), do: schema |> changeset(params) |> Repo.update
+
+  @doc """
+  Get one role from database
+  """
+  def one(id: id), do: __MODULE__ |> Repo.get(id) |> one_tuple
+  def one(opts), do: __MODULE__ |> Repo.get_by(opts) |> one_tuple
+  defp one_tuple(nil), do: {:error, "Failed to find role"}
+  defp one_tuple(user), do: {:ok, user}
+
+  @doc """
+  Get all roles from database
+  """
+  def all(), do: Repo.all(__MODULE__)
 end

@@ -37,6 +37,9 @@
   * If you don't want npm install or database run `mix setup.min`
   * To setup database `mix db.setup` (this is also run in `mix setup`)
   * To reset database `mix db.reset`
+* Setup steam api key (required for login functionality)
+  * [Get key from here](http://steamcommunity.com/dev/apikey)
+  * Add key to your environment variable as `STEAM_API_KEY`
 
 ## Running the application
 * `iex -S mix` to start with console
