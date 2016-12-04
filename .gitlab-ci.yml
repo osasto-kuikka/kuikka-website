@@ -74,7 +74,7 @@ coverage:
     - master@osasto-kuikka/kuikka-website
   script:
     - mix setup.min
-    - mix coveralls
+    - mix coveralls -u
 
 deploy:restart:
   stage: deploy

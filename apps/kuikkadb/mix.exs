@@ -12,6 +12,7 @@ defmodule KuikkaDB.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
      deps: deps]
   end
 
