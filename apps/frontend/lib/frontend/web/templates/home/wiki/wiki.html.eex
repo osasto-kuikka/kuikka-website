@@ -5,14 +5,14 @@
     <div class="twelve columns">
       <p class="home-banner-text">Wiki</p>
     </div>
-    <div class="book-summary">
+    <div class="header-nav">
         <div id="book-search-input" role="search">
             <input placeholder="Type to search" type="text">
         </div>
         <nav role="navigation">
             <ul class="summary">
         </nav>
-        <li class="chapter" data-level="1.2">
+        <li class="header-nav">
             <span>
                 Ohjeita pelin ulkopuolisiin tapahtumiin
             </span>
@@ -24,7 +24,7 @@
             </li>
           </ul>
     </div>
-    <div class="row">
+    <div class="home-content-text">
         <h5>Etusivu</h5>
             <p>
             Tässä nyt on jotain tekstiä kivasti tutkittavaksi miltä tää sivu nyt näyttää
