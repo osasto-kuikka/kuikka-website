@@ -110,3 +110,14 @@ body {
 .login-input {
   width: 100%;
 }
+
+.wiki-nav {
+position: absolute;
+top: 310px;
+left: -100;
+bottom: 0;
+width: 300px;
+color: #364149;
+background: #222;
+border-right: 1px solid rgba(0,0,0,.07);
+}
