@@ -8,6 +8,9 @@ matrix:
 sudo: false
 before_script:
   - mix deps.get
+  - MIX_ENV=test mix compile
+  - MIX_ENV=dev mix compile
+  - MIX_ENV=prod mix compile
   - nvm install 6.9 && nvm use 6.9
 script:
   - mix test
