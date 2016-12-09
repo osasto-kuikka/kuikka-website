@@ -9,10 +9,10 @@ sudo: false
 before_script:
   - mix deps.get
   - MIX_ENV=test mix compile
-  - MIX_ENV=dev mix compile
   - MIX_ENV=prod mix compile
   - nvm install 6.9 && nvm use 6.9
+  - mix frontend.install
 script:
   - mix test
-  - mix lint
+  - MIX_ENV=test mix lint
   - MIX_ENV=prod mix release --warnings-as-errors --env=prod
