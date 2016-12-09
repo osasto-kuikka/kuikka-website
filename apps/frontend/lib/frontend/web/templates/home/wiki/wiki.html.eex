@@ -17,11 +17,26 @@
                 Ohjeita pelin ulkopuolisiin tapahtumiin
             </span>
         <ul class="articles">
-            <li class="chapter" data-level="1.2.1" data-path="wiki/ulkoiset/teamspeak">
-                <a href="wiki/ulkosiet/teamspeak">
+            <li class="chapter" data-level="1.2.1" data-path="wiki.osastokuikka.com/ulkoiset/teamspeak">
+                <a href="wiki.osastokuikka.com/ulkoiset/teamspeak">
                     Teamspeak
                 </a>
             </li>
+            <li class="chapter" data-level="1.2.1" data-path="wiki.osastokuikka.com/ulkoiset/swifty">
+                <a href="wiki.osastokuikka.com/ulkoiset/swifty">
+                    Swifty
+                </a>
+            </li>
+          </ul>
+          <span>
+              Ohjeita peleihin
+          </span>
+          <ul class="articles">
+              <li class="chapter" data-level="1.2.1" data-path="wiki.osastokuikka.com/ulkoiset/karttamerkinnat">
+                <a href="wiki.osastokuikka.com/ulkoiset/karttamerkinnat">
+                    Karttamerkinnät
+                    </a>
+                   </li>
           </ul>
     </div>
     <div class="wiki-content-text">
