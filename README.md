@@ -1,6 +1,5 @@
 # Kuikka Website - Powered by Elixir
-[![build status](https://gitlab.com/osasto-kuikka/kuikka-website/badges/master/build.svg)](https://gitlab.com/osasto-kuikka/kuikka-website/commits/master)
-[![coverage report](https://gitlab.com/osasto-kuikka/kuikka-website/badges/master/coverage.svg)](https://gitlab.com/osasto-kuikka/kuikka-website/commits/master)
+[![build status](https://travis-ci.org/osasto-kuikka/kuikka-website.svg?branch=master)](https://travis-ci.org/osasto-kuikka/kuikka-website)
 
 ## Setup required programs
 ### Windows
