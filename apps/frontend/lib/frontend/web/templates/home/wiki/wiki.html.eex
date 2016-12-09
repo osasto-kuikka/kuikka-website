@@ -17,43 +17,56 @@
                 Ohjeita pelin ulkopuolisiin tapahtumiin
             </span>
         <ul class="articles">
-            <li class="chapter" data-level="1.2.1" data-path="wiki.osastokuikka.com/ulkoiset/teamspeak">
-                <a href="wiki.osastokuikka.com/ulkoiset/teamspeak">
+            <li class="chapter" data-level="1.2.1" data-path="http://www.wiki.osastokuikka.com/ulkoiset/teamspeak">
+                <a href="http://www.wiki.osastokuikka.com/ulkoiset/teamspeak">
                     Teamspeak
                 </a>
             </li>
-            <li class="chapter" data-level="1.2.1" data-path="wiki.osastokuikka.com/ulkoiset/swifty">
-                <a href="wiki.osastokuikka.com/ulkoiset/swifty">
+            <li class="chapter" data-level="1.2.1" data-path="http://www.wiki.osastokuikka.com/ulkoiset/swifty">
+                <a href="http://www.wiki.osastokuikka.com/ulkoiset/swifty">
                     Swifty
                 </a>
             </li>
           </ul>
+          <li>
           <span>
               Ohjeita peleihin
           </span>
+          </li>
           <ul class="articles">
-              <li class="chapter" data-level="1.2.1" data-path="wiki.osastokuikka.com/ulkoiset/karttamerkinnat">
-                <a href="wiki.osastokuikka.com/ulkoiset/karttamerkinnat">
+              <li class="chapter" data-level="1.2.1" data-path="http://www.wiki.osastokuikka.com/ulkoiset/karttamerkinnat">
+                <a href="http://www.wiki.osastokuikka.com/ulkoiset/karttamerkinnat">
                     Karttamerkinnät
                     </a>
                    </li>
           </ul>
+          <li>
+            <span>
+                Kommunikointi
+            </span>
+        <ul class="articles">
+            <li class="chapter" data-level="1.2.1" data-path="http://www.wiki.osastokuikka.com/ulkoiset/radioliikenne">
+                <a href="http://www.wiki.osastokuikka.com/ulkoiset/radioliikenne">
+                    Radioliikenne
+                </a>
+            </li>
+            </li>
+            </ul>
     </div>
     <div class="wiki-content-text">
-        <h5>Etusivu</h5>
+        <h5 class="wiki-content-headline">Etusivu</h5>
             <p>
 
 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in ultrices nisl. Suspendisse eleifend mi sit amet nibh tincidunt porta. Nam sit amet laoreet elit, vitae maximus lacus. Phasellus lacus purus, viverra ut accumsan in, ornare ac elit. Integer pretium faucibus diam vitae facilisis. Vivamus porta lorem at nulla molestie porttitor. Nulla facilisi. Donec pretium augue at leo semper, gravida hendrerit tellus consectetur. Suspendisse eget mollis nisl. Suspendisse potenti. Phasellus sit amet felis quam. Sed ipsum lorem, iaculis quis aliquet egestas, pellentesque eu augue.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in ultrices nisl. Suspendisse eleifend mi sit amet nibh tincidunt porta. Nam sit amet laoreet elit, vitae maximus lacus. Phasellus lacus purus, viverra ut accumsan in, ornare ac elit. Integer pretium faucibus diam vitae facilisis. Vivamus porta lorem at nulla molestie porttitor. Nulla facilisi. Donec pretium augue at leo semper, gravida hendrerit tellus consectetur. Suspendisse eget mollis nisl. Suspendisse potenti. Phasellus sit amet felis quam. Sed ipsum lorem, iaculis quis aliquet egestas, pellentesque eu augue.</p>
 
-                Fusce a tempus est, tincidunt tristique ligula. Suspendisse potenti. Nam tempor nibh ac pretium venenatis. Nam varius, justo ac molestie laoreet, odio tortor lobortis dui, sit amet venenatis nulla enim vitae est. Phasellus euismod libero vel leo venenatis consequat. Nam tincidunt tortor tempor lectus maximus, sed auctor purus pharetra. Curabitur egestas maximus tellus. Sed blandit nunc et sapien aliquam, sed tincidunt velit feugiat. Sed vel vestibulum nisi. In id venenatis justo, quis sodales neque. Pellentesque convallis iaculis diam in tempus. In est purus, convallis eu convallis at, placerat quis metus. Nulla et est a nisl scelerisque pellentesque. Sed faucibus faucibus enim eget porta. Vestibulum sagittis sem eget ipsum dapibus ornare. Praesent laoreet tortor nec sodales vehicula.
+               <p> Fusce a tempus est, tincidunt tristique ligula. Suspendisse potenti. Nam tempor nibh ac pretium venenatis. Nam varius, justo ac molestie laoreet, odio tortor lobortis dui, sit amet venenatis nulla enim vitae est. Phasellus euismod libero vel leo venenatis consequat. Nam tincidunt tortor tempor lectus maximus, sed auctor purus pharetra. Curabitur egestas maximus tellus. Sed blandit nunc et sapien aliquam, sed tincidunt velit feugiat. Sed vel vestibulum nisi. In id venenatis justo, quis sodales neque. Pellentesque convallis iaculis diam in tempus. In est purus, convallis eu convallis at, placerat quis metus. Nulla et est a nisl scelerisque pellentesque. Sed faucibus faucibus enim eget porta. Vestibulum sagittis sem eget ipsum dapibus ornare. Praesent laoreet tortor nec sodales vehicula.</p>
 
-                Donec ac odio sollicitudin, luctus nulla eu, ornare erat. Nunc quis orci in lorem gravida tristique. Cras turpis enim, ultrices eu interdum ac, venenatis quis nunc. Nunc pellentesque mi in turpis congue, at pretium ipsum lacinia. Pellentesque mattis sit amet nunc non consequat. Vestibulum posuere, leo vel tempus sagittis, nisl elit lacinia erat, facilisis sagittis turpis libero in risus. Nam faucibus euismod orci, sed pharetra felis blandit sed. Nam congue odio massa, in rhoncus nisi lacinia non. Quisque non lacinia velit. Duis ante dolor, rutrum eu rhoncus eu, blandit sit amet dui.
+               <p> Donec ac odio sollicitudin, luctus nulla eu, ornare erat. Nunc quis orci in lorem gravida tristique. Cras turpis enim, ultrices eu interdum ac, venenatis quis nunc. Nunc pellentesque mi in turpis congue, at pretium ipsum lacinia. Pellentesque mattis sit amet nunc non consequat. Vestibulum posuere, leo vel tempus sagittis, nisl elit lacinia erat, facilisis sagittis turpis libero in risus. Nam faucibus euismod orci, sed pharetra felis blandit sed. Nam congue odio massa, in rhoncus nisi lacinia non. Quisque non lacinia velit. Duis ante dolor, rutrum eu rhoncus eu, blandit sit amet dui.</p>
 
-                Cras dictum dolor non scelerisque accumsan. Mauris ultrices, augue sit amet imperdiet consequat, felis elit mollis eros, ac ullamcorper velit velit id tellus. Suspendisse pharetra gravida elit, et fermentum ex tempor cursus. Donec in purus non risus bibendum interdum. Morbi bibendum sodales neque in efficitur. Nullam ultricies mattis tempus. Duis at tempus sem. Duis a convallis massa. Maecenas lacus diam, tincidunt quis dapibus laoreet, mollis non diam. Etiam elementum enim ligula, vitae eleifend orci efficitur sit amet. Aenean sed cursus urna. Etiam sodales erat ac ultricies dapibus. In hac habitasse platea dictumst.
+                <p>Cras dictum dolor non scelerisque accumsan. Mauris ultrices, augue sit amet imperdiet consequat, felis elit mollis eros, ac ullamcorper velit velit id tellus. Suspendisse pharetra gravida elit, et fermentum ex tempor cursus. Donec in purus non risus bibendum interdum. Morbi bibendum sodales neque in efficitur. Nullam ultricies mattis tempus. Duis at tempus sem. Duis a convallis massa. Maecenas lacus diam, tincidunt quis dapibus laoreet, mollis non diam. Etiam elementum enim ligula, vitae eleifend orci efficitur sit amet. Aenean sed cursus urna. Etiam sodales erat ac ultricies dapibus. In hac habitasse platea dictumst.</p>
 
-                Aenean eget diam a felis dapibus consequat. Sed lacinia, leo quis commodo sodales, felis urna fermentum felis, ac consequat est ex vel risus. Duis nisl dui, mollis vel ligula ut, lobortis congue ligula. Quisque commodo libero vitae pretium vehicula. Nullam ornare auctor mollis. Morbi consequat eget nunc non sodales. Praesent nisi dolor, rutrum sed feugiat in, congue vitae dolor.
-            </p>
+               <p> Aenean eget diam a felis dapibus consequat. Sed lacinia, leo quis commodo sodales, felis urna fermentum felis, ac consequat est ex vel risus. Duis nisl dui, mollis vel ligula ut, lobortis congue ligula. Quisque commodo libero vitae pretium vehicula. Nullam ornare auctor mollis. Morbi consequat eget nunc non sodales. Praesent nisi dolor, rutrum sed feugiat in, congue vitae dolor.</p>
     </div>
   </div>
 </div>
