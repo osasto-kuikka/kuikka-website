@@ -4,11 +4,9 @@
   <div class="row">
     <div class="twelve columns">
       <p class="home-banner-text">Wiki</p>
+  </div>
     </div>
-    <div class="wiki-nav">
-        <div id="book-search-input" role="search">
-            <input placeholder="Type to search" type="text">
-        </div>
+ <div class="wiki-nav">
         <nav role="navigation">
             <ul class="summary">
         </nav>
@@ -69,4 +67,3 @@
                <p> Aenean eget diam a felis dapibus consequat. Sed lacinia, leo quis commodo sodales, felis urna fermentum felis, ac consequat est ex vel risus. Duis nisl dui, mollis vel ligula ut, lobortis congue ligula. Quisque commodo libero vitae pretium vehicula. Nullam ornare auctor mollis. Morbi consequat eget nunc non sodales. Praesent nisi dolor, rutrum sed feugiat in, congue vitae dolor.</p>
     </div>
   </div>
-</div>
