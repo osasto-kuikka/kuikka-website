@@ -1,22 +1,38 @@
 defmodule KuikkaDB do
   @moduledoc """
-  Starts kuikkadb application supervisor
+  KuikkaDB includes all functions to needed for website to access to database
   """
-  use Application
+  alias KuikkaDB.Repo
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
-  def start(_type, _args) do
-    import Supervisor.Spec, warn: false
+  @doc """
+  Send custom query to kuikkadb
+  """
+  def query(query = %Ecto.Query{}), do: Repo.all(query)
 
-    # Define workers and child supervisors to be supervised
-    children = [
-      supervisor(KuikkaDB.Repo, []),
-    ]
+  @doc """
+  Get one user from kuikkadb with steam id
+  """
+  defdelegate get_user(steamid), to: KuikkaDB.Controller
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: KuikkaDB.Supervisor]
-    Supervisor.start_link(children, opts)
-  end
+  @doc """
+  Get all users from kuikkadb
+  """
+  defdelegate get_all_users(), to: KuikkaDB.Controller
+
+  @doc """
+  Add new user to kuikkadb with steam id
+  """
+  defdelegate new_user(steamid), to: KuikkaDB.Controller
+
+  @doc """
+  Update user role to kuikkadb with steam id and role name
+  """
+  defdelegate update_user_role(steamid, rolename), to: KuikkaDB.Controller
+
+  @doc """
+  Update user role to kuikkadb with steam id,
+  fireteam name and fireteamrole name
+  """
+  defdelegate update_user_ftrole(steamid, ftname, ftrole),
+    to: KuikkaDB.Controller
 end

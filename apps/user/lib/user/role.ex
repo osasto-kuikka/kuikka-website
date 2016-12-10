@@ -2,11 +2,7 @@ defmodule User.Role do
   @moduledoc """
   Defines user role struct for usage to other components
   """
-
-  defstruct [
-    :name,
-    :permissions
-  ]
+  defstruct name: nil, permissions: []
 
   @doc """
   Transform map to user role struct

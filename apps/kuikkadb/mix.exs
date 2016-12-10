@@ -12,13 +12,15 @@ defmodule KuikkaDB.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
      deps: deps]
   end
 
   # Configuration for the OTP application
   def application do
-    [applications: [:logger, :postgrex, :ecto, :comeonin],
-     mod: {KuikkaDB, []}]
+    [applications: [:logger, :postgrex, :timex, :timex_ecto, :ecto,
+                    :user, :steam],
+     mod: {KuikkaDB.App, []}]
   end
 
   # Specifies which paths to compile per environment.
@@ -29,9 +31,11 @@ defmodule KuikkaDB.Mixfile do
   defp deps do
     [
       {:user, in_umbrella: true},
-      {:comeonin, "~> 2.5"},
+      {:steam, in_umbrella: true},
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.0.0"}
+      {:ecto, "~> 2.0.0"},
+      {:timex, "~> 3.0"},
+      {:timex_ecto, "~> 3.0"}
     ]
   end
 end

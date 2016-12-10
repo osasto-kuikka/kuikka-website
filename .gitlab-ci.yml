@@ -23,6 +23,8 @@ mix:test:
     POSTGRES_PASSWORD: postgres
     KUIKKADB_URL: "postgres://postgres:postgres@postgres/kuikka_test"
     MIX_ENV: test
+  except:
+    - master@osasto-kuikka/kuikka-website
   script:
     - mix setup.min
     - mix db.setup
@@ -35,6 +37,8 @@ mix:lint:
   image: nikolauska/phoenix:latest
   variables:
     MIX_ENV: test
+  except:
+    - master@osasto-kuikka/kuikka-website
   script:
     - mix setup.min
     - mix lint
@@ -47,9 +51,11 @@ mix:release:
   variables:
     MIX_ENV: prod
     NODE_ENV: prod
+  except:
+    - master@osasto-kuikka/kuikka-website
   script:
     - mix setup.min
-    - mix release --warnings-as-errors
+    - mix release --warnings-as-errors --env=prod
 
 coverage:
   stage: deploy
@@ -68,7 +74,7 @@ coverage:
     - master@osasto-kuikka/kuikka-website
   script:
     - mix setup.min
-    - mix coveralls
+    - mix coveralls -u
 
 deploy:restart:
   stage: deploy
@@ -103,5 +109,5 @@ deploy:start:
     PORT: "4000"
   script:
     - PORT=4001 mix setup
-    - mix release
+    - mix release --env=prod
     - rel/kuikka_website/bin/kuikka_website start

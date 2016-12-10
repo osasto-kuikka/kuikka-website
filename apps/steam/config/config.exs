@@ -10,16 +10,19 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :user, key: :value
+#     config :steam, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:user, :key)
+#     Application.get_env(:steam, :key)
 #
 # Or configure a 3rd-party app:
 #
 #     config :logger, level: :info
 #
+
+config :steam,
+  api_key: System.get_env("STEAM_API_KEY")
 
 # Fixes warning from ecto
 config :steam, ecto_repos: []

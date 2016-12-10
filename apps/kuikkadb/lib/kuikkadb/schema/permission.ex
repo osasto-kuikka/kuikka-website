@@ -16,48 +16,42 @@ defmodule KuikkaDB.Schema.Permission do
     field :name, :string
     field :description, :string
     many_to_many :roles, Schema.Role, join_through: "role_permission"
-    field :delete, :boolean, virtual: true
   end
 
-  @doc """
-  Add new permission. SEED FILE USAGE ONLY!
-  """
-  def new(params) do
-    %__MODULE__{} |> changeset(params) |> Repo.insert
-  end
+  @params [:name, :description]
+  @required [:name]
+  @preload [:roles]
 
   @doc """
-  Update permission
+  Validate changes to role table
   """
-  def update(schema =  %__MODULE__{}, params) when is_map(params) do
-    schema |> changeset(params) |> Repo.update
-  end
-
-  @doc """
-  Delete permission
-  """
-  def delete(schema =  %__MODULE__{}) do
-    schema |> changeset(%{delete: true}) |> Repo.delete
-  end
-
-  @doc """
-  Get one permission with id or name
-  """
-  def one(id: id),
-    do: Repo.get(__MODULE__, id)
-  def one(opts),
-    do: Repo.get_by(__MODULE__, opts)
-
-  @doc """
-  Get all permissions
-  """
-  def all(),
-    do: Repo.all(__MODULE__)
-
-  defp changeset(permission, params) when is_map(params) do
-    permission
-    |> cast(params, [:name,:description, :delete])
-    |> validate_required([:name])
+  def changeset(role, params) do
+    role
+    |> cast(params, @params)
+    |> validate_required(@required)
     |> unique_constraint(:name)
   end
+
+  @doc """
+  Insert new role to database
+  """
+  def insert(params), do: %__MODULE__{} |> changeset(params) |> Repo.insert
+
+  @doc """
+  Update role to database
+  """
+  def update(schema, params), do: schema |> changeset(params) |> Repo.update
+
+  @doc """
+  Get one role from database
+  """
+  def one(id: id), do: __MODULE__ |> Repo.get(id) |> one_tuple
+  def one(opts), do: __MODULE__ |> Repo.get_by(opts) |> one_tuple
+  defp one_tuple(nil), do: {:error, "Failed to find permission"}
+  defp one_tuple(user), do: {:ok, user}
+
+  @doc """
+  Get all roles from database
+  """
+  def all(), do: Repo.all(__MODULE__)
 end

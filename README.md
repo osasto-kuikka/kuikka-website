@@ -1,6 +1,5 @@
 # Kuikka Website - Powered by Elixir
-[![build status](https://gitlab.com/osasto-kuikka/kuikka-website/badges/master/build.svg)](https://gitlab.com/osasto-kuikka/kuikka-website/commits/master)
-[![coverage report](https://gitlab.com/osasto-kuikka/kuikka-website/badges/master/coverage.svg)](https://gitlab.com/osasto-kuikka/kuikka-website/commits/master)
+[![build status](https://travis-ci.org/osasto-kuikka/kuikka-website.svg?branch=master)](https://travis-ci.org/osasto-kuikka/kuikka-website)
 
 ## Setup required programs
 ### Windows
@@ -37,6 +36,9 @@
   * If you don't want npm install or database run `mix setup.min`
   * To setup database `mix db.setup` (this is also run in `mix setup`)
   * To reset database `mix db.reset`
+* Setup steam api key (required for login functionality)
+  * [Get key from here](http://steamcommunity.com/dev/apikey)
+  * Add key to your environment variable as `STEAM_API_KEY`
 
 ## Running the application
 * `iex -S mix` to start with console
