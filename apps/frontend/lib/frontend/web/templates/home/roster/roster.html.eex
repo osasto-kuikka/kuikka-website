@@ -7,3 +7,20 @@
     </div>
   </div>
 </div>
+<div>
+    <div style="float:left;width:5%;">
+    </div>
+    <div>
+        <tr>
+            <td class="title2" style="border-radius:0px; -moz-border-radiius:0px; -webkit- border-radius:0px;"
+            colspan="0">
+                <div style="float-left; width=45%;">
+                    Nimi
+                 </div>
+            </td>
+        </tr>
+    </div>
+    <div class="roster-group">
+        <h1> Ryhmä 1 </h1>
+</div>
+</div>
