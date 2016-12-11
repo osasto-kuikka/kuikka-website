@@ -8,7 +8,7 @@
   </div>
 </div>
   <div class="row home-content">
-    <table width="100%" cellpadding="0" cellspacing="5" class="rostergroup">
+    <table width="100%" cellpadding="0" cellspacing="5" class="rostergroup" border="0">
              <tbody>
                  <tr>
                      <th colspan="4">
@@ -104,35 +104,35 @@
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
                        Nimi
                    </td>
-                   <td> Ryhmänjohtaja </td>
+                   <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
                        Nimi
                    </td>
-                   <td> Ryhmän varajohtaja </td>
+                   <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
                        Nimi
                    </td>
-                   <td> Taistelija </td>
+                   <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
                        Nimi
                    </td>
-                   <td> Taistelija </td>
+                   <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
                        Nimi
                    </td>
-                   <td> Taistelija </td>
+                   <td> Määrittelemätön </td>
                </tr>
              </tbody>
     </table>

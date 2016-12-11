@@ -111,21 +111,12 @@ body {
   width: 100%;
 }
 .rosterdata td, th {
-  border: 1px rgb(187, 187, 187) solid;
- -webkit-border-radius: 5px;
- -moz-border-radius: 5px;
-  border-radius: 5px;
-  text-align: center;
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 0px solid #E1E1E1;
 }
 .rostergroup {
-    border: 2px rgb(187, 187, 187) solid;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-table {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 2px;
-    border-color: grey;
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 0px solid #E1E1E1; }
 }
