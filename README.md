@@ -3,25 +3,26 @@
 
 ## Setup Development environment
 Required:
-* Erlang 19.0
-* Elixir 1.3.4
-* Nodejs 6.9
-* Postgresql 9.5
+* [Erlang 19.1](http://www.erlang.org/)
+* [Elixir 1.3.4](http://elixir-lang.org/)
+* [Nodejs 6.9](https://nodejs.org/en/)
+* [postgresql 9.5](https://www.postgresql.org/)
 
 ### Windows
 Install with [Chocolatey](https://chocolatey.org/install)
 ```
 choco install -y erlang elixir nodejs VisualCppBuildTools
 ```
-Install [postgresql 9.5](https://www.postgresql.org/download/)
+Postgresql needs to be installed separately as chocolatey repository
+does not have 9.5 version!
 
 ### Linux
 * Arch
   * `pacman -S install erlang elixir nodejs postgresql`
 * Fedora 25
   * `dnf install -y erlang nodejs postgresql-server`
-  * Elixir 1.3.4 needs to be installed manually as fedora repository only has
-      1.3.1 which is not supported
+  * Elixir 1.3.4 needs to be installed separatele as fedora
+    repository only has 1.3.1 which is not supported
 
 ### Project setup
 Available commands for project setup:
