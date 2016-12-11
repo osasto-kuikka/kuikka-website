@@ -110,9 +110,22 @@ body {
 .login-input {
   width: 100%;
 }
-.roster-group {
-    float: left;
-    font-size: 0%;
-    text-align: center;
-    font-weight: bold;
+.rosterdata td, th {
+  border: 1px rgb(187, 187, 187) solid;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+.rostergroup {
+    border: 2px rgb(187, 187, 187) solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
 }
