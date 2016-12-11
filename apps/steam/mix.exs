@@ -1,8 +1,8 @@
-defmodule User.Mixfile do
+defmodule Steam.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :user,
+    [app: :steam,
      version: "0.1.0",
      build_path: "../../_build",
      config_path: "../../config/config.exs",
@@ -19,7 +19,7 @@ defmodule User.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :steamex, :sweet_xml]]
   end
 
   # Dependencies can be Hex packages:
@@ -37,7 +37,8 @@ defmodule User.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:steam, in_umbrella: true}
+      {:httpoison, "~> 0.10.0"},
+      {:poison, "~> 2.0"}
     ]
   end
 end
