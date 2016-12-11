@@ -13,6 +13,7 @@ Install with [Chocolatey](https://chocolatey.org/install)
 ```
 choco install -y erlang elixir nodejs VisualCppBuildTools
 ```
+Install [postgresql 9.5](https://www.postgresql.org/download/)
 
 ### Linux
 * Arch
@@ -21,10 +22,6 @@ choco install -y erlang elixir nodejs VisualCppBuildTools
   * `dnf install -y erlang nodejs postgresql-server`
   * Elixir 1.3.4 needs to be installed manually as fedora repository only has
       1.3.1 which is not supported
-
-### Install postgresql
-Install [postgresql 9.5](https://www.postgresql.org/download/)
-* By default this project uses `postgres` username and password
 
 ### Project setup
 Available commands for project setup:
