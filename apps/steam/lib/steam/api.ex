@@ -10,21 +10,26 @@ defmodule Steam.Api do
     get_user(Enum.join(steamids, ","))
   end
   def get_user(steamid) do
-    api_key = Application.get_env(:steam, :api_key)
-    params = "key=#{api_key}&steamids=#{steamid}"
+    api_query(Application.get_env(:steam, :api_key, nil), steamid)
+  end
+
+  defp api_query(nil,_), do: {:error, "Missing STEAM_API_KEY"}
+  defp api_query(apikey, steamid) do
+    params = "key=#{apikey}&steamids=#{steamid}"
     url = "/ISteamUser/GetPlayerSummaries/v0002/?#{params}"
 
     with {:ok, resp} <- HTTPoison.get("http://api.steampowered.com#{url}"),
          {:ok, resp} <- Poison.decode(resp.body)
     do
-      parse_response(resp)
+      parse_response(resp, steamid)
     end
   end
 
-  defp parse_response(%{"response" => %{"players" => players}}) do
+  defp parse_response(%{"response" => %{"players" => players}}, steamid) do
     players
     |> Enum.map(&parse_player/1)
     |> case do
+      [] -> {:error, "No player found with #{steamid}}"}
       [player] -> {:ok, player} # Remove player from list when only one player
       list -> {:ok, list}
     end

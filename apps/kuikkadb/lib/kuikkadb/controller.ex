@@ -28,7 +28,13 @@ defmodule KuikkaDB.Controller do
   steam api.
   """
   def get_all_users() do
-    Enum.map(UserSchema.all, &user_schema_to_struct/1)
+    UserSchema.all()
+    |> Enum.reduce({:ok, []}, fn user, {:ok, users} ->
+      case user_schema_to_struct(user) do
+        {:ok, user} -> {:ok, List.insert_at(users, -1, user)}
+        tuple -> tuple
+      end
+    end)
   end
 
   @doc """
@@ -59,13 +65,60 @@ defmodule KuikkaDB.Controller do
   end
 
   @doc """
+  Insert new role to kuikkadb. Returns error tuple if role already exists
+  otherwise it will return ok tuple when new role was inserted to kuikkadb
+  """
+  def new_role(name, description) do
+    case RoleSchema.one(name: name) do
+      {:error, _} ->
+        RoleSchema.insert(%{name: name, description: description})
+      {:ok, _} ->
+        {:error, "Role #{name} already exists"}
+    end
+  end
+
+  @doc """
+  Insert new fireteam to kuikkadb. Returns error tuple if fireteam already
+  exists otherwise it will return ok tuple when new fireteam was inserted
+  to kuikkadb
+  """
+  def new_fireteam(name, description) do
+    case FireteamSchema.one(name: name) do
+      {:error, _} ->
+        FireteamSchema.insert(%{name: name, description: description})
+      {:ok, _} ->
+        {:error, "Fireteam #{name} already exists"}
+    end
+  end
+
+  @doc """
+  Insert new fireteam to kuikkadb. Returns error tuple if fireteam already
+  exists otherwise it will return ok tuple when new fireteam was inserted
+  to kuikkadb
+  """
+  def new_fireteamrole(name, description, is_leader, fireteam) do
+    with {:ok, fireteam} <- FireteamSchema.one(name: fireteam)
+    do
+      case FireteamroleSchema.one(name: name) do
+        {:error, _} ->
+          FireteamroleSchema.insert(%{name: name,
+                                      description: description,
+                                      is_leader: is_leader,
+                                      fireteam_id: fireteam.id})
+        {:ok, _} ->
+          {:error, "Fireteam role #{name} already exists"}
+      end
+    end
+  end
+
+  @doc """
   Update user role to database. This is will return atom with
   `:ok` when user was properly updated and `{:error, msg}`
   when there is issue with updating.
   """
-  def update_user_role(steam_id, role_name) do
-    with {:ok, user} <- UserSchema.one(steamid: steam_id),
-         {:ok, role} <- RoleSchema.one(name: role_name),
+  def update_user_role(steamid, rolename) do
+    with {:ok, user} <- UserSchema.one(steamid: steamid),
+         {:ok, role} <- RoleSchema.one(name: rolename),
          user <- Repo.preload(user, [:role])
     do
       case UserSchema.update(user, %{role_id: role.id}) do
@@ -75,15 +128,16 @@ defmodule KuikkaDB.Controller do
     end
   end
 
+
   @doc """
   Update user fireteam. This is will return atom with
   `:ok` when user was properly updated and `{:error, msg}`
   when there is issue with updating.
   """
-  def update_user_ftrole(steam_id, fireteam_name, fireteamrole_name) do
-    with {:ok, user}   <- UserSchema.one([steamid: steam_id]),
-         {:ok, ft}     <- FireteamSchema.one(name: fireteam_name),
-         {:ok, ftrole} <- FireteamroleSchema.one(name: fireteamrole_name),
+  def update_user_ftrole(steamid, fireteamname, fireteamrolename) do
+    with {:ok, user}   <- UserSchema.one([steamid: steamid]),
+         {:ok, ft}     <- FireteamSchema.one(name: fireteamname),
+         {:ok, ftrole} <- FireteamroleSchema.one(name: fireteamrolename),
          user <- Repo.preload(user, [:fireteam, :fireteamrole])
     do
       user
