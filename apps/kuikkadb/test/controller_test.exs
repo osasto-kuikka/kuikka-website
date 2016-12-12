@@ -5,7 +5,9 @@ defmodule KuikkaDB.ControllerTest do
   use KuikkaDB.TestCase
 
   setup do
-    {:ok, user} = KuikkaDB.new_user(76561197960435530)
+    # Steam ID with tests is the steamid that valve uses as an
+    # example on how to query steam user from steam api
+    {:ok, user} = KuikkaDB.new_user(76_561_197_960_435_530)
     {:ok, %{user: user}}
   end
 
@@ -14,7 +16,7 @@ defmodule KuikkaDB.ControllerTest do
   end
 
   test "get user", %{user: _} do
-    assert {:ok, got_user} = KuikkaDB.get_user(76561197960435530)
+    assert {:ok, got_user} = KuikkaDB.get_user(76_561_197_960_435_530)
     assert got_user.steamid == "76561197960435530"
   end
 
