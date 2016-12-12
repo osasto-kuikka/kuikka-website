@@ -18,14 +18,14 @@
                  <tr class="rosterdata">
                      <td>
                          <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                         Nimi
+                        <font color="blue"> Nimi</font>
                      </td>
                      <td> Joukkueenjohtaja </td>
                  </tr>
                  <tr class="rosterdata">
                      <td>
                          <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                         Nimi
+                         <font color="orange"> Nimi </font>
                      </td>
                      <td> Joukkueen varajohtaja </td>
                  </tr>
