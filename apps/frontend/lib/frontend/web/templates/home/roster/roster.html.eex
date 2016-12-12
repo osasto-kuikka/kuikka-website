@@ -18,7 +18,7 @@
                  <tr class="rosterdata">
                      <td>
                          <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                        <font color="blue"> Nimi</font>
+                        <font color="#4d4dff"> Nimi</font>
                      </td>
                      <td> Joukkueenjohtaja </td>
                  </tr>
@@ -32,7 +32,7 @@
                  <tr class="rosterdata">
                      <td>
                          <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                         Nimi
+                         <font color="orange"> Nimi </font>
                      </td>
                      <td> Lääkintämies </td>
                  </tr>
@@ -44,28 +44,28 @@
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Ryhmänjohtaja </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Ryhmän varajohtaja </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="#4d4dff"> Nimi</font>
                    </td>
                    <td> Taistelija </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Taistelija </td>
                </tr>
@@ -77,21 +77,21 @@
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Ryhmänjohtaja </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Ryhmän varajohtaja </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Taistelija </td>
                </tr>
@@ -102,35 +102,35 @@
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Määrittelemätön </td>
                </tr>
                <tr class="rosterdata">
                    <td>
                        <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
-                       Nimi
+                       <font color="orange"> Nimi </font>
                    </td>
                    <td> Määrittelemätön </td>
                </tr>
