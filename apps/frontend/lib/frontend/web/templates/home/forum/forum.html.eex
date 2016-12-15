@@ -7,3 +7,39 @@
     </div>
   </div>
 </div>
+<div class="row home-content">
+   <table style="width:100%">
+    <tbody>
+        <tr>
+            <th> Aihe </th>
+            <th> Aihealue </th>
+            <th> Viestejä </th>
+            <th> Viimeisin viesti </th>
+        </tr>
+        <tr>
+            <td> Osasto Kuikan uusi koulutusmalli </td>
+            <td style="color:yellow;"> Koulutukset </td>
+            <td> 21 </td>
+            <td> 2 minuuttia sitten </td>
+        </tr>
+        <tr>
+            <td> Uusi kehitysidea </td>
+            <td style="color:purple;"> Koulutukset </td>
+            <td> 2 </td>
+            <td> 3 minuuttia sitten </td>
+        </tr>
+        <tr>
+            <td> Milloin lanit?? </td>
+            <td style="color:Green;"> Lanit ja tapaamiset </td>
+            <td> 0 </td>
+            <td> 2 tuntia sitten </td>
+        </tr>
+        <tr>
+            <td> Ajoneuvokoulutusta </td>
+            <td style="color:yellow;"> Koulutukset </td>
+            <td> 1 </td>
+            <td> eilen </td>
+        </tr>
+    </tbody>
+   </table>
+</div>
