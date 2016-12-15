@@ -111,9 +111,10 @@ body {
   width: 100%;
 }
 .yt_video {
-    float: left;
+  //  float: left;
     margin: 50px auto;
-    width: 30%;
+    margin-left: 20px auto;
+    width: 100%;
     border: 5px solid #222
     {
         box-sizing: border-box;
@@ -147,6 +148,10 @@ body {
     color: orange;
     border-bottom: 1px solid black;
     padding: 0;
+}
+.yt-center {
+    width: 50;
+    margin: 0 auto;
 }
 .twitch_video h2 {
     font-size: 24px;
