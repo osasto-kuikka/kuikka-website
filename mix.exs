@@ -24,7 +24,7 @@ defmodule KuikkaWebsite.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:distillery, "~> 0.10"},
+      {:distillery, "~> 1.0"},
       {:credo, "~> 0.5", only: [:dev, :test]},
       {:excoveralls, "~> 0.5", only: :test},
       {:inch_ex, "~> 0.5", only: [:dev, :test]}
@@ -35,13 +35,11 @@ defmodule KuikkaWebsite.Mixfile do
     [
       "setup": ["deps.get", "compile", "db.setup", "frontend.install"],
       "setup.min": ["deps.get", "compile"],
-      "db.setup": ["ecto.create", "ecto.migrate", "db.seeds"],
+      "db.setup": ["ecto.create", "ecto.migrate"],
       "db.setup.quiet": ["ecto.create --quiet", "ecto.migrate --quiet"],
-      "db.seeds": ["run apps/kuikkadb/priv/seeds.exs", "db.seeds.windows"],
-      "db.seeds.windows": ["run apps\\kuikkadb\\priv\\seeds.exs"],
       "db.reset": ["ecto.drop", "db.setup"],
       "release": ["frontend.build", "release"],
-      "test": ["db.setup.quiet", "db.seeds", "test"],
+      "test": ["db.setup.quiet", "test"],
       "lint": ["credo -a --strict"]
     ]
   end
