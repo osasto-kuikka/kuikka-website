@@ -16,13 +16,15 @@ use Mix.Releases.Config,
 environment :dev do
   set dev_mode: true
   set include_erts: false
-  set cookie: :"1MCv,Ci3vJyCx$AW5-v:~U-GYO7NLL)y)D:v()*^Ae,RZo7[F,U{$+eT|s-|;Pjc"
+  set cookie: :"h0v>3XkWPNG*BqZoqK<fYjo@rqTf_dkiCXdg1JN!vfXDpTK|}]Q:94x.IJJVeW8c"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"1MCv,Ci3vJyCx$AW5-v:~U-GYO7NLL)y)D:v()*^Ae,RZo7[F,U{$+eT|s-|;Pjc"
+  set cookie: :"#{System.get_env("KUIKKA_WEBSITE_COOKIE")}"
+
+  set post_start_hook: "rel/hooks/post_start"
 end
 
 # You may define one or more releases in this file.
