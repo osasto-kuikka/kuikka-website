@@ -11,6 +11,20 @@
    <table style="width:100%">
     <tbody>
         <tr>
+            Aihealueet: &nbsp;
+            <span style="background-color: #7f7f00; color: white;"> Koulutukset  </span>
+            &nbsp;
+            <span style="background-color: #725385; color: white;"> Kehitystiimi  </span>
+            &nbsp;
+            <span style="background-color: #3a5d24; color: white;"> Lanit ja tapaamiset  </span>
+            &nbsp;
+            <span style="background-color: #e75747; color: black;"> Arma 3  </span>
+            &nbsp;
+            <span style="background-color: #f29db2; color: black;"> Offtopic  </span>
+            &nbsp;
+            <button> Filter </button>
+        </tr>
+        <tr>
             <th> Aihe </th>
             <th> Aihealue </th>
             <th> Viestejä </th>
@@ -18,25 +32,25 @@
         </tr>
         <tr>
             <td> Osasto Kuikan uusi koulutusmalli </td>
-            <td style="color:yellow;"> Koulutukset </td>
+            <td style="color: black;"> <span style="background-color: #7f7f00; color: white;">Koulutukset </span></td>
             <td> 21 </td>
             <td> 2 minuuttia sitten </td>
         </tr>
         <tr>
             <td> Uusi kehitysidea </td>
-            <td style="color:purple;"> Kehitystiimi </td>
+            <td> <span style="background-color: #725385; color: white;"> Kehitystiimi </span></td>
             <td> 2 </td>
             <td> 3 minuuttia sitten </td>
         </tr>
         <tr>
             <td> Milloin lanit?? </td>
-            <td style="color:Green;"> Lanit ja tapaamiset </td>
+            <td> <span style="background-color:#3a5d24; color: white;"> Lanit ja tapaamiset </span></td>
             <td> 0 </td>
             <td> 2 tuntia sitten </td>
         </tr>
         <tr>
             <td> Ajoneuvokoulutusta </td>
-            <td style="color:yellow;"> Koulutukset </td>
+            <td> <span style="background-color: #7f7f00; color: white;"> Koulutukset </span></td>
             <td> 1 </td>
             <td> eilen </td>
         </tr>
