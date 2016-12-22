@@ -20,7 +20,6 @@ defmodule KuikkaDB.Schema.Permission do
 
   @params [:name, :description]
   @required [:name]
-  @preload [:roles]
 
   @doc """
   Validate changes to role table

@@ -34,7 +34,7 @@ defmodule Steam.Api do
       list -> {:ok, list}
     end
   end
-  defp parse_response(_) do
+  defp parse_response(_, _) do
     {:error, "Invalid response returned from api"}
   end
 
