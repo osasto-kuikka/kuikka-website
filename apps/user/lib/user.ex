@@ -3,7 +3,7 @@ defmodule User do
   Defines user struct for usage to other components
   """
 
-  alias User.{Role, Fireteam, Fireteamrole}
+  alias User.{Role, Fireteam}
 
   defstruct steamid: nil,
             personaname: nil,
