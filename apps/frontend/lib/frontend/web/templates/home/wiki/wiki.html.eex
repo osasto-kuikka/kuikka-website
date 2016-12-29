@@ -9,19 +9,29 @@
 </div>
 <div class="row home-content">
    <div class="row">
-       <img class="six columns" style="float=left;" src="/images/logo.svg"></img>
-       <div class="six columns" style="float=right;">
-           <table border="0" border-bottom="0">
-               <tr> <th>Koulutukset </th></tr>
-               <tr><td> Ryhmänjohtaja </td></tr>
-               <tr><td> Kuljettaja </td><tr>
-               <tr><td> Pilotti </td></tr>
+       <img class="twelve columns" src="/images/logo.svg" height="242" width="242" align="center"></img>
+   </div>
+   <div class="row six columns home-short-block">
+       <p style="font-size:36px;"> Ryhmä 1 </p>
+   </div>
+   <div class="row six columns home-short-block">
+       <p style="font-size:36px;"> Ryhmänjohtaja </p>
+   </div>
+   <div class="row">
+       <div class="six columns home-short-block">
+           <table align="center">
+               <tr> <th style="font-size:27px">Koulutukset </th></tr>
+               <tr><td style="font-size:20px"> Ryhmänjohtaja </td></tr>
+               <tr><td style="font-size:20px"> Kuljettaja </td><tr>
+               <tr><td style="font-size:20px"> Pilotti </td></tr>
            </table>
        </div>
-   </div>
-   <div class="row home content">
-       <div class="row">
-           Mitalit
+       <div class="six columns home-short-block">
+           <table align="center">
+               <tr> <th style="font-size:27px"> Mitalit </th></tr>
+               <tr> <td style="font-size:20px"> - </td> </tr>
        </div>
+    </div>
+   </div>
    </div>
 </div>
