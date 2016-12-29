@@ -9,7 +9,7 @@
 </div>
 <div class="row home-content">
    <div class="row">
-       <img class="twelve columns" src="/images/logo.svg" height="242" width="242" align="center"></img>
+       <img class="home-banner-logo" src="/images/avatar_test.jpg" style="padding-left:520px; padding-bottom:10px;"></img>
    </div>
    <div class="row six columns home-short-block">
        <p style="font-size:36px;"> Ryhmä 1 </p>
