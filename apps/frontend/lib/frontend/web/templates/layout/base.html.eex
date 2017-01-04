@@ -53,7 +53,7 @@
 					</div>
 
 					<div class="next-operation">
-						<span class="u">Seuraava operaatio: <i class="tf">01.01.2017 19:30</i></span>
+            <span class="u">Seuraava tapahtuma: <i class="tf"><%= get_next_event_date() %> 19:30</i></span>
 						<span class="b">Joka keskiviikko ja sunnuntai klo 19:30</span>
 					</div>
           <%= render @view_module, @view_template, assigns %>
