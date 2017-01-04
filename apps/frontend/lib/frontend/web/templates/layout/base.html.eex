@@ -22,11 +22,11 @@
               <a class="header-link" href="/">
                 <img class="header-logo-image" src="/images/logo.svg" />
               </a>
-              <a class="header-link" href="" disabled>Uutiset</a>
-              <a class="header-link" href="" disabled>Foorumit</a>
-              <a class="header-link" href="" disabled>Media</a>
-              <a class="header-link" href="" disabled>Rosteri</a>
-              <a class="header-link" href="" disabled>Wiki</a>
+              <a class="header-link" href="">Tapahtumat</a>
+              <a class="header-link" href="">Foorumit</a>
+              <a class="header-link" href="">Media</a>
+              <a class="header-link" href="">Rosteri</a>
+              <a class="header-link" href="">Wiki</a>
               <div id="header-nav-right">
                 <%= if is_nil(@user) do %>
                   <a class="header-link" href="<%= steamex_auth_url(@conn) %>">
@@ -37,7 +37,7 @@
                   <div class="header-link dropdown">
                     <span><%= @user.personaname %></span>
                     <div class="dropdown-content">
-                      <a href="" disabled>Profiili</a>
+                      <a href="">Profiili</a>
                       <a href="<%= profile_path(@conn, :logout) %>">Kirjaudu ulos</a>
                     </div>
                 <% end %>
