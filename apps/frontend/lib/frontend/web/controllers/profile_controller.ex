@@ -1,7 +1,10 @@
-defmodule Frontend.Profile.ProfileController do
+defmodule Frontend.Page.ProfileController do
   use Frontend.Web, :controller
-  plug :put_layout, "home.html"
+  plug :put_layout, "base.html"
 
+  @doc """
+  Log user out by deleting :steamex session
+  """
   def logout(conn, _params) do
     conn
     |> fetch_session
@@ -9,9 +12,4 @@ defmodule Frontend.Profile.ProfileController do
     |> put_flash(:info, "Sinut on kirjattu ulos!")
     |> redirect(to: "/")
   end
-
-  def get(conn, _params) do
-    render conn, "profile.html"
-  end
 end
-

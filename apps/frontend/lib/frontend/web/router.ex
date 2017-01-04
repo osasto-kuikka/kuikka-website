@@ -20,22 +20,15 @@ defmodule Frontend.Router do
   scope "/", Frontend do
     pipe_through [:browser]
 
-    scope "/", Home do
+    scope "/", Page do
       get "/", HomeController, :get
 
-      get "/news", NewsController, :get
-      get "/forum", ForumController, :get
-      get "/media", MediaController, :get
-      get "/roster", RosterController, :get
-      get "/wiki", WikiController, :get
-    end
+      scope "/profile/" do
+        pipe_through [:require_user]
 
-    scope "/kuikka", Kuikka do
-    end
-
-    scope "/profile/", Profile do
-      get "/logout", ProfileController, :logout
-      get "/user/:id", ProfileController, :get
+        get "/logout", ProfileController, :logout
+        get "/user/:id", ProfileController, :get
+      end
     end
   end
 end

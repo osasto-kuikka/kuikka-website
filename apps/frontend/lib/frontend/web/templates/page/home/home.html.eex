@@ -1,0 +1,54 @@
+<div class="row align-middle">
+  <div class="small-12 column home-headline-block">
+    <h1>Osasto Kuikka</h1>
+    <p>
+      Osasto Kuikka on kahdesti viikossa järjestäytyvä, aktiivinen kaikille
+      yli 18 vuotta täyttäneille avoin Arma 3 peliyhteisö.
+
+			Mikäli olet täysi-ikäinen ja olet kinnostunut niin alapuolella on listattuna
+			mitä Osasto Kuikka tarjoaa...
+    </p>
+  </div>
+</div>
+
+<div class="row align-middle">
+  <div class="small-12 large-6 column home-content-block">
+    <h4>Realistisuutta</h4>
+    <p>
+			Kuikalla peleissä yritämme toimia mahdollisimman realistisesti puolustusvoimien
+			ryhmä- sekä joukkuetoiminnan ohjeiden mukaisesti.
+    </p>
+  </div>
+  <div class="small-12 large-6 column home-content-block">
+    <h4>Ei arvonimiä</h4>
+    <p>
+			Vaikka osa on kokeneempia pelaajia, ei heitä tarvitse sinutella emmekä vaadi
+			puhuttelu, esittely ja asia aloitessasi keskustelua...
+    </p>
+  </div>
+</div>
+
+<div class="row align-middle">
+  <div class="small-12 large-6 column home-content-block">
+    <h4>Koulutukset</h4>
+    <p>
+			Koska kukaan ei ole seppä syntyessään tarjoaa kuikka koulutuksia
+			opettamaan sinulle erilaisia rooleja.
+		</p>
+  </div>
+  <div class="small-12 large-6 column home-content-block">
+    <h4>Aikuista huumoria</h4>
+    <p>
+			Huumoria aikuiseen makuun (usein surkeaa kuin VR:n kahvi...)
+    </p>
+  </div>
+</div>
+
+<div class="row align-middle">
+  <div class="small-12 column home-content-block">
+    <h2>Halukas liittymään kuikkaan?</h2>
+    <a href="/wiki/join">
+      <button class="column home-join-button">Liity tästä</button>
+    </a>
+  </div>
+</div>

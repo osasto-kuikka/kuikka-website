@@ -22,11 +22,11 @@
               <a class="header-link" href="/">
                 <img class="header-logo-image" src="/images/logo.svg" />
               </a>
-              <a class="header-link" href="/news">Uutiset</a>
-              <a class="header-link" href="/forum">Foorumit</a>
-              <a class="header-link" href="/media">Media</a>
-              <a class="header-link" href="/roster">Rosteri</a>
-              <a class="header-link" href="/wiki">Wiki</a>
+              <a class="header-link" href="" disabled>Uutiset</a>
+              <a class="header-link" href="" disabled>Foorumit</a>
+              <a class="header-link" href="" disabled>Media</a>
+              <a class="header-link" href="" disabled>Rosteri</a>
+              <a class="header-link" href="" disabled>Wiki</a>
               <div id="header-nav-right">
                 <%= if is_nil(@user) do %>
                   <a class="header-link" href="<%= steamex_auth_url(@conn) %>">
@@ -37,7 +37,7 @@
                   <div class="header-link dropdown">
                     <span><%= @user.personaname %></span>
                     <div class="dropdown-content">
-                      <a href="<%= profile_path(@conn, :get, @user.steamid) %>">Profiili</a>
+                      <a href="" disabled>Profiili</a>
                       <a href="<%= profile_path(@conn, :logout) %>">Kirjaudu ulos</a>
                     </div>
                 <% end %>
@@ -48,6 +48,14 @@
       </div>
       <div class="row">
         <main class="column" id="layout-content">
+					<div class="fullwidth-banner"
+						style="background-image: url('/images/kuikkaheader2.png'); display: block;">
+					</div>
+
+					<div class="next-operation">
+						<span class="u">Seuraava operaatio: <i class="tf">01.01.2017 19:30</i></span>
+						<span class="b">Joka keskiviikko ja sunnuntai klo 19:30</span>
+					</div>
           <%= render @view_module, @view_template, assigns %>
         </main>
       </div>
