@@ -30,26 +30,7 @@ defmodule KuikkaDB do
   defdelegate new_role(name, description), to: KuikkaDB.Controller
 
   @doc """
-  Add new fireteam to kuikkadb with name and description
-  """
-  defdelegate new_fireteam(name, description), to: KuikkaDB.Controller
-
-  @doc """
-  Add new fireteam role to kuikkadb with name, description, is_leader and
-  fireteam name
-  """
-  defdelegate new_fireteamrole(name, description, is_leader, fireteam),
-    to: KuikkaDB.Controller
-
-  @doc """
   Update user role to kuikkadb with steam id and role name
   """
   defdelegate update_user_role(steamid, rolename), to: KuikkaDB.Controller
-
-  @doc """
-  Update user role to kuikkadb with steam id,
-  fireteam name and fireteamrole name
-  """
-  defdelegate update_user_ftrole(steamid, ftname, ftrole),
-    to: KuikkaDB.Controller
 end
