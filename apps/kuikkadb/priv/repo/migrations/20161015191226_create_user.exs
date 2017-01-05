@@ -14,7 +14,7 @@ defmodule KuikkaDB.Repo.Migrations.CreateUser do
     username, password and email are mantadory
     and username and email must be unique.
 
-        Foreing keys to role, fireteam and fireteamrole.
+        Foreing keys to role.
 
     """
   use Ecto.Migration
@@ -25,8 +25,6 @@ defmodule KuikkaDB.Repo.Migrations.CreateUser do
       add :createtime, :datetime, null: false
       add :modifytime, :datetime
       add :role_id, references(:role), null: false
-      add :fireteam_id, references(:fireteam), null: false
-      add :fireteamrole_id, references(:fireteamrole), null: false
     end
     create index(:user, :steamid, unique: true)
   end

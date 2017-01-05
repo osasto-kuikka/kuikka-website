@@ -41,13 +41,4 @@ defmodule KuikkaDB.ControllerTest do
   test "new role", %{user: _} do
     assert {:ok, _} = KuikkaDB.new_role("test", "test")
   end
-
-  test "new fireteam", %{user: _} do
-    assert {:ok, _} = KuikkaDB.new_fireteam("test", "test")
-  end
-
-  test "new fireteam role", %{user: _} do
-    assert {:ok, _} = KuikkaDB.new_fireteam("test", "test")
-    assert {:ok, _} = KuikkaDB.new_fireteamrole("test", "test", false, "test")
-  end
 end
