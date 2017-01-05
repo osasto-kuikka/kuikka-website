@@ -110,3 +110,27 @@ body {
 .login-input {
   width: 100%;
 }
+
+.wiki-nav {
+position: absolute;
+top: 310px;
+left: -100px;
+bottom: 0;
+width: 200px;
+color: #CCC;
+background: #222;
+border-right: 1px solid rgba(0,0,0,.07);
+}
+
+.wiki-content-text {
+  position: relative;
+  text-align: left;
+  font-size: 20px;
+  right: -100px;
+}
+.wiki-content-headline {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    bottom: -20px;
+}
