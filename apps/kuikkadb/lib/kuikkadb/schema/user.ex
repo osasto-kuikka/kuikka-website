@@ -13,13 +13,11 @@ defmodule KuikkaDB.Schema.User do
     field :createtime, Timex.Ecto.DateTime
     field :modifytime, Timex.Ecto.DateTime
     belongs_to :role, KuikkaDB.Schema.Role
-    belongs_to :fireteam, KuikkaDB.Schema.Fireteam
-    belongs_to :fireteamrole, KuikkaDB.Schema.Fireteamrole
   end
 
-  @params [:steamid, :role_id, :fireteam_id, :fireteamrole_id,
+  @params [:steamid, :role_id,
            :createtime, :modifytime]
-  @required [:steamid, :role_id, :fireteam_id, :fireteamrole_id]
+  @required [:steamid, :role_id]
 
   @doc """
   Validate changes to user
