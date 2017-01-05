@@ -3,7 +3,36 @@
     <img class="twelve columns home-banner-logo" src="/images/logo.svg"></img>
   <div class="row">
     <div class="twelve columns">
-      <p class="home-banner-text">Wiki</p>
+      <p class="home-banner-text">Username</p>
     </div>
   </div>
+</div>
+<div class="row home-content">
+   <div class="row">
+       <img class="home-banner-logo" src="/images/avatar_test.jpg" style="padding-left:520px; padding-bottom:10px;"></img>
+   </div>
+   <div class="row six columns home-short-block">
+       <p style="font-size:36px;"> Ryhmä 1 </p>
+   </div>
+   <div class="row six columns home-short-block">
+       <p style="font-size:36px;"> Ryhmänjohtaja </p>
+   </div>
+   <div class="row">
+       <div class="six columns home-short-block">
+           <table align="center">
+               <tr> <th style="font-size:27px">Koulutukset </th></tr>
+               <tr><td style="font-size:20px"> Ryhmänjohtaja </td></tr>
+               <tr><td style="font-size:20px"> Kuljettaja </td><tr>
+               <tr><td style="font-size:20px"> Pilotti </td></tr>
+           </table>
+       </div>
+       <div class="six columns home-short-block">
+           <table align="center">
+               <tr> <th style="font-size:27px"> Mitalit </th></tr>
+               <tr> <td style="font-size:20px"> - </td> </tr>
+           </table>
+       </div>
+    </div>
+   </div>
+   </div>
 </div>
