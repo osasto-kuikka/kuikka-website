@@ -17,8 +17,7 @@ defmodule User do
   Transform map to user struct
   """
   def user_struct(user = %{role: role}) do
-    user = user
-           |> Map.put(:role, role_struct(role))
+    user = Map.put(user, :role, role_struct(role))
     {:ok, struct!(__MODULE__, user)}
   end
 

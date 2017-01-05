@@ -15,8 +15,7 @@ defmodule KuikkaDB.Schema.User do
     belongs_to :role, KuikkaDB.Schema.Role
   end
 
-  @params [:steamid, :role_id,
-           :createtime, :modifytime]
+  @params [:steamid, :role_id, :createtime, :modifytime]
   @required [:steamid, :role_id]
 
   @doc """
