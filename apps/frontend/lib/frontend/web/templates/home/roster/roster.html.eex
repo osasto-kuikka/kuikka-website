@@ -7,3 +7,168 @@
     </div>
   </div>
 </div>
+  <div class="row home-content">
+    <table width="100%" cellpadding="0" cellspacing="5" class="rostergroup" border="0">
+             <tbody>
+                 <tr>
+                     <th colspan="4">
+                        <h1> Komentoryhmä </h1>
+                      </th>
+                 </tr>
+                 <tr>
+                     <th> Nimi </th>
+                     <th> Rooli </th>
+                     <td> Liittymispäivä</td>
+                 </tr>
+                 <tr class="rosterdata">
+                     <td>
+                         <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                        <font color="#4d4dff"> Nimi</font>
+                     </td>
+                     <td> Joukkueenjohtaja </td>
+                     <td> 31.12.2001</td>
+                 </tr>
+                 <tr class="rosterdata">
+                     <td>
+                         <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                         <font color="orange"> Nimi </font>
+                     </td>
+                     <td> Joukkueen varajohtaja </td>
+                     <td> 31.12.2001</td>
+                 </tr>
+                 <tr class="rosterdata">
+                     <td>
+                         <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                         <font color="orange"> Nimi </font>
+                     </td>
+                     <td> Lääkintämies </td>
+                     <td> 31.12.2001</td>
+                 </tr>
+               <tr>
+                   <th colspan="4">
+                       <h1> A Ryhmä </h1>
+                   </th>
+               </tr>
+               <tr>
+                     <th> Nimi </th>
+                     <th> Rooli </th>
+                     <th> Liittymispäivä </th>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Ryhmänjohtaja </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Ryhmän varajohtaja </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="#4d4dff"> Nimi</font>
+                   </td>
+                   <td> Taistelija </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Taistelija </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr>
+                   <th colspan="4">
+                       <h1> B Ryhmä </h1>
+                   </th>
+               </tr>
+               <tr>
+                     <th> Nimi </th>
+                     <th> Rooli </th>
+                     <th> Liittymispäivä </th>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Ryhmänjohtaja </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Ryhmän varajohtaja </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Taistelija </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr>
+                   <th colspan="4">
+                       <h1> Reservi</h1>
+                   </th>
+               </tr>
+               <tr>
+                   <th> Nimi </th>
+                   <th> Rooli </th>
+                   <th> Liittymispäivä </th>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Määrittelemätön </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Määrittelemätön </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Määrittelemätön </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Määrittelemätön </td>
+                   <td> 31.12.2001</td>
+               </tr>
+               <tr class="rosterdata">
+                   <td>
+                       <img src="/images/logo.svg" width="20" height="20" align="absmiddle" alt="Nimi"></img>
+                       <font color="orange"> Nimi </font>
+                   </td>
+                   <td> Määrittelemätön </td>
+                   <td> 31.12.2001</td>
+               </tr>
+             </tbody>
+    </table>
+    </div>

@@ -33,6 +33,7 @@
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], []},
   "postgrex": {:hex, :postgrex, "0.12.1", "2f8b46cb3a44dcd42f42938abedbfffe7e103ba4ce810ccbeee8dcf27ca0fb06", [:mix], [{:connection, "~> 1.0", [hex: :connection, optional: false]}, {:db_connection, "~> 1.0-rc.4", [hex: :db_connection, optional: false]}, {:decimal, "~> 1.0", [hex: :decimal, optional: false]}]},
   "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []},
+
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.1", "28a4d65b7f59893bc2c7de786dec1e1555bd742d336043fe644ae956c3497fbe", [:make, :rebar], []},
   "steamex": {:hex, :steamex, "0.0.6", "a1781ed73fa53093d66a3cfad97e60b8340178248528ffb9af224ad658e4163c", [:mix], [{:httpoison, "~> 0.7", [hex: :httpoison, optional: false]}, {:plug, "~> 1.0", [hex: :plug, optional: true]}, {:sweet_xml, "~> 0.3", [hex: :sweet_xml, optional: false]}]},
   "sweet_xml": {:hex, :sweet_xml, "0.6.2", "8f8aadd902dcc62fb85b7a308bb6a083874e97eb51ccddaf855d97c8ffad7d64", [:mix], []},
