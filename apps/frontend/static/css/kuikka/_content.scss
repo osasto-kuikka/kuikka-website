@@ -110,3 +110,61 @@ body {
 .login-input {
   width: 100%;
 }
+.yt_video {
+  //  float: left;
+    margin: 50px auto;
+    margin-left: 20px auto;
+    width: 100%;
+    border: 5px solid #222
+    {
+        box-sizing: border-box;
+        outline: 0 !important;
+    }
+}
+.twitch_video {
+    align-content: center;
+    margin: 50px auto;
+    width: 50%;
+    border: 5px solid #222
+    {
+        box-sizing: border-box;
+        outline: 0 !important;
+    }
+}
+ h1 {
+    font-size: 28px;
+    text-transform: none;
+    font-weight: bold;
+    color: orange;
+//    border-bottom: 1px solid black;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+
+}
+.twitch_video h1 {
+    font-size: 28px;
+    text-transform: none;
+    font-weight: bold;
+    color: orange;
+    border-bottom: 1px solid black;
+    padding: 0;
+}
+.yt-center {
+    width: 50;
+    margin: 0 auto;
+}
+.twitch_video h2 {
+    font-size: 24px;
+    text-transform: none;
+    font-weight: bold;
+    color: darkblue;
+//    border-bottom: 1px solid black;
+    padding: 0;
+}
+h2 {
+        font-size: 24px;
+    text-transform: none;
+    font-weight: bold;
+//    border-bottom: 1px solid black;
+    padding: 0;
+}

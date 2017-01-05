@@ -65,7 +65,7 @@
   .three.columns              { width: 22%;            }
   .four.columns               { width: 33.3333333333%; }
   .five.columns               { width: 39.3333333333%; }
-  .six.columns                { width: 50%; margin-left: 0; margin-right: 0;}
+  .six.columns                { width: 42.5%; margin-left: 0; margin-right: 2%;}
   .seven.columns              { width: 56.6666666667%; }
   .eight.columns              { width: 65.3333333333%; }
   .nine.columns               { width: 74.0%;          }
@@ -323,13 +323,14 @@ th,
 td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #E1E1E1; }
+  border-bottom: 0px solid #E1E1E1; }
 th:first-child,
 td:first-child {
   padding-left: 0; }
 th:last-child,
 td:last-child {
-  padding-right: 0; }
+  padding-right: 0;
+  float: center; }
 
 
 /* Spacing
