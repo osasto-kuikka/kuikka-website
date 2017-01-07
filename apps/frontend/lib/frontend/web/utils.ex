@@ -2,7 +2,6 @@ defmodule Frontend.Utils do
   @moduledoc """
   Helper functions for frontend modules/templates
   """
-  alias Calendar.{Date, DateTime}
 
   @doc """
   Get date of next event by getting current date and showing either
@@ -11,14 +10,14 @@ defmodule Frontend.Utils do
   TODO: Proper event query when we get events implemented
   """
   def get_next_event_date do
-    date = DateTime.now_utc() |> DateTime.to_date()
-    date = case Date.day_of_week(date) do
-      1 -> Date.advance!(date, 2)
-      2 -> Date.advance!(date, 1)
+    date = Timex.now()
+    date = case Timex.weekday(date) do
+      1 -> Timex.add(date, Timex.Duration.from_days(2))
+      2 -> Timex.add(date, Timex.Duration.from_days(1))
       3 -> date
-      4 -> Date.advance!(date, 3)
-      5 -> Date.advance!(date, 2)
-      6 -> Date.advance!(date, 1)
+      4 -> Timex.add(date, Timex.Duration.from_days(3))
+      5 -> Timex.add(date, Timex.Duration.from_days(2))
+      6 -> Timex.add(date, Timex.Duration.from_days(1))
       7 -> date
     end
 
