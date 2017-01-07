@@ -18,9 +18,9 @@
     left: 40.5%;
   }
 
-  .next-operation {
+  .next-event {
     position: absolute;
-    left: 46%;
+    left: 40.5%;
     float: right;
     margin-top: 15px;
     background-color: rgba(215, 148, 0, 0.8);
@@ -32,17 +32,16 @@
     opacity: 0.95;
     color: #000;
 
-    span.u {
+    .text {
       float: left;
       display: block;
       letter-spacing: 2px;
       font-size: 28px;
-      margin: 0 0 2px 1px;
       text-align: center;
       line-height: 40px;
       padding: 0 0 0 10px;
 
-      .tf {
+      .time {
         color: #CCC;
         font-style: normal;
         background-color: #000;
@@ -55,18 +54,15 @@
       }
     }
 
-    span.b {
+    .title {
       clear: both;
-      float: right;
       width: auto;
       display: block;
       letter-spacing: 0;
       font-size: 18px;
-      margin: -2px 0 0 0;
-      text-align: right;
+      text-align: center;
       line-height: 25px;
       padding: 0 5px;
-      //background-color: #456116;
       background-color: rgba(190, 118, 0, 0.8);
     }
   }

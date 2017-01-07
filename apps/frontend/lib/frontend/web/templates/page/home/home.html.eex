@@ -2,9 +2,9 @@
   <div class="banner"
     style="background-image: url('/images/kuikkaheader2.png'); display: block;">
 
-    <div class="next-operation">
-      <span class="u">Seuraava tapahtuma: <i class="tf"><%= get_next_event_date() %> 19:30</i></span>
-      <span class="b">Joka keskiviikko ja sunnuntai klo 19:30</span>
+    <div class="next-event">
+      <span class="text">Seuraava tapahtuma: <i class="time"><%= get_next_event_date() %> 19:30</i></span>
+      <span class="title">Viikkopelit</span>
     </div>
     <iframe  class="kuikka-video" src="http://www.youtube.com/embed/xHRC67Isl28"
       width="560" height="405" frameborder="0" allowfullscreen>
