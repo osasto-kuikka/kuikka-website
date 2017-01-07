@@ -2,6 +2,7 @@ defmodule Frontend.Utils do
   @moduledoc """
   Helper functions for frontend modules/templates
   """
+  alias Timex.Duration
 
   @doc """
   Get date of next event by getting current date and showing either
@@ -12,12 +13,12 @@ defmodule Frontend.Utils do
   def get_next_event_date do
     date = Timex.now()
     date = case Timex.weekday(date) do
-      1 -> Timex.add(date, Timex.Duration.from_days(2))
-      2 -> Timex.add(date, Timex.Duration.from_days(1))
+      1 -> Timex.add(date, Duration.from_days(2))
+      2 -> Timex.add(date, Duration.from_days(1))
       3 -> date
-      4 -> Timex.add(date, Timex.Duration.from_days(3))
-      5 -> Timex.add(date, Timex.Duration.from_days(2))
-      6 -> Timex.add(date, Timex.Duration.from_days(1))
+      4 -> Timex.add(date, Duration.from_days(3))
+      5 -> Timex.add(date, Duration.from_days(2))
+      6 -> Timex.add(date, Duration.from_days(1))
       7 -> date
     end
 
