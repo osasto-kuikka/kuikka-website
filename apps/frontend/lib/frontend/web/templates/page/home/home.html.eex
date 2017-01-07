@@ -1,16 +1,6 @@
+<%= render Frontend.SharedView, "banner.html", assigns %>
+
 <main class="columns" id="home-content">
-  <div class="banner"
-    style="background-image: url('/images/kuikkaheader2.png'); display: block;">
-
-    <div class="next-event">
-      <span class="text">Seuraava tapahtuma: <i class="time"><%= get_next_event_date() %> 19:30</i></span>
-      <span class="title">Viikkopelit</span>
-    </div>
-    <iframe  class="kuikka-video" src="http://www.youtube.com/embed/xHRC67Isl28"
-      width="560" height="405" frameborder="0" allowfullscreen>
-    </iframe>
-  </div>
-
   <div class="row align-middle">
     <div class="home-content-block">
       <h1>Osasto Kuikka</h1>
