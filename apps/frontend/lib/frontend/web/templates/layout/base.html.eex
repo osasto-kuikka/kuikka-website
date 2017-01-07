@@ -45,9 +45,7 @@
         </header>
       </div>
       <div class="row">
-        <main class="columns" id="layout-content">
-          <%= render @view_module, @view_template, assigns %>
-        </main>
+        <%= render @view_module, @view_template, assigns %>
       </div>
       <div class="row">
         <footer id="columns layout-footer">

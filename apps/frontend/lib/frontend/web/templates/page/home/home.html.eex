@@ -1,72 +1,74 @@
-<div class="banner"
-  style="background-image: url('/images/kuikkaheader2.png'); display: block;">
+<main class="columns" id="layout-content">
+  <div class="banner"
+    style="background-image: url('/images/kuikkaheader2.png'); display: block;">
 
-  <div class="next-operation">
-    <span class="u">Seuraava tapahtuma: <i class="tf"><%= get_next_event_date() %> 19:30</i></span>
-    <span class="b">Joka keskiviikko ja sunnuntai klo 19:30</span>
+    <div class="next-operation">
+      <span class="u">Seuraava tapahtuma: <i class="tf"><%= get_next_event_date() %> 19:30</i></span>
+      <span class="b">Joka keskiviikko ja sunnuntai klo 19:30</span>
+    </div>
+    <iframe  class="kuikka-video" src="http://www.youtube.com/embed/xHRC67Isl28"
+      width="560" height="405" frameborder="0" allowfullscreen>
+    </iframe>
   </div>
-  <iframe  class="kuikka-video" src="http://www.youtube.com/embed/xHRC67Isl28"
-    width="560" height="405" frameborder="0" allowfullscreen>
-  </iframe>
-</div>
 
-<div class="row align-middle">
-  <div class="home-content-block">
-    <h1>Osasto Kuikka</h1>
-    <p>
-      Osasto Kuikka on kahdesti viikossa järjestäytyvä, aktiivinen kaikille
-      yli 18 vuotta täyttäneille avoin Arma 3 peliyhteisö.
+  <div class="row align-middle">
+    <div class="home-content-block">
+      <h1>Osasto Kuikka</h1>
+      <p>
+        Osasto Kuikka on kahdesti viikossa järjestäytyvä, aktiivinen kaikille
+        yli 18 vuotta täyttäneille avoin Arma 3 peliyhteisö.
 
-      Mikäli olet täysi-ikäinen ja kiinnostunut liittymään niin alapuolella on
-      listattuna mitä Osasto Kuikka voi sinulle tarjota...
-    </p>
+        Mikäli olet täysi-ikäinen ja kiinnostunut liittymään niin alapuolella on
+        listattuna mitä Osasto Kuikka voi sinulle tarjota...
+      </p>
+    </div>
   </div>
-</div>
 
-<div class="row align-middle">
-  <div class="home-content-block">
-    <h4>Realistisuutta</h4>
-    <p>
-			Kuikalla peleissä yritämme toimia mahdollisimman realistisesti puolustusvoimien
-			ryhmä- sekä joukkuetoiminnan ohjeiden mukaisesti.
-    </p>
+  <div class="row align-middle">
+    <div class="home-content-block">
+      <h4>Realistisuutta</h4>
+      <p>
+        Kuikalla peleissä yritämme toimia mahdollisimman realistisesti puolustusvoimien
+        ryhmä- sekä joukkuetoiminnan ohjeiden mukaisesti.
+      </p>
+    </div>
   </div>
-</div>
 
-<div class="row align-middle">
-  <div class="home-content-block">
-    <h4>Ei arvonimiä</h4>
-    <p>
-			Vaikka osa on kokeneempia pelaajia, ei heitä tarvitse sinutella emmekä vaadi
-			puhuttelu, esittely ja asia aloittaessasi keskustelua...
-    </p>
+  <div class="row align-middle">
+    <div class="home-content-block">
+      <h4>Ei arvonimiä</h4>
+      <p>
+        Vaikka osa on kokeneempia pelaajia, ei heitä tarvitse sinutella emmekä vaadi
+        puhuttelu, esittely ja asia aloittaessasi keskustelua...
+      </p>
+    </div>
   </div>
-</div>
 
-<div class="row align-middle">
-  <div class="home-content-block">
-    <h4>Koulutukset</h4>
-    <p>
-			Koska kukaan ei ole seppä syntyessään tarjoaa kuikka koulutuksia
-			opettamaan sinulle erilaisia rooleja.
-		</p>
+  <div class="row align-middle">
+    <div class="home-content-block">
+      <h4>Koulutukset</h4>
+      <p>
+        Koska kukaan ei ole seppä syntyessään tarjoaa kuikka koulutuksia
+        opettamaan sinulle erilaisia rooleja.
+      </p>
+    </div>
   </div>
-</div>
 
-<div class="row align-middle">
-  <div class="home-content-block">
-    <h4>Aikuista huumoria</h4>
-    <p>
-			Huumoria aikuiseen makuun (usein surkeaa kuin VR:n kahvi...)
-    </p>
+  <div class="row align-middle">
+    <div class="home-content-block">
+      <h4>Aikuista huumoria</h4>
+      <p>
+        Huumoria aikuiseen makuun (usein surkeaa kuin VR:n kahvi...)
+      </p>
+    </div>
   </div>
-</div>
 
-<div class="row align-middle">
-  <div class="home-content-block">
-    <h2>Halukas liittymään kuikkaan?</h2>
-    <a href="">
-      <button class="column home-join-button">Liity tästä</button>
-    </a>
+  <div class="row align-middle">
+    <div class="home-content-block">
+      <h2>Halukas liittymään kuikkaan?</h2>
+      <a href="">
+        <button class="column home-join-button">Liity tästä</button>
+      </a>
+    </div>
   </div>
-</div>
+</main>
