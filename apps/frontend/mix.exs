@@ -48,6 +48,7 @@ defmodule Frontend.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:steamex, "~> 0.0.6"},
+      {:timex, "~> 3.0"},
     ]
   end
 end
