@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
   <body>
-					<div class="fullwidth-banner"
-						style="background-image: url('/images/kuikkaheader2.png'); display: block;">
-					</div>
     <div class="container">
       <div class="row">
         <header class="columns" id="layout-header">
@@ -49,11 +46,6 @@
       </div>
       <div class="row">
         <main class="columns" id="layout-content">
-
-					<div class="next-operation">
-            <span class="u">Seuraava tapahtuma: <i class="tf"><%= get_next_event_date() %> 19:30</i></span>
-						<span class="b">Joka keskiviikko ja sunnuntai klo 19:30</span>
-					</div>
           <%= render @view_module, @view_template, assigns %>
         </main>
       </div>
