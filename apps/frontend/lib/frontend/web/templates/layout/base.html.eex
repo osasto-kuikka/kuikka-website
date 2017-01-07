@@ -9,14 +9,15 @@
 
     <title>Osasto Kuikka</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css" integrity="sha256-Gxk756LCcjwUNjIrkNrXNqY1Q+EW/Tct/IuGRw6Q1Mo=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" integrity="sha256-RWqxpxUH7ZGrrhTJ0I+v+zc6e8cRpm5ENBt7i3u3KrQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
   <body>
+					<div class="fullwidth-banner"
+						style="background-image: url('/images/kuikkaheader2.png'); display: block;">
+					</div>
     <div class="container">
       <div class="row">
-        <header class="column" id="layout-header">
+        <header class="columns" id="layout-header">
           <div id="header-inner">
             <nav id="header-nav">
               <a class="header-link" href="/">
@@ -47,10 +48,7 @@
         </header>
       </div>
       <div class="row">
-        <main class="column" id="layout-content">
-					<div class="fullwidth-banner"
-						style="background-image: url('/images/kuikkaheader2.png'); display: block;">
-					</div>
+        <main class="columns" id="layout-content">
 
 					<div class="next-operation">
             <span class="u">Seuraava tapahtuma: <i class="tf"><%= get_next_event_date() %> 19:30</i></span>
@@ -60,13 +58,10 @@
         </main>
       </div>
       <div class="row">
-        <footer id="column layout-footer">
+        <footer id="columns layout-footer">
         </footer>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.js" integrity="sha256-Wp+O1wPyGFexlE5eXu6l3Za+s/87TodMhE7tXk7eWwo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js" integrity="sha256-r0xmg4FKpSfK9TvePQIeaq/gCDO0Xy3q0EPIfteGRnQ=" crossorigin="anonymous"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

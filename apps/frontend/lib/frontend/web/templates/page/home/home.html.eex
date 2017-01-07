@@ -1,25 +1,32 @@
+<iframe  class="kuikka-video" src="http://www.youtube.com/embed/xHRC67Isl28"
+  width="560" height="405" frameborder="0" allowfullscreen>
+</iframe>
+
 <div class="row align-middle">
-  <div class="small-12 column home-headline-block">
+  <div class="home-content-block">
     <h1>Osasto Kuikka</h1>
     <p>
       Osasto Kuikka on kahdesti viikossa järjestäytyvä, aktiivinen kaikille
       yli 18 vuotta täyttäneille avoin Arma 3 peliyhteisö.
 
-			Mikäli olet täysi-ikäinen ja olet kinnostunut niin alapuolella on listattuna
-			mitä Osasto Kuikka tarjoaa...
+      Mikäli olet täysi-ikäinen ja kiinnostunut liittymään niin alapuolella on
+      listattuna mitä Osasto Kuikka voi sinulle tarjota...
     </p>
   </div>
 </div>
 
 <div class="row align-middle">
-  <div class="small-12 large-6 column home-content-block">
+  <div class="home-content-block">
     <h4>Realistisuutta</h4>
     <p>
 			Kuikalla peleissä yritämme toimia mahdollisimman realistisesti puolustusvoimien
 			ryhmä- sekä joukkuetoiminnan ohjeiden mukaisesti.
     </p>
   </div>
-  <div class="small-12 large-6 column home-content-block">
+</div>
+
+<div class="row align-middle">
+  <div class="home-content-block">
     <h4>Ei arvonimiä</h4>
     <p>
 			Vaikka osa on kokeneempia pelaajia, ei heitä tarvitse sinutella emmekä vaadi
@@ -29,14 +36,17 @@
 </div>
 
 <div class="row align-middle">
-  <div class="small-12 large-6 column home-content-block">
+  <div class="home-content-block">
     <h4>Koulutukset</h4>
     <p>
 			Koska kukaan ei ole seppä syntyessään tarjoaa kuikka koulutuksia
 			opettamaan sinulle erilaisia rooleja.
 		</p>
   </div>
-  <div class="small-12 large-6 column home-content-block">
+</div>
+
+<div class="row align-middle">
+  <div class="home-content-block">
     <h4>Aikuista huumoria</h4>
     <p>
 			Huumoria aikuiseen makuun (usein surkeaa kuin VR:n kahvi...)
@@ -45,7 +55,7 @@
 </div>
 
 <div class="row align-middle">
-  <div class="small-12 column home-content-block">
+  <div class="home-content-block">
     <h2>Halukas liittymään kuikkaan?</h2>
     <a href="/wiki/join">
       <button class="column home-join-button">Liity tästä</button>

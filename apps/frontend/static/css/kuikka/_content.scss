@@ -3,10 +3,16 @@
   top: 52px;
   left: 0;
   right: 0;
-  height: 305px;
+  height: 505px;
   background-position: center;
   background-repeat: no-repeat;
   background-size:cover;
+}
+
+.kuikka-video {
+  position: absolute;
+  top: 150px;
+  left: 21%;
 }
 
 .home-content {
@@ -48,7 +54,7 @@
 
 .next-operation {
 	float: right;
-	margin-top: -280px;
+	margin-top: -480px;
 	//background-color: rgb(94, 128, 7);
   background-color: rgba(215, 148, 0, 0.8);
 	padding: 0;
