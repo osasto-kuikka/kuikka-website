@@ -1,0 +1,13 @@
+<div class="banner-small"
+  style="background-image: url('/images/kuikkaheader2.png'); display: block;">
+
+  <div class="next-event">
+    <span class="text">
+      Seuraava tapahtuma:
+      <span class="time">
+        <%= Frontend.Utils.get_next_event_date() %> 19:30
+      </span>
+    </span>
+    <span class="title">Viikkopelit</span>
+  </div>
+</div>

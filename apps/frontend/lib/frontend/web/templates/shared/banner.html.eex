@@ -1,0 +1,16 @@
+<div class="banner"
+  style="background-image: url('/images/kuikkaheader2.png'); display: block;">
+
+  <div class="next-event">
+    <span class="text">
+      Seuraava tapahtuma:
+      <span class="time">
+        <%= Frontend.Utils.get_next_event_date() %> 19:30
+      </span>
+    </span>
+    <span class="title">Viikkopelit</span>
+  </div>
+  <iframe  class="banner-video" src="http://www.youtube.com/embed/xHRC67Isl28"
+    width="560" height="405" frameborder="0" allowfullscreen>
+  </iframe>
+</div>

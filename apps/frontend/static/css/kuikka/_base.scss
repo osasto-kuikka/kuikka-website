@@ -1,22 +1,36 @@
-html, body, main {
+html, body {
   font-family: Arial, Helvetica, sans-serif;
-}
-
-html {
-  background-color: #222;
-}
-
-body {
   background-color: #222;
   color: #CCC;
+}
+
+button {
+  color: rgba(240,180,40,1);
+  border: 3px solid rgba(240,180,40,1);
+  transition: all .15s ease;
+}
+
+button:hover {
+  color: #000;
+  border: 3px solid rgba(240,180,40,1);
+  background-color: rgba(240,180,40,1);
+}
+
+
+a {
+  text-decoration: none;
+  box-shadow: none;
+  transition: all .15s ease;
+  color: #CCC;
+}
+
+a:hover {
+  color: rgba(240,180,40,1);
 }
 
 * {
   box-sizing: border-box;
   outline:0 !important;
-}
-
-#layout-content {
 }
 
 .alert {
@@ -33,4 +47,8 @@ body {
   &.alert-error {
     color: rgba(214, 39, 24, 1);
   }
+}
+
+#layout-content {
+  margin-top: 555px;
 }

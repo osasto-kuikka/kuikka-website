@@ -14,15 +14,17 @@
   <body>
     <div class="container">
       <div class="row">
-        <header id="layout-header">
+        <header class="columns" id="layout-header">
           <div id="header-inner">
             <nav id="header-nav">
-              <a class="header-link" href="/">Koti</a>
-              <a class="header-link" href="/news">Uutiset</a>
-              <a class="header-link" href="/forum">Foorumit</a>
-              <a class="header-link" href="/media">Media</a>
-              <a class="header-link" href="/roster">Rosteri</a>
-              <a class="header-link" href="/wiki">Wiki</a>
+              <a class="header-link" href="/">
+                <img class="header-logo-image" src="/images/logo.svg" />
+              </a>
+              <a class="header-link" href="">Tapahtumat</a>
+              <a class="header-link" href="">Foorumit</a>
+              <a class="header-link" href="">Media</a>
+              <a class="header-link" href="">Rosteri</a>
+              <a class="header-link" href="">Wiki</a>
               <div id="header-nav-right">
                 <%= if is_nil(@user) do %>
                   <a class="header-link" href="<%= steamex_auth_url(@conn) %>">
@@ -33,7 +35,7 @@
                   <div class="header-link dropdown">
                     <span><%= @user.personaname %></span>
                     <div class="dropdown-content">
-                      <a href="<%= profile_path(@conn, :get, @user.steamid) %>">Profiili</a>
+                      <a href="">Profiili</a>
                       <a href="<%= profile_path(@conn, :logout) %>">Kirjaudu ulos</a>
                     </div>
                 <% end %>
@@ -43,14 +45,10 @@
         </header>
       </div>
       <div class="row">
-        <main id="layout-content">
-          <div class="row">
-            <%= render @view_module, @view_template, assigns %>
-          </div>
-        </main>
+        <%= render @view_module, @view_template, assigns %>
       </div>
       <div class="row">
-        <footer id="layout-footer">
+        <footer id="columns layout-footer">
         </footer>
       </div>
     </div>
