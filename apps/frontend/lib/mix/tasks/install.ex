@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Frontend.Install do
       npm install -g yarnpkg
   """
 
-  @shortdoc "Install frontend npm packages with yarn"
+  @doc "Install frontend npm packages with yarn"
   def run(_) do
     Mix.Shell.IO.cmd("cd apps/frontend && npm install")
   end

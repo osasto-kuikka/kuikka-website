@@ -2,8 +2,7 @@ defmodule User do
   @moduledoc """
   Defines user struct for usage to other components
   """
-
-  alias User.{Role, Fireteam}
+  alias User.Role
 
   defstruct steamid: nil,
             personaname: nil,
