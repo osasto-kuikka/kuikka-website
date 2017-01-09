@@ -3,6 +3,8 @@ defmodule KuikkaWebsite.Mixfile do
 
   def project do
     [apps_path: "apps",
+     app: :kuikka_website,
+     version: "0.0.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
@@ -27,7 +29,8 @@ defmodule KuikkaWebsite.Mixfile do
       {:distillery, "~> 1.0"},
       {:credo, "~> 0.5", only: [:dev, :test]},
       {:excoveralls, "~> 0.5", only: :test},
-      {:inch_ex, "~> 0.5", only: [:dev, :test]}
+      {:inch_ex, "~> 0.5", only: [:dev, :test]},
+      {:ex_doc, "~> 0.14", only: :dev},
     ]
   end
 
