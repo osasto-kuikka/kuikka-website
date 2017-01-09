@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -n "${GH_TOKEN}" ] && [ "${TRAVIS_BRANCH}" == "master" ] && ["${TRAVIS_PULL_REQUEST}" == "false" ]; then
+if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
   # Init git configs for kuikkabot
   git init
   git config user.name "kuikkabot"
@@ -20,6 +20,6 @@ if [ -n "${GH_TOKEN}" ] && [ "${TRAVIS_BRANCH}" == "master" ] && ["${TRAVIS_PULL
 
   # Commit changes and push to master
   git add --all
-  git commit -m "updated docs"
+  git commit -m "Updated docs"
   git push -q upstream HEAD:master
 fi
