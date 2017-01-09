@@ -19,7 +19,7 @@ if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; 
   mv doc docs
 
   # Commit changes and push to master
-  git add --all
+  git add docs
   git commit -m "Updated docs [ci skip]"
   git push -q upstream HEAD:master
 fi
