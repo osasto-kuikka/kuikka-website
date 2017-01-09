@@ -1,9 +1,5 @@
 #!/bin/bash
 
-set -o errexit -o nounset
-
-rev=$(git rev-parse --short HEAD)
-
 # Init git configs for kuikkabot
 git init
 git config user.name "kuikkabot"
