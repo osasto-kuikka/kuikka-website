@@ -1,0 +1,24 @@
+#member-content {
+  margin-top: 200px;
+}
+
+#member-list-content {
+  margin-top: 200px;
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 4px 5px;
+    border-bottom: 1px solid #333;
+
+    img {
+      margin-bottom: -5px
+    }
+  }
+
+  th:last-child, td:last-child {
+    text-align: right;
+  }
+}

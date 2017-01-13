@@ -10,6 +10,7 @@ defmodule User do
             avatar: nil,
             avatarmedium: nil,
             avatarfull: nil,
+            createtime: nil,
             role: nil
 
   @doc """

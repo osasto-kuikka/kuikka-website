@@ -10,9 +10,13 @@ defmodule Frontend.Utils do
 
   TODO: Proper event query when we get events implemented
   """
+  @spec get_next_event_date() :: String.t
   def get_next_event_date do
     date = Timex.now()
-    date = case Timex.weekday(date) do
+
+    date
+    |> Timex.weekday()
+    |> case do
       1 -> Timex.add(date, Duration.from_days(2))
       2 -> Timex.add(date, Duration.from_days(1))
       3 -> date
@@ -21,7 +25,14 @@ defmodule Frontend.Utils do
       6 -> Timex.add(date, Duration.from_days(1))
       7 -> date
     end
+    |> to_date()
+  end
 
+  @doc """
+  Transform raw datetime to prettier date
+  """
+  @spec to_date(DateTime.t) :: String.t
+  def to_date(date) do
     "#{date.day}.#{date.month}.#{date.year}"
   end
 end
