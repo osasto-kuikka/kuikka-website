@@ -1,15 +1,13 @@
 language: elixir
-matrix:
-  include:
-    - otp_release: 19.2
-      elixir: 1.4.0
+otp_release: 19.2
+elixir: 1.4.0
 sudo: false
 before_script:
   - mix deps.get
   - MIX_ENV=test mix compile --warnings-as-errors
   - MIX_ENV=prod mix compile --warnings-as-errors
   - nvm install 6.9 && nvm use 6.9
-  - mix frontend.install
+  - MIX_ENV=test mix frontend.install
 script:
   - mix test
   - MIX_ENV=test mix lint
