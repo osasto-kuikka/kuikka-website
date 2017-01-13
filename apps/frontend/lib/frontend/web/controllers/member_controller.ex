@@ -29,7 +29,7 @@ defmodule Frontend.Page.MemberController do
         {:ok, user} ->
           conn
           |> assign(:steam_info, Steamex.Profile.fetch(id_i))
-          |> assign(:profile_info, user)
+          |> assign(:member_info, user)
           |> render("member.html")
       end
     else

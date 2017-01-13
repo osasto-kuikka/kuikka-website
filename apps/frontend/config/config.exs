@@ -24,7 +24,7 @@ config :frontend, ecto_repos: []
 
 # Steamex
 config :frontend, Steamex,
-       redirect_to: "/member/me"
+       redirect_to: "/members/login"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

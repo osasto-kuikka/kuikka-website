@@ -10,7 +10,7 @@ defmodule Frontend.Utils do
 
   TODO: Proper event query when we get events implemented
   """
-  @spec get_next_event_date() :: String.t
+  @spec get_next_event_date() :: binary
   def get_next_event_date do
     date = Timex.now()
 
@@ -31,7 +31,7 @@ defmodule Frontend.Utils do
   @doc """
   Transform raw datetime to prettier date
   """
-  @spec to_date(DateTime.t) :: String.t
+  @spec to_date(DateTime.t) :: binary
   def to_date(date) do
     "#{date.day}.#{date.month}.#{date.year}"
   end
