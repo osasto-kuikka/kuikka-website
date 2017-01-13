@@ -23,7 +23,7 @@
               <a class="header-link" href="">Tapahtumat</a>
               <a class="header-link" href="">Foorumit</a>
               <a class="header-link" href="">Media</a>
-              <a class="header-link" href="">Rosteri</a>
+              <a class="header-link" href="<%= member_path(@conn, :index) %>">Jäsenet</a>
               <a class="header-link" href="">Wiki</a>
               <div id="header-nav-right">
                 <%= if is_nil(@user) do %>
@@ -35,8 +35,8 @@
                   <div class="header-link dropdown">
                     <span><%= @user.personaname %></span>
                     <div class="dropdown-content">
-                      <a href="">Profiili</a>
-                      <a href="<%= profile_path(@conn, :logout) %>">Kirjaudu ulos</a>
+                      <a href="<%= member_path(@conn, :show, @user.steamid) %>">Profiili</a>
+                      <a href="<%= member_path(@conn, :logout) %>">Kirjaudu ulos</a>
                     </div>
                 <% end %>
               </div>

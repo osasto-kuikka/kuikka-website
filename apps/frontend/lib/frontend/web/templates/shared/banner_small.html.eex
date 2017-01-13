@@ -1,13 +1,29 @@
 <div class="banner-small"
   style="background-image: url('/images/kuikkaheader2.png'); display: block;">
-
-  <div class="next-event">
-    <span class="text">
-      Seuraava tapahtuma:
-      <span class="time">
-        <%= Frontend.Utils.get_next_event_date() %> 19:30
+  <%= if banner_has_info(@conn) do %>
+    <div class="next-event">
+      <span class="text">
+        Seuraava tapahtuma:
+        <span class="time">
+          <%= Frontend.Utils.get_next_event_date() %> 19:30
+        </span>
       </span>
-    </span>
-    <span class="title">Viikkopelit</span>
-  </div>
+      <span class="title">Viikkopelit</span>
+    </div>
+
+    <div class="flash-info">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    </div>
+  <% else %>
+    <div class="next-event">
+      <span class="text">
+        Seuraava tapahtuma:
+        <span class="time">
+          <%= Frontend.Utils.get_next_event_date() %> 19:30
+        </span>
+      </span>
+      <span class="title">Viikkopelit</span>
+    </div>
+  <% end %>
 </div>

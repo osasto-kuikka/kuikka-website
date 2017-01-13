@@ -9,10 +9,11 @@ defmodule Frontend.Auth.RequireUser do
   def init(_), do: []
 
   def call(conn, _options) do
+    err_msg = "Sivu johon yritit päästä vaatii sisäänkirjautumisen"
     case conn.assigns.user do
       nil ->
         conn
-        |> put_flash(:error, "Tämä sivu vaatii sisäänkirjautumisen!")
+        |> put_flash(:error, err_msg)
         |> redirect(to: "/")
       _ ->
         conn

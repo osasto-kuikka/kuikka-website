@@ -1,0 +1,1 @@
+<%= render Frontend.SharedView, "banner_small.html", assigns %>

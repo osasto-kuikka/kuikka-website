@@ -21,14 +21,19 @@ defmodule Frontend.Router do
     pipe_through [:browser]
 
     scope "/", Page do
-      get "/", HomeController, :get
+      get "/", HomeController, :index
+    end
 
-      scope "/profile/" do
-        pipe_through [:require_user]
+    scope "/members/", Page do
+      get "/", MemberController, :index
+      get "/login", MemberController, :login
+      get "/logout", MemberController, :logout
+    end
 
-        get "/logout", ProfileController, :logout
-        get "/user/:id", ProfileController, :get
-      end
+    scope "/members/", Page do
+      pipe_through [:require_user]
+
+      get "/:id", MemberController, :show
     end
   end
 end

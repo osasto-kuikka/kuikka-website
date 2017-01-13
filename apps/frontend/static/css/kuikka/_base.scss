@@ -33,22 +33,6 @@ a:hover {
   outline:0 !important;
 }
 
-.alert {
-  margin: 0 auto;
-  text-align: center;
-  font-size: 28px;
-  color: #fff;
-  width: 100%;
-
-  &.alert-info {
-    color: rgba(54, 160, 71, 1);
-  }
-
-  &.alert-error {
-    color: rgba(214, 39, 24, 1);
-  }
-}
-
 #layout-content {
   margin-top: 555px;
 }
