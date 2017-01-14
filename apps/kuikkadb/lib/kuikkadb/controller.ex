@@ -2,6 +2,7 @@ defmodule KuikkaDB.Controller do
   @moduledoc """
   Controller containing database functions for user
   """
+  import Ecto.Query
   alias KuikkaDB.{Repo, Schema}
   alias Schema.User, as: UserSchema
   alias Schema.Role, as: RoleSchema
@@ -14,11 +15,15 @@ defmodule KuikkaDB.Controller do
   {:ok, user} = KuikkaDB.get_user("steamid")
   ```
   """
-  @spec get_user(binary) :: {:ok, User.t} | {:error, binary}
+  @spec get_user(binary) :: User.t | nil
   def get_user(steamid) do
-    case UserSchema.one(steamid: steamid) do
-      {:ok, user} -> user_schema_to_struct(user)
-      tuple -> tuple
+    UserSchema
+    |> preload(role: :permissions)
+    |> where([u], u.steamid == ^steamid)
+    |> Repo.one()
+    |> case do
+      nil -> nil
+      user -> user_schema_to_struct(user)
     end
   end
 
@@ -30,15 +35,12 @@ defmodule KuikkaDB.Controller do
   {:ok, users} = KuikkaDB.get_all_users()
   ```
   """
-  @spec get_all_users() :: {:ok, List.t} | {:error, binary}
+  @spec get_all_users() :: List.t
   def get_all_users() do
-    UserSchema.all()
-    |> Enum.reduce({:ok, []}, fn user, {:ok, users} ->
-      case user_schema_to_struct(user) do
-        {:ok, user} -> {:ok, List.insert_at(users, -1, user)}
-        tuple -> tuple
-      end
-    end)
+    UserSchema
+    |> preload(role: :permissions)
+    |> Repo.all()
+    |> Enum.map(&user_schema_to_struct(&1))
   end
 
   @doc """
@@ -49,25 +51,27 @@ defmodule KuikkaDB.Controller do
   {:ok, users} = KuikkaDB.new_user("steamid")
   ```
   """
-  @spec new_user(binary) :: {:ok, User.t} | {:error, binary}
+  @spec new_user(binary) :: User.t
   def new_user(steamid) do
-    case UserSchema.one(steamid: steamid) do
-      {:error, _} -> {:ok, insert_user(steamid)}
-      {:ok, _} -> {:error, "User with id #{steamid} already exists"} 
+    case get_user(steamid) do
+      nil -> insert_user(steamid)
+      user -> user
     end
   end
 
   # Insert new user to database. Used in new user when no earlier user was
   # found from database.
-  @spec insert_user(binary) :: User.t 
+  @spec insert_user(binary) :: User.t
   defp insert_user(steamid) do
-    with {:ok, role}   <- RoleSchema.one(name: "user")
-    do
-      %{
-        steamid: steamid,
-        role_id: role.id,
-      } |> UserSchema.insert |> user_schema_to_struct
-    end
+    role = RoleSchema
+          |> where([r], r.name == "user")
+          |> Repo.one!()
+
+    %UserSchema{}
+    |> UserSchema.changeset(%{steamid: steamid, role_id: role.id})
+    |> Repo.insert!()
+    |> Repo.preload(role: :permissions)
+    |> user_schema_to_struct()
   end
 
   @doc """
@@ -78,15 +82,19 @@ defmodule KuikkaDB.Controller do
   :ok = KuikkaDB.new_role("role", "example")
   ```
   """
-  @spec new_role(binary, binary) :: :ok | {:error, binary}
+  @spec new_role(binary, binary) :: :ok
   def new_role(name, description) do
-    case RoleSchema.one(name: name) do
-      {:error, _} ->
-        RoleSchema.insert(%{name: name, description: description})
-        :ok
-      {:ok, _} ->
-        {:error, "Role #{name} already exists"}
+    RoleSchema
+    |> where([r], r.name == ^name)
+    |> Repo.one()
+    |> case do
+      nil ->
+        %RoleSchema{}
+        |> RoleSchema.changeset(%{name: name, description: description})
+        |> Repo.insert()
+      _ -> nil
     end
+    :ok
   end
 
   @doc """
@@ -99,14 +107,23 @@ defmodule KuikkaDB.Controller do
   """
   @spec update_user_role(binary, binary) :: :ok | {:error, binary}
   def update_user_role(steamid, rolename) do
-    with {:ok, user} <- UserSchema.one(steamid: steamid),
-         {:ok, role} <- RoleSchema.one(name: rolename),
-         user <- Repo.preload(user, [:role])
+    user = UserSchema
+           |> preload(:role)
+           |> where([u], u.steamid == ^steamid)
+           |> Repo.one()
+
+    role = RoleSchema
+           |> where([r], r.name == ^rolename)
+           |> Repo.one()
+
+    with {:ok, user} <- user,
+         {:ok, role} <- role
     do
-      case UserSchema.update(user, %{role_id: role.id}) do
-        {:ok, _} -> :ok
-        tuple -> tuple
-      end
+      user
+      |> UserSchema.changeset(%{role_id: role.id})
+      |> Repo.update()
+
+      :ok
     end
   end
 
@@ -130,8 +147,6 @@ defmodule KuikkaDB.Controller do
   def user_schema_to_struct(schema = %UserSchema{}) do
     with {:ok, steam} <- Steam.get_user(schema.steamid)
     do
-      schema = Repo.preload(schema, [role: [:permissions]])
-
       struct!(%User{}, %{
         steamid: "#{schema.steamid}",
         personaname: steam.personaname,

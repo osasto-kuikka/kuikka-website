@@ -8,7 +8,7 @@ defmodule KuikkaDB do
 
   More info `KuikkaDB.Controller.get_user/1`
   """
-  @spec get_user(binary) :: {:ok, User.t} | {:error, binary}
+  @spec get_user(binary) :: User.t | nil
   defdelegate get_user(steamid), to: KuikkaDB.Controller
 
   @doc """
@@ -16,7 +16,7 @@ defmodule KuikkaDB do
 
   More info `KuikkaDB.Controller.get_all_users/0`
   """
-  @spec get_all_users() :: {:ok, List.t} | {:error, binary}
+  @spec get_all_users() :: List.t
   defdelegate get_all_users(), to: KuikkaDB.Controller
 
   @doc """
@@ -24,7 +24,7 @@ defmodule KuikkaDB do
 
   More info `KuikkaDB.Controller.new_user/1`
   """
-  @spec new_user(binary) :: {:ok, User.t} | {:error, binary}
+  @spec new_user(binary) :: User.t
   defdelegate new_user(steamid), to: KuikkaDB.Controller
 
   @doc """
@@ -32,7 +32,7 @@ defmodule KuikkaDB do
 
   More info `KuikkaDB.Controller.new_role/2`
   """
-  @spec new_role(binary, binary) :: :ok | {:error, binary}
+  @spec new_role(binary, binary) :: :ok
   defdelegate new_role(name, description), to: KuikkaDB.Controller
 
   @doc """

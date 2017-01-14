@@ -37,6 +37,7 @@ defmodule Steam.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
+      {:steamex, "~> 0.0.6"},
       {:httpoison, "~> 0.10.0"},
       {:poison, "~> 2.0"}
     ]
