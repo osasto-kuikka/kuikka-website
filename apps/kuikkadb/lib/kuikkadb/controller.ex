@@ -7,11 +7,14 @@ defmodule KuikkaDB.Controller do
   alias Schema.Role, as: RoleSchema
 
   @doc """
-  Get single user from database as user struct.
+  Get single user from kuikkadb as user struct.
 
-  This function will automatically request data from steam api to
-  build proper user struct for frontend usage.
+  ## Example
+  ```
+  {:ok, user} = KuikkaDB.get_user("steamid")
+  ```
   """
+  @spec get_user(binary) :: {:ok, User.t} | {:error, binary}
   def get_user(steamid) do
     case UserSchema.one(steamid: steamid) do
       {:ok, user} -> user_schema_to_struct(user)
@@ -20,11 +23,14 @@ defmodule KuikkaDB.Controller do
   end
 
   @doc """
-  Get all user from database.
+  Get all users from kuikkadb
 
-  This function returns user structs so every user info have been requested
-  steam api.
+  ## Example
+  ```
+  {:ok, users} = KuikkaDB.get_all_users()
+  ```
   """
+  @spec get_all_users() :: {:ok, List.t} | {:error, binary}
   def get_all_users() do
     UserSchema.all()
     |> Enum.reduce({:ok, []}, fn user, {:ok, users} ->
@@ -36,45 +42,62 @@ defmodule KuikkaDB.Controller do
   end
 
   @doc """
-  Adds new user to database. Should be automatically used when user first
-  time logins from steam.
+  Adds new user to kuikkadb
+
+  ## Example
+  ```
+  {:ok, users} = KuikkaDB.new_user("steamid")
+  ```
   """
+  @spec new_user(binary) :: {:ok, User.t} | {:error, binary}
   def new_user(steamid) do
     case UserSchema.one(steamid: steamid) do
-      {:error, _} -> insert_user(steamid)
-      {:ok, user} -> {:ok, user}
+      {:error, _} -> {:ok, insert_user(steamid)}
+      {:ok, _} -> {:error, "User with id #{steamid} already exists"} 
     end
   end
+
   # Insert new user to database. Used in new user when no earlier user was
   # found from database.
+  @spec insert_user(binary) :: User.t 
   defp insert_user(steamid) do
     with {:ok, role}   <- RoleSchema.one(name: "user")
     do
       %{
         steamid: steamid,
         role_id: role.id,
-      } |> UserSchema.insert
+      } |> UserSchema.insert |> user_schema_to_struct
     end
   end
 
   @doc """
-  Insert new role to kuikkadb. Returns error tuple if role already exists
-  otherwise it will return ok tuple when new role was inserted to kuikkadb
+  Add new role to kuikkadb
+
+  ## Example
+  ```
+  :ok = KuikkaDB.new_role("role", "example")
+  ```
   """
+  @spec new_role(binary, binary) :: :ok | {:error, binary}
   def new_role(name, description) do
     case RoleSchema.one(name: name) do
       {:error, _} ->
         RoleSchema.insert(%{name: name, description: description})
+        :ok
       {:ok, _} ->
         {:error, "Role #{name} already exists"}
     end
   end
 
   @doc """
-  Update user role to database. This is will return atom with
-  `:ok` when user was properly updated and `{:error, msg}`
-  when there is issue with updating.
+  Update user role to kuikkadb
+
+  ## Example
+  ```
+  :ok = KuikkaDB.update_user_role("steamid", "role")
+  ```
   """
+  @spec update_user_role(binary, binary) :: :ok | {:error, binary}
   def update_user_role(steamid, rolename) do
     with {:ok, user} <- UserSchema.one(steamid: steamid),
          {:ok, role} <- RoleSchema.one(name: rolename),
@@ -87,16 +110,29 @@ defmodule KuikkaDB.Controller do
     end
   end
 
-  # Transform user schema to user struct
-  # This function will load all information from database and
-  # request user data with steamid from steam api to build user struct
-  defp user_schema_to_struct(schema = %UserSchema{}) do
-    with {:ok, role} <- RoleSchema.one(id: schema.role_id),
-         {:ok, steam} <- Steam.get_user(schema.steamid)
-    do
-      role = Repo.preload(role, [:permissions])
+  @doc """
+  Transform user schema from kuikkadb to user struct
 
-      %{
+  ## Notice
+  This function will preload user role and permissions. If your query does not
+  require them you should manually load them before this function
+
+  ## Example
+  ```
+  schema = KuikkaDB.Schema.User
+          |> preload([role: [:permissions]])
+          |> where([u] u.steamid == ^steamid)
+          |> KuikkaDB.Repo.one!()
+  user = KuikkaDB.user_schema_to_struct(schema)
+  ```
+  """
+  @spec user_schema_to_struct(KuikkaDB.Schema.User.t) :: User.t
+  def user_schema_to_struct(schema = %UserSchema{}) do
+    with {:ok, steam} <- Steam.get_user(schema.steamid)
+    do
+      schema = Repo.preload(schema, [role: [:permissions]])
+
+      struct!(%User{}, %{
         steamid: "#{schema.steamid}",
         personaname: steam.personaname,
         profileurl: steam.profileurl,
@@ -105,10 +141,10 @@ defmodule KuikkaDB.Controller do
         avatarfull: steam.avatarfull,
         createtime: schema.createtime,
         role: %{
-          name: role.name,
-          permissions: Enum.map(role.permissions, fn p -> p.name end)
+          name: schema.role.name,
+          permissions: Enum.map(schema.role.permissions, fn p -> p.name end)
         }
-      } |> User.user_struct
+      })
     end
   end
 end
