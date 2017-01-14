@@ -37,7 +37,6 @@ release :kuikka_website do
   set applications: [
     frontend: :permanent,
     kuikkadb: :permanent,
-    steam: :permanent,
     user: :permanent
   ]
 end

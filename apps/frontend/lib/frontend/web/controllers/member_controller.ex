@@ -9,7 +9,7 @@ defmodule Frontend.Page.MemberController do
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, _) do
-    {:ok, members} = KuikkaDB.get_all_users()
+    members = KuikkaDB.get_all_users()
 
     conn
     |> assign(:members, members)
@@ -24,14 +24,13 @@ defmodule Frontend.Page.MemberController do
     with {id_i, ""} <- Integer.parse(id)
     do
       case KuikkaDB.get_user(id) do
-        {:error, _} ->
+        nil ->
           conn
           |> put_flash(:error, gettext("Failed to find requested user"))
           |> redirect(to: member_path(conn, :index))
-        {:ok, user} ->
+        user ->
           conn
-          |> assign(:steam_info, Profile.fetch(id_i))
-          |> assign(:member_info, user)
+          |> assign(:member, user)
           |> render("member.html")
       end
     else
