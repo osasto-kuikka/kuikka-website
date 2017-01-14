@@ -19,7 +19,7 @@ if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; 
   # Set remote with gh token
   git remote add upstream "https://$GH_TOKEN@github.com/osasto-kuikka/kuikka-website.git"
   git fetch upstream
-  git reset upstream/master
+  git reset upstream/gh-pages
 
   # Commit changes and push to master
   git add --all
