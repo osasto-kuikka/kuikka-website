@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 
-#: lib/frontend/web/controllers/member_controller.ex:27
+#: lib/frontend/web/controllers/member_controller.ex:29
 msgid "Failed to find requested user"
 msgstr ""
 
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Forum"
 msgstr ""
 
-#: lib/frontend/web/controllers/member_controller.ex:38
+#: lib/frontend/web/controllers/member_controller.ex:40
 msgid "Given username is invalid"
 msgstr ""
 
@@ -67,4 +67,8 @@ msgstr ""
 
 #: lib/frontend/web/plug/require_user.ex:13
 msgid "Page you tried to access requires login"
+msgstr ""
+
+#: lib/frontend/web/controllers/member_controller.ex:61
+msgid "You have been logged out"
 msgstr ""

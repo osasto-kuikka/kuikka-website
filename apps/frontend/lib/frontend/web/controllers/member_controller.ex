@@ -2,6 +2,8 @@ defmodule Frontend.Page.MemberController do
   use Frontend.Web, :controller
   plug :put_layout, "base.html"
 
+  alias Steamex.Profile
+
   @doc """
   List all users.
   """
@@ -28,7 +30,7 @@ defmodule Frontend.Page.MemberController do
           |> redirect(to: member_path(conn, :index))
         {:ok, user} ->
           conn
-          |> assign(:steam_info, Steamex.Profile.fetch(id_i))
+          |> assign(:steam_info, Profile.fetch(id_i))
           |> assign(:member_info, user)
           |> render("member.html")
       end
@@ -56,7 +58,7 @@ defmodule Frontend.Page.MemberController do
     conn
     |> fetch_session
     |> delete_session(:steamex_steamid64)
-    |> put_flash(:info, "Sinut on kirjattu ulos!")
+    |> put_flash(:info, gettext("You have been logged out"))
     |> redirect(to: "/")
   end
 end
