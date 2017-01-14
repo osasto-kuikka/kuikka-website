@@ -4,6 +4,8 @@
 # This file is supposed to only run in travis
 # You should not try to run it locally
 
+set -o errexit -o nounset
+
 if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
   # Generate new docs and cd to it
   mix docs
