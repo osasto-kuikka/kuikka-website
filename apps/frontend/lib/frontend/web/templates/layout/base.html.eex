@@ -41,11 +41,11 @@
                     <img class="steam-image" src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" />
                   </a>
                 <% else %>
-                  <img src="<%= @user.avatar %>" class="steam-image"></img>
+                  <img src="<%= @user.profile.avatar_icon %>" class="steam-image"></img>
                   <div class="header-link dropdown">
-                    <span><%= @user.personaname %></span>
+                    <span><%= @user.profile.steam_id %></span>
                     <div class="dropdown-content">
-                      <a href="<%= member_path(@conn, :show, @user.steamid) %>">
+                      <a href="<%= member_path(@conn, :show, @user.profile.steam_id64) %>">
                         <%= gettext("Profile") %></a>
                       <a href="<%= member_path(@conn, :logout) %>">
                         <%= gettext("Log out") %>

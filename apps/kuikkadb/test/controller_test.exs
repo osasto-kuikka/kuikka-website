@@ -12,7 +12,7 @@ defmodule KuikkaDB.ControllerTest do
   end
 
   test "new user", %{user: user} do
-    assert "#{user.steamid}" == "76561197960435530"
+    assert "#{user.profile.steam_id64}" == "76561197960435530"
   end
 
   test "get user", %{user: _} do

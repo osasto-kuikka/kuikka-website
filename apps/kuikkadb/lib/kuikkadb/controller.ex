@@ -145,21 +145,14 @@ defmodule KuikkaDB.Controller do
   """
   @spec user_schema_to_struct(KuikkaDB.Schema.User.t) :: User.t
   def user_schema_to_struct(schema = %UserSchema{}) do
-    with {:ok, steam} <- Steam.get_user(schema.steamid)
-    do
-      struct!(%User{}, %{
-        steamid: "#{schema.steamid}",
-        personaname: steam.personaname,
-        profileurl: steam.profileurl,
-        avatar: steam.avatar,
-        avatarmedium: steam.avatarmedium,
-        avatarfull: steam.avatarfull,
-        createtime: schema.createtime,
-        role: %{
-          name: schema.role.name,
-          permissions: Enum.map(schema.role.permissions, fn p -> p.name end)
-        }
-      })
-    end
+    role = %{
+      name: schema.role.name,
+      permissions: Enum.map(schema.role.permissions, fn p -> p.name end)
+    }
+    times = %{
+      createtime: schema.createtime,
+      modifytime: schema.modifytime
+    }
+    User.get_user("#{schema.steamid}", role, times)
   end
 end

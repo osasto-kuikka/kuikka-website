@@ -22,7 +22,7 @@ use Mix.Config
 #
 
 # Fixes warning from ecto
-config :steam, ecto_repos: []
+config :user, ecto_repos: []
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

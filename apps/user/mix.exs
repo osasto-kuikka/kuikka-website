@@ -19,7 +19,7 @@ defmodule User.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :steamex, :sweet_xml]]
   end
 
   # Dependencies can be Hex packages:
@@ -37,7 +37,7 @@ defmodule User.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:steam, in_umbrella: true}
+      {:steamex, "~> 0.0.6"}
     ]
   end
 end

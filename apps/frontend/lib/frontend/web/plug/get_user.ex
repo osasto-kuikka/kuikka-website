@@ -27,7 +27,7 @@ defmodule Frontend.Plug.GetUser do
     end
     |> case do
       {:ready, conn} -> conn
-      {:ok, user} -> assign(conn, :user, user)
+      user = %User{} -> assign(conn, :user, user)
       {:error, msg} ->
         conn
         |> put_flash(:error, msg)
