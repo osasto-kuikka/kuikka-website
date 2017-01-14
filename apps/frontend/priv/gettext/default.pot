@@ -64,3 +64,7 @@ msgstr ""
 #: lib/frontend/web/templates/shared/banner_small.html.eex:21
 msgid "Next event:"
 msgstr ""
+
+#: lib/frontend/web/plug/require_user.ex:13
+msgid "Page you tried to access requires login"
+msgstr ""

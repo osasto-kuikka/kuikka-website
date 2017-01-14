@@ -5,11 +5,12 @@ defmodule Frontend.Plug.RequireUser do
   that tells user to login.
   """
   import Phoenix.Controller
+  import Frontend.Gettext
 
   def init(_), do: []
 
   def call(conn, _options) do
-    err_msg = "Sivu johon yritit päästä vaatii sisäänkirjautumisen"
+    err_msg = gettext("Page you tried to access requires login")
     case conn.assigns.user do
       nil ->
         conn
