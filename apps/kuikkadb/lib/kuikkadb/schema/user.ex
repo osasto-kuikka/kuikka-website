@@ -6,25 +6,40 @@ defmodule KuikkaDB.Schema.User do
   use Timex.Ecto.Timestamps
   import Ecto.Changeset
 
-  alias KuikkaDB.Repo
-
   schema "user" do
-    field :steamid, :decimal
+    field :steamid, :integer
     field :createtime, Timex.Ecto.DateTime
     field :modifytime, Timex.Ecto.DateTime
     belongs_to :role, KuikkaDB.Schema.Role
   end
 
-  @params [:steamid, :role_id, :createtime, :modifytime]
   @required [:steamid, :role_id]
+  @optional [:createtime, :modifytime]
+  @unique :steamid
 
   @doc """
   Validate changes to user
+
+  ## Example
+  ```
+  alias KuikkaDB.Schema.User, as: UserSchema
+
+  # Insert new user
+  user = %UserSchema{}
+         |> UserSchema.changeset(%{steamid: "steamid", role_id: 1})
+         |> KuikkaDB.Repo.insert!()
+
+  # Edit last created user role
+  user = %UserSchema{}
+         |> UserSchema.changeset(%{role_id: 2})
+         |> KuikkaDB.Repo.update!()
+  ```
   """
   def changeset(user, params) when is_map(params) do
     user
-    |> cast(params, @params)
+    |> cast(params, @required ++ @optional)
     |> validate_required(@required)
+    |> unique_constraint(@unique)
     |> add_timestamps
   end
   defp add_timestamps(changeset) do
@@ -34,27 +49,4 @@ defmodule KuikkaDB.Schema.User do
       put_change(changeset, :modifytime, Timex.now)
     end
   end
-
-  @doc """
-  Insert new user to database
-  """
-  def insert(params), do: %__MODULE__{} |> changeset(params) |> Repo.insert
-
-  @doc """
-  Update user to database
-  """
-  def update(schema, params), do: schema |> changeset(params) |> Repo.update
-
-  @doc """
-  Get one user struct from database
-  """
-  def one(id: id), do: __MODULE__ |> Repo.get(id) |> one_tuple
-  def one(opts), do: __MODULE__ |> Repo.get_by(opts) |> one_tuple
-  defp one_tuple(nil), do: {:error, "Failed to find user"}
-  defp one_tuple(user), do: {:ok, user}
-
-  @doc """
-  Get all users from database
-  """
-  def all(), do: Repo.all(__MODULE__)
 end

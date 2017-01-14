@@ -17,12 +17,14 @@ defmodule KuikkaDB.Schema.RolePermission do
     belongs_to :permission, KuikkaDB.Schema.Permission
   end
 
+  @required [:role_id, :permission_id]
+
   @doc """
   Validate changes to role permission
   """
   def changeset(role_permission, params) do
     role_permission
-    |> cast(params, [:role_id, :permission_id])
+    |> cast(params, @required)
     |> foreign_key_constraint(:role_id)
     |> foreign_key_constraint(:permission_id)
   end

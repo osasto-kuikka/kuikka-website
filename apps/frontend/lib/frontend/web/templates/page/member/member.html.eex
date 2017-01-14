@@ -2,14 +2,14 @@
 <main class="columns" id="member-content">
   <div class="row">
     <div class="colums twelve member-username">
-      <a href="<%= get_steam_url(@steam_info) %>">
-        <%= @steam_info.steam_id %>
+      <a href="<%= get_steam_url(@member.profile) %>">
+        <%= @member.profile.steam_id %>
       </a>
     </div>
   </div>
   <div class="row">
     <div class="colums twelve member-avatar">
-      <img src="<%= @steam_info.avatar_full %>"></img>
+      <img src="<%= @member.profile.avatar_full %>"></img>
     </div>
   </div>
 </main>
