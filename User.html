@@ -8,7 +8,7 @@
     <title>User – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-573c1e40cc.js"></script>
+    <script src="dist/sidebar_items-8efab38cca.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -80,6 +80,19 @@
             Summary
           </h1>
           
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+  </div>
+  
+</div>
+
+  </div>
+
 
           
   <div class="summary-functions summary">
@@ -88,19 +101,10 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#role_struct/1">role_struct(role)</a>
+    <a href="#get_user/3">get_user(steamid, role, times)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Transform role map to user role struct</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#user_struct/1">user_struct(map)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Transform map to user struct</p>
+    <div class="summary-synopsis"><p>Get user profile</p>
 </div>
   
 </div>
@@ -116,6 +120,39 @@
       
 
       
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <i class="icon-link"></i>
+            </a>
+            Types
+          </h1>
+          <div class="types-list">
+            <div class="detail" id="t:t/0">
+  
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">t()</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>t() :: %User{createtime: Datetime.t, modifytime: Datetime.t | nil, profile: <a href="https://hexdocs.pm/steamex/0.0.6/Steamex.Profile.html#t:t/0">Steamex.Profile.t</a>, role: <a href="https://hexdocs.pm/user/0.1.0/User.Role.html#t:t/0">User.Role.t</a>}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+
+          </div>
+        </section>
+      
 
       
         <section id="functions" class="details-list">
@@ -125,35 +162,31 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="role_struct/1">
+          <div class="detail" id="get_user/3">
   
   <div class="detail-header">
-    <a href="#role_struct/1" class="detail-link" title="Link to this function">
+    <a href="#get_user/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">role_struct(role)</span>
+    <span class="signature">get_user(steamid, role, times)</span>
     
     
+    
+      <div class="specs">
+        
+          <pre>get_user(binary | integer, %{name: binary, permissions: <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a>}, %{createtime: Datetime.t, modifytime: Datetime.t}) :: <a href="User.html#t:t/0">User.t</a></pre>
+        
+      </div>
     
   </div>
   <section class="docstring">
-    <p>Transform role map to user role struct</p>
+    <p>Get user profile.</p>
+<h2 id="get_user/3-example" class="section-heading">
+  <a href="#get_user/3-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
 
-  </section>
-</div>
-<div class="detail" id="user_struct/1">
-  
-  <div class="detail-header">
-    <a href="#user_struct/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">user_struct(map)</span>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Transform map to user struct</p>
+<pre><code class="elixir">user = User.get_user(&quot;steamid&quot;, %{name: &quot;role&quot;, permissions: []})</code></pre>
 
   </section>
 </div>

@@ -8,7 +8,7 @@
     <title>KuikkaDB – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-573c1e40cc.js"></script>
+    <script src="dist/sidebar_items-8efab38cca.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -100,7 +100,7 @@
     <a href="#get_user/1">get_user(steamid)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get one user from kuikkadb with steam id</p>
+    <div class="summary-synopsis"><p>Get single user from kuikkadb as user struct</p>
 </div>
   
 </div>
@@ -109,7 +109,7 @@
     <a href="#new_role/2">new_role(name, description)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Add new role to kuikkadb with name and description</p>
+    <div class="summary-synopsis"><p>Add new role to kuikkadb</p>
 </div>
   
 </div>
@@ -118,16 +118,7 @@
     <a href="#new_user/1">new_user(steamid)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Add new user to kuikkadb with steam id</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#query/1">query(query)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Send custom query to kuikkadb</p>
+    <div class="summary-synopsis"><p>Adds new user to kuikkadb</p>
 </div>
   
 </div>
@@ -136,7 +127,16 @@
     <a href="#update_user_role/2">update_user_role(steamid, rolename)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Update user role to kuikkadb with steam id and role name</p>
+    <div class="summary-synopsis"><p>Update user role to kuikkadb</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#user_schema_to_struct/1">user_schema_to_struct(schema)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Transform user schema from kuikkadb to user struct</p>
 </div>
   
 </div>
@@ -171,9 +171,16 @@
     
     
     
+      <div class="specs">
+        
+          <pre>get_all_users() :: <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a></pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
     <p>Get all users from kuikkadb</p>
+<p>More info <a href="KuikkaDB.Controller.html#get_all_users/0"><code class="inline">KuikkaDB.Controller.get_all_users/0</code></a></p>
 
   </section>
 </div>
@@ -187,9 +194,16 @@
     
     
     
+      <div class="specs">
+        
+          <pre>get_user(binary) :: <a href="User.html#t:t/0">User.t</a> | nil</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Get one user from kuikkadb with steam id</p>
+    <p>Get single user from kuikkadb as user struct.</p>
+<p>More info <a href="KuikkaDB.Controller.html#get_user/1"><code class="inline">KuikkaDB.Controller.get_user/1</code></a></p>
 
   </section>
 </div>
@@ -203,9 +217,16 @@
     
     
     
+      <div class="specs">
+        
+          <pre>new_role(binary, binary) :: :ok</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Add new role to kuikkadb with name and description</p>
+    <p>Add new role to kuikkadb</p>
+<p>More info <a href="KuikkaDB.Controller.html#new_role/2"><code class="inline">KuikkaDB.Controller.new_role/2</code></a></p>
 
   </section>
 </div>
@@ -219,25 +240,16 @@
     
     
     
-  </div>
-  <section class="docstring">
-    <p>Add new user to kuikkadb with steam id</p>
-
-  </section>
-</div>
-<div class="detail" id="query/1">
-  
-  <div class="detail-header">
-    <a href="#query/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">query(query)</span>
-    
-    
+      <div class="specs">
+        
+          <pre>new_user(binary) :: <a href="User.html#t:t/0">User.t</a></pre>
+        
+      </div>
     
   </div>
   <section class="docstring">
-    <p>Send custom query to kuikkadb</p>
+    <p>Adds new user to kuikkadb</p>
+<p>More info <a href="KuikkaDB.Controller.html#new_user/1"><code class="inline">KuikkaDB.Controller.new_user/1</code></a></p>
 
   </section>
 </div>
@@ -251,9 +263,39 @@
     
     
     
+      <div class="specs">
+        
+          <pre>update_user_role(binary, binary) :: :ok | {:error, binary}</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Update user role to kuikkadb with steam id and role name</p>
+    <p>Update user role to kuikkadb</p>
+<p>More info <a href="KuikkaDB.Controller.html#update_user_role/2"><code class="inline">KuikkaDB.Controller.update_user_role/2</code></a></p>
+
+  </section>
+</div>
+<div class="detail" id="user_schema_to_struct/1">
+  
+  <div class="detail-header">
+    <a href="#user_schema_to_struct/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">user_schema_to_struct(schema)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>user_schema_to_struct(<a href="KuikkaDB.Schema.User.html#t:t/0">KuikkaDB.Schema.User.t</a>) :: <a href="User.html#t:t/0">User.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Transform user schema from kuikkadb to user struct</p>
+<p>More info <a href="KuikkaDB.Controller.html#user_schema_to_struct/1"><code class="inline">KuikkaDB.Controller.user_schema_to_struct/1</code></a></p>
 
   </section>
 </div>

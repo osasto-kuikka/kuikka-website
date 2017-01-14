@@ -8,7 +8,7 @@
     <title>KuikkaDB.Controller – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-573c1e40cc.js"></script>
+    <script src="dist/sidebar_items-8efab38cca.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -91,7 +91,7 @@
     <a href="#get_all_users/0">get_all_users()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get all user from database</p>
+    <div class="summary-synopsis"><p>Get all users from kuikkadb</p>
 </div>
   
 </div>
@@ -100,7 +100,7 @@
     <a href="#get_user/1">get_user(steamid)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get single user from database as user struct</p>
+    <div class="summary-synopsis"><p>Get single user from kuikkadb as user struct</p>
 </div>
   
 </div>
@@ -109,8 +109,7 @@
     <a href="#new_role/2">new_role(name, description)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Insert new role to kuikkadb. Returns error tuple if role already exists
-otherwise it will return ok tuple when new role was inserted to kuikkadb</p>
+    <div class="summary-synopsis"><p>Add new role to kuikkadb</p>
 </div>
   
 </div>
@@ -119,8 +118,7 @@ otherwise it will return ok tuple when new role was inserted to kuikkadb</p>
     <a href="#new_user/1">new_user(steamid)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Adds new user to database. Should be automatically used when user first
-time logins from steam</p>
+    <div class="summary-synopsis"><p>Adds new user to kuikkadb</p>
 </div>
   
 </div>
@@ -129,9 +127,16 @@ time logins from steam</p>
     <a href="#update_user_role/2">update_user_role(steamid, rolename)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Update user role to database. This is will return atom with
-<code class="inline">:ok</code> when user was properly updated and <code class="inline">{:error, msg}</code>
-when there is issue with updating</p>
+    <div class="summary-synopsis"><p>Update user role to kuikkadb</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#user_schema_to_struct/1">user_schema_to_struct(user)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Transform user schema from kuikkadb to user struct</p>
 </div>
   
 </div>
@@ -166,11 +171,21 @@ when there is issue with updating</p>
     
     
     
+      <div class="specs">
+        
+          <pre>get_all_users() :: <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a></pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Get all user from database.</p>
-<p>This function returns user structs so every user info have been requested
-steam api.</p>
+    <p>Get all users from kuikkadb</p>
+<h2 id="get_all_users/0-example" class="section-heading">
+  <a href="#get_all_users/0-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">{:ok, users} = KuikkaDB.get_all_users()</code></pre>
 
   </section>
 </div>
@@ -184,11 +199,21 @@ steam api.</p>
     
     
     
+      <div class="specs">
+        
+          <pre>get_user(binary) :: <a href="User.html#t:t/0">User.t</a> | nil</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Get single user from database as user struct.</p>
-<p>This function will automatically request data from steam api to
-build proper user struct for frontend usage.</p>
+    <p>Get single user from kuikkadb as user struct.</p>
+<h2 id="get_user/1-example" class="section-heading">
+  <a href="#get_user/1-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">{:ok, user} = KuikkaDB.get_user(&quot;steamid&quot;)</code></pre>
 
   </section>
 </div>
@@ -202,10 +227,21 @@ build proper user struct for frontend usage.</p>
     
     
     
+      <div class="specs">
+        
+          <pre>new_role(binary, binary) :: :ok</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Insert new role to kuikkadb. Returns error tuple if role already exists
-otherwise it will return ok tuple when new role was inserted to kuikkadb</p>
+    <p>Add new role to kuikkadb</p>
+<h2 id="new_role/2-example" class="section-heading">
+  <a href="#new_role/2-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">:ok = KuikkaDB.new_role(&quot;role&quot;, &quot;example&quot;)</code></pre>
 
   </section>
 </div>
@@ -219,10 +255,21 @@ otherwise it will return ok tuple when new role was inserted to kuikkadb</p>
     
     
     
+      <div class="specs">
+        
+          <pre>new_user(binary) :: <a href="User.html#t:t/0">User.t</a></pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Adds new user to database. Should be automatically used when user first
-time logins from steam.</p>
+    <p>Adds new user to kuikkadb</p>
+<h2 id="new_user/1-example" class="section-heading">
+  <a href="#new_user/1-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">{:ok, users} = KuikkaDB.new_user(&quot;steamid&quot;)</code></pre>
 
   </section>
 </div>
@@ -236,11 +283,60 @@ time logins from steam.</p>
     
     
     
+      <div class="specs">
+        
+          <pre>update_user_role(binary, binary) :: :ok | {:error, binary}</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Update user role to database. This is will return atom with
-<code class="inline">:ok</code> when user was properly updated and <code class="inline">{:error, msg}</code>
-when there is issue with updating.</p>
+    <p>Update user role to kuikkadb</p>
+<h2 id="update_user_role/2-example" class="section-heading">
+  <a href="#update_user_role/2-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">:ok = KuikkaDB.update_user_role(&quot;steamid&quot;, &quot;role&quot;)</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="user_schema_to_struct/1">
+  
+  <div class="detail-header">
+    <a href="#user_schema_to_struct/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">user_schema_to_struct(user)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>user_schema_to_struct(<a href="KuikkaDB.Schema.User.html#t:t/0">KuikkaDB.Schema.User.t</a>) :: <a href="User.html#t:t/0">User.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Transform user schema from kuikkadb to user struct</p>
+<h2 id="user_schema_to_struct/1-notice" class="section-heading">
+  <a href="#user_schema_to_struct/1-notice" class="hover-link"><i class="icon-link"></i></a>
+  Notice
+</h2>
+
+<p>This function will preload user role and permissions. If your query does not
+require them you should manually load them before this function</p>
+<h2 id="user_schema_to_struct/1-example" class="section-heading">
+  <a href="#user_schema_to_struct/1-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">schema = KuikkaDB.Schema.User
+        |&gt; preload([role: [:permissions]])
+        |&gt; where([u] u.steamid == ^steamid)
+        |&gt; KuikkaDB.Repo.one!()
+user = KuikkaDB.user_schema_to_struct(schema)</code></pre>
 
   </section>
 </div>

@@ -4,7 +4,7 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-573c1e40cc.js
+dist/sidebar_items-8efab38cca.js
 api-reference.html
 index.html
 404.html
@@ -38,7 +38,4 @@ KuikkaDB.Schema.Role.html
 KuikkaDB.Schema.RolePermission.html
 KuikkaDB.Schema.User.html
 KuikkaDB.Tasks.html
-Steam.html
-Steam.Api.html
 User.html
-User.Role.html
