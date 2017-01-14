@@ -2,8 +2,6 @@ defmodule Frontend.Page.MemberController do
   use Frontend.Web, :controller
   plug :put_layout, "base.html"
 
-  alias Steamex.Profile
-
   @doc """
   List all users.
   """
@@ -21,23 +19,15 @@ defmodule Frontend.Page.MemberController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => id}) do
-    with {id_i, ""} <- Integer.parse(id)
-    do
-      case KuikkaDB.get_user(id) do
-        nil ->
-          conn
-          |> put_flash(:error, gettext("Failed to find requested user"))
-          |> redirect(to: member_path(conn, :index))
-        user ->
-          conn
-          |> assign(:member, user)
-          |> render("member.html")
-      end
-    else
-      _ ->
+    case KuikkaDB.get_user(id) do
+      nil ->
         conn
-        |> put_flash(:error, gettext("Given username is invalid"))
+        |> put_flash(:error, gettext("Failed to find requested user"))
         |> redirect(to: member_path(conn, :index))
+      user ->
+        conn
+        |> assign(:member, user)
+        |> render("member.html")
     end
   end
 
