@@ -1,4 +1,4 @@
-defmodule Frontend.Auth.GetUser do
+defmodule Frontend.Plug.GetUser do
   @moduledoc """
   Plug that will assign user when valid steamid is stored in session
 

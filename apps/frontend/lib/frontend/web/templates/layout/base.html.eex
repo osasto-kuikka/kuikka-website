@@ -20,11 +20,21 @@
               <a class="header-link" href="/">
                 <img class="header-logo-image" src="/images/logo.svg" />
               </a>
-              <a class="header-link" href="">Tapahtumat</a>
-              <a class="header-link" href="">Foorumit</a>
-              <a class="header-link" href="">Media</a>
-              <a class="header-link" href="">Rosteri</a>
-              <a class="header-link" href="">Wiki</a>
+              <a class="header-link" href="">
+                <%= gettext("Events") %>
+              </a>
+              <a class="header-link" href="">
+                <%= gettext("Forum") %>
+              </a>
+              <a class="header-link" href="">
+                <%= gettext("Media") %>
+              </a>
+              <a class="header-link" href="<%= member_path(@conn, :index) %>">
+                <%= gettext("Members") %>
+              </a>
+              <a class="header-link" href="wiki.osastokuikka.com">
+                <%= gettext("Wiki") %>
+              </a>
               <div id="header-nav-right">
                 <%= if is_nil(@user) do %>
                   <a class="header-link" href="<%= steamex_auth_url(@conn) %>">
@@ -35,8 +45,11 @@
                   <div class="header-link dropdown">
                     <span><%= @user.personaname %></span>
                     <div class="dropdown-content">
-                      <a href="">Profiili</a>
-                      <a href="<%= profile_path(@conn, :logout) %>">Kirjaudu ulos</a>
+                      <a href="<%= member_path(@conn, :show, @user.steamid) %>">
+                        <%= gettext("Profile") %></a>
+                      <a href="<%= member_path(@conn, :logout) %>">
+                        <%= gettext("Log out") %>
+                      </a>
                     </div>
                 <% end %>
               </div>

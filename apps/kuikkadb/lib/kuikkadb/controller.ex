@@ -103,6 +103,7 @@ defmodule KuikkaDB.Controller do
         avatar: steam.avatar,
         avatarmedium: steam.avatarmedium,
         avatarfull: steam.avatarfull,
+        createtime: schema.createtime,
         role: %{
           name: role.name,
           permissions: Enum.map(role.permissions, fn p -> p.name end)

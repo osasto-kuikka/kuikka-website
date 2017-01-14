@@ -7,11 +7,12 @@ defmodule Frontend.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Frontend.Auth.GetUser
+    plug Frontend.Plug.Locale
+    plug Frontend.Plug.GetUser
   end
 
   pipeline :require_user do
-    plug Frontend.Auth.RequireUser
+    plug Frontend.Plug.RequireUser
   end
 
   # Generate steamex auth route
@@ -21,14 +22,14 @@ defmodule Frontend.Router do
     pipe_through [:browser]
 
     scope "/", Page do
-      get "/", HomeController, :get
+      get "/", HomeController, :index
+    end
 
-      scope "/profile/" do
-        pipe_through [:require_user]
-
-        get "/logout", ProfileController, :logout
-        get "/user/:id", ProfileController, :get
-      end
+    scope "/members/", Page do
+      get "/", MemberController, :index
+      get "/login", MemberController, :login
+      get "/logout", MemberController, :logout
+      get "/:id", MemberController, :show
     end
   end
 end

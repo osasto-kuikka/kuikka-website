@@ -1,0 +1,39 @@
+#member-content {
+  margin-top: 200px;
+
+  .member-username {
+    text-align: center;
+
+    a {
+      font-size: 28px;
+    }
+  }
+
+  .member-avatar {
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+#member-list-content {
+  margin-top: 200px;
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 4px 5px;
+    border-bottom: 1px solid #333;
+
+    img {
+      margin-bottom: -8px
+    }
+  }
+
+  th:last-child, td:last-child {
+    text-align: right;
+  }
+}
