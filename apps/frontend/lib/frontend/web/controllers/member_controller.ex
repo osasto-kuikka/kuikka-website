@@ -24,7 +24,7 @@ defmodule Frontend.Page.MemberController do
       case KuikkaDB.get_user(id) do
         {:error, _} ->
           conn
-          |> put_flash(:error, "Käyttäjää ei löydetty!")
+          |> put_flash(:error, gettext("Failed to find requested user"))
           |> redirect(to: member_path(conn, :index))
         {:ok, user} ->
           conn
@@ -35,7 +35,7 @@ defmodule Frontend.Page.MemberController do
     else
       _ ->
         conn
-        |> put_flash(:error, "Virheellinen käyttäjänimi")
+        |> put_flash(:error, gettext("Given username is invalid"))
         |> redirect(to: member_path(conn, :index))
     end
   end

@@ -1,4 +1,4 @@
-defmodule Frontend.Auth.RequireUser do
+defmodule Frontend.Plug.RequireUser do
   @moduledoc """
   Plug for checking if user is not nil.
   When user is nil, home page will be shown with error message

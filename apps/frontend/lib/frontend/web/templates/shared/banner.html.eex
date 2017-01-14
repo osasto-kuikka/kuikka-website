@@ -3,7 +3,7 @@
   <%= if banner_has_info(@conn) do %>
     <div class="next-event">
       <span class="text">
-        Seuraava tapahtuma:
+        <%= gettext("Next event:") %>
         <span class="time">
           <%= Frontend.Utils.get_next_event_date() %> 19:30
         </span>
@@ -12,7 +12,7 @@
     </div>
 
     <iframe  class="banner-video" src="http://www.youtube.com/embed/xHRC67Isl28"
-      width="578" height="355" frameborder="0" allowfullscreen>
+      width="580" height="355" frameborder="0" allowfullscreen>
     </iframe>
 
     <div class="flash-info">
@@ -22,7 +22,7 @@
   <% else %>
     <div class="next-event">
       <span class="text">
-        Seuraava tapahtuma:
+        <%= gettext("Next event:") %>
         <span class="time">
           <%= Frontend.Utils.get_next_event_date() %> 19:30
         </span>
@@ -31,7 +31,7 @@
     </div>
 
     <iframe  class="banner-video" src="http://www.youtube.com/embed/xHRC67Isl28"
-      width="578" height="405" frameborder="0" allowfullscreen>
+      width="580" height="405" frameborder="0" allowfullscreen>
     </iframe>
   <% end %>
 </div>

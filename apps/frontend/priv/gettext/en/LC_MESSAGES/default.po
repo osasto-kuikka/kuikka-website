@@ -1,0 +1,66 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: lib/frontend/web/controllers/member_controller.ex:27
+msgid "Failed to find requested user"
+msgstr ""
+
+#: lib/frontend/web/templates/layout/base.html.eex:24
+msgid "Events"
+msgstr ""
+
+#: lib/frontend/web/templates/layout/base.html.eex:27
+msgid "Forum"
+msgstr ""
+
+#: lib/frontend/web/controllers/member_controller.ex:38
+msgid "Given username is invalid"
+msgstr ""
+
+#: lib/frontend/web/templates/page/member/member_list.html.eex:9
+msgid "Joined"
+msgstr ""
+
+#: lib/frontend/web/templates/layout/base.html.eex:51
+msgid "Log out"
+msgstr ""
+
+#: lib/frontend/web/templates/layout/base.html.eex:30
+msgid "Media"
+msgstr ""
+
+#: lib/frontend/web/templates/layout/base.html.eex:33
+msgid "Members"
+msgstr ""
+
+#: lib/frontend/web/templates/layout/base.html.eex:49
+msgid "Profile"
+msgstr ""
+
+#: lib/frontend/web/templates/page/member/member_list.html.eex:8
+msgid "Role"
+msgstr ""
+
+#: lib/frontend/web/templates/page/member/member_list.html.eex:7
+msgid "Username"
+msgstr ""
+
+#: lib/frontend/web/templates/layout/base.html.eex:36
+msgid "Wiki"
+msgstr ""
+
+#: lib/frontend/web/templates/shared/banner.html.eex:6
+#: lib/frontend/web/templates/shared/banner.html.eex:25
+#: lib/frontend/web/templates/shared/banner_small.html.eex:6
+#: lib/frontend/web/templates/shared/banner_small.html.eex:21
+msgid "Next event:"
+msgstr ""

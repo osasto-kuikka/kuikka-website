@@ -4,9 +4,9 @@
     <thead>
       <tr>
         <th></th>
-        <th>Käyttäjänimi</th>
-        <th>Rooli</th>
-        <th>Liittymispäivä</th>
+        <th><%= gettext("Username") %></th>
+        <th><%= gettext("Role") %></th>
+        <th><%= gettext("Joined") %></th>
       </tr>
     </thead>
     <tbody>

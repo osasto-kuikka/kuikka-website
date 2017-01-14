@@ -3,7 +3,7 @@
   <%= if banner_has_info(@conn) do %>
     <div class="next-event">
       <span class="text">
-        Seuraava tapahtuma:
+        <%= gettext("Next event:") %>
         <span class="time">
           <%= Frontend.Utils.get_next_event_date() %> 19:30
         </span>
@@ -18,7 +18,7 @@
   <% else %>
     <div class="next-event">
       <span class="text">
-        Seuraava tapahtuma:
+        <%= gettext("Next event:") %>
         <span class="time">
           <%= Frontend.Utils.get_next_event_date() %> 19:30
         </span>
