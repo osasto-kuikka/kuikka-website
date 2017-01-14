@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/travis/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Build" alt="Build Status">
     </a>
     <a href="https://osasto-kuikka.github.io/kuikka-website/">
-        <img src="https://img.shields.io/badge/docs-github-green.svg?style=flat-square&label=Build" alt="Docs">
+        <img src="https://img.shields.io/badge/docs-github-green.svg?style=flat-square" alt="Docs">
     </a>
     <a href="https://github.com/osasto-kuikka/kuikka-website/issues">
         <img src="https://img.shields.io/github/issues-raw/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Issues" alt="Issues">
