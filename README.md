@@ -1,5 +1,21 @@
-# Kuikka Website - Powered by Elixir
-[![build status](https://travis-ci.org/osasto-kuikka/kuikka-website.svg?branch=master)](https://travis-ci.org/osasto-kuikka/kuikka-website)
+<p align="center">
+    <img src="https://cdn.rawgit.com/osasto-kuikka/KGE/master/extras/logo.svg" width="480">
+</p>
+
+<p align="center">
+    <a href="https://travis-ci.org/osasto-kuikka/kuikka-website">
+        <img src="https://img.shields.io/travis/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Build" alt="Build Status">
+    </a>
+    <a href="https://osasto-kuikka.github.io/kuikka-website/">
+        <img src="https://img.shields.io/badge/docs-github-green.svg?style=flat-square&label=Build" alt="Docs">
+    </a>
+    <a href="https://github.com/osasto-kuikka/kuikka-website/issues">
+        <img src="https://img.shields.io/github/issues-raw/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Issues" alt="Issues">
+    </a>
+    <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/LICENSE">
+        <img src="https://img.shields.io/badge/License-GPLv2-red.svg?style=flat-square" alt="License">
+    </a>
+</p>
 
 ## Setup Development environment
 Required:
