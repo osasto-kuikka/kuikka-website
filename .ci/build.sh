@@ -12,10 +12,6 @@ if [ "${TRAVIS_BRANCH}" == "staging" ]; then
   MIX_ENV=test mix compile --warnings-as-errors
   MIX_ENV=prod mix compile
 
-  # Install nodejs 6.9 LTS
-  nvm install 6.9
-  nvm use 6.9
-
   # Install npm packages for frontend
   MIX_ENV=test mix frontend.install
 fi

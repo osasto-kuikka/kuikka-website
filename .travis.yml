@@ -10,6 +10,7 @@ branches:
       - master
 
 before_script:
+  - nvm install 6.9 && nvm use 6.9
   - bash .ci/build.sh
 script:
   - bash .ci/test.sh
