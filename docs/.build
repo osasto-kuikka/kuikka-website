@@ -4,13 +4,11 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-19e78e0b03.js
+dist/sidebar_items-573c1e40cc.js
 api-reference.html
 index.html
 404.html
 Frontend.html
-Frontend.Auth.GetUser.html
-Frontend.Auth.RequireUser.html
 Frontend.Endpoint.html
 Frontend.ErrorHelpers.html
 Frontend.ErrorView.html
@@ -18,7 +16,11 @@ Frontend.Gettext.html
 Frontend.LayoutView.html
 Frontend.Page.HomeController.html
 Frontend.Page.HomeView.html
-Frontend.Page.ProfileController.html
+Frontend.Page.MemberController.html
+Frontend.Page.MemberView.html
+Frontend.Plug.GetUser.html
+Frontend.Plug.Locale.html
+Frontend.Plug.RequireUser.html
 Frontend.Router.html
 Frontend.Router.Helpers.html
 Frontend.SharedView.html

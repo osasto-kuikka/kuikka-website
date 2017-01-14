@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Mix.Tasks.Frontend.Install – kuikka_website v0.0.1</title>
+    <title>Frontend.Plug.RequireUser – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-573c1e40cc.js"></script>
@@ -59,16 +59,16 @@
 
       <h1>
         <small class="visible-xs">kuikka_website v0.0.1</small>
-        Mix.Tasks.Frontend.Install
+        Frontend.Plug.RequireUser
         
         
       </h1>
 
       
         <section id="moduledoc">
-          <p>Install npm packages with yarn.</p>
-<p>Incase you dont have yarn installed it can be installed with npm</p>
-<pre><code class="elixir">npm install -g yarnpkg</code></pre>
+          <p>Plug for checking if user is not nil.
+When user is nil, home page will be shown with error message
+that tells user to login.</p>
 
         </section>
       
@@ -90,11 +90,14 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#run/1">run()</a>
+    <a href="#call/2">call(conn, options)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Install frontend npm packages with yarn</p>
 </div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#init/1">init()</a>
+  </div>
   
 </div>
 
@@ -118,20 +121,34 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="run/1">
+          <div class="detail" id="call/2">
   
   <div class="detail-header">
-    <a href="#run/1" class="detail-link" title="Link to this function">
+    <a href="#call/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">run()</span>
+    <span class="signature">call(conn, options)</span>
     
     
     
   </div>
   <section class="docstring">
-    <p>Install frontend npm packages with yarn</p>
-
+    
+  </section>
+</div>
+<div class="detail" id="init/1">
+  
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">init()</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
   </section>
 </div>
 

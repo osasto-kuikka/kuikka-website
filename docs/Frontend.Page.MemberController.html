@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Frontend.Page.HomeController – kuikka_website v0.0.1</title>
+    <title>Frontend.Page.MemberController – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-573c1e40cc.js"></script>
@@ -59,7 +59,7 @@
 
       <h1>
         <small class="visible-xs">kuikka_website v0.0.1</small>
-        Frontend.Page.HomeController
+        Frontend.Page.MemberController
         
         
       </h1>
@@ -83,10 +83,37 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#index/2">index(conn, params)</a>
+    <a href="#index/2">index(conn, )</a>
   </div>
   
-    <div class="summary-synopsis"><p>Home page controller</p>
+    <div class="summary-synopsis"><p>List all users</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#login/2">login(conn, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Log user out by deleting :steamex session</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#logout/2">logout(conn, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Log user out by deleting :steamex session</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#show/2">show(conn, map)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Show profile page of one user</p>
 </div>
   
 </div>
@@ -117,7 +144,7 @@
     <a href="#index/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">index(conn, params)</span>
+    <span class="signature">index(conn, )</span>
     
     
     
@@ -129,7 +156,73 @@
     
   </div>
   <section class="docstring">
-    <p>Home page controller.</p>
+    <p>List all users.</p>
+
+  </section>
+</div>
+<div class="detail" id="login/2">
+  
+  <div class="detail-header">
+    <a href="#login/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">login(conn, params)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>login(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Log user out by deleting :steamex session</p>
+
+  </section>
+</div>
+<div class="detail" id="logout/2">
+  
+  <div class="detail-header">
+    <a href="#logout/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">logout(conn, params)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>logout(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Log user out by deleting :steamex session</p>
+
+  </section>
+</div>
+<div class="detail" id="show/2">
+  
+  <div class="detail-header">
+    <a href="#show/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">show(conn, map)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>show(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Show profile page of one user</p>
 
   </section>
 </div>
