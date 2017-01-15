@@ -6,7 +6,7 @@ defmodule Frontend.Page.ForumController do
   plug :put_layout, "base.html"
 
   alias KuikkaDB.Repo
-  alias KuikkaDB.Schema.{Topic, Comment, Category, TopicComment}
+  alias KuikkaDB.Schema.{Topic, Comment, Category}
   alias KuikkaDB.Schema.User, as: UserSchema
 
   @doc """
@@ -23,6 +23,7 @@ defmodule Frontend.Page.ForumController do
   end
   def index(conn, _params) do
     topics = Topic
+             |> order_by([t], asc: t.createtime)
              |> preload([:category, :comments, user: [role: :permissions]])
              |> Repo.all()
              |> Enum.map(fn t ->
@@ -39,10 +40,13 @@ defmodule Frontend.Page.ForumController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => id}) do
+    c_q = from(c in Comment,
+                preload: [user: [role: :permissions]],
+                order_by: :createtime)
+
     Topic
     |> where([t], t.id == ^id)
-    |> preload([:category, comments: [user: [role: :permissions]],
-                           user: [role: :permissions]])
+    |> preload([:category, comments: ^c_q, user: [role: :permissions]])
     |> Repo.one()
     |> case do
       nil ->
@@ -89,9 +93,11 @@ defmodule Frontend.Page.ForumController do
     |> Repo.insert()
     |> case do
       {:ok, comment} ->
-        %TopicComment{}
-        |> TopicComment.changeset(%{topic_id: topic, comment_id: comment.id})
-        |> Repo.insert()
+        Topic
+        |> Repo.preload(:comments)
+        |> Ecto.Changeset.change()
+        |> Ecto.Changeset.put_assoc(:comments, [comment])
+        |> Repo.update()
       tuple -> tuple
     end
     |> case do
