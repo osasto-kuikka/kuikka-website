@@ -25,7 +25,7 @@ defmodule Frontend.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Frontend, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html,
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :earmark,
                     :cowboy, :logger, :gettext, :timex, :kuikkadb, :user]]
   end
 
@@ -47,6 +47,7 @@ defmodule Frontend.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:timex, "~> 3.0"},
+      {:earmark, "~> 1.0"}
     ]
   end
 end

@@ -1,30 +1,26 @@
-defmodule KuikkaDB.Schema.Permission do
+defmodule KuikkaDB.Schema.Category do
   @moduledoc """
-  A module providing tables for permission:
+  Database schema for category table
   """
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias KuikkaDB.Schema
-
-  schema "permission" do
+  schema "category" do
     field :name, :string
     field :description, :string
-    many_to_many :roles, Schema.Role, join_through: "role_permission"
+    has_many :topics, KuikkaDB.Schema.Topic
   end
 
   @required [:name]
   @optional [:description]
-  @unique :name
 
   @doc """
-  Validate changes to role table
+  Validate changes to tag
   """
   @spec changeset(Ecto.Schema.t, Map.t) :: Ecto.Changeset.t
-  def changeset(role, params) do
-    role
+  def changeset(category, params) when is_map(params) do
+    category
     |> cast(params, @required ++ @optional)
     |> validate_required(@required)
-    |> unique_constraint(@unique)
   end
 end

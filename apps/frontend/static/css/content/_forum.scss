@@ -1,0 +1,111 @@
+#topic-content {
+  margin-top: 200px;
+}
+
+#topic-list-content {
+  margin-top: 200px;
+
+  .new-topic-btn {
+    float: right;
+    font-size: 12px;
+    padding: 0 15px;
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 4px 5px;
+    border-bottom: 1px solid #333;
+  }
+
+  th:first-child, td:first-child {
+    width: 70%;
+    text-align: left;
+  }
+
+  th:last-child, td:last-child {
+    text-align: right;
+  }
+}
+
+#editor-content {
+  margin-top: 200px;
+
+  .title {
+    .input {
+      width: 100%;
+      color: #222;
+    }
+  }
+
+  .editor-toolbar, .editor-preview-side, .category-select {
+    background-color: #fff;
+    color: #222;
+  }
+
+  .submit {
+    float: right;
+  }
+}
+
+#forum-topic-content {
+  margin-top: 200px;
+
+  .topic {
+    margin-bottom: 10px;
+
+    .title {
+      font-size: 36px;
+      display: block;
+      margin: -5px 0;
+    }
+
+    .category {
+      font-size: 18px;
+      background-color: #111;
+      padding: 5px;
+    }
+  }
+
+  .comment {
+    margin-bottom: 20px;
+
+    .area {
+      background-color: #333;
+      box-shadow: 0 1px 2px #111;
+      border-radius: 7px;
+    }
+
+    .title {
+      border-bottom: 1px solid #111;
+      padding: 10px 10px;
+
+      .user, .time {
+        font-size: 22px;
+      }
+
+      .time {
+        float: right;
+      }
+    }
+
+    .content {
+      padding: 0 10px;
+    }
+  }
+
+  .editor-toolbar, .editor-preview-side {
+    background-color: #fff;
+    color: #222;
+  }
+
+  .comment-editor {
+    margin-top: 20px;
+  }
+}
