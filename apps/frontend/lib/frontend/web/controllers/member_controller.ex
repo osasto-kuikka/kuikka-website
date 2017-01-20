@@ -6,6 +6,13 @@ defmodule Frontend.Page.MemberController do
   List all users.
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
+  def index(conn, %{"logout" => "true"}) do
+    conn
+    |> fetch_session
+    |> delete_session(:steamex_steamid64)
+    |> put_flash(:info, gettext("You have been logged out"))
+    |> redirect(to: "/")
+  end
   def index(conn, _) do
     members = KuikkaDB.get_all_users()
 
@@ -29,25 +36,5 @@ defmodule Frontend.Page.MemberController do
         |> assign(:member, user)
         |> render("member.html")
     end
-  end
-
-  @doc """
-  Log user out by deleting :steamex session
-  """
-  @spec login(Plug.Conn.t, Map.t) :: Plug.Conn.t
-  def login(conn, _params) do
-    redirect(conn, to: "/")
-  end
-
-  @doc """
-  Log user out by deleting :steamex session
-  """
-  @spec logout(Plug.Conn.t, Map.t) :: Plug.Conn.t
-  def logout(conn, _params) do
-    conn
-    |> fetch_session
-    |> delete_session(:steamex_steamid64)
-    |> put_flash(:info, gettext("You have been logged out"))
-    |> redirect(to: "/")
   end
 end

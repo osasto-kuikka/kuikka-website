@@ -22,14 +22,10 @@ defmodule Frontend.Router do
     pipe_through [:browser]
 
     scope "/", Page do
-      get "/", HomeController, :index
-    end
-
-    scope "/members/", Page do
-      get "/", MemberController, :index
-      get "/login", MemberController, :login
-      get "/logout", MemberController, :logout
-      get "/:id", MemberController, :show
+      resources "/", HomeController, only: [:index]
+      resources "/members", MemberController, only: [:index, :show]
+      resources "/forum", ForumController, only: [:index, :show,
+                                                  :create, :update]
     end
   end
 end

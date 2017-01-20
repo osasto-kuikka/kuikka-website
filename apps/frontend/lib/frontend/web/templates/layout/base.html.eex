@@ -23,7 +23,7 @@
               <a class="header-link" href="">
                 <%= gettext("Events") %>
               </a>
-              <a class="header-link" href="">
+              <a class="header-link" href="<%= forum_path(@conn, :index) %>">
                 <%= gettext("Forum") %>
               </a>
               <a class="header-link" href="">
@@ -47,7 +47,7 @@
                     <div class="dropdown-content">
                       <a href="<%= member_path(@conn, :show, @user.profile.steam_id64) %>">
                         <%= gettext("Profile") %></a>
-                      <a href="<%= member_path(@conn, :logout) %>">
+                      <a href="<%= member_path(@conn, :index, %{"logout" => true}) %>">
                         <%= gettext("Log out") %>
                       </a>
                     </div>

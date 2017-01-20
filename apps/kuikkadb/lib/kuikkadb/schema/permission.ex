@@ -20,6 +20,7 @@ defmodule KuikkaDB.Schema.Permission do
   @doc """
   Validate changes to role table
   """
+  @spec changeset(Ecto.Schema.t, Map.t) :: Ecto.Changeset.t
   def changeset(role, params) do
     role
     |> cast(params, @required ++ @optional)

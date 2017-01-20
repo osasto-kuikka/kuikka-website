@@ -1,0 +1,22 @@
+<%= render Frontend.SharedView, "banner_small.html", assigns %>
+<main class="columns" id="editor-content">
+  <%= form_for @conn, forum_path(@conn, :create), [as: :topic], fn f -> %>
+    <div class="title">
+      <%= label f, :title, gettext("Title"), class: "label" %>
+      <%= text_input f, :title, class: "input" %>
+    </div>
+
+    <div class="content">
+      <%= label f, :text, gettext("Content"), class: "label" %>
+      <%= textarea f, :text, class: "input", id: "body-editor" %>
+    </div>
+
+    <%= label f, :category, gettext("Select category:"), class: "label" %>
+    <%= select f, :category, @categories, class: "category-select" %>
+
+    <%= submit gettext("Submit"), class: "submit" %>
+  <% end %>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script>var simplemde = new SimpleMDE();</script>
+</main>
