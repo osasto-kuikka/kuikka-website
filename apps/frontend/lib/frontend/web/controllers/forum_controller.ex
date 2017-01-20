@@ -8,6 +8,7 @@ defmodule Frontend.Page.ForumController do
   alias KuikkaDB.Repo
   alias KuikkaDB.Schema.{Topic, Comment, Category}
   alias KuikkaDB.Schema.User, as: UserSchema
+  alias Ecto.Changeset
 
   @doc """
   Show all forum topics
@@ -97,8 +98,8 @@ defmodule Frontend.Page.ForumController do
         |> preload(:comments)
         |> where([t], t.id == ^topic)
         |> Repo.one()
-        |> Ecto.Changeset.change()
-        |> Ecto.Changeset.put_assoc(:comments, [comment])
+        |> Changeset.change()
+        |> Changeset.put_assoc(:comments, [comment])
         |> Repo.update()
       tuple -> tuple
     end
