@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>KuikkaDB – kuikka_website v0.0.1</title>
+    <title>Frontend.Page.ForumView – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-3c12fecf4b.js"></script>
@@ -59,16 +59,11 @@
 
       <h1>
         <small class="visible-xs">kuikka_website v0.0.1</small>
-        KuikkaDB
+        Frontend.Page.ForumView
         
         
       </h1>
 
-      
-        <section id="moduledoc">
-          <p>KuikkaDB includes all functions to needed for website to access to database</p>
-
-        </section>
       
 
       
@@ -88,55 +83,57 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_all_users/0">get_all_users()</a>
+    <a href="#__phoenix_recompile__?/0">__phoenix_recompile__?()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get all users from kuikkadb</p>
+    <div class="summary-synopsis"><p>Returns true whenever the list of templates changes in the filesystem</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_user/1">get_user(steamid)</a>
+    <a href="#__resource__/0">__resource__()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get single user from kuikkadb as user struct</p>
+    <div class="summary-synopsis"><p>The resource name, as an atom, for this view</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#new_role/2">new_role(name, description)</a>
+    <a href="#__templates__/0">__templates__()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Add new role to kuikkadb</p>
+    <div class="summary-synopsis"><p>Returns the template root alongside all templates</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#new_user/1">new_user(steamid)</a>
+    <a href="#markdown_to_html/1">markdown_to_html(markdown)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Adds new user to kuikkadb</p>
+    <div class="summary-synopsis"><p>Convert markdown to html</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#update_user_role/2">update_user_role(steamid, rolename)</a>
+    <a href="#render/2">render(template, assigns \\ %{})</a>
   </div>
   
-    <div class="summary-synopsis"><p>Update user role to kuikkadb</p>
+    <div class="summary-synopsis"><p>Renders the given template locally</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#user_schema_to_struct/1">user_schema_to_struct(schema)</a>
+    <a href="#template_not_found/2">template_not_found(template, assigns)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Transform user schema from kuikkadb to user struct</p>
+    <div class="summary-synopsis"><p>Callback invoked when no template is found.
+By default it raises but can be customized
+to render a particular template</p>
 </div>
   
 </div>
@@ -161,141 +158,115 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="get_all_users/0">
+          <div class="detail" id="__phoenix_recompile__?/0">
   
   <div class="detail-header">
-    <a href="#get_all_users/0" class="detail-link" title="Link to this function">
+    <a href="#__phoenix_recompile__?/0" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_all_users()</span>
+    <span class="signature">__phoenix_recompile__?()</span>
     
     
-    
-      <div class="specs">
-        
-          <pre>get_all_users() :: <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a></pre>
-        
-      </div>
     
   </div>
   <section class="docstring">
-    <p>Get all users from kuikkadb</p>
-<p>More info <code class="inline">KuikkaDB.Controller.get_all_users/0</code></p>
+    <p>Returns true whenever the list of templates changes in the filesystem.</p>
 
   </section>
 </div>
-<div class="detail" id="get_user/1">
+<div class="detail" id="__resource__/0">
   
   <div class="detail-header">
-    <a href="#get_user/1" class="detail-link" title="Link to this function">
+    <a href="#__resource__/0" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_user(steamid)</span>
+    <span class="signature">__resource__()</span>
     
     
-    
-      <div class="specs">
-        
-          <pre>get_user(binary) :: <a href="User.html#t:t/0">User.t</a> | nil</pre>
-        
-      </div>
     
   </div>
   <section class="docstring">
-    <p>Get single user from kuikkadb as user struct.</p>
-<p>More info <code class="inline">KuikkaDB.Controller.get_user/1</code></p>
+    <p>The resource name, as an atom, for this view</p>
 
   </section>
 </div>
-<div class="detail" id="new_role/2">
+<div class="detail" id="__templates__/0">
   
   <div class="detail-header">
-    <a href="#new_role/2" class="detail-link" title="Link to this function">
+    <a href="#__templates__/0" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">new_role(name, description)</span>
+    <span class="signature">__templates__()</span>
     
     
-    
-      <div class="specs">
-        
-          <pre>new_role(binary, binary) :: :ok</pre>
-        
-      </div>
     
   </div>
   <section class="docstring">
-    <p>Add new role to kuikkadb</p>
-<p>More info <code class="inline">KuikkaDB.Controller.new_role/2</code></p>
+    <p>Returns the template root alongside all templates.</p>
 
   </section>
 </div>
-<div class="detail" id="new_user/1">
+<div class="detail" id="markdown_to_html/1">
   
   <div class="detail-header">
-    <a href="#new_user/1" class="detail-link" title="Link to this function">
+    <a href="#markdown_to_html/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">new_user(steamid)</span>
+    <span class="signature">markdown_to_html(markdown)</span>
     
     
     
       <div class="specs">
         
-          <pre>new_user(binary) :: <a href="User.html#t:t/0">User.t</a></pre>
+          <pre>markdown_to_html(binary) :: binary</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Adds new user to kuikkadb</p>
-<p>More info <code class="inline">KuikkaDB.Controller.new_user/1</code></p>
+    <p>Convert markdown to html</p>
 
   </section>
 </div>
-<div class="detail" id="update_user_role/2">
+<div class="detail" id="render/2">
+  
+    <span id="render/1" />
   
   <div class="detail-header">
-    <a href="#update_user_role/2" class="detail-link" title="Link to this function">
+    <a href="#render/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">update_user_role(steamid, rolename)</span>
+    <span class="signature">render(template, assigns \\ %{})</span>
     
     
-    
-      <div class="specs">
-        
-          <pre>update_user_role(binary, binary) :: :ok | {:error, binary}</pre>
-        
-      </div>
     
   </div>
   <section class="docstring">
-    <p>Update user role to kuikkadb</p>
-<p>More info <code class="inline">KuikkaDB.Controller.update_user_role/2</code></p>
+    <p>Renders the given template locally.</p>
 
   </section>
 </div>
-<div class="detail" id="user_schema_to_struct/1">
+<div class="detail" id="template_not_found/2">
   
   <div class="detail-header">
-    <a href="#user_schema_to_struct/1" class="detail-link" title="Link to this function">
+    <a href="#template_not_found/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">user_schema_to_struct(schema)</span>
+    <span class="signature">template_not_found(template, assigns)</span>
     
     
     
       <div class="specs">
         
-          <pre>user_schema_to_struct(<a href="KuikkaDB.Schema.User.html#t:t/0">KuikkaDB.Schema.User.t</a>) :: <a href="User.html#t:t/0">User.t</a></pre>
+          <pre>template_not_found(<a href="https://hexdocs.pm/phoenix/1.2.1/Phoenix.Template.html#t:name/0">Phoenix.Template.name</a>, map) :: no_return</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Transform user schema from kuikkadb to user struct</p>
-<p>More info <code class="inline">KuikkaDB.Controller.user_schema_to_struct/1</code></p>
+    <p>Callback invoked when no template is found.
+By default it raises but can be customized
+to render a particular template.</p>
 
   </section>
 </div>

@@ -4,7 +4,7 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-8efab38cca.js
+dist/sidebar_items-3c12fecf4b.js
 api-reference.html
 index.html
 404.html
@@ -14,6 +14,8 @@ Frontend.ErrorHelpers.html
 Frontend.ErrorView.html
 Frontend.Gettext.html
 Frontend.LayoutView.html
+Frontend.Page.ForumController.html
+Frontend.Page.ForumView.html
 Frontend.Page.HomeController.html
 Frontend.Page.HomeView.html
 Frontend.Page.MemberController.html
@@ -31,11 +33,15 @@ Mix.Tasks.Frontend.Build.html
 Mix.Tasks.Frontend.Install.html
 KuikkaDB.html
 KuikkaDB.App.html
-KuikkaDB.Controller.html
 KuikkaDB.Repo.html
+KuikkaDB.Schema.Category.html
+KuikkaDB.Schema.Comment.html
 KuikkaDB.Schema.Permission.html
 KuikkaDB.Schema.Role.html
 KuikkaDB.Schema.RolePermission.html
+KuikkaDB.Schema.Topic.html
+KuikkaDB.Schema.TopicComment.html
 KuikkaDB.Schema.User.html
 KuikkaDB.Tasks.html
+KuikkaDB.UserController.html
 User.html

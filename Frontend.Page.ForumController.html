@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Frontend.Utils – kuikka_website v0.0.1</title>
+    <title>Frontend.Page.ForumController – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-3c12fecf4b.js"></script>
@@ -59,14 +59,14 @@
 
       <h1>
         <small class="visible-xs">kuikka_website v0.0.1</small>
-        Frontend.Utils
+        Frontend.Page.ForumController
         
         
       </h1>
 
       
         <section id="moduledoc">
-          <p>Helper functions for frontend modules/templates</p>
+          <p>Controller for forums</p>
 
         </section>
       
@@ -88,29 +88,28 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_next_event_date/0">get_next_event_date()</a>
+    <a href="#create/2">create(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get date of next event by getting current date and showing either
-wednesday or sunday</p>
+    <div class="summary-synopsis"><p>Create new topic or comment</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#to_date/1">to_date(date)</a>
+    <a href="#index/2">index(conn, arg2)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Transform raw datetime to prettier date</p>
+    <div class="summary-synopsis"><p>Show all forum topics</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#to_date_time/1">to_date_time(date)</a>
+    <a href="#show/2">show(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Transform raw datetime to prettier date and time</p>
+    <div class="summary-synopsis"><p>Show single forum topic with all comments</p>
 </div>
   
 </div>
@@ -135,67 +134,69 @@ wednesday or sunday</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="get_next_event_date/0">
+          <div class="detail" id="create/2">
   
   <div class="detail-header">
-    <a href="#get_next_event_date/0" class="detail-link" title="Link to this function">
+    <a href="#create/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_next_event_date()</span>
+    <span class="signature">create(conn, map)</span>
     
     
     
       <div class="specs">
         
-          <pre>get_next_event_date() :: binary</pre>
+          <pre>create(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get date of next event by getting current date and showing either
-wednesday or sunday.</p>
-<p>TODO: Proper event query when we get events implemented</p>
+    <p>Create new topic or comment</p>
 
   </section>
 </div>
-<div class="detail" id="to_date/1">
+<div class="detail" id="index/2">
   
   <div class="detail-header">
-    <a href="#to_date/1" class="detail-link" title="Link to this function">
+    <a href="#index/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">to_date(date)</span>
+    <span class="signature">index(conn, arg2)</span>
     
     
     
       <div class="specs">
         
-          <pre>to_date(<a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>) :: binary</pre>
-        
-          <pre>to_date(<a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>) :: binary</pre>
+          <pre>index(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Transform raw datetime to prettier date</p>
+    <p>Show all forum topics</p>
 
   </section>
 </div>
-<div class="detail" id="to_date_time/1">
+<div class="detail" id="show/2">
   
   <div class="detail-header">
-    <a href="#to_date_time/1" class="detail-link" title="Link to this function">
+    <a href="#show/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">to_date_time(date)</span>
+    <span class="signature">show(conn, map)</span>
     
     
+    
+      <div class="specs">
+        
+          <pre>show(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
+        
+      </div>
     
   </div>
   <section class="docstring">
-    <p>Transform raw datetime to prettier date and time</p>
+    <p>Show single forum topic with all comments</p>
 
   </section>
 </div>

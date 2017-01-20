@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Frontend.Utils – kuikka_website v0.0.1</title>
+    <title>KuikkaDB.Schema.Category – kuikka_website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-3c12fecf4b.js"></script>
@@ -59,14 +59,14 @@
 
       <h1>
         <small class="visible-xs">kuikka_website v0.0.1</small>
-        Frontend.Utils
+        KuikkaDB.Schema.Category
         
         
       </h1>
 
       
         <section id="moduledoc">
-          <p>Helper functions for frontend modules/templates</p>
+          <p>Database schema for category table</p>
 
         </section>
       
@@ -88,29 +88,10 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_next_event_date/0">get_next_event_date()</a>
+    <a href="#changeset/2">changeset(category, params)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get date of next event by getting current date and showing either
-wednesday or sunday</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#to_date/1">to_date(date)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Transform raw datetime to prettier date</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#to_date_time/1">to_date_time(date)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Transform raw datetime to prettier date and time</p>
+    <div class="summary-synopsis"><p>Validate changes to category</p>
 </div>
   
 </div>
@@ -135,67 +116,25 @@ wednesday or sunday</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="get_next_event_date/0">
+          <div class="detail" id="changeset/2">
   
   <div class="detail-header">
-    <a href="#get_next_event_date/0" class="detail-link" title="Link to this function">
+    <a href="#changeset/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_next_event_date()</span>
+    <span class="signature">changeset(category, params)</span>
     
     
     
       <div class="specs">
         
-          <pre>get_next_event_date() :: binary</pre>
+          <pre>changeset(<a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Schema.html#t:t/0">Ecto.Schema.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get date of next event by getting current date and showing either
-wednesday or sunday.</p>
-<p>TODO: Proper event query when we get events implemented</p>
-
-  </section>
-</div>
-<div class="detail" id="to_date/1">
-  
-  <div class="detail-header">
-    <a href="#to_date/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">to_date(date)</span>
-    
-    
-    
-      <div class="specs">
-        
-          <pre>to_date(<a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>) :: binary</pre>
-        
-          <pre>to_date(<a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>) :: binary</pre>
-        
-      </div>
-    
-  </div>
-  <section class="docstring">
-    <p>Transform raw datetime to prettier date</p>
-
-  </section>
-</div>
-<div class="detail" id="to_date_time/1">
-  
-  <div class="detail-header">
-    <a href="#to_date_time/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">to_date_time(date)</span>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Transform raw datetime to prettier date and time</p>
+    <p>Validate changes to category</p>
 
   </section>
 </div>
