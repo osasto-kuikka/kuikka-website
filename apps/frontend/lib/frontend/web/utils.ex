@@ -33,6 +33,14 @@ defmodule Frontend.Utils do
   """
   @spec to_date(DateTime.t) :: binary
   def to_date(date) do
-    "#{date.day}.#{date.month}.#{date.year}"
+    Timex.format!(date, "{0D}.{0M}.{YYYY}")
+  end
+
+  @doc """
+  Transform raw datetime to prettier date and time
+  """
+  @spec to_date(DateTime.t) :: binary
+  def to_date_time(date) do
+    Timex.format!(date, "{h24}:{0m} {0D}.{0M}.{YYYY}")
   end
 end

@@ -21,6 +21,7 @@ defmodule Frontend.Web do
 
       import Frontend.Router.Helpers
       import Frontend.Gettext
+      import Ecto.Query
     end
   end
 

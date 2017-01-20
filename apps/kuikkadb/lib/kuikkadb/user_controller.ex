@@ -1,4 +1,4 @@
-defmodule KuikkaDB.Controller do
+defmodule KuikkaDB.UserController do
   @moduledoc """
   Controller containing database functions for user
   """

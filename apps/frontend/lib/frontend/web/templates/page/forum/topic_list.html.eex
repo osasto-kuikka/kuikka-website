@@ -1,0 +1,29 @@
+<%= render Frontend.SharedView, "banner_small.html", assigns %>
+<main class="columns" id="topic-list-content">
+  <button onclick="location.href='<%= forum_path(@conn, :index, %{"editor" => "true"}) %>'"
+          class="new-topic-btn">
+      <i class="material-icons">add</i><%= gettext("New topic") %>
+  </button>
+  <table>
+    <thead>
+      <tr>
+        <th><%= gettext("Topic") %></th>
+        <th><%= gettext("Category") %></th>
+        <th><%= gettext("Comments") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for topic <- @topics do %>
+        <tr style="cursor:pointer" onclick="location.href='<%= forum_path(@conn, :show, topic.id) %>'">
+          <td><%= topic.title %></td>
+          <td>
+            <span class="category" style="background-color:#<%= topic.category.color %>">
+              <%= topic.category.name %>
+            </span>
+          </td>
+          <td><%= length(topic.comments) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>
