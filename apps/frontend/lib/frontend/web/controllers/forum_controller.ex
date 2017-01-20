@@ -23,7 +23,7 @@ defmodule Frontend.Page.ForumController do
   end
   def index(conn, _params) do
     topics = Topic
-             |> order_by([t], asc: t.createtime)
+             |> order_by([t], desc: t.createtime)
              |> preload([:category, :comments, user: [role: :permissions]])
              |> Repo.all()
              |> Enum.map(fn t ->
@@ -81,7 +81,7 @@ defmodule Frontend.Page.ForumController do
       {:error, _} ->
         conn
         |> put_flash(:error, gettext("Failed to create topic"))
-        |> render("new_topic.html")
+        |> redirect(to: forum_path(conn, :index, %{editor: true}))
     end
   end
   def create(conn, %{"comment" => %{"topic" => topic, "text" => text}}) do
@@ -94,7 +94,9 @@ defmodule Frontend.Page.ForumController do
     |> case do
       {:ok, comment} ->
         Topic
-        |> Repo.preload(:comments)
+        |> preload(:comments)
+        |> where([t], t.id == ^topic)
+        |> Repo.one()
         |> Ecto.Changeset.change()
         |> Ecto.Changeset.put_assoc(:comments, [comment])
         |> Repo.update()

@@ -2,7 +2,9 @@
 <main class="columns" id="forum-topic-content">
   <div class="row topic">
       <span class="title"><%= @topic.title %></span>
-      <span class="category"><%= @topic.category.name %></span>
+      <span class="category" style="background-color:#<%= @topic.category.color %>">
+        <%= @topic.category.name %>
+      </span>
   </div>
   <div class="row comment">
     <div class="columns one image">

@@ -16,7 +16,11 @@
       <%= for topic <- @topics do %>
         <tr style="cursor:pointer" onclick="location.href='<%= forum_path(@conn, :show, topic.id) %>'">
           <td><%= topic.title %></td>
-          <td><%= topic.category.name %></td>
+          <td>
+            <span class="category" style="background-color:#<%= topic.category.color %>">
+              <%= topic.category.name %>
+            </span>
+          </td>
           <td><%= length(topic.comments) %></td>
         </tr>
       <% end %>

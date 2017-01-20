@@ -27,7 +27,9 @@ defmodule KuikkaDB.Schema.Topic do
     topic
     |> cast(params, @required ++ @optional)
     |> validate_required(@required)
-    |> add_timestamps
+    |> validate_length(:title, max: 255)
+    |> validate_length(:text, max: 5000)
+    |> add_timestamps()
   end
   defp add_timestamps(changeset) do
     if is_nil(get_field(changeset, :createtime)) do

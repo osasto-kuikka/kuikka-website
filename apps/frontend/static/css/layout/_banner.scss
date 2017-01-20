@@ -17,11 +17,10 @@
   .next-event {
     position: absolute;
     left: 41.8%;
-    float: right;
     margin-top: 15px;
     background-color: rgba(215, 148, 0, 0.8);
     padding: 0;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 100;
     width: 580px;
     height: 40px;
@@ -32,23 +31,22 @@
       float: right;
       display: block;
       letter-spacing: 2px;
-      font-size: 28px;
       text-align: center;
       line-height: 40px;
       padding: 0 0 0 10px;
       text-align: left;
+    }
 
-      .time {
-        color: #CCC;
-        font-style: normal;
-        background-color: #000;
-        padding: 0 10px;
-        float: right;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        margin-left: 10px;
-      }
+    .time {
+      color: #CCC;
+      font-style: normal;
+      background-color: #000;
+      padding: 0 10px;
+      float: right;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      margin-left: 10px;
     }
 
     .title {
