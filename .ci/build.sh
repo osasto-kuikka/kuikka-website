@@ -6,7 +6,7 @@
 
 set -o errexit -o nounset
 
-if [ "${TRAVIS_BRANCH}" == "staging" ]; then
+if [ "${TRAVIS_BRANCH}" = "staging" ] || [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
   # Get deps and compile for test and prod release
   mix deps.get
   MIX_ENV=test mix compile --warnings-as-errors

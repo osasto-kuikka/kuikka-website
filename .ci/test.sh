@@ -6,7 +6,7 @@
 
 set -o errexit -o nounset
 
-if [ "${TRAVIS_BRANCH}" == "staging" ]; then
+if [ "${TRAVIS_BRANCH}" = "staging" ] || [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
   # Run tests
   mix test
 
