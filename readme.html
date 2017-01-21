@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.14.5">
+    <title>README – Osasto Kuikka Website v0.0.1</title>
+    <link rel="stylesheet" href="dist/app-a07cea761b.css" />
+    
+    <script src="dist/sidebar_items-7220c947f5.js"></script>
+  </head>
+  <body data-type="extras">
+    <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
+
+<div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+
+  
+  <a href="Osasto Kuikka Website.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        Osasto Kuikka Website
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.0.1
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<p align="center">
+    <img src="https://cdn.rawgit.com/osasto-kuikka/KGE/master/extras/logo.svg" width="480">
+</p><p align="center">
+    <a href="https://travis-ci.org/osasto-kuikka/kuikka-website">
+        <img src="https://img.shields.io/travis/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Build" alt="Build Status">
+    </a>
+    <a href="https://osasto-kuikka.github.io/kuikka-website/">
+        <img src="https://img.shields.io/badge/docs-github-green.svg?style=flat-square" alt="Docs">
+    </a>
+    <a href="https://github.com/osasto-kuikka/kuikka-website/issues">
+        <img src="https://img.shields.io/github/issues-raw/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Issues" alt="Issues">
+    </a>
+    <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/LICENSE">
+        <img src="https://img.shields.io/badge/License-GPLv2-red.svg?style=flat-square" alt="License">
+    </a>
+</p><h2 id="setup-development-environment" class="section-heading">
+  <a href="#setup-development-environment" class="hover-link"><i class="icon-link"></i></a>
+  Setup Development environment
+</h2>
+
+<p>Required:</p>
+<ul>
+<li><a href="http://www.erlang.org/">Erlang 19.2</a>
+</li>
+<li><a href="http://elixir-lang.org/">Elixir 1.4.0</a>
+</li>
+<li><a href="https://nodejs.org/en/">Nodejs 6.9</a>
+</li>
+<li><a href="https://www.postgresql.org/">postgresql 9.5</a>
+</li>
+</ul>
+<h3>Windows</h3>
+<p>Install with <a href="https://chocolatey.org/install">Chocolatey</a></p>
+<pre><code class="elixir">choco install -y erlang elixir nodejs VisualCppBuildTools</code></pre>
+<p>Postgresql needs to be installed separately as chocolatey repository
+does not have 9.5 version!</p>
+<h3>Linux</h3>
+<ul>
+<li>Arch
+</li>
+<li><code class="inline">pacman -S install erlang elixir nodejs postgresql</code>
+</li>
+<li>Fedora 25
+</li>
+<li><code class="inline">dnf install -y erlang nodejs postgresql-server</code>
+</li>
+<li>Elixir 1.4.0 needs to be installed separatele as fedora
+repository only has 1.3.1 which is not supported
+</li>
+</ul>
+<h3>Project setup</h3>
+<p>Available commands for project setup:
+<strong>NOTICE: On windows you need to run dev.bat before compiling</strong></p>
+<pre><code class="elixir">mix setup (Setup everything with one command)
+mix setup.min (Get dependencies and compile)
+mix frontend.install (Install npm packages to frontend)
+mix frontend.build (Build minified javascript)
+mix db.setup (Setup database)
+mix db.reset (Reset database)</code></pre>
+<h3>Get Steam API key (required for login functionality)</h3>
+<ul>
+<li><a href="http://steamcommunity.com/dev/apikey">Get key from here</a>
+</li>
+<li>Add key to your environment variable as <code class="inline">STEAM_API_KEY</code>
+</li>
+</ul>
+<h2 id="running-the-application" class="section-heading">
+  <a href="#running-the-application" class="hover-link"><i class="icon-link"></i></a>
+  Running the application
+</h2>
+
+<pre><code class="elixir">iex -S mix (Start console for program)
+mix run --no-halt (Run program)</code></pre>
+<h2 id="running-test" class="section-heading">
+  <a href="#running-test" class="hover-link"><i class="icon-link"></i></a>
+  Running test
+</h2>
+
+<pre><code class="elixir">mix test (Run unit tests)
+mix lint (Run linter)</code></pre>
+<h2 id="create-release-build" class="section-heading">
+  <a href="#create-release-build" class="hover-link"><i class="icon-link"></i></a>
+  Create release build
+</h2>
+
+<pre><code class="elixir">MIX_ENV=prod mix release --env=prod</code></pre>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.14.5),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle" />
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-4aef34ad5f.js"></script>
+  </body>
+</html>
+
