@@ -9,7 +9,15 @@ defmodule KuikkaWebsite.Mixfile do
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+     
+     # Docs
+     name: "Osasto Kuikka Website",
+     source_url: "https://github.com/osasto-kuikka/kuikka-website",
+     homepage_url: "http://osastokuikka.com",
+     docs: [main: "Osasto Kuikka Website",
+            extras: ["README.md"]]
+    ]
   end
 
   # Dependencies can be Hex packages:
