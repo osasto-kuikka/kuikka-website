@@ -12,10 +12,10 @@ defmodule KuikkaWebsite.Mixfile do
      deps: deps(),
      
      # Docs
-     name: "Osasto Kuikka Website",
+     name: "Kuikka Website",
      source_url: "https://github.com/osasto-kuikka/kuikka-website",
      homepage_url: "http://osastokuikka.com",
-     docs: [main: "Osasto Kuikka Website",
+     docs: [main: "readme",
             extras: ["README.md"]]
     ]
   end
