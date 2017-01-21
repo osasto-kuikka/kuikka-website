@@ -19,8 +19,8 @@
 
 ## Setup Development environment
 Required:
-* [Erlang 19.1](http://www.erlang.org/)
-* [Elixir 1.3.4](http://elixir-lang.org/)
+* [Erlang 19.2](http://www.erlang.org/)
+* [Elixir 1.4.0](http://elixir-lang.org/)
 * [Nodejs 6.9](https://nodejs.org/en/)
 * [postgresql 9.5](https://www.postgresql.org/)
 
@@ -37,7 +37,7 @@ does not have 9.5 version!
   * `pacman -S install erlang elixir nodejs postgresql`
 * Fedora 25
   * `dnf install -y erlang nodejs postgresql-server`
-  * Elixir 1.3.4 needs to be installed separatele as fedora
+  * Elixir 1.4.0 needs to be installed separatele as fedora
     repository only has 1.3.1 which is not supported
 
 ### Project setup
