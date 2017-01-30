@@ -2,7 +2,7 @@ use Mix.Releases.Config,
     # This sets the default release built by `mix release`
     default_release: :default,
     # This sets the default environment used by `mix release`
-    default_environment: :dev
+    default_environment: :prod
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/configuration.html
@@ -33,7 +33,7 @@ end
 # will be used by default
 
 release :kuikka_website do
-  set version: System.get_env("KUIKKA_WEBSITE_VERSION") || "0.1.0"
+  set version: "#{Keyword.get(KuikkaWebsite.Mixfile.project(), :version)}"
   set applications: [
     frontend: :permanent,
     kuikkadb: :permanent,
