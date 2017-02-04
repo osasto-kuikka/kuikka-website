@@ -5,35 +5,36 @@ defmodule Frontend.Page.ForumController do
   use Frontend.Web, :controller
   plug :put_layout, "base.html"
 
-  alias KuikkaDB.Repo
-  alias KuikkaDB.Schema.{Topic, Comment, Category}
-  alias KuikkaDB.Schema.User, as: UserSchema
-  alias Ecto.Changeset
+  alias KuikkaDB.{Topics, Categories, Comments, TopicComments}
 
   @doc """
   Show all forum topics
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, %{"editor" => "true"}) do
-    categories = Category
-                 |> Repo.all()
-                 |> Enum.map(&{&1.name, &1.id})
-    conn
-    |> assign(:categories, categories)
-    |> render("editor.html")
+    case Categories.all() do
+      {:ok, categories} ->
+        conn
+        |> assign(:categories, Enum.map(categories, &{&1.name, &1.id}))
+        |> render("editor.html")
+      {:error, msg} ->
+        conn
+        |> put_flash(:error, msg)
+        |> redirect(to: forum_path(conn, :index))
+    end
   end
   def index(conn, _params) do
-    topics = Topic
-             |> order_by([t], desc: t.createtime)
-             |> preload([:category, :comments, user: [role: :permissions]])
-             |> Repo.all()
-             |> Enum.map(fn t ->
-                  %{t | user: KuikkaDB.user_schema_to_struct(t.user)}
-                end)
-
-    conn
-    |> assign(:topics, topics)
-    |> render("topic_list.html")
+    case Topics.topic_list() do
+      {:ok, topics} ->
+        conn
+        |> assign(:topics, Enum.map(topics, &profile_to_user(&1)))
+        |> render("topic_list.html")
+      {:error, msg} ->
+        conn
+        |> put_flash(:error, msg)
+        |> assign(:topics, [])
+        |> render("topic_list.html")
+    end
   end
 
   @doc """
@@ -41,23 +42,19 @@ defmodule Frontend.Page.ForumController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => id}) do
-    c_q = from(c in Comment,
-                preload: [user: [role: :permissions]],
-                order_by: :createtime)
-
-    Topic
-    |> where([t], t.id == ^id)
-    |> preload([:category, comments: ^c_q, user: [role: :permissions]])
-    |> Repo.one()
-    |> case do
-      nil ->
+    with {id, ""} <- Integer.parse(id),
+         {:ok, [topic]} <- Topics.get_topic(id),
+         {:ok, comments} <- Comments.topic_comments(id)
+    do
+      conn
+      |> assign(:topic, profile_to_user(topic))
+      |> assign(:comments, Enum.map(comments, &profile_to_user(&1)))
+      |> render("topic.html")
+    else
+      _ ->
         conn
-        |> put_flash(:error, gettext("Failed to find requested topic"))
+        |> put_flash(:error, dgettext("forum", "Failed to find topic"))
         |> redirect(to: forum_path(conn, :index))
-      topic ->
-        conn
-        |> assign(:topic, user_struct_to_topic(topic))
-        |> render("topic.html")
     end
   end
 
@@ -67,61 +64,49 @@ defmodule Frontend.Page.ForumController do
   @spec create(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def create(conn, %{"topic" => %{"title" => title, "text" => text,
                                   "category" => category}}) do
-    steamid = conn.assigns.user.profile.steam_id64
-    user_id = Repo.get_by(UserSchema, steamid: steamid).id
-
-    %Topic{}
-    |> Topic.changeset(%{title: title, text: text, user_id: user_id,
-                         category_id: category})
-    |> Repo.insert()
+    [
+      title: title,
+      text: text,
+      category_id: String.to_integer(category),
+      user_id: conn.assigns.user.id
+    ]
+    |> Topics.insert()
     |> case do
-      {:ok, _} ->
+      {:ok, [topic]} ->
         conn
-        |> put_flash(:info, gettext("New topic created"))
-        |> redirect(to: forum_path(conn, :index))
-      {:error, _} ->
+        |> put_flash(:info, dgettext("forum", "New topic created"))
+        |> redirect(to: forum_path(conn, :show, topic.id))
+      {:error, msg} ->
         conn
-        |> put_flash(:error, gettext("Failed to create topic"))
-        |> redirect(to: forum_path(conn, :index, %{editor: true}))
+        |> put_flash(:error, msg)
+        |> redirect(to: forum_path(conn, :index, %{"editor" => "true"}))
     end
   end
   def create(conn, %{"comment" => %{"topic" => topic, "text" => text}}) do
-    steamid = conn.assigns.user.profile.steam_id64
-    user_id = Repo.get_by(UserSchema, steamid: steamid).id
+    user = conn.assigns.user
 
-    %Comment{}
-    |> Comment.changeset(%{text: text, user_id: user_id})
-    |> Repo.insert()
-    |> case do
-      {:ok, comment} ->
-        Topic
-        |> preload(:comments)
-        |> where([t], t.id == ^topic)
-        |> Repo.one()
-        |> Changeset.change()
-        |> Changeset.put_assoc(:comments, [comment])
-        |> Repo.update()
-      tuple -> tuple
-    end
-    |> case do
-      {:ok, _} ->
+    with {topic, ""} <- Integer.parse(topic),
+         {:ok, [c]} <- Comments.insert(text: text, user_id: user.id),
+         {:ok, _} <- TopicComments.insert(topic_id: topic, comment_id: c.id)
+    do
+      conn
+      |> put_flash(:info, dgettext("forum", "New comment added"))
+      |> redirect(to: forum_path(conn, :show, topic))
+    else
+      {:error, msg} ->
         conn
-        |> put_flash(:info, gettext("New comment added"))
+        |> put_flash(:error, msg)
         |> redirect(to: forum_path(conn, :show, topic))
-      {:error, _} ->
+      _ ->
         conn
-        |> put_flash(:error, gettext("Failed to add comment"))
+        |> put_flash(:error, dgettext("forum", "Failed to create comment"))
         |> redirect(to: forum_path(conn, :show, topic))
     end
   end
 
-  # Add user struct to topic user and comment users
-  @spec user_struct_to_topic(Ecto.Schema.t) :: Ecto.Schema.t
-  defp user_struct_to_topic(topic) do
-    user = KuikkaDB.user_schema_to_struct(topic.user)
-    comments = Enum.map(topic.comments, fn c ->
-      %{c | user: KuikkaDB.user_schema_to_struct(c.user)}
-    end)
-    %{topic | user: user, comments: comments}
+  @spec profile_to_user(Map.t) :: Map.t
+  defp profile_to_user(map) do
+    steamid = Decimal.to_integer(Map.get(map, :user))
+    Map.put(map, :profile, Steamex.Profile.fetch(steamid))
   end
 end

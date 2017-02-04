@@ -2,17 +2,17 @@
 <main class="columns" id="forum-topic-content">
   <div class="row topic">
       <span class="title"><%= @topic.title %></span>
-      <span class="category" style="background-color:#<%= @topic.category.color %>">
-        <%= @topic.category.name %>
+      <span class="category" style="background-color:#<%= @topic.category_color %>">
+        <%= @topic.category %>
       </span>
   </div>
   <div class="row comment">
     <div class="columns one image">
-      <img src="<%= @topic.user.profile.avatar_medium %>"</img>
+      <img src="<%= @topic.profile.avatar_medium %>"</img>
     </div>
     <div class="columns eleven area">
       <div class="row title">
-        <span class="user"><%= @topic.user.profile.steam_id %></span>
+        <span class="user"><%= @topic.profile.steam_id %></span>
         <span class="time"><%= Frontend.Utils.to_date_time(@topic.createtime) %></span>
       </div>
       <div class="row content">
@@ -20,14 +20,14 @@
       </div>
     </div>
   </div>
-  <%= for comment <- @topic.comments do %>
+  <%= for comment <- @comments do %>
     <div class="row comment">
       <div class="columns one image">
-        <img src="<%= comment.user.profile.avatar_medium %>"</img>
+        <img src="<%= comment.profile.avatar_medium %>"</img>
       </div>
       <div class="columns eleven area">
         <div class="row title">
-          <span class="user"><%= comment.user.profile.steam_id %></span>
+          <span class="user"><%= comment.profile.steam_id %></span>
           <span class="time"><%= Frontend.Utils.to_date_time(comment.createtime) %></span>
         </div>
         <div class="row content">

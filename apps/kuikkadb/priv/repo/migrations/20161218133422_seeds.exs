@@ -7,17 +7,15 @@ defmodule KuikkaDB.Repo.Migrations.Seeds do
   """
   use Ecto.Migration
   alias KuikkaDB.Repo
-  alias KuikkaDB.Schema.{Role}
+  alias KuikkaDB.Roles
 
-  # Insert role function
-  defp insert_role(name, desc) do
-    %Role{}
-    |> Role.changeset(%{name: name, description: desc})
-    |> Repo.insert()
+  def up do
+    Roles.insert(name: "user", description: "Basic User")
+    Roles.insert(name: "admin", description: "Admin User")
   end
 
-  def change do
-    insert_role("user", "Basic User")
-    insert_role("admin", "Admin User")
+  def down do
+    Roles.delete(name: "user")
+    Roles.delete(name: "admin")
   end
 end
