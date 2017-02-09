@@ -30,7 +30,7 @@ defmodule KuikkaDB.Mixfile do
   defp deps do
     [
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.1"},
+      {:ecto, "~> 2.1.3"},
       {:timex, "~> 3.1"},
       {:timex_ecto, "~> 3.1"},
       {:defql, "~> 0.1.0"}

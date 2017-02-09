@@ -4,8 +4,6 @@ defmodule KuikkaDB do
   """
   use Application
 
-  alias KuikkaDB.Repo
-
   @doc """
   Start Kuikkadb supervisor application tree
   """
@@ -14,7 +12,6 @@ defmodule KuikkaDB do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(Repo, []),
     ]
 
     opts = [strategy: :one_for_one, name: KuikkaDB.Supervisor]
