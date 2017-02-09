@@ -10,7 +10,7 @@ defmodule KuikkaWebsite.Mixfile do
      test_coverage: [tool: ExCoveralls],
      aliases: aliases(),
      deps: deps(),
-     
+
      # Docs
      name: "Kuikka Website",
      source_url: "https://github.com/osasto-kuikka/kuikka-website",
@@ -34,9 +34,9 @@ defmodule KuikkaWebsite.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:distillery, "~> 1.0"},
-      {:credo, "~> 0.5", only: [:dev, :test]},
-      {:excoveralls, "~> 0.5", only: :test},
+      {:distillery, "~> 1.1"},
+      {:credo, "~> 0.6", only: [:dev, :test]},
+      {:excoveralls, "~> 0.6", only: :test},
       {:inch_ex, "~> 0.5", only: [:dev, :test]},
       {:ex_doc, "~> 0.14", only: :dev},
     ]
