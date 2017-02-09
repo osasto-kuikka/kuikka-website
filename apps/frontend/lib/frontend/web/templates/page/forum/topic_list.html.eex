@@ -17,11 +17,11 @@
         <tr style="cursor:pointer" onclick="location.href='<%= forum_path(@conn, :show, topic.id) %>'">
           <td><%= topic.title %></td>
           <td>
-            <span class="category" style="background-color:#<%= topic.category.color %>">
-              <%= topic.category.name %>
+            <span class="category" style="background-color:#<%= topic.category_color %>">
+              <%= topic.category %>
             </span>
           </td>
-          <td><%= length(topic.comments) %></td>
+          <td><%= 0 %></td>
         </tr>
       <% end %>
     </tbody>

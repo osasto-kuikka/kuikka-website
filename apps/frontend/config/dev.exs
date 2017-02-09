@@ -16,7 +16,6 @@ config :frontend, Frontend.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../", __DIR__)]]
 
-
 # Watch static and templates for browser reloading.
 config :frontend, Frontend.Endpoint,
   live_reload: [

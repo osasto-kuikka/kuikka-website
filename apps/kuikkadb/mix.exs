@@ -18,8 +18,8 @@ defmodule KuikkaDB.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [applications: [:logger, :postgrex, :timex, :timex_ecto, :ecto, :user],
-     mod: {KuikkaDB.App, []}]
+    [applications: [:logger, :postgrex, :timex, :timex_ecto, :defql, :ecto],
+     mod: {KuikkaDB, []}]
   end
 
   # Specifies which paths to compile per environment.
@@ -29,11 +29,11 @@ defmodule KuikkaDB.Mixfile do
   # Dependencies
   defp deps do
     [
-      {:user, in_umbrella: true},
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.0.0"},
-      {:timex, "~> 3.0"},
-      {:timex_ecto, "~> 3.0"}
+      {:ecto, "~> 2.1.3"},
+      {:timex, "~> 3.1"},
+      {:timex_ecto, "~> 3.1"},
+      {:defql, "~> 0.1.0"}
     ]
   end
 end

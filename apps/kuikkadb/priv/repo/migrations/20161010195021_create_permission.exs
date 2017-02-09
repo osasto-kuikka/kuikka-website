@@ -12,10 +12,10 @@ defmodule KuikkaDB.Repo.Migrations.CreatePermission do
   use Ecto.Migration
 
   def change do
-    create table(:permission) do
+    create table(:permissions) do
       add :name, :string, size: 50, null: false
       add :description, :string, size: 250, null: true
     end
-    create index(:permission, [:name], unique: true)
+    create index(:permissions, [:name], unique: true)
   end
 end

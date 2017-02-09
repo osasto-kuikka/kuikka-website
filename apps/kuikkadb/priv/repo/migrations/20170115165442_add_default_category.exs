@@ -1,8 +1,7 @@
 defmodule KuikkaDB.Repo.Migrations.AddDefaultCategory do
   use Ecto.Migration
 
-  alias KuikkaDB.{Repo, Schema}
-  alias Schema.Category
+  alias KuikkaDB.Categories
 
   @doc """
   Insert default categories
@@ -25,16 +24,11 @@ defmodule KuikkaDB.Repo.Migrations.AddDefaultCategory do
   @spec insert_category(binary, binary, binary) ::
                                         {:ok, Ecto.Schema.t} | {:error, binary}
   defp insert_category(name, description, color) do
-    %Category{}
-    |> Category.changeset(%{name: name, description: description, color: color})
-    |> Repo.insert()
+    Categories.insert(name: name, description: description, color: color)
   end
 
   @spec remove_category(binary) :: nil | :ok
   defp remove_category(name) do
-    case Repo.get_by(Category, name: name) do
-      nil -> nil
-      schema -> Repo.delete(schema)
-    end
+    Categories.delete(name: name)
   end
 end

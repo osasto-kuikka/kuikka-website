@@ -8,7 +8,7 @@ defmodule Frontend.Page.ForumView do
   @spec markdown_to_html(binary) :: binary
   def markdown_to_html(markdown) do
     markdown
-    |> Earmark.to_html()
+    |> Earmark.as_html!()
     |> raw
     |> HTML.html_escape()
   end
