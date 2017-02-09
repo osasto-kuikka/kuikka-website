@@ -19,12 +19,10 @@ defmodule KuikkaDB.Repo.Migrations.CreateUser do
     """
   use Ecto.Migration
 
-  @now "now() at time zone 'UTC'"
-
   def change do
     create table(:users) do
       add :steamid, :decimal, size: 64, null: false
-      add :createtime, :utc_datetime, default: fragment(@now), null: false
+      add :createtime, :utc_datetime, default: fragment("now()"), null: false
       add :modifytime, :utc_datetime
       add :role_id, references(:roles), null: false
     end
