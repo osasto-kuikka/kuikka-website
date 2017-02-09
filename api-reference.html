@@ -8,7 +8,7 @@
     <title>API Reference – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-7220c947f5.js"></script>
+    <script src="dist/sidebar_items-4c27e31df8.js"></script>
   </head>
   <body data-type="extras">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -200,21 +200,56 @@ views and so on</p>
 <div class="summary-row">
   <div class="summary-signature"><a href="Mix.Tasks.Frontend.Install.html">Mix.Tasks.Frontend.Install</a></div>
   
-    <div class="summary-synopsis"><p>Install npm packages with yarn</p>
+    <div class="summary-synopsis"><p>Install npm packages required for frontend</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature"><a href="KuikkaDB.html">KuikkaDB</a></div>
   
-    <div class="summary-synopsis"><p>KuikkaDB includes all functions to needed for website to access to database</p>
+    <div class="summary-synopsis"><p>KuikkaDB application starting module</p>
 </div>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.App.html">KuikkaDB.App</a></div>
+  <div class="summary-signature"><a href="KuikkaDB.Categories.html">KuikkaDB.Categories</a></div>
   
-    <div class="summary-synopsis"><p>KuikkaDB application starting module</p>
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:name, :string, size: 50, null: false
+:description, :string, size: 255, null: false
+:color, :string, size: 6, null: false</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="KuikkaDB.Comments.html">KuikkaDB.Comments</a></div>
+  
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:text, :string, size: 2500, null: false
+:createtime, :utc_datetime, null: false
+:modifytime, :utc_datetime
+:user_id, references(:users), null: false</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="KuikkaDB.Permissions.html">KuikkaDB.Permissions</a></div>
+  
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:name, :string, size: 50, null: false
+:description, :string, size: 250, null: true</code></pre>
 </div>
   
 </div>
@@ -226,61 +261,28 @@ views and so on</p>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.Category.html">KuikkaDB.Schema.Category</a></div>
+  <div class="summary-signature"><a href="KuikkaDB.RolePermissions.html">KuikkaDB.RolePermissions</a></div>
   
-    <div class="summary-synopsis"><p>Database schema for category table</p>
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:role_id, references(:roles), null: false
+:permission_id, references(:permissions), null: false</code></pre>
 </div>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.Comment.html">KuikkaDB.Schema.Comment</a></div>
+  <div class="summary-signature"><a href="KuikkaDB.Roles.html">KuikkaDB.Roles</a></div>
   
-    <div class="summary-synopsis"><p>Database schema for comment table</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.Permission.html">KuikkaDB.Schema.Permission</a></div>
-  
-    <div class="summary-synopsis"><p>A module providing tables for permission</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.Role.html">KuikkaDB.Schema.Role</a></div>
-  
-    <div class="summary-synopsis"><p>This Schema and changeset is for roles.
-Please see role table for further details</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.RolePermission.html">KuikkaDB.Schema.RolePermission</a></div>
-  
-    <div class="summary-synopsis"><p>A module providing tables for role permission:
-<a href="https://hexdocs.pm/ecto/Ecto.Schema.html">Schema</a>
-<a href="https://hexdocs.pm/ecto/Ecto.Changeset.html">Changeset</a></p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.Topic.html">KuikkaDB.Schema.Topic</a></div>
-  
-    <div class="summary-synopsis"><p>Database schema for comment table</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.TopicComment.html">KuikkaDB.Schema.TopicComment</a></div>
-  
-    <div class="summary-synopsis"><p>Database schema for topic_comment table</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.Schema.User.html">KuikkaDB.Schema.User</a></div>
-  
-    <div class="summary-synopsis"><p>Database schema for user table</p>
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:name, :string, size: 50, null: false
+:description, :string, size: 250, null: true</code></pre>
 </div>
   
 </div>
@@ -292,16 +294,47 @@ Please see role table for further details</p>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="KuikkaDB.UserController.html">KuikkaDB.UserController</a></div>
+  <div class="summary-signature"><a href="KuikkaDB.TopicComments.html">KuikkaDB.TopicComments</a></div>
   
-    <div class="summary-synopsis"><p>Controller containing database functions for user</p>
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:topic_id, references(:topics), null: false
+:comment_id, references(:comments), null: false</code></pre>
 </div>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="User.html">User</a></div>
+  <div class="summary-signature"><a href="KuikkaDB.Topics.html">KuikkaDB.Topics</a></div>
   
-    <div class="summary-synopsis"><p>Defines user struct for usage to other components</p>
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:title, :string, size: 255, null: false
+:text, :string, size: 2500, null: false
+:createtime, :utc_datetime, null: false
+:modifytime, :utc_datetime
+:user_id, references(:users), null: false
+:category_id, references(:categories), null: false</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="KuikkaDB.Users.html">KuikkaDB.Users</a></div>
+  
+    <div class="summary-synopsis"><h2 id="table" class="section-heading">
+  <a href="#table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:steamid, :decimal, size: 64, null: false
+:createtime, :utc_datetime, null: false
+:modifytime, :utc_datetime
+:role_id, references(:roles), null: false</code></pre>
 </div>
   
 </div>

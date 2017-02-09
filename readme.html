@@ -8,7 +8,7 @@
     <title>README – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-7220c947f5.js"></script>
+    <script src="dist/sidebar_items-4c27e31df8.js"></script>
   </head>
   <body data-type="extras">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -95,13 +95,17 @@
 does not have 9.5 version!</p>
 <h3>Linux</h3>
 <ul>
-<li>Arch
-</li>
+<li><p>Arch</p>
+<ul>
 <li><code class="inline">pacman -S install erlang elixir nodejs postgresql</code>
 </li>
-<li>Fedora 25
+</ul>
 </li>
+<li><p>Fedora 25</p>
+<ul>
 <li><code class="inline">dnf install -y erlang nodejs postgresql-server</code>
+</li>
+</ul>
 </li>
 <li>Elixir 1.4.0 needs to be installed separatele as fedora
 repository only has 1.3.1 which is not supported
@@ -116,13 +120,6 @@ mix frontend.install (Install npm packages to frontend)
 mix frontend.build (Build minified javascript)
 mix db.setup (Setup database)
 mix db.reset (Reset database)</code></pre>
-<h3>Get Steam API key (required for login functionality)</h3>
-<ul>
-<li><a href="http://steamcommunity.com/dev/apikey">Get key from here</a>
-</li>
-<li>Add key to your environment variable as <code class="inline">STEAM_API_KEY</code>
-</li>
-</ul>
 <h2 id="running-the-application" class="section-heading">
   <a href="#running-the-application" class="hover-link"><i class="icon-link"></i></a>
   Running the application

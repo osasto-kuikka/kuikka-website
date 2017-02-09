@@ -8,7 +8,7 @@
     <title>KuikkaDB.Repo – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-7220c947f5.js"></script>
+    <script src="dist/sidebar_items-4c27e31df8.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -159,7 +159,7 @@ given id</p>
     <a href="#get!/3">get!(queryable, id, opts \\ [])</a>
   </div>
   
-    <div class="summary-synopsis"><p>Similar to <a href="#get/3"><code class="inline">get/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found</p>
+    <div class="summary-synopsis"><p>Similar to <a href="#get/3"><code class="inline">get/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found</p>
 </div>
   
 </div>
@@ -177,7 +177,7 @@ given id</p>
     <a href="#get_by!/3">get_by!(queryable, clauses, opts \\ [])</a>
   </div>
   
-    <div class="summary-synopsis"><p>Similar to <a href="#get_by/3"><code class="inline">get_by/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found</p>
+    <div class="summary-synopsis"><p>Similar to <a href="#get_by/3"><code class="inline">get_by/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found</p>
 </div>
   
 </div>
@@ -239,6 +239,15 @@ is invalid</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#load/2">load(schema_or_types, data)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Loads <code class="inline">data</code> into a struct or a map</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#one/2">one(queryable, opts \\ [])</a>
   </div>
   
@@ -251,7 +260,7 @@ is invalid</p>
     <a href="#one!/2">one!(queryable, opts \\ [])</a>
   </div>
   
-    <div class="summary-synopsis"><p>Similar to <a href="#one/2"><code class="inline">one/2</code></a> but raises <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found</p>
+    <div class="summary-synopsis"><p>Similar to <a href="#one/2"><code class="inline">one/2</code></a> but raises <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found</p>
 </div>
   
 </div>
@@ -269,11 +278,17 @@ is invalid</p>
     <a href="#query/3">query(sql, params \\ [], opts \\ [])</a>
   </div>
   
+    <div class="summary-synopsis"><p>A convenience function for SQL-based repositories that executes the given query</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#query!/3">query!(sql, params \\ [], opts \\ [])</a>
   </div>
+  
+    <div class="summary-synopsis"><p>A convenience function for SQL-based repositories that executes the given query</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -306,10 +321,21 @@ or just <code class="inline">:ok</code> if nothing needs to be done</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#stream/2">stream(queryable, opts \\ [])</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Returns a lazy enumerable that emits all entries from the data store
+matching the given query. SQL adapters, such as Postgres and MySQL, can only
+enumerate a stream inside a transaction</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#transaction/2">transaction(fun_or_multi, opts \\ [])</a>
   </div>
   
-    <div class="summary-synopsis"><p>Runs the given function or <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> inside a transaction</p>
+    <div class="summary-synopsis"><p>Runs the given function or <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> inside a transaction</p>
 </div>
   
 </div>
@@ -403,7 +429,7 @@ Repo.aggregate(Post, :count, :visits)
 # Returns the average number of visits for the top 10
 query = from Post, limit: 10
 Repo.aggregate(query, :avg, :visits)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:aggregate/4"><code class="inline">Ecto.Repo.aggregate/4</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:aggregate/4"><code class="inline">Ecto.Repo.aggregate/4</code></a>.</p>
 
   </section>
 </div>
@@ -426,12 +452,18 @@ Repo.aggregate(query, :avg, :visits)</code></pre>
   </div>
   <section class="docstring">
     <p>Fetches all entries from the data store matching the given query.</p>
-<p>May raise <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.QueryError.html"><code class="inline">Ecto.QueryError</code></a> if query validation fails.</p>
+<p>May raise <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.QueryError.html"><code class="inline">Ecto.QueryError</code></a> if query validation fails.</p>
 <h2 id="all/2-options" class="section-heading">
   <a href="#all/2-options" class="hover-link"><i class="icon-link"></i></a>
   Options
 </h2>
 
+<ul>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the query.
+</li>
+</ul>
 <p>See the “Shared options” section at the module documentation.</p>
 <h2 id="all/2-example" class="section-heading">
   <a href="#all/2-example" class="hover-link"><i class="icon-link"></i></a>
@@ -442,7 +474,7 @@ Repo.aggregate(query, :avg, :visits)</code></pre>
 query = from p in Post,
      select: p.title
 MyRepo.all(query)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:all/2"><code class="inline">Ecto.Repo.all/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:all/2"><code class="inline">Ecto.Repo.all/2</code></a>.</p>
 
   </section>
 </div>
@@ -463,7 +495,8 @@ MyRepo.all(query)</code></pre>
   </div>
   <section class="docstring">
     <p>Returns the adapter configuration stored in the <code class="inline">:otp_app</code> environment.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:config/0"><code class="inline">Ecto.Repo.config/0</code></a>.</p>
+<p>Dynamic configuration is not reflected on this value.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:config/0"><code class="inline">Ecto.Repo.config/0</code></a>.</p>
 
   </section>
 </div>
@@ -486,7 +519,7 @@ MyRepo.all(query)</code></pre>
   </div>
   <section class="docstring">
     <p>Deletes a struct using its primary key.</p>
-<p>If the struct has no primary key, <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoPrimaryKeyFieldError.html"><code class="inline">Ecto.NoPrimaryKeyFieldError</code></a>
+<p>If the struct has no primary key, <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoPrimaryKeyFieldError.html"><code class="inline">Ecto.NoPrimaryKeyFieldError</code></a>
 will be raised.</p>
 <p>It returns <code class="inline">{:ok, struct}</code> if the struct has been successfully
 deleted or <code class="inline">{:error, changeset}</code> if there was a validation
@@ -496,6 +529,12 @@ or a known constraint error.</p>
   Options
 </h2>
 
+<ul>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the struct.
+</li>
+</ul>
 <p>See the “Shared options” section at the module documentation.</p>
 <h2 id="delete/2-example" class="section-heading">
   <a href="#delete/2-example" class="hover-link"><i class="icon-link"></i></a>
@@ -507,7 +546,7 @@ case MyRepo.delete post do
   {:ok, struct}       -&gt; # Deleted with success
   {:error, changeset} -&gt; # Something went wrong
 end</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:delete/2"><code class="inline">Ecto.Repo.delete/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:delete/2"><code class="inline">Ecto.Repo.delete/2</code></a>.</p>
 
   </section>
 </div>
@@ -530,7 +569,7 @@ end</code></pre>
   </div>
   <section class="docstring">
     <p>Same as <a href="#delete/2"><code class="inline">delete/2</code></a> but returns the struct or raises if the changeset is invalid.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:delete!/2"><code class="inline">Ecto.Repo.delete!/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:delete!/2"><code class="inline">Ecto.Repo.delete!/2</code></a>.</p>
 
   </section>
 </div>
@@ -569,6 +608,10 @@ fields, where a struct is still returned but only with the
 given fields. Or <code class="inline">false</code>, where nothing is returned (the default).
 This option is not supported by all databases.
 </li>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the query.
+</li>
 </ul>
 <p>See the “Shared options” section at the module documentation for
 remaining options.</p>
@@ -580,7 +623,7 @@ remaining options.</p>
 <pre><code class="elixir">MyRepo.delete_all(Post)
 
 from(p in Post, where: p.id &lt; 10) |&gt; MyRepo.delete_all</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:delete_all/2"><code class="inline">Ecto.Repo.delete_all/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:delete_all/2"><code class="inline">Ecto.Repo.delete_all/2</code></a>.</p>
 
   </section>
 </div>
@@ -618,7 +661,7 @@ has no or more than one primary key, it will raise an argument error.</p>
 </h2>
 
 <pre><code class="elixir">MyRepo.get(Post, 42)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:get/3"><code class="inline">Ecto.Repo.get/3</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:get/3"><code class="inline">Ecto.Repo.get/3</code></a>.</p>
 
   </section>
 </div>
@@ -640,7 +683,7 @@ has no or more than one primary key, it will raise an argument error.</p>
     
   </div>
   <section class="docstring">
-    <p>Similar to <a href="#get/3"><code class="inline">get/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found.</p>
+    <p>Similar to <a href="#get/3"><code class="inline">get/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found.</p>
 <h2 id="get!/3-options" class="section-heading">
   <a href="#get!/3-options" class="hover-link"><i class="icon-link"></i></a>
   Options
@@ -653,7 +696,7 @@ has no or more than one primary key, it will raise an argument error.</p>
 </h2>
 
 <pre><code class="elixir">MyRepo.get!(Post, 42)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:get!/3"><code class="inline">Ecto.Repo.get!/3</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:get!/3"><code class="inline">Ecto.Repo.get!/3</code></a>.</p>
 
   </section>
 </div>
@@ -689,7 +732,7 @@ has no or more than one primary key, it will raise an argument error.</p>
 </h2>
 
 <pre><code class="elixir">MyRepo.get_by(Post, title: &quot;My post&quot;)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:get_by/3"><code class="inline">Ecto.Repo.get_by/3</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:get_by/3"><code class="inline">Ecto.Repo.get_by/3</code></a>.</p>
 
   </section>
 </div>
@@ -711,7 +754,7 @@ has no or more than one primary key, it will raise an argument error.</p>
     
   </div>
   <section class="docstring">
-    <p>Similar to <a href="#get_by/3"><code class="inline">get_by/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found.</p>
+    <p>Similar to <a href="#get_by/3"><code class="inline">get_by/3</code></a> but raises <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found.</p>
 <h2 id="get_by!/3-options" class="section-heading">
   <a href="#get_by!/3-options" class="hover-link"><i class="icon-link"></i></a>
   Options
@@ -724,7 +767,7 @@ has no or more than one primary key, it will raise an argument error.</p>
 </h2>
 
 <pre><code class="elixir">MyRepo.get_by!(Post, title: &quot;My post&quot;)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:get_by!/3"><code class="inline">Ecto.Repo.get_by!/3</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:get_by!/3"><code class="inline">Ecto.Repo.get_by!/3</code></a>.</p>
 
   </section>
 </div>
@@ -756,7 +799,7 @@ has no or more than one primary key, it will raise an argument error.</p>
 MyRepo.transaction(fn -&gt;
   MyRepo.in_transaction? #=&gt; true
 end)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:in_transaction?/0"><code class="inline">Ecto.Repo.in_transaction?/0</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:in_transaction?/0"><code class="inline">Ecto.Repo.in_transaction?/0</code></a>.</p>
 
   </section>
 </div>
@@ -792,17 +835,85 @@ or a known constraint error.</p>
   Options
 </h2>
 
+<ul>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the struct.
+</li>
+<li><code class="inline">:on_conflict</code> - It may be one of <code class="inline">:raise</code> (the default), <code class="inline">:nothing</code>,
+<code class="inline">:replace_all</code>, a keyword list of update instructions or an <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Query.html"><code class="inline">Ecto.Query</code></a>
+query for updates. See the “Upserts” section for more information.
+</li>
+<li><code class="inline">:conflict_target</code> - Which columns to verify for conflicts. If
+none is specified, the conflict target is left up to the database
+and is usually made of primary keys and/or unique/exclusion constraints.
+</li>
+</ul>
 <p>See the “Shared options” section at the module documentation.</p>
-<h2 id="insert/2-example" class="section-heading">
-  <a href="#insert/2-example" class="hover-link"><i class="icon-link"></i></a>
-  Example
+<h2 id="insert/2-examples" class="section-heading">
+  <a href="#insert/2-examples" class="hover-link"><i class="icon-link"></i></a>
+  Examples
 </h2>
 
+<p>A typical example is calling <code class="inline">MyRepo.insert/1</code> with a struct
+and acting on the return value:</p>
 <pre><code class="elixir">case MyRepo.insert %Post{title: &quot;Ecto is great&quot;} do
   {:ok, struct}       -&gt; # Inserted with success
   {:error, changeset} -&gt; # Something went wrong
 end</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:insert/2"><code class="inline">Ecto.Repo.insert/2</code></a>.</p>
+<h2 id="insert/2-upserts" class="section-heading">
+  <a href="#insert/2-upserts" class="hover-link"><i class="icon-link"></i></a>
+  Upserts
+</h2>
+
+<p><code class="inline">insert_all</code> provides upserts (update or inserts) via the <code class="inline">:on_conflict</code>
+option. The <code class="inline">:on_conflict</code> option supports the following values:</p>
+<ul>
+<li><code class="inline">:raise</code> - raises if there is a conflicting primary key or unique index
+</li>
+<li><code class="inline">:nothing</code> - ignores the error in case of conflicts
+</li>
+<li><code class="inline">:replace_all</code> - replace all entries in the database by the one being
+currently attempted
+</li>
+<li>a keyword list of update instructions - such as the one given to
+<code class="inline">c:update_all/3</code>, for example: <code class="inline">[set: [title: &quot;new title&quot;]]</code>
+</li>
+<li>an <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Query.html"><code class="inline">Ecto.Query</code></a> that will act as an <code class="inline">UPDATE</code> statement, such as the
+one given to <code class="inline">c:update_all/3</code>
+</li>
+</ul>
+<p>Upserts map to “ON CONFLICT” on databases like Postgres and “ON DUPLICATE KEY”
+on databases such as MySQL.</p>
+<p>As an example, imagine <code class="inline">:title</code> is marked as a unique column in
+the database:</p>
+<pre><code class="elixir"># Insert it once
+{:ok, inserted} = MyRepo.insert(%Post{title: &quot;this is unique&quot;})
+
+# Insert with the same title but do nothing on conflicts.
+# Keep in mind that, although this returns :ok, the returned
+# struct does not reflect the data in the database. For instance,
+# in case of &quot;on_conflict: :nothing&quot;, the returned post has no ID.
+{:ok, ignored} = MyRepo.insert(%Post{title: &quot;this is unique&quot;}, on_conflict: :nothing)
+assert ignored.id == nil
+
+# Now let&#39;s insert with the same title but use a query to update
+# a column on conflicts. Although this returns :ok and a struct with
+# the existing ID for successful operations, the other columns may
+# not necessarily reflect the data in the database. In fact, any
+# operation done on `:on_conflict` won&#39;t be automatically mapped to
+# the struct.
+
+# In Postgres (it requires the conflict target for updates):
+on_conflict = [set: [body: &quot;updated&quot;]]
+{:ok, updated} = MyRepo.insert(%Post{title: &quot;this is unique&quot;},
+                               on_conflict: on_conflict, conflict_target: :title)
+
+# In MySQL (conflict target is not supported):
+on_conflict = [set: [title: &quot;updated&quot;]]
+{:ok, updated} = MyRepo.insert(%Post{id: inserted.id, title: &quot;updated&quot;},
+                               on_conflict: on_conflict)</code></pre>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:insert/2"><code class="inline">Ecto.Repo.insert/2</code></a>.</p>
 
   </section>
 </div>
@@ -825,7 +936,7 @@ end</code></pre>
   </div>
   <section class="docstring">
     <p>Same as <a href="#insert/2"><code class="inline">insert/2</code></a> but returns the struct or raises if the changeset is invalid.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:insert!/2"><code class="inline">Ecto.Repo.insert!/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:insert!/2"><code class="inline">Ecto.Repo.insert!/2</code></a>.</p>
 
   </section>
 </div>
@@ -879,10 +990,67 @@ fields, where a struct is still returned but only with the
 given fields. Or <code class="inline">false</code>, where nothing is returned (the default).
 This option is not supported by all databases.
 </li>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL).
+</li>
+<li><code class="inline">:on_conflict</code> - It may be one of <code class="inline">:raise</code> (the default), <code class="inline">:nothing</code>,
+<code class="inline">:replace_all</code>, a keyword list of update instructions or an <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Query.html"><code class="inline">Ecto.Query</code></a>
+query for updates. See the “Upserts” section for more information.
+</li>
+<li><code class="inline">:conflict_target</code> - Which columns to verify for conflicts. If
+none is specified, the conflict target is left up to the database
+and is usually made of primary keys and/or unique/exclusion constraints.
+</li>
 </ul>
 <p>See the “Shared options” section at the module documentation for
 remaining options.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:insert_all/3"><code class="inline">Ecto.Repo.insert_all/3</code></a>.</p>
+<h2 id="insert_all/3-examples" class="section-heading">
+  <a href="#insert_all/3-examples" class="hover-link"><i class="icon-link"></i></a>
+  Examples
+</h2>
+
+<pre><code class="elixir">MyRepo.insert_all(Post, [[title: &quot;My first post&quot;], [title: &quot;My second post&quot;]])
+MyRepo.insert_all(Post, [%{title: &quot;My first post&quot;}, %{title: &quot;My second post&quot;}])</code></pre>
+<h2 id="insert_all/3-upserts" class="section-heading">
+  <a href="#insert_all/3-upserts" class="hover-link"><i class="icon-link"></i></a>
+  Upserts
+</h2>
+
+<p><code class="inline">insert_all</code> provides upserts (update or inserts) via the <code class="inline">:on_conflict</code>
+option. The <code class="inline">:on_conflict</code> option supports the following values:</p>
+<ul>
+<li><code class="inline">:raise</code> - raises if there is a conflicting primary key or unique index
+</li>
+<li><code class="inline">:nothing</code> - ignores the error in case of conflicts
+</li>
+<li><code class="inline">:replace_all</code> - replace all entries in the database by the one being
+currently attempted
+</li>
+<li>a keyword list of update instructions - such as the one given to
+<code class="inline">c:update_all/3</code>, for example: <code class="inline">[set: [title: &quot;new title&quot;]]</code>
+</li>
+<li>an <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Query.html"><code class="inline">Ecto.Query</code></a> that will act as an <code class="inline">UPDATE</code> statement, such as the
+one given to <code class="inline">c:update_all/3</code>
+</li>
+</ul>
+<p>Upserts map to “ON CONFLICT” on databases like Postgres and “ON DUPLICATE KEY”
+on databases such as MySQL.</p>
+<h2 id="insert_all/3-return-values" class="section-heading">
+  <a href="#insert_all/3-return-values" class="hover-link"><i class="icon-link"></i></a>
+  Return values
+</h2>
+
+<p>By default, both Postgres and MySQL return the amount of entries
+inserted on <code class="inline">insert_all</code>. However, when the <code class="inline">:on_conflict</code> option
+is specified, Postgres will only return a row if it was affected
+while MySQL returns at least the number of entries attempted.</p>
+<p>For example, if <code class="inline">:on_conflict</code> is set to <code class="inline">:nothing</code>, Postgres will
+return 0 if no new entry was added while MySQL will still return
+the amount of entries attempted to be inserted, even if no entry
+was added. Even worse, if <code class="inline">:on_conflict</code> is query, MySQL will return
+the number of attempted entries plus the number of entries modified
+by the UPDATE query.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:insert_all/3"><code class="inline">Ecto.Repo.insert_all/3</code></a>.</p>
 
   </section>
 </div>
@@ -907,7 +1075,7 @@ remaining options.</p>
     <p>Inserts or updates a changeset depending on whether the struct is persisted
 or not.</p>
 <p>The distinction whether to insert or update will be made on the
-<a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Schema.Metadata.html"><code class="inline">Ecto.Schema.Metadata</code></a> field <code class="inline">:state</code>. The <code class="inline">:state</code> is automatically set by
+<a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Schema.Metadata.html"><code class="inline">Ecto.Schema.Metadata</code></a> field <code class="inline">:state</code>. The <code class="inline">:state</code> is automatically set by
 Ecto when loading or building a schema.</p>
 <p>Please note that for this to work, you will have to load existing structs from
 the database. So even if the struct exists, this won’t work:</p>
@@ -919,6 +1087,12 @@ MyRepo.insert_or_update changeset
   Options
 </h2>
 
+<ul>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the struct.
+</li>
+</ul>
 <p>See the “Shared options” section at the module documentation.</p>
 <h2 id="insert_or_update/2-example" class="section-heading">
   <a href="#insert_or_update/2-example" class="hover-link"><i class="icon-link"></i></a>
@@ -937,7 +1111,7 @@ case result do
   {:ok, struct}       -&gt; # Inserted or updated with success
   {:error, changeset} -&gt; # Something went wrong
 end</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:insert_or_update/2"><code class="inline">Ecto.Repo.insert_or_update/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:insert_or_update/2"><code class="inline">Ecto.Repo.insert_or_update/2</code></a>.</p>
 
   </section>
 </div>
@@ -961,7 +1135,56 @@ end</code></pre>
   <section class="docstring">
     <p>Same as <a href="#insert_or_update/2"><code class="inline">insert_or_update/2</code></a> but returns the struct or raises if the changeset
 is invalid.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:insert_or_update!/2"><code class="inline">Ecto.Repo.insert_or_update!/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:insert_or_update!/2"><code class="inline">Ecto.Repo.insert_or_update!/2</code></a>.</p>
+
+  </section>
+</div>
+<div class="detail" id="load/2">
+  
+  <div class="detail-header">
+    <a href="#load/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">load(schema_or_types, data)</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/repo.ex#L5" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Loads <code class="inline">data</code> into a struct or a map.</p>
+<p>The first argument can be a schema, or a map (of types) and determines the return value:
+a struct or a map, respectively.</p>
+<p>The second argument <code class="inline">data</code> specifies fields and values that are to be loaded.
+It can be a map, a keyword list, or a <code class="inline">{fields, values}</code> tuple.
+Fields can be atoms or strings.</p>
+<p>Fields that are not present in the schema (or <code class="inline">types</code> map) are ignored.
+If any of the values has invalid type, an error is raised.</p>
+<h2 id="load/2-examples" class="section-heading">
+  <a href="#load/2-examples" class="hover-link"><i class="icon-link"></i></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; MyRepo.load(User, %{name: &quot;Alice&quot;, age: 25})
+%User{name: &quot;Alice&quot;, age: 25}
+
+iex&gt; MyRepo.load(User, [name: &quot;Alice&quot;, age: 25])
+%User{name: &quot;Alice&quot;, age: 25}</code></pre>
+<p><code class="inline">data</code> can also take form of <code class="inline">{fields, values}</code>:</p>
+<pre><code class="iex elixir">iex&gt; MyRepo.load(User, {[:name, :age], [&quot;Alice&quot;, 25]})
+%User{name: &quot;Alice&quot;, age: 25, ...}</code></pre>
+<p>The first argument can also be a <code class="inline">types</code> map:</p>
+<pre><code class="iex elixir">iex&gt; types = %{name: :string, age: :integer}
+iex&gt; MyRepo.load(types, %{name: &quot;Alice&quot;, age: 25})
+%{name: &quot;Alice&quot;, age: 25}</code></pre>
+<p>This function is especially useful when parsing raw query results:</p>
+<pre><code class="iex elixir">iex&gt; result = Ecto.Adapters.SQL.query!(MyRepo, &quot;SELECT * FROM users&quot;, [])
+iex&gt; Enum.map(result.rows, &amp;MyRepo.load(User, {result.columns, &amp;1}))
+[%User{...}, ...]</code></pre>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:load/2"><code class="inline">Ecto.Repo.load/2</code></a>.</p>
 
   </section>
 </div>
@@ -991,7 +1214,7 @@ is invalid.</p>
 </h2>
 
 <p>See the “Shared options” section at the module documentation.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:one/2"><code class="inline">Ecto.Repo.one/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:one/2"><code class="inline">Ecto.Repo.one/2</code></a>.</p>
 
   </section>
 </div>
@@ -1013,7 +1236,7 @@ is invalid.</p>
     
   </div>
   <section class="docstring">
-    <p>Similar to <a href="#one/2"><code class="inline">one/2</code></a> but raises <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found.</p>
+    <p>Similar to <a href="#one/2"><code class="inline">one/2</code></a> but raises <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no record was found.</p>
 <p>Raises if more than one entry.</p>
 <h2 id="one!/2-options" class="section-heading">
   <a href="#one!/2-options" class="hover-link"><i class="icon-link"></i></a>
@@ -1021,7 +1244,7 @@ is invalid.</p>
 </h2>
 
 <p>See the “Shared options” section at the module documentation.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:one!/2"><code class="inline">Ecto.Repo.one!/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:one!/2"><code class="inline">Ecto.Repo.one!/2</code></a>.</p>
 
   </section>
 </div>
@@ -1044,7 +1267,7 @@ is invalid.</p>
   </div>
   <section class="docstring">
     <p>Preloads all associations on the given struct or structs.</p>
-<p>This is similar to <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Query.html#preload/3"><code class="inline">Ecto.Query.preload/3</code></a> except it allows
+<p>This is similar to <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Query.html#preload/3"><code class="inline">Ecto.Query.preload/3</code></a> except it allows
 you to preload structs after they have been fetched from the
 database.</p>
 <p>In case the association was already loaded, preload won’t attempt
@@ -1078,7 +1301,7 @@ option allows the prefix to be changed.
 <pre><code class="elixir">posts = Repo.preload posts, :comments
 posts = Repo.preload posts, comments: :permalinks
 posts = Repo.preload posts, comments: from(c in Comment, order_by: c.published_at)</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:preload/3"><code class="inline">Ecto.Repo.preload/3</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:preload/3"><code class="inline">Ecto.Repo.preload/3</code></a>.</p>
 
   </section>
 </div>
@@ -1102,7 +1325,9 @@ posts = Repo.preload posts, comments: from(c in Comment, order_by: c.published_a
     
   </div>
   <section class="docstring">
-    
+    <p>A convenience function for SQL-based repositories that executes the given query.</p>
+<p>See <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Adapters.SQL.html#query/3"><code class="inline">Ecto.Adapters.SQL.query/3</code></a> for more information.</p>
+
   </section>
 </div>
 <div class="detail" id="query!/3">
@@ -1125,7 +1350,9 @@ posts = Repo.preload posts, comments: from(c in Comment, order_by: c.published_a
     
   </div>
   <section class="docstring">
-    
+    <p>A convenience function for SQL-based repositories that executes the given query.</p>
+<p>See <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Adapters.SQL.html#query/3"><code class="inline">Ecto.Adapters.SQL.query/3</code></a> for more information.</p>
+
   </section>
 </div>
 <div class="detail" id="rollback/1">
@@ -1152,7 +1379,7 @@ posts = Repo.preload posts, comments: from(c in Comment, order_by: c.published_a
   <section class="docstring">
     <p>Rolls back the current transaction.</p>
 <p>The transaction will return the value given as <code class="inline">{:error, value}</code>.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:rollback/1"><code class="inline">Ecto.Repo.rollback/1</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:rollback/1"><code class="inline">Ecto.Repo.rollback/1</code></a>.</p>
 
   </section>
 </div>
@@ -1175,7 +1402,7 @@ posts = Repo.preload posts, comments: from(c in Comment, order_by: c.published_a
   </div>
   <section class="docstring">
     <p>Starts any connection pooling or supervision and return <code class="inline">{:ok, pid}</code>
-or just <code class="inline">:ok</code> if nothing needs to be done. </p>
+or just <code class="inline">:ok</code> if nothing needs to be done.</p>
 <p>Returns <code class="inline">{:error, {:already_started, pid}}</code> if the repo is already
 started or <code class="inline">{:error, term}</code> in case anything else goes wrong.</p>
 <h2 id="start_link/1-options" class="section-heading">
@@ -1185,7 +1412,7 @@ started or <code class="inline">{:error, term}</code> in case anything else goes
 
 <p>See the configuration in the moduledoc for options shared between adapters,
 for adapter-specific configuration see the adapter’s documentation.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:start_link/1"><code class="inline">Ecto.Repo.start_link/1</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:start_link/1"><code class="inline">Ecto.Repo.start_link/1</code></a>.</p>
 
   </section>
 </div>
@@ -1208,7 +1435,60 @@ for adapter-specific configuration see the adapter’s documentation.</p>
   </div>
   <section class="docstring">
     <p>Shuts down the repository represented by the given pid.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:stop/2"><code class="inline">Ecto.Repo.stop/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:stop/2"><code class="inline">Ecto.Repo.stop/2</code></a>.</p>
+
+  </section>
+</div>
+<div class="detail" id="stream/2">
+  
+    <span id="stream/1" />
+  
+  <div class="detail-header">
+    <a href="#stream/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">stream(queryable, opts \\ [])</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/repo.ex#L5" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Returns a lazy enumerable that emits all entries from the data store
+matching the given query. SQL adapters, such as Postgres and MySQL, can only
+enumerate a stream inside a transaction.</p>
+<p>May raise <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.QueryError.html"><code class="inline">Ecto.QueryError</code></a> if query validation fails.</p>
+<h2 id="stream/2-options" class="section-heading">
+  <a href="#stream/2-options" class="hover-link"><i class="icon-link"></i></a>
+  Options
+</h2>
+
+<ul>
+<li><p><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the query</p>
+</li>
+<li><p><code class="inline">:max_rows</code> - The number of rows to load from the database as we stream.
+It is supported at least by Postgres and MySQL and defaults to 500.</p>
+</li>
+</ul>
+<p>See the “Shared options” section at the module documentation.</p>
+<h2 id="stream/2-example" class="section-heading">
+  <a href="#stream/2-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir"># Fetch all post titles
+query = from p in Post,
+     select: p.title
+stream = MyRepo.stream(query)
+MyRepo.transaction(fn() -&gt;
+  Enum.to_list(stream)
+end)</code></pre>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:stream/2"><code class="inline">Ecto.Repo.stream/2</code></a>.</p>
 
   </section>
 </div>
@@ -1230,7 +1510,7 @@ for adapter-specific configuration see the adapter’s documentation.</p>
     
   </div>
   <section class="docstring">
-    <p>Runs the given function or <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> inside a transaction.</p>
+    <p>Runs the given function or <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> inside a transaction.</p>
 <h2 id="transaction/2-use-with-function" class="section-heading">
   <a href="#transaction/2-use-with-function" class="hover-link"><i class="icon-link"></i></a>
   Use with function
@@ -1260,8 +1540,8 @@ success committed returning <code class="inline">{:ok, changes}</code>. In case 
 the transaction will be rolled back and
 <code class="inline">{:error, failed_operation, failed_value, changes_so_far}</code> will be
 returned.</p>
-<p>You can read more about using transactions with <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> as well as
-see some examples in the <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> documentation.</p>
+<p>You can read more about using transactions with <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> as well as
+see some examples in the <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Multi.html"><code class="inline">Ecto.Multi</code></a> documentation.</p>
 <h2 id="transaction/2-options" class="section-heading">
   <a href="#transaction/2-options" class="hover-link"><i class="icon-link"></i></a>
   Options
@@ -1290,7 +1570,7 @@ end)
 Ecto.Multi.new
 |&gt; Ecto.Multi.insert(:post, %Post{})
 |&gt; MyRepo.transaction</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:transaction/2"><code class="inline">Ecto.Repo.transaction/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:transaction/2"><code class="inline">Ecto.Repo.transaction/2</code></a>.</p>
 
   </section>
 </div>
@@ -1314,8 +1594,10 @@ Ecto.Multi.new
   <section class="docstring">
     <p>Updates a changeset using its primary key.</p>
 <p>A changeset is required as it is the only mechanism for
-tracking dirty changes.</p>
-<p>If the struct has no primary key, <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.NoPrimaryKeyFieldError.html"><code class="inline">Ecto.NoPrimaryKeyFieldError</code></a>
+tracking dirty changes. Only the fields present in the <code class="inline">changes</code> part
+of the changeset are sent to the database. Any other, in-memory
+changes done to the schema are ignored.</p>
+<p>If the struct has no primary key, <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.NoPrimaryKeyFieldError.html"><code class="inline">Ecto.NoPrimaryKeyFieldError</code></a>
 will be raised.</p>
 <p>It returns <code class="inline">{:ok, struct}</code> if the struct has been successfully
 updated or <code class="inline">{:error, changeset}</code> if there was a validation
@@ -1333,6 +1615,10 @@ it accepts:</p>
 callbacks will always be executed, even if there are no changes
 (including timestamps).
 </li>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the struct.
+</li>
 </ul>
 <h2 id="update/2-example" class="section-heading">
   <a href="#update/2-example" class="hover-link"><i class="icon-link"></i></a>
@@ -1345,7 +1631,7 @@ case MyRepo.update post do
   {:ok, struct}       -&gt; # Updated with success
   {:error, changeset} -&gt; # Something went wrong
 end</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:update/2"><code class="inline">Ecto.Repo.update/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:update/2"><code class="inline">Ecto.Repo.update/2</code></a>.</p>
 
   </section>
 </div>
@@ -1368,7 +1654,7 @@ end</code></pre>
   </div>
   <section class="docstring">
     <p>Same as <a href="#update/2"><code class="inline">update/2</code></a> but returns the struct or raises if the changeset is invalid.</p>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:update!/2"><code class="inline">Ecto.Repo.update!/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:update!/2"><code class="inline">Ecto.Repo.update!/2</code></a>.</p>
 
   </section>
 </div>
@@ -1397,7 +1683,7 @@ does not support RETURNING in UPDATE statements or no
 return result was selected, the second element will be <code class="inline">nil</code>.</p>
 <p>Keep in mind this <code class="inline">update_all</code> will not update autogenerated
 fields like the <code class="inline">updated_at</code> columns.</p>
-<p>See <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Query.html#update/3"><code class="inline">Ecto.Query.update/3</code></a> for update operations that can be
+<p>See <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Query.html#update/3"><code class="inline">Ecto.Query.update/3</code></a> for update operations that can be
 performed on fields.</p>
 <h2 id="update_all/3-options" class="section-heading">
   <a href="#update_all/3-options" class="hover-link"><i class="icon-link"></i></a>
@@ -1410,6 +1696,10 @@ returns all fields in the given struct. May be a list of
 fields, where a struct is still returned but only with the
 given fields. Or <code class="inline">false</code>, where nothing is returned (the default).
 This option is not supported by all databases.
+</li>
+<li><code class="inline">:prefix</code> - The prefix to run the query on (such as the schema path
+in Postgres or the database in MySQL). This overrides the prefix set
+in the query.
 </li>
 </ul>
 <p>See the “Shared options” section at the module documentation for
@@ -1431,7 +1721,7 @@ from(p in Post, where: p.id &lt; 10, update: [set: [title: &quot;New title&quot;
 
 from(p in Post, where: p.id &lt; 10, update: [set: [title: fragment(&quot;?&quot;, new_title)]])
 |&gt; MyRepo.update_all([])</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.0.6/Ecto.Repo.html#c:update_all/3"><code class="inline">Ecto.Repo.update_all/3</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/ecto/2.1.3/Ecto.Repo.html#c:update_all/3"><code class="inline">Ecto.Repo.update_all/3</code></a>.</p>
 
   </section>
 </div>

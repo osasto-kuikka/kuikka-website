@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Frontend.Page.ForumView – Kuikka Website v0.0.1</title>
+    <title>KuikkaDB.Users – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-4c27e31df8.js"></script>
@@ -59,15 +59,34 @@
 
       <h1>
         <small class="visible-xs">Kuikka Website v0.0.1</small>
-        Frontend.Page.ForumView
+        KuikkaDB.Users
         
         
-          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/views/page/forum_view.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
       </h1>
 
+      
+        <section id="moduledoc">
+          <h2 id="module-table" class="section-heading">
+  <a href="#module-table" class="hover-link"><i class="icon-link"></i></a>
+  Table
+</h2>
+
+<pre><code class="elixir">:steamid, :decimal, size: 64, null: false
+:createtime, :utc_datetime, null: false
+:modifytime, :utc_datetime
+:role_id, references(:roles), null: false</code></pre>
+<h2 id="module-index" class="section-heading">
+  <a href="#module-index" class="hover-link"><i class="icon-link"></i></a>
+  Index
+</h2>
+
+<pre><code class="elixir">index(:users, :steamid, unique: true)</code></pre>
+
+        </section>
       
 
       
@@ -87,57 +106,55 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#__phoenix_recompile__?/0">__phoenix_recompile__?()</a>
+    <a href="#delete/1">delete(conds)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Returns true whenever the list of templates changes in the filesystem</p>
+    <div class="summary-synopsis"><p>Delete row</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#__resource__/0">__resource__()</a>
+    <a href="#get/1">get(conds)</a>
   </div>
   
-    <div class="summary-synopsis"><p>The resource name, as an atom, for this view</p>
+    <div class="summary-synopsis"><p>Get row</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#__templates__/0">__templates__()</a>
+    <a href="#get_with_role/1">get_with_role(steamid)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Returns the template root alongside all templates</p>
+    <div class="summary-synopsis"><p>Get single user with role</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#markdown_to_html/1">markdown_to_html(markdown)</a>
+    <a href="#insert/1">insert(params)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Convert markdown to html</p>
+    <div class="summary-synopsis"><p>Insert new row</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#render/2">render(template, assigns \\ %{})</a>
+    <a href="#members_list/0">members_list()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Renders the given template locally</p>
+    <div class="summary-synopsis"><p>Get all users</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#template_not_found/2">template_not_found(template, assigns)</a>
+    <a href="#update/2">update(params, conds)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Callback invoked when no template is found.
-By default it raises but can be customized
-to render a particular template</p>
+    <div class="summary-synopsis"><p>Update row</p>
 </div>
   
 </div>
@@ -162,75 +179,15 @@ to render a particular template</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="__phoenix_recompile__?/0">
+          <div class="detail" id="delete/1">
   
   <div class="detail-header">
-    <a href="#__phoenix_recompile__?/0" class="detail-link" title="Link to this function">
+    <a href="#delete/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">__phoenix_recompile__?()</span>
+    <span class="signature">delete(conds)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/views/page/forum_view.ex#L1" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Returns true whenever the list of templates changes in the filesystem.</p>
-
-  </section>
-</div>
-<div class="detail" id="__resource__/0">
-  
-  <div class="detail-header">
-    <a href="#__resource__/0" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">__resource__()</span>
-    
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/views/page/forum_view.ex#L2" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>The resource name, as an atom, for this view</p>
-
-  </section>
-</div>
-<div class="detail" id="__templates__/0">
-  
-  <div class="detail-header">
-    <a href="#__templates__/0" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">__templates__()</span>
-    
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/views/page/forum_view.ex#L1" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Returns the template root alongside all templates.</p>
-
-  </section>
-</div>
-<div class="detail" id="markdown_to_html/1">
-  
-  <div class="detail-header">
-    <a href="#markdown_to_html/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">markdown_to_html(markdown)</span>
-    
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/views/page/forum_view.ex#L9" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L40" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -238,47 +195,25 @@ to render a particular template</p>
     
       <div class="specs">
         
-          <pre>markdown_to_html(binary) :: binary</pre>
+          <pre>delete(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Convert markdown to html</p>
+    <p>Delete row</p>
 
   </section>
 </div>
-<div class="detail" id="render/2">
-  
-    <span id="render/1" />
+<div class="detail" id="get/1">
   
   <div class="detail-header">
-    <a href="#render/2" class="detail-link" title="Link to this function">
+    <a href="#get/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">render(template, assigns \\ %{})</span>
+    <span class="signature">get(conds)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/views/page/forum_view.ex#L2" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Renders the given template locally.</p>
-
-  </section>
-</div>
-<div class="detail" id="template_not_found/2">
-  
-  <div class="detail-header">
-    <a href="#template_not_found/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">template_not_found(template, assigns)</span>
-    
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/views/page/forum_view.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L22" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -286,15 +221,117 @@ to render a particular template</p>
     
       <div class="specs">
         
-          <pre>template_not_found(<a href="https://hexdocs.pm/phoenix/1.2.1/Phoenix.Template.html#t:name/0">Phoenix.Template.name</a>, map) :: no_return</pre>
+          <pre>get(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Callback invoked when no template is found.
-By default it raises but can be customized
-to render a particular template.</p>
+    <p>Get row</p>
+
+  </section>
+</div>
+<div class="detail" id="get_with_role/1">
+  
+  <div class="detail-header">
+    <a href="#get_with_role/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get_with_role(steamid)</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L64" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>get_with_role(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a> | integer) :: {:ok | :error, term}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Get single user with role</p>
+
+  </section>
+</div>
+<div class="detail" id="insert/1">
+  
+  <div class="detail-header">
+    <a href="#insert/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">insert(params)</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L28" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>insert(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Insert new row</p>
+
+  </section>
+</div>
+<div class="detail" id="members_list/0">
+  
+  <div class="detail-header">
+    <a href="#members_list/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">members_list()</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L46" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>members_list() :: {:ok, <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a>} | {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Get all users</p>
+
+  </section>
+</div>
+<div class="detail" id="update/2">
+  
+  <div class="detail-header">
+    <a href="#update/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">update(params, conds)</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L34" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>update(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>, <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Update row</p>
 
   </section>
 </div>

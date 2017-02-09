@@ -8,7 +8,7 @@
     <title>Frontend.Gettext – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-7220c947f5.js"></script>
+    <script src="dist/sidebar_items-4c27e31df8.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -143,7 +143,19 @@ dgettext &quot;errors&quot;, &quot;Here is the error message to translate&quot;<
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#dgettext_noop/2">dgettext_noop(domain, msgid)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#dngettext/5">dngettext(domain, msgid, msgid_plural, n, bindings \\ Macro.escape(%{}))</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#dngettext_noop/3">dngettext_noop(domain, msgid, msgid_plural)</a>
   </div>
   
 </div>
@@ -155,7 +167,19 @@ dgettext &quot;errors&quot;, &quot;Here is the error message to translate&quot;<
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#gettext_noop/1">gettext_noop(msgid)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#ngettext/4">ngettext(msgid, msgid_plural, n, bindings \\ Macro.escape(%{}))</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#ngettext_noop/2">ngettext_noop(msgid, msgid_plural)</a>
   </div>
   
 </div>
@@ -196,7 +220,7 @@ dgettext &quot;errors&quot;, &quot;Here is the error message to translate&quot;<
   <section class="docstring">
     <p>Default handling for missing bindings.</p>
 <p>This function is called when there are missing bindings in a translation. It
-takes a <a href="https://hexdocs.pm/gettext/0.12.2/Gettext.MissingBindingsError.html"><code class="inline">Gettext.MissingBindingsError</code></a> struct and the translation with the
+takes a <a href="https://hexdocs.pm/gettext/0.13.1/Gettext.MissingBindingsError.html"><code class="inline">Gettext.MissingBindingsError</code></a> struct and the translation with the
 wrong bindings left as is with the <code class="inline">%{}</code> syntax.</p>
 <p>For example, if something like this is called:</p>
 <pre><code class="elixir">MyApp.Gettext.gettext(&quot;Hello %{name}, welcome to %{country}&quot;, name: &quot;Jane&quot;, country: &quot;Italy&quot;)</code></pre>
@@ -223,7 +247,7 @@ bindings:</p>
 <pre><code class="elixir">def handle_missing_bindings(exception, _incomplete) do
   raise exception
 end</code></pre>
-<p>Callback implementation for <a href="https://hexdocs.pm/gettext/0.12.2/Gettext.Backend.html#c:handle_missing_bindings/2"><code class="inline">Gettext.Backend.handle_missing_bindings/2</code></a>.</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/gettext/0.13.1/Gettext.Backend.html#c:handle_missing_bindings/2"><code class="inline">Gettext.Backend.handle_missing_bindings/2</code></a>.</p>
 
   </section>
 </div>
@@ -298,6 +322,25 @@ end</code></pre>
     
   </section>
 </div>
+<div class="detail" id="dgettext_noop/2">
+  
+  <div class="detail-header">
+    <a href="#dgettext_noop/2" class="detail-link" title="Link to this macro">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">dgettext_noop(domain, msgid)</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/gettext.ex#L1" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
 <div class="detail" id="dngettext/5">
   
     <span id="dngettext/4" />
@@ -307,6 +350,25 @@ end</code></pre>
       <i class="icon-link"></i>
     </a>
     <span class="signature">dngettext(domain, msgid, msgid_plural, n, bindings \\ Macro.escape(%{}))</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/gettext.ex#L1" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="dngettext_noop/3">
+  
+  <div class="detail-header">
+    <a href="#dngettext_noop/3" class="detail-link" title="Link to this macro">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">dngettext_noop(domain, msgid, msgid_plural)</span>
     
       <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/gettext.ex#L1" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
@@ -340,6 +402,25 @@ end</code></pre>
     
   </section>
 </div>
+<div class="detail" id="gettext_noop/1">
+  
+  <div class="detail-header">
+    <a href="#gettext_noop/1" class="detail-link" title="Link to this macro">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">gettext_noop(msgid)</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/gettext.ex#L1" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
 <div class="detail" id="ngettext/4">
   
     <span id="ngettext/3" />
@@ -349,6 +430,25 @@ end</code></pre>
       <i class="icon-link"></i>
     </a>
     <span class="signature">ngettext(msgid, msgid_plural, n, bindings \\ Macro.escape(%{}))</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/gettext.ex#L1" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="ngettext_noop/2">
+  
+  <div class="detail-header">
+    <a href="#ngettext_noop/2" class="detail-link" title="Link to this macro">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">ngettext_noop(msgid, msgid_plural)</span>
     
       <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/gettext.ex#L1" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
