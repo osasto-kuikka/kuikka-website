@@ -43,13 +43,13 @@ defmodule KuikkaDB.Topics do
   defquery topic_list() do
     """
     select
-        t.id
-      , t.title
-      , t.text
-      , ca.name as category
-      , ca.color as category_color
-      , u.id as user_id
-      , u.steamid as user
+      t.id,
+      t.title,
+      t.text,
+      ca.name as category,
+      ca.color as category_color,
+      u.id as user_id,
+      u.steamid as user
     from topics t
     inner join users u on t.user_id = u.id
     inner join categories ca on t.category_id = ca.id
