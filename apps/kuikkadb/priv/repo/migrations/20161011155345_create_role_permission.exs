@@ -10,10 +10,10 @@ defmodule KuikkaDB.Repo.Migrations.CreateRolePermission do
   use Ecto.Migration
 
   def change do
-    create table(:role_permission) do
-      add :role_id, references(:role), null: false
-      add :permission_id, references(:permission), null: false
+    create table(:role_permissions) do
+      add :role_id, references(:roles), null: false
+      add :permission_id, references(:permissions), null: false
     end
-    create index(:role_permission, [:role_id, :permission_id], unique: true)
+    create index(:role_permissions, [:role_id, :permission_id], unique: true)
   end
 end

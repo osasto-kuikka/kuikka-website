@@ -13,10 +13,10 @@ defmodule KuikkaDB.Repo.Migrations.CreateRole do
   use Ecto.Migration
 
   def change do
-    create table(:role) do
+    create table(:roles) do
       add :name, :string, size: 50, null: false
       add :description, :string, size: 250, null: true
     end
-    create index(:role, [:name], unique: true)
+    create index(:roles, [:name], unique: true)
   end
 end

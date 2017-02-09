@@ -8,9 +8,6 @@ defmodule KuikkaDB.Tasks do
   alias Ecto.Migrator
   alias KuikkaDB.Repo
 
-  # Get priv folder path for kuikkadb
-  @priv Application.app_dir(:kuikkadb, "priv/")
-
   @doc """
   This task will run migrations for kuikkadb.
 
@@ -24,7 +21,8 @@ defmodule KuikkaDB.Tasks do
   def migrate do
     {:ok, _} = Application.ensure_all_started(:kuikkadb)
 
-    path = Path.join([@priv, "repo", "migrations"])
+    priv = Application.app_dir(:kuikkadb, "priv/")
+    path = Path.join([priv, "repo", "migrations"])
 
     Migrator.run(Repo, path, :up, all: true)
   end

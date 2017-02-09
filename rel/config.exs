@@ -33,7 +33,7 @@ end
 # will be used by default
 
 release :kuikka_website do
-  set version: System.get_env("KUIKKA_WEBSITE_VERSION") || "0.1.0"
+  set version: "#{Keyword.get(KuikkaWebsite.Mixfile.project(), :version)}"
   set applications: [
     frontend: :permanent,
     kuikkadb: :permanent,

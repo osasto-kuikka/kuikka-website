@@ -24,6 +24,11 @@ use Mix.Config
 config :kuikkadb,
   ecto_repos: [KuikkaDB.Repo]
 
+config :defql, connection: [
+  adapter: Defql.Adapter.Ecto.Postgres,
+  repo: KuikkaDB.Repo
+]
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.

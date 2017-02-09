@@ -14,7 +14,7 @@
         <tr style="cursor:pointer" onclick="location.href='<%= member_path(@conn, :show, member.profile.steam_id64) %>'">
           <td><img src="<%= member.profile.avatar_icon %>"></img></td>
           <td><%= member.profile.steam_id %></td>
-          <td><%= member.role.name %></td>
+          <td><%= member.role %></td>
           <td><%= Frontend.Utils.to_date(member.createtime) %></td>
         </tr>
       <% end %>

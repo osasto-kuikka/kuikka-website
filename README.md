@@ -52,10 +52,6 @@ mix db.setup (Setup database)
 mix db.reset (Reset database)
 ```
 
-### Get Steam API key (required for login functionality)
-* [Get key from here](http://steamcommunity.com/dev/apikey)
-* Add key to your environment variable as `STEAM_API_KEY`
-
 ## Running the application
 ```
 iex -S mix (Start console for program)

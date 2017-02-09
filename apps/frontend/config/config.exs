@@ -22,10 +22,6 @@ config :logger, :console,
 # Fixes warning from ecto
 config :frontend, ecto_repos: []
 
-# Steamex
-config :frontend, Steamex,
-       redirect_to: "/members/login"
-
 # Localization
 config :frontend, Frontend.Gettext,
   default_locale: "fi"

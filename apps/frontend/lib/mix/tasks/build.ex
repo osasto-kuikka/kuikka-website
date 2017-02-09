@@ -4,6 +4,7 @@ defmodule Mix.Tasks.Frontend.Build do
   """
 
   @doc "Build npm packages and digest them for phoenix"
+  @spec run(term) :: nil
   def run(_) do
     Mix.Shell.IO.cmd("cd apps/frontend && npm run deploy")
     Mix.Shell.IO.cmd("cd apps/frontend && mix phoenix.digest")
