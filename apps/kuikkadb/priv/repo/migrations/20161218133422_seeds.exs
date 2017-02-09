@@ -6,7 +6,6 @@ defmodule KuikkaDB.Repo.Migrations.Seeds do
   Should be included to table creation migrations on next migration cleanup
   """
   use Ecto.Migration
-  alias KuikkaDB.Repo
   alias KuikkaDB.Roles
 
   def up do
