@@ -4,7 +4,8 @@ defmodule KuikkaDB.User.Test do
   """
   use KuikkaDB.TestCase
 
-  alias KuikkaDB.{Users, Roles}
+  alias KuikkaDB.Users
+  alias KuikkaDB.Roles
 
   test "basic queries user" do
     assert {:ok, [role]} = Roles.get(name: "admin")

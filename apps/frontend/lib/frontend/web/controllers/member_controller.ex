@@ -3,6 +3,7 @@ defmodule Frontend.Page.MemberController do
   plug :put_layout, "base.html"
 
   alias KuikkaDB.Users
+  alias Steamex.Profile
 
   @doc """
   List all users.
@@ -50,8 +51,7 @@ defmodule Frontend.Page.MemberController do
   end
 
   defp add_profile(user) do
-    IO.inspect user
     steamid = Decimal.to_integer(user.steamid)
-    Map.put(user, :profile, Steamex.Profile.fetch(steamid))
+    Map.put(user, :profile, Profile.fetch(steamid))
   end
 end

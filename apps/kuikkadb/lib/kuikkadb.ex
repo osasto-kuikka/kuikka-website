@@ -6,18 +6,17 @@ defmodule KuikkaDB do
 
   alias KuikkaDB.Repo
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
+  @doc """
+  Start Kuikkadb supervisor application tree
+  """
+  @spec start(term, term) :: term
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    # Define workers and child supervisors to be supervised
     children = [
       supervisor(Repo, []),
     ]
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: KuikkaDB.Supervisor]
     Supervisor.start_link(children, opts)
   end

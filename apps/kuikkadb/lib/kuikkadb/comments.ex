@@ -49,8 +49,8 @@ defmodule KuikkaDB.Comments do
     from comments c
     inner join users u on u.id = c.user_id
     inner join topic_comments tc
-	    on tc.topic_id = $topic_id::integer
-	    and tc.comment_id = c.id
+      on tc.topic_id = $topic_id::integer
+      and tc.comment_id = c.id
     """
   end
 end

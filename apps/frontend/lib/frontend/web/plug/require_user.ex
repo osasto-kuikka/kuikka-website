@@ -7,8 +7,10 @@ defmodule Frontend.Plug.RequireUser do
   import Phoenix.Controller
   import Frontend.Gettext
 
+  @spec init(term) :: List.t
   def init(_), do: []
 
+  @spec call(Plug.Conn.t, term) :: Plug.Conn.t
   def call(conn, _options) do
     err_msg = gettext("Page you tried to access requires login")
     case conn.assigns.user do

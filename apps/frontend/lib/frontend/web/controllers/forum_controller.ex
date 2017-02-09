@@ -5,7 +5,11 @@ defmodule Frontend.Page.ForumController do
   use Frontend.Web, :controller
   plug :put_layout, "base.html"
 
-  alias KuikkaDB.{Topics, Categories, Comments, TopicComments}
+  alias KuikkaDB.Topics
+  alias KuikkaDB.Categories
+  alias KuikkaDB.Comments
+  alias KuikkaDB.TopicComments
+  alias Steamex.Profile
 
   @doc """
   Show all forum topics
@@ -107,6 +111,6 @@ defmodule Frontend.Page.ForumController do
   @spec profile_to_user(Map.t) :: Map.t
   defp profile_to_user(map) do
     steamid = Decimal.to_integer(Map.get(map, :user))
-    Map.put(map, :profile, Steamex.Profile.fetch(steamid))
+    Map.put(map, :profile, Profile.fetch(steamid))
   end
 end

@@ -19,6 +19,7 @@ defmodule Frontend.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
+  @spec connect(term, Phoenix.Socket.t) :: {:ok, Phoenix.Socket.t}
   def connect(_params, socket) do
     {:ok, socket}
   end
@@ -34,5 +35,6 @@ defmodule Frontend.UserSocket do
   #   Frontend.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
+  @spec id(term) :: nil
   def id(_socket), do: nil
 end
