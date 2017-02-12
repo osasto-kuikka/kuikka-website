@@ -27,7 +27,7 @@ defmodule Frontend.Mixfile do
     [mod: {Frontend, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :earmark,
                     :cowboy, :logger, :gettext, :timex, :kuikkadb, :steamex,
-                    :sweet_xml]]
+                    :sweet_xml, :wiki]]
   end
 
   # Specifies which paths to compile per environment.
