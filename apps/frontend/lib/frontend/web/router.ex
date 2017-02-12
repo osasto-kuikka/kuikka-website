@@ -26,6 +26,7 @@ defmodule Frontend.Router do
       resources "/members", MemberController, only: [:index, :show]
       resources "/forum", ForumController, only: [:index, :show,
                                                   :create, :update]
+      resources "/wiki", WikiController, only: [:index, :show, :create]
     end
   end
 end
