@@ -64,7 +64,39 @@ mix test (Run unit tests)
 mix lint (Run linter)
 ```
 
-## Create release build
+## Create release build for deployment
+Create release build
 ```
-MIX_ENV=prod mix release --env=prod
+MIX_ENV=prod COOKIE=*secret cookie* mix release --env=prod
+```
+Copy tar.gz to rel/files
+```
+cp _build/prod/rel/kuikka_website/releases/*version*/kuikka_website.tar.gz
+rel/files
+```
+Now you can pack rel/files to either zip or tar.gz
+
+## Deploying release
+
+### Install
+```
+sudo make install
+```
+Now you can change the setting
+```
+sudo vi /etc/kuikka-website/kuikka-website.conf
+```
+Then start
+```
+sudo systemctl start kuikka-website
+```
+
+### Update
+```
+sudo make update
+```
+
+### Uninstall
+```
+sudo make uninstall
 ```
