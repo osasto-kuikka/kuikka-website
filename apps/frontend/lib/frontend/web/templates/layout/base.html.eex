@@ -32,7 +32,7 @@
               <a class="header-link" href="<%= member_path(@conn, :index) %>">
                 <%= gettext("Members") %>
               </a>
-              <a class="header-link" href="wiki.osastokuikka.com">
+              <a class="header-link" href="<%= wiki_path(@conn, :index)">
                 <%= gettext("Wiki") %>
               </a>
               <div id="header-nav-right">
