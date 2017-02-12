@@ -1,0 +1,49 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: lib/frontend/web/templates/page/wiki/editor.html.eex:22
+msgid "Commit message"
+msgstr ""
+
+#: lib/frontend/web/templates/page/wiki/editor.html.eex:18
+msgid "Content"
+msgstr ""
+
+#: lib/frontend/web/templates/page/wiki/page.html.eex:13
+msgid "Edit page"
+msgstr ""
+
+#: lib/frontend/web/templates/page/wiki/page.html.eex:7
+msgid "Edit sidebar"
+msgstr ""
+
+#: lib/frontend/web/controllers/wiki_controller.ex:62
+#: lib/frontend/web/controllers/wiki_controller.ex:76
+msgid "Failed to find page"
+msgstr ""
+
+#: lib/frontend/web/templates/page/wiki/editor.html.eex:6
+#: lib/frontend/web/templates/page/wiki/editor.html.eex:12
+msgid "Name"
+msgstr ""
+
+#: lib/frontend/web/templates/page/wiki/page.html.eex:17
+msgid "New page"
+msgstr ""
+
+#: lib/frontend/web/controllers/wiki_controller.ex:106
+msgid "Page updated succefully"
+msgstr ""
+
+#: lib/frontend/web/controllers/wiki_controller.ex:91
+msgid "Sidebar updated succefully"
+msgstr ""

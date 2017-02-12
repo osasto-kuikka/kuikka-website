@@ -10,20 +10,12 @@
 msgid ""
 msgstr ""
 
-#: lib/frontend/web/controllers/member_controller.ex:29
-msgid "Failed to find requested user"
-msgstr ""
-
 #: lib/frontend/web/templates/layout/base.html.eex:24
 msgid "Events"
 msgstr ""
 
 #: lib/frontend/web/templates/layout/base.html.eex:27
 msgid "Forum"
-msgstr ""
-
-#: lib/frontend/web/controllers/member_controller.ex:40
-msgid "Given username is invalid"
 msgstr ""
 
 #: lib/frontend/web/templates/page/member/member_list.html.eex:9
@@ -65,10 +57,48 @@ msgstr ""
 msgid "Next event:"
 msgstr ""
 
-#: lib/frontend/web/plug/require_user.ex:13
+#: lib/frontend/web/plug/require_user.ex:15
 msgid "Page you tried to access requires login"
 msgstr ""
 
-#: lib/frontend/web/controllers/member_controller.ex:61
-msgid "You have been logged out"
+#: lib/frontend/web/templates/page/forum/topic_list.html.eex:11
+msgid "Category"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/topic.html.eex:42
+msgid "Comment"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/topic_list.html.eex:12
+msgid "Comments"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/editor.html.eex:10
+msgid "Content"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/topic_list.html.eex:5
+msgid "New topic"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/editor.html.eex:14
+msgid "Select category:"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/editor.html.eex:17
+#: lib/frontend/web/templates/page/forum/topic.html.eex:45
+#: lib/frontend/web/templates/page/wiki/editor.html.eex:25
+msgid "Submit"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/editor.html.eex:5
+msgid "Title"
+msgstr ""
+
+#: lib/frontend/web/templates/page/forum/topic_list.html.eex:10
+msgid "Topic"
+msgstr ""
+
+#: lib/frontend/web/controllers/member_controller.ex:16
+msgid "member"
 msgstr ""
