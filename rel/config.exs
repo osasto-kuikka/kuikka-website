@@ -22,7 +22,7 @@ end
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"#{System.get_env("KUIKKA_WEBSITE_COOKIE")}"
+  set cookie: :"#{System.get_env("COOKIE")}"
 
   set post_start_hook: "rel/hooks/post_start"
 end
