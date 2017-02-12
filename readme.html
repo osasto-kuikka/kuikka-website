@@ -8,7 +8,7 @@
     <title>README – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-cfa45541ce.js"></script>
+    <script src="dist/sidebar_items-8d73f9671e.js"></script>
   </head>
   <body data-type="extras">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -134,12 +134,32 @@ mix run --no-halt (Run program)</code></pre>
 
 <pre><code class="elixir">mix test (Run unit tests)
 mix lint (Run linter)</code></pre>
-<h2 id="create-release-build" class="section-heading">
-  <a href="#create-release-build" class="hover-link"><i class="icon-link"></i></a>
-  Create release build
+<h2 id="create-release-build-for-deployment" class="section-heading">
+  <a href="#create-release-build-for-deployment" class="hover-link"><i class="icon-link"></i></a>
+  Create release build for deployment
 </h2>
 
-<pre><code class="elixir">MIX_ENV=prod mix release --env=prod</code></pre>
+<p>Create release build</p>
+<pre><code class="elixir">MIX_ENV=prod COOKIE=*secret cookie* mix release --env=prod</code></pre>
+<p>Copy tar.gz to rel/files</p>
+<pre><code class="elixir">cp _build/prod/rel/kuikka_website/releases/*version*/kuikka_website.tar.gz
+rel/files</code></pre>
+<p>Now you can pack rel/files to either zip or tar.gz</p>
+<h2 id="deploying-release" class="section-heading">
+  <a href="#deploying-release" class="hover-link"><i class="icon-link"></i></a>
+  Deploying release
+</h2>
+
+<h3>Install</h3>
+<pre><code class="elixir">sudo make install</code></pre>
+<p>Now you can change the setting</p>
+<pre><code class="elixir">sudo vi /etc/kuikka-website/kuikka-website.conf</code></pre>
+<p>Then start</p>
+<pre><code class="elixir">sudo systemctl start kuikka-website</code></pre>
+<h3>Update</h3>
+<pre><code class="elixir">sudo make update</code></pre>
+<h3>Uninstall</h3>
+<pre><code class="elixir">sudo make uninstall</code></pre>
 
       <footer class="footer">
         <p>
