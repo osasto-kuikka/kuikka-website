@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>KuikkaDB.Users – Kuikka Website v0.0.1</title>
+    <title>Wiki – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-cfa45541ce.js"></script>
@@ -59,10 +59,10 @@
 
       <h1>
         <small class="visible-xs">Kuikka Website v0.0.1</small>
-        KuikkaDB.Users
+        Wiki
         
         
-          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/wiki/lib/wiki.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -70,21 +70,7 @@
 
       
         <section id="moduledoc">
-          <h2 id="module-table" class="section-heading">
-  <a href="#module-table" class="hover-link"><i class="icon-link"></i></a>
-  Table
-</h2>
-
-<pre><code class="elixir">:steamid, :decimal, size: 64, null: false
-:createtime, :utc_datetime, null: false
-:modifytime, :utc_datetime
-:role_id, references(:roles), null: false</code></pre>
-<h2 id="module-index" class="section-heading">
-  <a href="#module-index" class="hover-link"><i class="icon-link"></i></a>
-  Index
-</h2>
-
-<pre><code class="elixir">index(:users, :steamid, unique: true)</code></pre>
+          <p>Module.ule for adding new, updating or deleting wiki pages</p>
 
         </section>
       
@@ -106,55 +92,55 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#delete/1">delete(conds)</a>
+    <a href="#all/0">all()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Delete row</p>
+    <div class="summary-synopsis"><p>Return list of all pages</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get/1">get(conds)</a>
+    <a href="#delete/2">delete(page, steamid)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get row</p>
+    <div class="summary-synopsis"><p>Delete wiki page</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_with_role/1">get_with_role(steamid)</a>
+    <a href="#history/0">history()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get single user with role</p>
+    <div class="summary-synopsis"><p>Return wiki page change log</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#insert/1">insert(params)</a>
+    <a href="#read/1">read(page)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Insert new row</p>
+    <div class="summary-synopsis"><p>Read wiki page</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#members_list/0">members_list()</a>
+    <a href="#wiki_path/0">wiki_path()</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get all users</p>
+    <div class="summary-synopsis"><p>Get wiki path from application configs</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#update/2">update(params, conds)</a>
+    <a href="#write/3">write(page, content, commit_msg)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Update row</p>
+    <div class="summary-synopsis"><p>Create new wiki page or update old</p>
 </div>
   
 </div>
@@ -179,15 +165,15 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="delete/1">
+          <div class="detail" id="all/0">
   
   <div class="detail-header">
-    <a href="#delete/1" class="detail-link" title="Link to this function">
+    <a href="#all/0" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">delete(conds)</span>
+    <span class="signature">all()</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L40" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/wiki/lib/wiki.ex#L47" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -195,25 +181,25 @@
     
       <div class="specs">
         
-          <pre>delete(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+          <pre>all() :: {:ok, <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a>} | {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Delete row</p>
+    <p>Return list of all pages</p>
 
   </section>
 </div>
-<div class="detail" id="get/1">
+<div class="detail" id="delete/2">
   
   <div class="detail-header">
-    <a href="#get/1" class="detail-link" title="Link to this function">
+    <a href="#delete/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get(conds)</span>
+    <span class="signature">delete(page, steamid)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L22" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/wiki/lib/wiki.ex#L69" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -221,25 +207,31 @@
     
       <div class="specs">
         
-          <pre>get(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+          <pre>delete(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get row</p>
+    <p>Delete wiki page</p>
+<h2 id="delete/2-example" class="section-heading">
+  <a href="#delete/2-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">:ok = Wiki.delete(&quot;page&quot;, &quot;steamid123&quot;)</code></pre>
 
   </section>
 </div>
-<div class="detail" id="get_with_role/1">
+<div class="detail" id="history/0">
   
   <div class="detail-header">
-    <a href="#get_with_role/1" class="detail-link" title="Link to this function">
+    <a href="#history/0" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_with_role(steamid)</span>
+    <span class="signature">history()</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L64" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/wiki/lib/wiki.ex#L87" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -247,25 +239,25 @@
     
       <div class="specs">
         
-          <pre>get_with_role(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a> | integer) :: {:ok | :error, term}</pre>
+          <pre>history() :: {:ok, [<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>]}</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get single user with role</p>
+    <p>Return wiki page change log</p>
 
   </section>
 </div>
-<div class="detail" id="insert/1">
+<div class="detail" id="read/1">
   
   <div class="detail-header">
-    <a href="#insert/1" class="detail-link" title="Link to this function">
+    <a href="#read/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">insert(params)</span>
+    <span class="signature">read(page)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L28" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/wiki/lib/wiki.ex#L33" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -273,25 +265,25 @@
     
       <div class="specs">
         
-          <pre>insert(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+          <pre>read(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>) :: {:ok, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>} | {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Insert new row</p>
+    <p>Read wiki page</p>
 
   </section>
 </div>
-<div class="detail" id="members_list/0">
+<div class="detail" id="wiki_path/0">
   
   <div class="detail-header">
-    <a href="#members_list/0" class="detail-link" title="Link to this function">
+    <a href="#wiki_path/0" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">members_list()</span>
+    <span class="signature">wiki_path()</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L46" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/wiki/lib/wiki.ex#L109" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -299,25 +291,25 @@
     
       <div class="specs">
         
-          <pre>members_list() :: {:ok, <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a>} | {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
+          <pre>wiki_path() :: <a href="https://hexdocs.pm/elixir/Path.html#t:t/0">Path.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get all users</p>
+    <p>Get wiki path from application configs</p>
 
   </section>
 </div>
-<div class="detail" id="update/2">
+<div class="detail" id="write/3">
   
   <div class="detail-header">
-    <a href="#update/2" class="detail-link" title="Link to this function">
+    <a href="#write/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">update(params, conds)</span>
+    <span class="signature">write(page, content, commit_msg)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/users.ex#L34" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/wiki/lib/wiki.ex#L15" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -325,13 +317,21 @@
     
       <div class="specs">
         
-          <pre>update(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>, <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+          <pre>write(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>) ::
+  :ok |
+  {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Update row</p>
+    <p>Create new wiki page or update old</p>
+<h2 id="write/3-example" class="section-heading">
+  <a href="#write/3-example" class="hover-link"><i class="icon-link"></i></a>
+  Example
+</h2>
+
+<pre><code class="elixir">:ok = Wiki.new(&quot;page_name&quot;, &quot;page_content&quot;)</code></pre>
 
   </section>
 </div>

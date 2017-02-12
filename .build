@@ -4,7 +4,7 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-4c27e31df8.js
+dist/sidebar_items-cfa45541ce.js
 api-reference.html
 readme.html
 index.html
@@ -21,6 +21,8 @@ Frontend.Page.HomeController.html
 Frontend.Page.HomeView.html
 Frontend.Page.MemberController.html
 Frontend.Page.MemberView.html
+Frontend.Page.WikiController.html
+Frontend.Page.WikiView.html
 Frontend.Plug.GetUser.html
 Frontend.Plug.Locale.html
 Frontend.Plug.RequireUser.html
@@ -43,3 +45,4 @@ KuikkaDB.Tasks.html
 KuikkaDB.TopicComments.html
 KuikkaDB.Topics.html
 KuikkaDB.Users.html
+Wiki.html
