@@ -1,0 +1,33 @@
+<%= render Frontend.SharedView, "banner_small.html", assigns %>
+<main class="columns" id="wiki-content">
+  <div class="row">
+    <div class="btn-left">
+      <button onclick="location.href='<%= wiki_path(@conn, :show, "sidebar", %{"editor" => "true"}) %>'"
+              class="edit-sidebar-btn">
+          <i class="material-icons">mode_edit</i><%= dgettext("wiki", "Edit sidebar") %>
+      </button>
+    </div>
+    <div class="btn-right">
+      <button onclick="location.href='<%= wiki_path(@conn, :show, @page, %{"editor" => "true"}) %>'"
+              class="edit-sidebar-btn">
+          <i class="material-icons">mode_edit</i><%= dgettext("wiki", "Edit page") %>
+      </button>
+      <button onclick="location.href='<%= wiki_path(@conn, :index, %{"editor" => "true"}) %>'"
+              class="edit-sidebar-btn">
+          <i class="material-icons">add</i><%= dgettext("wiki", "New page") %>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns three">
+      <div class="row sidebar">
+        <p><%= markdown_to_html(@sidebar) %></p>
+      </div>
+    </div>
+    <div class="columns nine">
+      <div class="row content">
+        <p><%= markdown_to_html(@content) %></p>
+      </div>
+    </div>
+  </div>
+</main>

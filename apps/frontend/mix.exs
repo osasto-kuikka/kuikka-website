@@ -40,6 +40,7 @@ defmodule Frontend.Mixfile do
   defp deps do
     [
       {:kuikkadb, in_umbrella: true},
+      {:wiki, in_umbrella: true},
       {:steamex, "~> 0.0.6"},
       {:phoenix, "~> 1.2.1"},
       {:phoenix_pubsub, "~> 1.0"},
