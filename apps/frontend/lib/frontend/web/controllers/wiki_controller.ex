@@ -32,7 +32,7 @@ defmodule Frontend.Page.WikiController do
   @doc """
   Wiki page controller.
   """
-  @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
+  @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => "index", "editor" => "true"}) do
     content = case Wiki.read("index") do
       {:ok, content} -> content
@@ -112,9 +112,8 @@ defmodule Frontend.Page.WikiController do
     end
   end
 
-
   @spec get_sidebar() :: String.t
-  defp get_sidebar() do
+  defp get_sidebar do
     case Wiki.read("sidebar") do
       {:ok, content} -> content
       {:error, _} -> default_sidebar()
@@ -122,7 +121,7 @@ defmodule Frontend.Page.WikiController do
   end
 
   @spec default_index() :: String.t
-  defp default_index() do
+  defp default_index do
     """
     # Welcome to wiki
 
@@ -136,7 +135,7 @@ defmodule Frontend.Page.WikiController do
   end
 
   @spec default_sidebar() :: String.t
-  defp default_sidebar() do
+  defp default_sidebar do
     """
     # Pages
     """

@@ -44,7 +44,7 @@ defmodule Wiki do
   Return list of all pages
   """
   @spec all() :: {:ok, List.t} | {:error, String.t}
-  def all() do
+  def all do
     wiki_path()
     |> File.ls()
     |> case do
@@ -83,8 +83,8 @@ defmodule Wiki do
   @doc """
   Return wiki page change log
   """
-  @spec log() :: {:ok, [String.t]}
-  def log() do
+  @spec history() :: {:ok, [String.t]}
+  def history do
     path = wiki_path()
     repo = Git.new(path)
 
@@ -106,7 +106,7 @@ defmodule Wiki do
   Get wiki path from application configs
   """
   @spec wiki_path() :: Path.t
-  def wiki_path() do
+  def wiki_path do
     :wiki
     |> Application.get_env(:path)
     |> case do
