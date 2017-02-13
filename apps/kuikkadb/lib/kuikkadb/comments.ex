@@ -53,4 +53,24 @@ defmodule KuikkaDB.Comments do
       and tc.comment_id = c.id
     """
   end
+
+  @doc """
+  Get all comments for event
+  """
+  @spec event_comments(integer) :: {:ok, List.t} | {:error, String.t}
+  defquery event_comments(event_id) do
+    """
+    select
+      c.id,
+      c.text,
+      c.date,
+      u.id as user_id,
+      u.steamid as user
+    from comments c
+    inner join users u on u.id = c.user_id
+    inner join event_comments tc
+      on tc.event_id = $topic_id::integer
+      and tc.comment_id = c.id
+    """
+  end
 end
