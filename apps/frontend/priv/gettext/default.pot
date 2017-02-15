@@ -22,19 +22,15 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
-#: lib/frontend/web/templates/layout/base.html.eex:51
+#: lib/frontend/web/templates/layout/base.html.eex:48
 msgid "Log out"
 msgstr ""
 
 #: lib/frontend/web/templates/layout/base.html.eex:30
-msgid "Media"
-msgstr ""
-
-#: lib/frontend/web/templates/layout/base.html.eex:33
 msgid "Members"
 msgstr ""
 
-#: lib/frontend/web/templates/layout/base.html.eex:49
+#: lib/frontend/web/templates/layout/base.html.eex:46
 msgid "Profile"
 msgstr ""
 
@@ -46,14 +42,11 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: lib/frontend/web/templates/layout/base.html.eex:36
+#: lib/frontend/web/templates/layout/base.html.eex:33
 msgid "Wiki"
 msgstr ""
 
-#: lib/frontend/web/templates/shared/banner.html.eex:6
-#: lib/frontend/web/templates/shared/banner.html.eex:25
-#: lib/frontend/web/templates/shared/banner_small.html.eex:6
-#: lib/frontend/web/templates/shared/banner_small.html.eex:21
+#: lib/frontend/web/templates/shared/next_event.html.eex:9
 msgid "Next event:"
 msgstr ""
 
@@ -101,4 +94,12 @@ msgstr ""
 
 #: lib/frontend/web/controllers/member_controller.ex:16
 msgid "member"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/event.html.eex:5
+msgid "Edit event"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/event_list.html.eex:9
+msgid "New event"
 msgstr ""
