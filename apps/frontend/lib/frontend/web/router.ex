@@ -9,6 +9,7 @@ defmodule Frontend.Router do
     plug :put_secure_browser_headers
     plug Frontend.Plug.Locale
     plug Frontend.Plug.GetUser
+    plug Frontend.Plug.NextEvent
   end
 
   pipeline :require_user do
@@ -27,6 +28,8 @@ defmodule Frontend.Router do
       resources "/forum", ForumController, only: [:index, :show,
                                                   :create, :update]
       resources "/wiki", WikiController, only: [:index, :show, :create]
+      resources "/event", EventController, only: [:index, :show,
+                                                  :create, :update]
     end
   end
 end

@@ -63,14 +63,14 @@ defmodule KuikkaDB.Comments do
     select
       c.id,
       c.text,
-      c.date,
+      c.createtime,
       u.id as user_id,
       u.steamid as user
     from comments c
     inner join users u on u.id = c.user_id
-    inner join event_comments tc
-      on tc.event_id = $topic_id::integer
-      and tc.comment_id = c.id
+    inner join event_comments ec
+      on ec.event_id = $event_id::integer
+      and ec.comment_id = c.id
     """
   end
 end

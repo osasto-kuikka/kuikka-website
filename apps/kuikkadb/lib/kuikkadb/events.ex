@@ -14,6 +14,9 @@ defmodule KuikkaDB.Events do
   """
   use Defql
 
+  @type event :: %{id: integer, title: String.t,
+                   content: String.t, date: Datetime.t}
+
   @doc """
   Get row
   """
@@ -41,12 +44,23 @@ defmodule KuikkaDB.Events do
   @doc """
   Get list of events
   """
-  @spec event_list() :: {:ok, List.t} | {:error, String.t}
+  @spec event_list() :: {:ok, [event]} | {:error, String.t}
   defquery event_list() do
     """
     select e.id, e.title, e.content, e.date
     from events e
     order by e.date
+    """
+  end
+
+  @spec next_event() :: {:ok, [event]} | {:error, String.t}
+  defquery next_event() do
+    """
+    select e.id, e.title, e.content, e.date
+    from events e
+    where e.date > now()
+    order by e.date
+    limit 1
     """
   end
 end
