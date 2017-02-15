@@ -1,0 +1,31 @@
+<%= render Frontend.SharedView, "banner_small.html", assigns %>
+<main class="columns" id="event-content">
+  <div class="row">
+    <div class="btn-left">
+    </div>
+    <div class="btn-right">
+      <button onclick="location.href='<%= event_path(@conn, :index, %{"editor" => "true"}) %>'"
+              class="new-event-btn">
+          <i class="material-icons">add</i><%= gettext("New event") %>
+      </button>
+    </div>
+  </div>
+  <div class="row event-list">
+    <table>
+      <thead>
+        <tr>
+          <th><%= dgettext("event", "Title") %></th>
+          <th><%= dgettext("event", "Date") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for event <- @events do %>
+          <tr style="cursor:pointer" onclick="location.href='<%= event_path(@conn, :show, event.id) %>'">
+            <td><%= event.title %></td>
+            <td><%= Frontend.Utils.to_date_time(event.date) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</main>

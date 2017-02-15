@@ -1,0 +1,77 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:126
+msgid "Comment added succesfully"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/editor.html.eex:10
+msgid "Content"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/editor.html.eex:20
+msgid "Create new event"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/event_list.html.eex:18
+msgid "Date"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/editor.html.eex:18
+msgid "Edit event"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:91
+msgid "Event updated"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:113
+msgid "Failed create event"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:131
+msgid "Failed to add comment"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:52
+msgid "Failed to load editor"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:29
+msgid "Failed to load event list"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:96
+msgid "Failed to update event"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:72
+msgid "Invalid event url"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/event.html.eex:32
+#: lib/frontend/web/templates/page/event/event.html.eex:35
+msgid "New comment"
+msgstr ""
+
+#: lib/frontend/web/controllers/event_controller.ex:108
+msgid "New event created"
+msgstr ""
+
+#: lib/frontend/web/templates/shared/next_event.html.eex:4
+msgid "No coming events"
+msgstr ""
+
+#: lib/frontend/web/templates/page/event/editor.html.eex:5
+#: lib/frontend/web/templates/page/event/event_list.html.eex:17
+msgid "Title"
+msgstr ""

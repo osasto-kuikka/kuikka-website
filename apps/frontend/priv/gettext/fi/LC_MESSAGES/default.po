@@ -56,27 +56,27 @@ msgstr "Sivu johon yritit päästä vaatii sisäänkirjautumisen"
 
 #: lib/frontend/web/templates/page/forum/topic_list.html.eex:11
 msgid "Category"
-msgstr ""
+msgstr "Kategoria"
 
 #: lib/frontend/web/templates/page/forum/topic.html.eex:42
 msgid "Comment"
-msgstr ""
+msgstr "Kommentti"
 
 #: lib/frontend/web/templates/page/forum/topic_list.html.eex:12
 msgid "Comments"
-msgstr ""
+msgstr "Kommentit"
 
 #: lib/frontend/web/templates/page/forum/editor.html.eex:10
 msgid "Content"
-msgstr ""
+msgstr "Sisältö"
 
 #: lib/frontend/web/templates/page/forum/topic_list.html.eex:5
 msgid "New topic"
-msgstr ""
+msgstr "Uusi aihe"
 
 #: lib/frontend/web/templates/page/forum/editor.html.eex:14
 msgid "Select category:"
-msgstr ""
+msgstr "Valitse kategoria:"
 
 #: lib/frontend/web/templates/page/forum/editor.html.eex:17
 #: lib/frontend/web/templates/page/forum/topic.html.eex:45
@@ -98,8 +98,8 @@ msgstr "jäsen"
 
 #: lib/frontend/web/templates/page/event/event.html.eex:5
 msgid "Edit event"
-msgstr ""
+msgstr "Muokkaa tapahtumaa"
 
 #: lib/frontend/web/templates/page/event/event_list.html.eex:9
 msgid "New event"
-msgstr ""
+msgstr "Uusi tapahtuma"
