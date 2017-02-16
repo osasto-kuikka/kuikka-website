@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>KuikkaDB.Tasks – Kuikka Website v0.0.1</title>
+    <title>Frontend.Plug.NextEvent – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-af0fbd81c8.js"></script>
@@ -59,10 +59,10 @@
 
       <h1>
         <small class="visible-xs">Kuikka Website v0.0.1</small>
-        KuikkaDB.Tasks
+        Frontend.Plug.NextEvent
         
         
-          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/tasks.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/plug/next_event.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -70,9 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Tasks for release build of kuikkadb are included in this module</p>
-<p>These tasks are meant to run on distillery hooks and are not for
-use in other parts for kuikkadb</p>
+          <p>Plug that loads next event data for banner</p>
 
         </section>
       
@@ -94,11 +92,17 @@ use in other parts for kuikkadb</p>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#migrate/0">migrate()</a>
+    <a href="#call/2">call(conn, options)</a>
   </div>
   
-    <div class="summary-synopsis"><p>This task will run migrations for kuikkadb</p>
+    <div class="summary-synopsis"><p>Get next event for banner</p>
 </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#init/1">init()</a>
+  </div>
   
 </div>
 
@@ -122,32 +126,55 @@ use in other parts for kuikkadb</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="migrate/0">
+          <div class="detail" id="call/2">
   
   <div class="detail-header">
-    <a href="#migrate/0" class="detail-link" title="Link to this function">
+    <a href="#call/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">migrate()</span>
+    <span class="signature">call(conn, options)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/tasks.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/plug/next_event.ex#L15" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
     
     
+      <div class="specs">
+        
+          <pre>call(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, term) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>This task will run migrations for kuikkadb.</p>
-<h2 id="migrate/0-example-for-distillery-hook-script" class="section-heading">
-  <a href="#migrate/0-example-for-distillery-hook-script" class="hover-link"><i class="icon-link"></i></a>
-  Example for distillery hook script
-</h2>
+    <p>Get next event for banner</p>
 
-<pre><code class="elixir">echo &quot;Running migrations for kuikkadb&quot;
-bin/my-app rpc Elixir.KuikkaDB.Tasks migrate
-echo &quot;Migrations run successfully for kuikkadb&quot;</code></pre>
-
+  </section>
+</div>
+<div class="detail" id="init/1">
+  
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">init()</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/plug/next_event.ex#L9" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>init(term) :: <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    
   </section>
 </div>
 

@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>KuikkaDB.Categories – Kuikka Website v0.0.1</title>
+    <title>Frontend.Page.EventController – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-af0fbd81c8.js"></script>
@@ -59,33 +59,15 @@
 
       <h1>
         <small class="visible-xs">Kuikka Website v0.0.1</small>
-        KuikkaDB.Categories
+        Frontend.Page.EventController
         
         
-          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/event_controller.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
       </h1>
 
-      
-        <section id="moduledoc">
-          <h2 id="module-table" class="section-heading">
-  <a href="#module-table" class="hover-link"><i class="icon-link"></i></a>
-  Table
-</h2>
-
-<pre><code class="elixir">:name, :string, size: 50, null: false
-:description, :string, size: 255, null: false
-:color, :string, size: 6, null: false</code></pre>
-<h2 id="module-index" class="section-heading">
-  <a href="#module-index" class="hover-link"><i class="icon-link"></i></a>
-  Index
-</h2>
-
-<pre><code class="elixir">index(:categories, :name, unique: true)</code></pre>
-
-        </section>
       
 
       
@@ -105,47 +87,35 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#all/0">all()</a>
+    <a href="#create/2">create(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get all categories</p>
+    <div class="summary-synopsis"><p>Create or update wiki page</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#delete/1">delete(conds)</a>
+    <a href="#index/2">index(conn, arg2)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Delete row</p>
+    <div class="summary-synopsis"><p>Show event list or editor to create new event</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get/1">get(conds)</a>
+    <a href="#show/2">show(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get row</p>
+    <div class="summary-synopsis"><p>Show event or update old event in editor</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#insert/1">insert(params)</a>
+    <a href="#to_datetime/1">to_datetime(map)</a>
   </div>
-  
-    <div class="summary-synopsis"><p>Insert new row</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#update/2">update(params, conds)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Update row</p>
-</div>
   
 </div>
 
@@ -169,15 +139,15 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="all/0">
+          <div class="detail" id="create/2">
   
   <div class="detail-header">
-    <a href="#all/0" class="detail-link" title="Link to this function">
+    <a href="#create/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">all()</span>
+    <span class="signature">create(conn, map)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L45" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/event_controller.ex#L83" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -185,27 +155,25 @@
     
       <div class="specs">
         
-          <pre>all ::
-  {:ok, [%{id: integer, name: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}]} |
-  {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
+          <pre>create(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get all categories</p>
+    <p>Create or update wiki page</p>
 
   </section>
 </div>
-<div class="detail" id="delete/1">
+<div class="detail" id="index/2">
   
   <div class="detail-header">
-    <a href="#delete/1" class="detail-link" title="Link to this function">
+    <a href="#index/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">delete(conds)</span>
+    <span class="signature">index(conn, arg2)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L39" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/event_controller.ex#L14" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -213,25 +181,25 @@
     
       <div class="specs">
         
-          <pre>delete(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+          <pre>index(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Delete row</p>
+    <p>Show event list or editor to create new event</p>
 
   </section>
 </div>
-<div class="detail" id="get/1">
+<div class="detail" id="show/2">
   
   <div class="detail-header">
-    <a href="#get/1" class="detail-link" title="Link to this function">
+    <a href="#show/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get(conds)</span>
+    <span class="signature">show(conn, map)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/event_controller.ex#L40" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -239,25 +207,25 @@
     
       <div class="specs">
         
-          <pre>get(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+          <pre>show(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get row</p>
+    <p>Show event or update old event in editor</p>
 
   </section>
 </div>
-<div class="detail" id="insert/1">
+<div class="detail" id="to_datetime/1">
   
   <div class="detail-header">
-    <a href="#insert/1" class="detail-link" title="Link to this function">
+    <a href="#to_datetime/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">insert(params)</span>
+    <span class="signature">to_datetime(map)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L27" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/event_controller.ex#L145" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -265,40 +233,13 @@
     
       <div class="specs">
         
-          <pre>insert(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
+          <pre>to_datetime(<a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Insert new row</p>
-
-  </section>
-</div>
-<div class="detail" id="update/2">
-  
-  <div class="detail-header">
-    <a href="#update/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">update(params, conds)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L33" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-      <div class="specs">
-        
-          <pre>update(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>, <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>) :: {:ok | :error, term}</pre>
-        
-      </div>
-    
-  </div>
-  <section class="docstring">
-    <p>Update row</p>
-
   </section>
 </div>
 

@@ -8,7 +8,7 @@
     <title>KuikkaDB.Comments – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-8d73f9671e.js"></script>
+    <script src="dist/sidebar_items-af0fbd81c8.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -109,6 +109,15 @@
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#event_comments/1">event_comments(event_id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Get all comments for event</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#get/1">get(conds)</a>
   </div>
   
@@ -187,6 +196,32 @@
   </div>
   <section class="docstring">
     <p>Delete row</p>
+
+  </section>
+</div>
+<div class="detail" id="event_comments/1">
+  
+  <div class="detail-header">
+    <a href="#event_comments/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">event_comments(event_id)</span>
+    
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/comments.ex#L61" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>event_comments(integer) :: {:ok, <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a>} | {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Get all comments for event</p>
 
   </section>
 </div>

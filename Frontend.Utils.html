@@ -8,7 +8,7 @@
     <title>Frontend.Utils – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-8d73f9671e.js"></script>
+    <script src="dist/sidebar_items-af0fbd81c8.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -92,11 +92,10 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_next_event_date/0">get_next_event_date()</a>
+    <a href="#custom_datetime_select/3">custom_datetime_select(form, field, time)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Get date of next event by getting current date and showing either
-wednesday or sunday</p>
+    <div class="summary-synopsis"><p>Add more sensible values to datetime select</p>
 </div>
   
 </div>
@@ -139,13 +138,13 @@ wednesday or sunday</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="get_next_event_date/0">
+          <div class="detail" id="custom_datetime_select/3">
   
   <div class="detail-header">
-    <a href="#get_next_event_date/0" class="detail-link" title="Link to this function">
+    <a href="#custom_datetime_select/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">get_next_event_date()</span>
+    <span class="signature">custom_datetime_select(form, field, time)</span>
     
       <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/utils.ex#L14" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
@@ -155,15 +154,13 @@ wednesday or sunday</p>
     
       <div class="specs">
         
-          <pre>get_next_event_date() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a></pre>
+          <pre>custom_datetime_select(<a href="https://hexdocs.pm/phoenix_html/2.9.3/Phoenix.HTML.Form.html#t:t/0">Phoenix.HTML.Form.t</a>, atom, <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>) :: <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Get date of next event by getting current date and showing either
-wednesday or sunday.</p>
-<p>TODO: Proper event query when we get events implemented</p>
+    <p>Add more sensible values to datetime select</p>
 
   </section>
 </div>
@@ -175,7 +172,7 @@ wednesday or sunday.</p>
     </a>
     <span class="signature">to_date(date)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/utils.ex#L35" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/utils.ex#L38" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -201,7 +198,7 @@ wednesday or sunday.</p>
     </a>
     <span class="signature">to_date_time(date)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/utils.ex#L44" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/utils.ex#L47" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     

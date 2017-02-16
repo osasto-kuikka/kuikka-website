@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>KuikkaDB.Categories – Kuikka Website v0.0.1</title>
+    <title>KuikkaDB.EventComments – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-af0fbd81c8.js"></script>
@@ -59,10 +59,10 @@
 
       <h1>
         <small class="visible-xs">Kuikka Website v0.0.1</small>
-        KuikkaDB.Categories
+        KuikkaDB.EventComments
         
         
-          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/event_comments.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -75,15 +75,14 @@
   Table
 </h2>
 
-<pre><code class="elixir">:name, :string, size: 50, null: false
-:description, :string, size: 255, null: false
-:color, :string, size: 6, null: false</code></pre>
+<pre><code class="elixir">:event_id, references(:events), null: false
+:comment_id, references(:comments), null: false</code></pre>
 <h2 id="module-index" class="section-heading">
   <a href="#module-index" class="hover-link"><i class="icon-link"></i></a>
   Index
 </h2>
 
-<pre><code class="elixir">index(:categories, :name, unique: true)</code></pre>
+<pre><code class="elixir">index(:event_comments, [:event_id, :comment_id], unique: true)</code></pre>
 
         </section>
       
@@ -104,15 +103,6 @@
       <a href="#functions">Functions</a>
     </h2>
     <div class="summary-row">
-  <div class="summary-signature">
-    <a href="#all/0">all()</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Get all categories</p>
-</div>
-  
-</div>
-<div class="summary-row">
   <div class="summary-signature">
     <a href="#delete/1">delete(conds)</a>
   </div>
@@ -169,35 +159,7 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="all/0">
-  
-  <div class="detail-header">
-    <a href="#all/0" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">all()</span>
-    
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L45" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-      <div class="specs">
-        
-          <pre>all ::
-  {:ok, [%{id: integer, name: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}]} |
-  {:error, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>}</pre>
-        
-      </div>
-    
-  </div>
-  <section class="docstring">
-    <p>Get all categories</p>
-
-  </section>
-</div>
-<div class="detail" id="delete/1">
+          <div class="detail" id="delete/1">
   
   <div class="detail-header">
     <a href="#delete/1" class="detail-link" title="Link to this function">
@@ -205,7 +167,7 @@
     </a>
     <span class="signature">delete(conds)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L39" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/event_comments.ex#L38" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -231,7 +193,7 @@
     </a>
     <span class="signature">get(conds)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/event_comments.ex#L20" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -257,7 +219,7 @@
     </a>
     <span class="signature">insert(params)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L27" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/event_comments.ex#L26" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -283,7 +245,7 @@
     </a>
     <span class="signature">update(params, conds)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/categories.ex#L33" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/kuikkadb/lib/kuikkadb/event_comments.ex#L32" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
