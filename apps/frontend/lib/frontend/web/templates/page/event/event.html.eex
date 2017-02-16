@@ -1,0 +1,40 @@
+<%= render Frontend.SharedView, "banner_small.html", assigns %>
+<main class="columns" id="event-single-content">
+  <button onclick="location.href='<%= event_path(@conn, :show, @event.id, %{"editor" => "true"}) %>'"
+          class="edit-event-btn">
+      <i class="material-icons">mode_edit</i><%= gettext("Edit event") %>
+  </button>
+  <div class="row topic">
+      <span class="title"><%= @event.title %></span>
+  </div>
+  <div class="row content">
+    <p><%= markdown_to_html(@event.content) %></p>
+  </div>
+  <%= for comment <- @comments do %>
+    <div class="row comment">
+      <div class="columns one image">
+        <img src="<%= comment.profile.avatar_medium %>"</img>
+      </div>
+      <div class="columns eleven area">
+        <div class="row title">
+          <span class="user"><%= comment.profile.steam_id %></span>
+          <span class="time"><%= Frontend.Utils.to_date_time(comment.createtime) %></span>
+        </div>
+        <div class="row comment-content">
+          <p><%= markdown_to_html(comment.text) %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= form_for @conn, event_path(@conn, :create), [as: :comment, class: "comment-editor"], fn f -> %>
+    <%= hidden_input f, :event, value: @event.id %>
+
+    <%= label f, :text, dgettext("event", "New comment"), class: "label" %>
+    <%= textarea f, :text, class: "input", id: "body-editor" %>
+
+    <%= submit dgettext("event", "New comment"), class: "submit" %>
+  <% end %>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script>var simplemde = new SimpleMDE();</script>
+</main>

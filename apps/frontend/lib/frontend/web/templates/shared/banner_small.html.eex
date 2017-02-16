@@ -1,29 +1,10 @@
 <div class="banner-small"
   style="background-image: url('/images/kuikkaheader2.png'); display: block;">
+  <%= render Frontend.SharedView, "next_event.html", assigns %>
   <%= if banner_has_info(@conn) do %>
-    <div class="next-event">
-      <span class="text">
-        <%= gettext("Next event:") %>
-        <span class="time">
-          <%= Frontend.Utils.get_next_event_date() %> 19:30
-        </span>
-      </span>
-      <span class="title">Viikkopelit</span>
-    </div>
-
     <div class="flash-info">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-error" role="alert"><%= get_flash(@conn, :error) %></p>
-    </div>
-  <% else %>
-    <div class="next-event">
-      <span class="text">
-        <%= gettext("Next event:") %>
-        <span class="time">
-          <%= Frontend.Utils.get_next_event_date() %> 19:30
-        </span>
-      </span>
-      <span class="title">Viikkopelit</span>
     </div>
   <% end %>
 </div>

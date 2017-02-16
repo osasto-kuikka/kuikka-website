@@ -22,19 +22,15 @@ msgstr "Foorumit"
 msgid "Joined"
 msgstr "Liittynyt"
 
-#: lib/frontend/web/templates/layout/base.html.eex:51
+#: lib/frontend/web/templates/layout/base.html.eex:48
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
 #: lib/frontend/web/templates/layout/base.html.eex:30
-msgid "Media"
-msgstr ""
-
-#: lib/frontend/web/templates/layout/base.html.eex:33
 msgid "Members"
 msgstr "Jäsenet"
 
-#: lib/frontend/web/templates/layout/base.html.eex:49
+#: lib/frontend/web/templates/layout/base.html.eex:46
 msgid "Profile"
 msgstr "Profiili"
 
@@ -46,14 +42,11 @@ msgstr "Rooli"
 msgid "Username"
 msgstr "Käyttäjänimi"
 
-#: lib/frontend/web/templates/layout/base.html.eex:36
+#: lib/frontend/web/templates/layout/base.html.eex:33
 msgid "Wiki"
 msgstr ""
 
-#: lib/frontend/web/templates/shared/banner.html.eex:6
-#: lib/frontend/web/templates/shared/banner.html.eex:25
-#: lib/frontend/web/templates/shared/banner_small.html.eex:6
-#: lib/frontend/web/templates/shared/banner_small.html.eex:21
+#: lib/frontend/web/templates/shared/next_event.html.eex:9
 msgid "Next event:"
 msgstr "Seuraava tapahtuma:"
 
@@ -63,27 +56,27 @@ msgstr "Sivu johon yritit päästä vaatii sisäänkirjautumisen"
 
 #: lib/frontend/web/templates/page/forum/topic_list.html.eex:11
 msgid "Category"
-msgstr ""
+msgstr "Kategoria"
 
 #: lib/frontend/web/templates/page/forum/topic.html.eex:42
 msgid "Comment"
-msgstr ""
+msgstr "Kommentti"
 
 #: lib/frontend/web/templates/page/forum/topic_list.html.eex:12
 msgid "Comments"
-msgstr ""
+msgstr "Kommentit"
 
 #: lib/frontend/web/templates/page/forum/editor.html.eex:10
 msgid "Content"
-msgstr ""
+msgstr "Sisältö"
 
 #: lib/frontend/web/templates/page/forum/topic_list.html.eex:5
 msgid "New topic"
-msgstr ""
+msgstr "Uusi aihe"
 
 #: lib/frontend/web/templates/page/forum/editor.html.eex:14
 msgid "Select category:"
-msgstr ""
+msgstr "Valitse kategoria:"
 
 #: lib/frontend/web/templates/page/forum/editor.html.eex:17
 #: lib/frontend/web/templates/page/forum/topic.html.eex:45
@@ -102,3 +95,11 @@ msgstr "Aihe"
 #: lib/frontend/web/controllers/member_controller.ex:16
 msgid "member"
 msgstr "jäsen"
+
+#: lib/frontend/web/templates/page/event/event.html.eex:5
+msgid "Edit event"
+msgstr "Muokkaa tapahtumaa"
+
+#: lib/frontend/web/templates/page/event/event_list.html.eex:9
+msgid "New event"
+msgstr "Uusi tapahtuma"

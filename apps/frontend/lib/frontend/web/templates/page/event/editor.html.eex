@@ -1,0 +1,26 @@
+<%= render Frontend.SharedView, "banner_small.html", assigns %>
+<main class="columns" id="editor-content">
+  <%= form_for @conn, event_path(@conn, :create), [as: :event], fn f -> %>
+    <div class="title">
+      <%= label f, :title, dgettext("event", "Title"), class: "label" %>
+      <%= text_input f, :title, class: "input", value: @title %>
+    </div>
+
+    <div class="content">
+      <%= label f, :text, dgettext("event", "Content"), class: "label" %>
+      <%= textarea f, :text, class: "input", id: "body-editor", value: @content %>
+    </div>
+
+    <%= Frontend.Utils.custom_datetime_select f, :time, @time %>
+
+    <%= if not is_nil(@event) do %>
+      <%= hidden_input f, :event, value: @event %>
+      <%= submit dgettext("event", "Edit event"), class: "submit" %>
+    <% else %>
+      <%= submit dgettext("event", "Create new event"), class: "submit" %>
+    <% end %>
+  <% end %>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script>var simplemde = new SimpleMDE();</script>
+</main>

@@ -20,14 +20,11 @@
               <a class="header-link" href="/">
                 <img class="header-logo-image" src="/images/logo.svg" />
               </a>
-              <a class="header-link" href="">
+              <a class="header-link" href="<%= event_path(@conn, :index) %>">
                 <%= gettext("Events") %>
               </a>
               <a class="header-link" href="<%= forum_path(@conn, :index) %>">
                 <%= gettext("Forum") %>
-              </a>
-              <a class="header-link" href="">
-                <%= gettext("Media") %>
               </a>
               <a class="header-link" href="<%= member_path(@conn, :index) %>">
                 <%= gettext("Members") %>

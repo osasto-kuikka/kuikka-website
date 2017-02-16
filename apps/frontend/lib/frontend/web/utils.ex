@@ -2,30 +2,33 @@ defmodule Frontend.Utils do
   @moduledoc """
   Helper functions for frontend modules/templates
   """
-  alias Timex.Duration
+  import Phoenix.HTML
+  alias Phoenix.HTML.Form
+  require Frontend.Gettext
 
   @doc """
-  Get date of next event by getting current date and showing either
-  wednesday or sunday.
-
-  TODO: Proper event query when we get events implemented
+  Add more sensible values to datetime select
   """
-  @spec get_next_event_date() :: String.t
-  def get_next_event_date do
+  @spec custom_datetime_select(Phoenix.HTML.Form.t, atom, DateTime.t) ::
+                                                                      Keyword.t
+  def custom_datetime_select(form, field, time) do
     date = Timex.now()
-
-    date
-    |> Timex.weekday()
-    |> case do
-      1 -> Timex.add(date, Duration.from_days(2))
-      2 -> Timex.add(date, Duration.from_days(1))
-      3 -> date
-      4 -> Timex.add(date, Duration.from_days(3))
-      5 -> Timex.add(date, Duration.from_days(2))
-      6 -> Timex.add(date, Duration.from_days(1))
-      7 -> date
+    builder = fn b ->
+      ~E"""
+      <%= Frontend.Gettext.dgettext("editor", "Time") %>:
+        <%= b.(:hour, []) %> : <%= b.(:minute, []) %>
+      <%= Frontend.Gettext.dgettext("editor", "Date") %>:
+        <%= b.(:day, []) %> / <%= b.(:month, []) %> / <%= b.(:year, []) %>
+      """
     end
-    |> to_date()
+
+    opts = []
+          |> Keyword.put(:year, [options: Range.new(date.year, date.year + 5)])
+          |> Keyword.put(:month, [options: Range.new(1, 12)])
+          |> Keyword.put(:value, time)
+          |> Keyword.put(:builder, builder)
+
+    Form.datetime_select(form, field, opts)
   end
 
   @doc """
