@@ -1,5 +1,6 @@
 defmodule KuikkaDB.Permissions do
   @moduledoc """
+
   ## Table
   ```
   :name, :string, size: 50, null: false
