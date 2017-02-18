@@ -38,15 +38,12 @@ defmodule KuikkaDB.Permissions do
   @spec delete(Keyword.t) :: {:ok | :error, term}
   defdelete delete(conds), table: :permissions
 
-  @doc """
-  Get permission ids
-  """
-  @spec permission_ids() :: {:ok, List.t} | {:error, String.t}
-  defquery permission_ids() do
+  @spec get_all() :: {:ok, List.t} | {:error, String.t}
+  defquery get_all() do
     """
     select
-      p.id
-    from permissions p
+      *
+    from permissions
     """
   end
 end
