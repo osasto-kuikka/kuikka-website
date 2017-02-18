@@ -1,5 +1,7 @@
 defmodule KuikkaDB.Repo.Migrations.SeedPermission do
-
+  @moduledoc """
+    Add seed files to kuikkadb.
+  """
   use Ecto.Migration
   alias KuikkaDB.Permissions
 
@@ -13,6 +15,11 @@ defmodule KuikkaDB.Repo.Migrations.SeedPermission do
   end
 
   def down do
-
+    Permissions.delete(name: "read_wiki")
+    Permissions.delete(name: "read_forum")
+    Permissions.delete(name: "read_event")
+    Permissions.delete(name: "create_wiki")
+    Permissions.delete(name: "create_forum_post")
+    Permissions.delete(name: "create_event")
   end
 end
