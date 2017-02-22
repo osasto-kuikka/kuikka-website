@@ -46,4 +46,14 @@ defmodule KuikkaDB.Permissions do
     from permissions
     """
   end
+
+  @spec get_reads() :: {:ok, List.t} | { :error, String.t}
+  defquery get_reads() do
+    """
+    select
+      *
+    from permissions p
+    where p.name like 'read_%'
+    """
+  end
 end
