@@ -4,6 +4,9 @@ defmodule Frontend.Utils do
   """
   import Phoenix.HTML
   alias Phoenix.HTML.Form
+  alias KuikkaDB.RolePermissions, as: RP
+  alias KuikkaDB.Roles
+  alias KuikkaDB.Permissions
   require Frontend.Gettext
 
   @doc """
@@ -58,5 +61,13 @@ defmodule Frontend.Utils do
   end
   defp transform_to_date(date) do
     date
+  end
+
+  @spec has_permission?(term, term) :: Boolean.t
+  def has_permission?(user, permission) do
+    {:ok, role} = Roles.get(id: user.role_id)
+    {:ok, permission} = Permissions.get(name: permission)
+    {:ok, rp} = RP.get_permission_with_role(role.id, permission.id)
+    if(rp, do: true, else: false )
   end
 end
