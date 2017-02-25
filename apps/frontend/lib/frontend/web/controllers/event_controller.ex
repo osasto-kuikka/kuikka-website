@@ -6,7 +6,8 @@ defmodule Frontend.Page.EventController do
   alias KuikkaDB.EventComments
   alias KuikkaDB.Events
   alias Steamex.Profile
-
+  alias Frontend.Utils
+  alias Frontend.Plug.GetUser
   @doc """
   Show event list or editor to create new event
   """
@@ -38,23 +39,25 @@ defmodule Frontend.Page.EventController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => event, "editor" => "true"}) do
-    with {eventid, ""} <- Integer.parse(event),
-         {:ok, [event]} <- Events.get(id: eventid)
-    do
-      conn
-      |> assign(:type, :update)
-      |> assign(:event, eventid)
-      |> assign(:title, event.title)
-      |> assign(:time, event.date)
-      |> assign(:content, event.content)
-      |> render("editor.html")
-    else
-      _ ->
-        conn
-        |> put_flash(:error, dgettext("event", "Failed to load editor"))
-        |> redirect(to: event_path(conn, :index))
-    end
-  end
+    if(Utils.has_permission?(GetUser.call(conn), "read_event")) do
+      with {eventid, ""} <- Integer.parse(event),
+          {:ok, [event]} <- Events.get(id: eventid)
+          do
+            conn
+            |> assign(:type, :update)
+            |> assign(:event, eventid)
+            |> assign(:title, event.title)
+            |> assign(:content, event.content)
+            |> assign(:time, event.date)
+            |> render("editor.html")
+          else
+            _ ->
+              conn
+              |> redirect(to: event_path(conn, :index))
+              |> put_flash(:error, dgettext("event", "Failed to load editor"))
+            end
+          end
+     end
   def show(conn, %{"id" => event}) do
     with {event, ""} <- Integer.parse(event),
          {:ok, [event]} <- Events.get(id: event),
