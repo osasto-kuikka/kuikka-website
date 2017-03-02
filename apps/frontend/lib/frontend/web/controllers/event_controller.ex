@@ -7,7 +7,6 @@ defmodule Frontend.Page.EventController do
   alias KuikkaDB.Events
   alias Steamex.Profile
   alias Frontend.Utils
-  alias Frontend.Plug.GetUser
   @doc """
   Show event list or editor to create new event
   """
@@ -39,7 +38,7 @@ defmodule Frontend.Page.EventController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => event, "editor" => "true"}) do
-    if(Utils.has_permission?(GetUser.call(conn), "read_event")) do
+    if(Utils.has_permission?(conn.assings.user, "read_event")) do
       with {eventid, ""} <- Integer.parse(event),
           {:ok, [event]} <- Events.get(id: eventid)
           do

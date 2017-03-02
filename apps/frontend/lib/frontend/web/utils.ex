@@ -63,7 +63,7 @@ defmodule Frontend.Utils do
     date
   end
 
-  @spec has_permission?(term, term) :: Boolean.t
+  @spec has_permission?(Map.t, String.t) :: Boolean.t
   def has_permission?(user, permission) do
     {:ok, role} = Roles.get(id: user.role_id)
     {:ok, permission} = Permissions.get(name: permission)
