@@ -7,6 +7,7 @@ defmodule Frontend.Utils do
   alias KuikkaDB.RolePermissions, as: RP
   alias KuikkaDB.Roles
   alias KuikkaDB.Permissions
+  alias KuikkaDB.Users
   require Frontend.Gettext
 
   @doc """
@@ -65,9 +66,7 @@ defmodule Frontend.Utils do
 
   @spec has_permission?(Map.t, String.t) :: Boolean.t
   def has_permission?(user, permission) do
-    {:ok, role} = Roles.get(id: user.role_id)
-    {:ok, permission} = Permissions.get(name: permission)
-    {:ok, rp} = RP.get_permission_with_role(role.id, permission.id)
-    if(rp, do: true, else: false )
+    {:ok, permissions} = Users.get_with_role(user.steamid)
+    Enum.member?(permissions, permission)
   end
 end

@@ -37,18 +37,4 @@ defmodule KuikkaDB.RolePermissions do
   @spec delete(Keyword.t) :: {:ok | :error, term}
   defdelete delete(conds), table: :role_permissions
 
-  @spec get_permission_with_role(binary, binary) :: {:ok |:error, term}
-  defquery get_permission_with_role(role_id, permission_id) do
-    """
-    select
-      rp.id
-      r.id as roles
-      p.id as permissions
-    from rolepermissions rp
-    where
-      r.id = $role_id :: integer
-      and
-      p.id = $permission_id :: integer
-    """
-  end
 end

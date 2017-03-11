@@ -70,8 +70,10 @@ defmodule KuikkaDB.Users do
       u.modifytime,
       r.name as role,
       r.description as role_desc
+      rp.name as role_perm
     from users u
     inner join roles r on u.role_id = r.id
+    inner join role_permissions rp on rp.role_id = r.id
     where u.steamid = $steamid::decimal
     """
   end
