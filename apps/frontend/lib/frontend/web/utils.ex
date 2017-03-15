@@ -65,8 +65,8 @@ defmodule Frontend.Utils do
   end
 
   @spec has_permission?(Map.t, String.t) :: Boolean.t
-  def has_permission?(user, permission) do
-    {:ok, permissions} = Users.get_with_role(user.steamid)
+  def has_permission?(user_id, permission) do
+    {:ok, permissions} = Users.get_with_role(user_id)
     Enum.member?(permissions, permission)
   end
 end

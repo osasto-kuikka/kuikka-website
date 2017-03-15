@@ -12,13 +12,26 @@ defmodule Frontend.Page.EventController do
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, %{"editor" => "true"}) do
-    conn
-    |> assign(:type, :create)
-    |> assign(:event, nil)
-    |> assign(:title, "")
-    |> assign(:time, Timex.now())
-    |> assign(:content, "")
-    |> render("editor.html")
+    user = conn.assign(:profile, profile_to_user(profile))
+      case Utils.has_permission?(user.id, "create_event") do
+        true ->
+          conn
+          |> assign(:type, :create)
+          |> assign(:event, nil)
+          |> assign(:title, "")
+          |> assign(:time, Timex.now())
+          |> assign(:content, "")
+          |> render("editor.html")
+        false ->
+          conn
+          |> put_flash(:error, dgettext("event", "You don't have the rights to create events"))
+          |> redirect(to: home_path(conn, :index))
+        _->
+          conn
+          |> put_flash(:error, dgettext("event", "Something went wrong."))
+          |> redirect(to: home_path(conn, :index))
+
+      end
   end
   def index(conn, _params) do
     case Events.event_list() do
@@ -38,7 +51,6 @@ defmodule Frontend.Page.EventController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => event, "editor" => "true"}) do
-    if(Utils.has_permission?(conn.assings.user, "read_event")) do
       with {eventid, ""} <- Integer.parse(event),
           {:ok, [event]} <- Events.get(id: eventid)
           do
@@ -54,8 +66,7 @@ defmodule Frontend.Page.EventController do
               conn
               |> redirect(to: event_path(conn, :index))
               |> put_flash(:error, dgettext("event", "Failed to load editor"))
-            end
-          end
+         end
      end
   def show(conn, %{"id" => event}) do
     with {event, ""} <- Integer.parse(event),
