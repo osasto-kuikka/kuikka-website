@@ -12,8 +12,9 @@ defmodule Frontend.Page.EventController do
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, %{"editor" => "true"}) do
-    user = conn.assign(:profile, profile_to_user(profile))
-      case Utils.has_permission?(user.id, "create_event") do
+  #  user = conn.assign(:profile, profile_to_user(profile))
+    u_id = conn.assigns.user.id
+      case Utils.has_permission?(u_id, "create_event") do
         true ->
           conn
           |> assign(:type, :create)
