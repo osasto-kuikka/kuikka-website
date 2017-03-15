@@ -6,20 +6,27 @@ defmodule KuikkaDB.Repo.Migrations.SeedPermission do
   alias KuikkaDB.Permissions
 
   def up do
-    Permissions.insert(name: "read_wiki", description: "Permission to read wiki pages")
-    Permissions.insert(name: "read_forum", description: "Permission to read forums")
-    Permissions.insert(name: "read_event", description: "Permission to read events")
-    Permissions.insert(name: "create_wiki", description: "Permission to create wiki pages")
-    Permissions.insert(name: "create_forum_post", description: "Permission to create new forum posts")
-    Permissions.insert(name: "create_event", description: "Permission to create new events")
+    ins("read_wiki", "Permission to read wiki pages", true)
+    ins("read_forum", "Permission to read forums", true)
+    ins("read_event", "Permission to read events", true)
+    ins("create_wiki", "Permission to create wiki pages", false)
+    ins("create_forum_post", "Permission to create new forum posts", false)
+    ins("create_event", "Permission to create new events", false)
   end
 
   def down do
-    Permissions.delete(name: "read_wiki")
-    Permissions.delete(name: "read_forum")
-    Permissions.delete(name: "read_event")
-    Permissions.delete(name: "create_wiki")
-    Permissions.delete(name: "create_forum_post")
-    Permissions.delete(name: "create_event")
+    del(name: "read_wiki")
+    del(name: "read_forum")
+    del(name: "read_event")
+    del(name: "create_wiki")
+    del(name: "create_forum_post")
+    del(name: "create_event")
+  end
+
+  defp ins(name, desc, no_login) do
+    Permissions.insert(name: name, description: desc, no_login: no_login)
+  end
+  defp del(name) do
+    Permissions.delete(name: name)
   end
 end

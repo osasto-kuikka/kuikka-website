@@ -12,27 +12,20 @@ defmodule Frontend.Page.EventController do
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, %{"editor" => "true"}) do
-  #  user = conn.assign(:profile, profile_to_user(profile))
-    u_id = conn.assigns.user.id
-      case Utils.has_permission?(u_id, "create_event") do
-        true ->
-          conn
-          |> assign(:type, :create)
-          |> assign(:event, nil)
-          |> assign(:title, "")
-          |> assign(:time, Timex.now())
-          |> assign(:content, "")
-          |> render("editor.html")
-        false ->
-          conn
-          |> put_flash(:error, dgettext("event", "You don't have the rights to create events"))
-          |> redirect(to: home_path(conn, :index))
-        _->
-          conn
-          |> put_flash(:error, dgettext("event", "Something went wrong."))
-          |> redirect(to: home_path(conn, :index))
-
-      end
+    if Utils.has_permission?(conn, "create_event") do
+      conn
+      |> assign(:type, :create)
+      |> assign(:event, nil)
+      |> assign(:title, "")
+      |> assign(:time, Timex.now())
+      |> assign(:content, "")
+      |> render("editor.html")
+    else
+      conn
+      |> put_flash(:error, dgettext("event",
+                                "You don't have the rights to create events"))
+      |> redirect(to: home_path(conn, :index))
+    end
   end
   def index(conn, _params) do
     case Events.event_list() do

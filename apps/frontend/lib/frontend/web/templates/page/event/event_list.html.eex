@@ -4,10 +4,12 @@
     <div class="btn-left">
     </div>
     <div class="btn-right">
-      <button onclick="location.href='<%= event_path(@conn, :index, %{"editor" => "true"}) %>'"
-              class="new-event-btn">
-          <i class="material-icons">add</i><%= gettext("New event") %>
-      </button>
+      <%= if Frontend.Utils.has_permission?(@conn, "create_event") do %>
+        <button onclick="location.href='<%= event_path(@conn, :index, %{"editor" => "true"}) %>'"
+                class="new-event-btn">
+            <i class="material-icons">add</i><%= gettext("New event") %>
+        </button>
+      <% end %>
     </div>
   </div>
   <div class="row event-list">

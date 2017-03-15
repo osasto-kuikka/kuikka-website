@@ -9,6 +9,7 @@ defmodule Frontend.Router do
     plug :put_secure_browser_headers
     plug Frontend.Plug.Locale
     plug Frontend.Plug.GetUser
+    plug Frontend.Plug.GetPermissions
     plug Frontend.Plug.NextEvent
   end
 

@@ -64,9 +64,11 @@ defmodule Frontend.Utils do
     date
   end
 
-  @spec has_permission?(Map.t, String.t) :: Boolean.t
-  def has_permission?(user_id, permission) do
-    {:ok, permissions} = Users.get_with_role(user_id)
-    Enum.member?(permissions, permission)
+  @doc """
+  Check if user has required permission
+  """
+  @spec has_permission?(Plug.Conn.t, String.t) :: Boolean.t
+  def has_permission?(%{assigns: %{permissions: perms}}, permission) do
+    Enum.member?(perms, permission)
   end
 end
