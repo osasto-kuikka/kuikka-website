@@ -10,35 +10,48 @@ defmodule Frontend.Page.ForumController do
   alias KuikkaDB.Comments
   alias KuikkaDB.TopicComments
   alias Steamex.Profile
+  alias Frontend.Utils
 
   @doc """
   Show all forum topics
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, %{"editor" => "true"}) do
-    case Categories.all() do
-      {:ok, categories} ->
-        conn
-        |> assign(:categories, Enum.map(categories, &{&1.name, &1.id}))
-        |> render("editor.html")
-      {:error, msg} ->
-        conn
-        |> put_flash(:error, msg)
-        |> redirect(to: forum_path(conn, :index))
+    if Utils.has_permission?(conn, "create_forum_post") do
+      case Categories.all() do
+        {:ok, categories} ->
+          conn
+          |> assign(:categories, Enum.map(categories, &{&1.name, &1.id}))
+          |> render("editor.html")
+          {:error, msg} ->
+            conn
+            |> put_flash(:error, msg)
+            |> redirect(to: forum_path(conn, :index))
+      end
+    else
+      conn
+      |> put_flash(:error, "You don't have rights to create forum posts")
+      |> redirect(to: home_path(conn, :index))
     end
   end
   def index(conn, _params) do
-    case Topics.topic_list() do
-      {:ok, topics} ->
-        conn
-        |> assign(:topics, Enum.map(topics, &profile_to_user(&1)))
-        |> render("topic_list.html")
-      {:error, msg} ->
-        conn
-        |> put_flash(:error, msg)
-        |> assign(:topics, [])
-        |> render("topic_list.html")
-    end
+    if Utils.has_permission?(conn, "read_forum") do
+      case Topics.topic_list() do
+        {:ok, topics} ->
+          conn
+          |> assign(:topics, Enum.map(topics, &profile_to_user(&1)))
+          |> render("topic_list.html")
+          {:error, msg} ->
+            conn
+            |> put_flash(:error, msg)
+            |> assign(:topics, [])
+            |> render("topic_list.html")
+     end
+   else
+      conn
+      |> put_flash(:error, "You don't have rights to see forums")
+      |> redirect(to: home_path(conn, :index))
+   end
   end
 
   @doc """
