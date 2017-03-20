@@ -28,15 +28,21 @@ defmodule Frontend.Page.EventController do
     end
   end
   def index(conn, _params) do
-    case Events.event_list() do
-      {:ok, events} ->
-        conn
-        |> assign(:events, events)
-        |> render("event_list.html")
-      {:error, _} ->
-        conn
-        |> put_flash(:error, dgettext("event", "Failed to load event list"))
-        |> redirect(to: home_path(conn, :index))
+    if Utils.has_permission?(conn, "read_event") do
+      case Events.event_list() do
+        {:ok, events} ->
+          conn
+          |> assign(:events, events)
+          |> render("event_list.html")
+          {:error, _} ->
+            conn
+            |> put_flash(:error, dgettext("event", "Failed to load event list"))
+            |> redirect(to: home_path(conn, :index))
+      end
+    else
+      conn
+      |> put_flash(:error, dgettext("event", "You don't have rights to see events"))
+      |> redirect(to: home_path(conn, :index))
     end
   end
 
@@ -84,44 +90,56 @@ defmodule Frontend.Page.EventController do
   end
 
   @doc """
-  Create or update wiki page
+  Create or update event page
   """
   @spec create(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def create(conn, %{"event" => %{"title" => title,
                                   "text" => text,
                                   "event" => event,
                                   "time" => time}}) do
-    time = to_datetime(time)
-    with {event, ""} <- Integer.parse(event),
-         {:ok, _} <- Events.update([title: title, content: text, date: time],
-                                   [id: event])
-    do
-      conn
-      |> put_flash(:info, dgettext("event", "Event updated"))
-      |> redirect(to: event_path(conn, :show, event))
+    if Utils.has_permission?(conn, "create_event") do
+      time = to_datetime(time)
+      with {event, ""} <- Integer.parse(event),
+          {:ok, _} <- Events.update([title: title, content: text, date: time],
+                                    [id: event])
+                                    do
+         conn
+         |> put_flash(:info, dgettext("event", "Event updated"))
+         |> redirect(to: event_path(conn, :show, event))
+       else
+         _ ->
+           conn
+           |> put_flash(:error, dgettext("event", "Failed to update event"))
+           |> redirect(to: event_path(conn, :show, event, %{"editor" => "true"}))
+         end
     else
-      _ ->
-        conn
-        |> put_flash(:error, dgettext("event", "Failed to update event"))
-        |> redirect(to: event_path(conn, :show, event, %{"editor" => "true"}))
-    end
+      conn
+      |> put_flash(:error, dgettext("event", "You don't have rights to update an event "))
+      |> redirect(to: home_path(conn, :index))
+   end
   end
   def create(conn, %{"event" => %{"title" => title, "time" => time,
                                   "text" => text}}) do
-    time = to_datetime(time)
+    if Utils.has_permission?(conn, "create_event") do
+      time = to_datetime(time)
 
-    with {:ok, [%{id: e_id}]} <- Events.insert(title: title, content: text,
+      with {:ok, [%{id: e_id}]} <- Events.insert(title: title, content: text,
                                               date: time)
-    do
-      conn
-      |> put_flash(:info, dgettext("event", "New event created"))
-      |> redirect(to: event_path(conn, :show, e_id))
-    else
-      _ ->
+      do
         conn
-        |> put_flash(:error, dgettext("event", "Failed create event"))
-        |> redirect(to: event_path(conn, :index, %{"editor" => "true"}))
-    end
+        |> put_flash(:info, dgettext("event", "New event created"))
+        |> redirect(to: event_path(conn, :show, e_id))
+      else
+        _ ->
+          conn
+          |> put_flash(:error, dgettext("event", "Failed create event"))
+          |> redirect(to: event_path(conn, :index, %{"editor" => "true"}))
+      end
+   else
+     conn
+     |> put_flash(:error, dgettext("event", "you don't have permission to create events"))
+     |> redirect(to: home_path(conn, :index))
+   end
   end
   def create(conn, %{"comment" => %{"event" => event,
                                     "text" => text}}) do
