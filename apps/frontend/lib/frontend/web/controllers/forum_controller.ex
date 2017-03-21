@@ -59,21 +59,27 @@ defmodule Frontend.Page.ForumController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => id}) do
-    with {id, ""} <- Integer.parse(id),
-         {:ok, [topic]} <- Topics.get_topic(id),
-         {:ok, comments} <- Comments.topic_comments(id)
-    do
-      conn
-      |> assign(:topic, profile_to_user(topic))
-      |> assign(:comments, Enum.map(comments, &profile_to_user(&1)))
-      |> render("topic.html")
-    else
-      _ ->
+    if Utils.has_permission?(conn, "read_forum") do
+      with {id, ""} <- Integer.parse(id),
+          {:ok, [topic]} <- Topics.get_topic(id),
+          {:ok, comments} <- Comments.topic_comments(id)
+          do
         conn
-        |> put_flash(:error, dgettext("forum", "Failed to find topic"))
-        |> redirect(to: forum_path(conn, :index))
-    end
+        |> assign(:topic, profile_to_user(topic))
+        |> assign(:comments, Enum.map(comments, &profile_to_user(&1)))
+        |> render("topic.html")
+      else
+        _ ->
+          conn
+          |> put_flash(:error, dgettext("forum", "Failed to find topic"))
+          |> redirect(to: forum_path(conn, :index))
+      end
+    else
+      conn
+      |> put_flash(:error, dgettext("forum", "You don't have permission to see topics"))
+      |> redirect(to: home_path(conn, :index))
   end
+end
 
   @doc """
   Create new topic or comment
@@ -81,44 +87,56 @@ defmodule Frontend.Page.ForumController do
   @spec create(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def create(conn, %{"topic" => %{"title" => title, "text" => text,
                                   "category" => category}}) do
-    [
-      title: title,
-      text: text,
-      category_id: String.to_integer(category),
-      user_id: conn.assigns.user.id
-    ]
-    |> Topics.insert()
-    |> case do
-      {:ok, [topic]} ->
-        conn
-        |> put_flash(:info, dgettext("forum", "New topic created"))
-        |> redirect(to: forum_path(conn, :show, topic.id))
-      {:error, msg} ->
-        conn
-        |> put_flash(:error, msg)
-        |> redirect(to: forum_path(conn, :index, %{"editor" => "true"}))
-    end
+    if Utils.has_permission?(conn, "create_forum_post") do
+      [
+        title: title,
+        text: text,
+        category_id: String.to_integer(category),
+        user_id: conn.assigns.user.id
+      ]
+      |> Topics.insert()
+      |> case do
+        {:ok, [topic]} ->
+          conn
+          |> put_flash(:info, dgettext("forum", "New topic created"))
+          |> redirect(to: forum_path(conn, :show, topic.id))
+          {:error, msg} ->
+            conn
+            |> put_flash(:error, msg)
+            |> redirect(to: forum_path(conn, :index, %{"editor" => "true"}))
+      end
+    else
+      conn
+      |> put_flash(:error, dgettext("forum", "You don't have permission to create topics"))
+      |> redirect(to: home_path(conn, :index))
+   end
   end
   def create(conn, %{"comment" => %{"topic" => topic, "text" => text}}) do
-    user = conn.assigns.user
+    if Utils.has_permission?(conn, "create_topic_comment") do
+      user = conn.assigns.user
 
-    with {topic, ""} <- Integer.parse(topic),
-         {:ok, [c]} <- Comments.insert(text: text, user_id: user.id),
-         {:ok, _} <- TopicComments.insert(topic_id: topic, comment_id: c.id)
-    do
-      conn
-      |> put_flash(:info, dgettext("forum", "New comment added"))
-      |> redirect(to: forum_path(conn, :show, topic))
-    else
-      {:error, msg} ->
+      with {topic, ""} <- Integer.parse(topic),
+          {:ok, [c]} <- Comments.insert(text: text, user_id: user.id),
+          {:ok, _} <- TopicComments.insert(topic_id: topic, comment_id: c.id)
+      do
         conn
-        |> put_flash(:error, msg)
+        |> put_flash(:info, dgettext("forum", "New comment added"))
         |> redirect(to: forum_path(conn, :show, topic))
-      _ ->
+      else
+        {:error, msg} ->
+          conn
+          |> put_flash(:error, msg)
+          |> redirect(to: forum_path(conn, :show, topic))
+      _   ->
+          conn
+          |> put_flash(:error, dgettext("forum", "Failed to create comment"))
+          |> redirect(to: forum_path(conn, :show, topic))
+        end
+      else
         conn
-        |> put_flash(:error, dgettext("forum", "Failed to create comment"))
-        |> redirect(to: forum_path(conn, :show, topic))
-    end
+        |> put_flash(:error, dgettext("forum", "You don't have permission to comment topics"))
+        |> redirect(to: home_path(conn, :index))
+      end
   end
 
   @spec profile_to_user(Map.t) :: Map.t

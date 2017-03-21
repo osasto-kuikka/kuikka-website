@@ -23,7 +23,7 @@ defmodule Frontend.Page.EventController do
     else
       conn
       |> put_flash(:error, dgettext("event",
-                                "You don't have the rights to create events"))
+                                "You don't have the permission to create events"))
       |> redirect(to: home_path(conn, :index))
     end
   end
@@ -41,7 +41,7 @@ defmodule Frontend.Page.EventController do
       end
     else
       conn
-      |> put_flash(:error, dgettext("event", "You don't have rights to see events"))
+      |> put_flash(:error, dgettext("event", "You don't have permission to see events"))
       |> redirect(to: home_path(conn, :index))
     end
   end
@@ -51,44 +51,55 @@ defmodule Frontend.Page.EventController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => event, "editor" => "true"}) do
-      with {eventid, ""} <- Integer.parse(event),
-          {:ok, [event]} <- Events.get(id: eventid)
-          do
-            conn
-            |> assign(:type, :update)
-            |> assign(:event, eventid)
-            |> assign(:title, event.title)
-            |> assign(:content, event.content)
-            |> assign(:time, event.date)
-            |> render("editor.html")
-          else
-            _ ->
+      if(Utils.has_permission?(conn, "create_event")) do
+        with {eventid, ""} <- Integer.parse(event),
+            {:ok, [event]} <- Events.get(id: eventid)
+            do
               conn
-              |> redirect(to: event_path(conn, :index))
-              |> put_flash(:error, dgettext("event", "Failed to load editor"))
-         end
+              |> assign(:type, :update)
+              |> assign(:event, eventid)
+              |> assign(:title, event.title)
+              |> assign(:content, event.content)
+              |> assign(:time, event.date)
+              |> render("editor.html")
+            else
+              _ ->
+                conn
+                |> redirect(to: event_path(conn, :index))
+                |> put_flash(:error, dgettext("event", "Failed to load editor"))
+       end
+     else
+       conn
+       |> put_flash(:error, dgettext("event", "You don't have permission to create events"))
+       |> redirect(to: home_path(conn, :index))
+      end
      end
   def show(conn, %{"id" => event}) do
-    with {event, ""} <- Integer.parse(event),
-         {:ok, [event]} <- Events.get(id: event),
-         {:ok, comments} <- Comments.event_comments(event.id)
-    do
-      conn
-      |> assign(:event, event)
-      |> assign(:comments, Enum.map(comments, &profile_to_user(&1)))
-      |> render("event.html")
-    else
-      {:error, msg} when is_binary(msg) ->
+    if Utils.has_permission?(conn, "read_event") do
+      with {event, ""} <- Integer.parse(event),
+          {:ok, [event]} <- Events.get(id: event),
+          {:ok, comments} <- Comments.event_comments(event.id)
+      do
         conn
-        |> put_flash(:error, msg)
-        |> redirect(to: event_path(conn, :index))
-      _ ->
-        conn
-        |> put_flash(:error, dgettext("event", "Invalid event url"))
-        |> redirect(to: event_path(conn, :index))
+        |> assign(:event, event)
+        |> assign(:comments, Enum.map(comments, &profile_to_user(&1)))
+        |> render("event.html")
+      else
+        {:error, msg} when is_binary(msg) ->
+          conn
+          |> put_flash(:error, msg)
+          |> redirect(to: event_path(conn, :index))
+          _ ->
+            conn
+            |> put_flash(:error, dgettext("event", "Invalid event url"))
+            |> redirect(to: event_path(conn, :index))
     end
+  else
+    conn
+    |> put_flash(:error, dgettext("event", "You don't have permission to see events"))
+    |> redirect(to: home_path(conn, :index))
   end
-
+end
   @doc """
   Create or update event page
   """
@@ -114,7 +125,7 @@ defmodule Frontend.Page.EventController do
          end
     else
       conn
-      |> put_flash(:error, dgettext("event", "You don't have rights to update an event "))
+      |> put_flash(:error, dgettext("event", "You don't have rights to update events"))
       |> redirect(to: home_path(conn, :index))
    end
   end
@@ -143,21 +154,26 @@ defmodule Frontend.Page.EventController do
   end
   def create(conn, %{"comment" => %{"event" => event,
                                     "text" => text}}) do
-    u_id = conn.assigns.user.id
+    if Utils.has_permission(conn, "create_event_comment") do
+      u_id = conn.assigns.user.id
 
-    with {event, ""} <- Integer.parse(event),
-         {:ok, [%{id: c_id}]} <- Comments.insert(text: text, user_id: u_id),
-         {:ok, _} <- EventComments.insert(event_id: event, comment_id: c_id)
-    do
-      conn
-      |> put_flash(:info, dgettext("event", "Comment added succesfully"))
-      |> redirect(to: event_path(conn, :show, event))
-    else
-      _ ->
+      with {event, ""} <- Integer.parse(event),
+          {:ok, [%{id: c_id}]} <- Comments.insert(text: text, user_id: u_id),
+          {:ok, _} <- EventComments.insert(event_id: event, comment_id: c_id)
+      do
         conn
-        |> put_flash(:error, dgettext("event", "Failed to add comment"))
+        |> put_flash(:info, dgettext("event", "Comment added succesfully"))
         |> redirect(to: event_path(conn, :show, event))
-    end
+      else
+        _ ->
+          conn
+          |> put_flash(:error, dgettext("event", "Failed to add comment"))
+          |> redirect(to: event_path(conn, :show, event))
+        end
+      else
+        conn
+        |> put_flash(:error, dgettext("event", "You don't have permission to comment events"))
+        |> redirect(to: home_path(conn, :index))
   end
 
   @spec profile_to_user(Map.t) :: Map.t

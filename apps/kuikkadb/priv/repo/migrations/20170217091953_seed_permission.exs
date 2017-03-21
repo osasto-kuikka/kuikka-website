@@ -12,6 +12,8 @@ defmodule KuikkaDB.Repo.Migrations.SeedPermission do
     ins("create_wiki", "Permission to create wiki pages", false)
     ins("create_forum_post", "Permission to create new forum posts", false)
     ins("create_event", "Permission to create new events", false)
+    ins("create_topic_comment", "Permission to comment forum topics", false)
+    ins("create_event_comment", "Permission to comment events", false)
   end
 
   def down do
@@ -21,6 +23,8 @@ defmodule KuikkaDB.Repo.Migrations.SeedPermission do
     del(name: "create_wiki")
     del(name: "create_forum_post")
     del(name: "create_event")
+    del(name: "create_topic_comment")
+    del(name: "create_event_comment")
   end
 
   defp ins(name, desc, no_login) do
