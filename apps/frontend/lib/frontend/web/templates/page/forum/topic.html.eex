@@ -36,13 +36,15 @@
       </div>
     </div>
   <% end %>
-  <%= form_for @conn, forum_path(@conn, :create), [as: :comment, class: "comment-editor"], fn f -> %>
-    <%= hidden_input f, :topic, value: @topic.id %>
+  <%= if Frontend.Utils.has_permission?(@conn, "create_topic_comment") do %>
+    <%= form_for @conn, forum_path(@conn, :create), [as: :comment, class: "comment-editor"], fn f -> %>
+      <%= hidden_input f, :topic, value: @topic.id %>
 
-    <%= label f, :text, gettext("Comment"), class: "label" %>
-    <%= textarea f, :text, class: "input", id: "body-editor" %>
+      <%= label f, :text, gettext("Comment"), class: "label" %>
+      <%= textarea f, :text, class: "input", id: "body-editor" %>
 
-    <%= submit gettext("Submit"), class: "submit" %>
+      <%= submit gettext("Submit"), class: "submit" %>
+    <% end %>
   <% end %>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
   <script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>

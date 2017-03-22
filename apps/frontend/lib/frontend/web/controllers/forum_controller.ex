@@ -17,7 +17,7 @@ defmodule Frontend.Page.ForumController do
   """
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, %{"editor" => "true"}) do
-    if Utils.has_permission?(conn, "create_forum_post") do
+    if not Utils.has_permission?(conn, "create_forum_post") do
       case Categories.all() do
         {:ok, categories} ->
           conn
@@ -30,12 +30,12 @@ defmodule Frontend.Page.ForumController do
       end
     else
       conn
-      |> put_flash(:error, "You don't have rights to create forum posts")
+      |> put_flash(:error, "You don't have permission to create forum posts")
       |> redirect(to: home_path(conn, :index))
     end
   end
   def index(conn, _params) do
-    if Utils.has_permission?(conn, "read_forum") do
+    if not Utils.has_permission?(conn, "read_forum") do
       case Topics.topic_list() do
         {:ok, topics} ->
           conn
@@ -49,7 +49,7 @@ defmodule Frontend.Page.ForumController do
      end
    else
       conn
-      |> put_flash(:error, "You don't have rights to see forums")
+      |> put_flash(:error, "You don't have permission to see forums")
       |> redirect(to: home_path(conn, :index))
    end
   end
@@ -59,7 +59,7 @@ defmodule Frontend.Page.ForumController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => id}) do
-    if Utils.has_permission?(conn, "read_forum") do
+    if not Utils.has_permission?(conn, "read_forum") do
       with {id, ""} <- Integer.parse(id),
           {:ok, [topic]} <- Topics.get_topic(id),
           {:ok, comments} <- Comments.topic_comments(id)
@@ -87,7 +87,7 @@ end
   @spec create(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def create(conn, %{"topic" => %{"title" => title, "text" => text,
                                   "category" => category}}) do
-    if Utils.has_permission?(conn, "create_forum_post") do
+    if not Utils.has_permission?(conn, "create_forum_post") do
       [
         title: title,
         text: text,
