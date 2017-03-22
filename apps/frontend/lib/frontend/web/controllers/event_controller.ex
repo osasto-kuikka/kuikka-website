@@ -154,7 +154,7 @@ end
   end
   def create(conn, %{"comment" => %{"event" => event,
                                     "text" => text}}) do
-    if Utils.has_permission(conn, "create_event_comment") do
+    if Utils.has_permission?(conn, "create_event_comment") do
       u_id = conn.assigns.user.id
 
       with {event, ""} <- Integer.parse(event),
@@ -175,6 +175,7 @@ end
         |> put_flash(:error, dgettext("event", "You don't have permission to comment events"))
         |> redirect(to: home_path(conn, :index))
   end
+end
 
   @spec profile_to_user(Map.t) :: Map.t
   defp profile_to_user(map) do

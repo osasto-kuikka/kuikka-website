@@ -1,9 +1,11 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
 <main class="columns" id="event-single-content">
-  <button onclick="location.href='<%= event_path(@conn, :show, @event.id, %{"editor" => "true"}) %>'"
-          class="edit-event-btn">
-      <i class="material-icons">mode_edit</i><%= gettext("Edit event") %>
-  </button>
+  <%= if Frontend.Utils.has_permission?(@conn, "create_event") do %>
+    <button onclick="location.href='<%= event_path(@conn, :show, @event.id, %{"editor" => "true"}) %>'"
+            class="edit-event-btn">
+            <i class="material-icons">mode_edit</i><%= gettext("Edit event") %>
+   </button>
+  <% end %>
   <div class="row topic">
       <span class="title"><%= @event.title %></span>
   </div>
@@ -26,13 +28,15 @@
       </div>
     </div>
   <% end %>
-  <%= form_for @conn, event_path(@conn, :create), [as: :comment, class: "comment-editor"], fn f -> %>
-    <%= hidden_input f, :event, value: @event.id %>
+  <%= if Frontend.Utils.has_permission?(@conn, "create_event_comment") do %>
+    <%= form_for @conn, event_path(@conn, :create), [as: :comment, class: "comment-editor"], fn f -> %>
+      <%= hidden_input f, :event, value: @event.id %>
 
-    <%= label f, :text, dgettext("event", "New comment"), class: "label" %>
-    <%= textarea f, :text, class: "input", id: "body-editor" %>
+      <%= label f, :text, dgettext("event", "New comment"), class: "label" %>
+      <%= textarea f, :text, class: "input", id: "body-editor" %>
 
-    <%= submit dgettext("event", "New comment"), class: "submit" %>
+      <%= submit dgettext("event", "New comment"), class: "submit" %>
+   <% end %>
   <% end %>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
   <script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
