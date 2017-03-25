@@ -13,7 +13,7 @@ defmodule Frontend.Page.MemberController do
     conn
     |> fetch_session
     |> delete_session(:steamex_steamid64)
-    |> put_flash(:info, gettext("member", "You have been logged out"))
+    |> put_flash(:info, dgettext("member", "You have been logged out"))
     |> redirect(to: home_path(conn, :index))
   end
   def index(conn, _) do
