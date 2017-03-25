@@ -15,6 +15,7 @@ defmodule KuikkaDB.Repo.Migrations.CreatePermission do
     create table(:permissions) do
       add :name, :string, size: 50, null: false
       add :description, :string, size: 250, null: true
+      add :no_login, :boolean, default: false, null: false
     end
     create index(:permissions, [:name], unique: true)
   end

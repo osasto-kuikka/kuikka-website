@@ -5,28 +5,41 @@ defmodule Frontend.Page.WikiController do
   @doc """
   Wiki home page controller.
   """
+  alias Frontend.Utils
   @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, %{"editor" => "true"}) do
-    conn
-    |> assign(:page, nil)
-    |> assign(:content, "")
-    |> render("editor.html")
-  end
+    if Utils.has_permission?(conn, "read_wiki") do
+      conn
+      |> assign(:page, nil)
+      |> assign(:content, "")
+      |> render("editor.html")
+    else
+      conn
+      |> put_flash(:error, dgettext("wiki", "You don't have permission to access wiki"))
+      |> redirect(to: home_path(conn, :index))
+   end
+    end
   def index(conn, _params) do
-    content = case Wiki.read("index") do
-      {:ok, content} -> content
-      {:error, _} -> default_index()
-    end
-    sidebar = case Wiki.read("sidebar") do
-      {:ok, content} -> content
-      {:error, _} -> default_sidebar()
-    end
+    if Utils.has_permission?(conn, "read_wiki") do
+      content = case Wiki.read("index") do
+        {:ok, content} -> content
+        {:error, _} -> default_index()
+      end
+      sidebar = case Wiki.read("sidebar") do
+        {:ok, content} -> content
+        {:error, _} -> default_sidebar()
+      end
 
-    conn
-    |> assign(:page, "index")
-    |> assign(:content, content)
-    |> assign(:sidebar, sidebar)
-    |> render("page.html")
+      conn
+      |> assign(:page, "index")
+      |> assign(:content, content)
+      |> assign(:sidebar, sidebar)
+      |> render("page.html")
+    else
+      conn
+      |> put_flash(:error, dgettext("wiki", "You don't have permission to access wiki"))
+      |> redirect(to: home_path(conn, :index))
+    end
   end
 
   @doc """
