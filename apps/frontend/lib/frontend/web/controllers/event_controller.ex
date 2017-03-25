@@ -7,6 +7,7 @@ defmodule Frontend.Page.EventController do
   alias KuikkaDB.Events
   alias Steamex.Profile
   alias Frontend.Utils
+
   @doc """
   Show event list or editor to create new event
   """
