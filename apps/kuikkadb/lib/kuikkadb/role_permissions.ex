@@ -36,5 +36,4 @@ defmodule KuikkaDB.RolePermissions do
   """
   @spec delete(Keyword.t) :: {:ok | :error, term}
   defdelete delete(conds), table: :role_permissions
-
 end
