@@ -69,7 +69,7 @@ msgstr "Uusi tapahtuma luotu"
 
 #: lib/frontend/web/templates/shared/next_event.html.eex:4
 msgid "No coming events"
-msgstr "Ei uusi tapahtumia"
+msgstr "Ei tulevia tapahtumia"
 
 #: lib/frontend/web/templates/page/event/editor.html.eex:5
 #: lib/frontend/web/templates/page/event/event_list.html.eex:17

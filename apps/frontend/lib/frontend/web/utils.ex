@@ -4,6 +4,8 @@ defmodule Frontend.Utils do
   """
   import Phoenix.HTML
   alias Phoenix.HTML.Form
+  alias Frontend.Router.Helpers
+  alias Steamex.Auth
   require Frontend.Gettext
 
   @doc """
@@ -66,5 +68,29 @@ defmodule Frontend.Utils do
   @spec has_permission?(Plug.Conn.t, String.t) :: Boolean.t
   def has_permission?(%{assigns: %{permissions: perms}}, permission) do
     Enum.member?(perms, permission)
+  end
+
+  @doc """
+  Get steam login url base
+  """
+  @spec steam_login_url_base() :: String.t
+  def steam_login_url_base, do: "https://steamcommunity.com/openid/login"
+
+  @doc """
+  Generate url for login with steam
+  """
+  @spec auth_url(Plug.Conn.t) :: String.t
+  def auth_url(conn) do
+    realm = realm_url(Helpers.url(conn))
+    return_to = realm <> "/members?" <> URI.encode_query(%{"login" => "true"})
+    Auth.auth_url(realm, return_to)
+  end
+
+  defp realm_url("http://localhost:4000"), do: "http://localhost:4000"
+  defp realm_url(host) do
+    host
+    |> String.split(":")
+    |> Enum.drop(-1)
+    |> Enum.join(":")
   end
 end
