@@ -1,11 +1,15 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
 <main class="columns" id="topic-list-content">
-  <%= if Frontend.Utils.has_permission?(@conn, "create_forum_post") do %>
-    <button onclick="location.href='<%= forum_path(@conn, :index, %{"editor" => "true"}) %>'"
-            class="new-topic-btn">
-      <i class="material-icons">add</i><%= gettext("New topic") %>
-  </button>
-  <%= end %>
+  <div class="btn-left">
+  </div>
+  <div class="btn-right">
+    <%= if Frontend.Utils.has_permission?(@conn, "create_forum_post") do %>
+      <button onclick="location.href='<%= forum_path(@conn, :index, %{"editor" => "true"}) %>'"
+              class="new-topic-btn">
+        <i class="material-icons">add</i><%= gettext("New topic") %>
+    </button>
+    <%= end %>
+  </div>
   <table>
     <thead>
       <tr>

@@ -5,10 +5,16 @@
 #topic-list-content {
   margin-top: 200px;
 
-  .new-topic-btn {
-    float: right;
+	.btn-left {
+		float: left;
+	}
+	.btn-right {
+		float: right;
+	}
+
+  button {
     font-size: 12px;
-    padding: 0 15px;
+    padding: 0 20px;
 
     i {
       font-size: 12px;
