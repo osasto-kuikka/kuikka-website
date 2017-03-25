@@ -59,4 +59,12 @@ defmodule Frontend.Utils do
   defp transform_to_date(date) do
     date
   end
+
+  @doc """
+  Check if user has required permission
+  """
+  @spec has_permission?(Plug.Conn.t, String.t) :: Boolean.t
+  def has_permission?(%{assigns: %{permissions: perms}}, permission) do
+    Enum.member?(perms, permission)
+  end
 end
