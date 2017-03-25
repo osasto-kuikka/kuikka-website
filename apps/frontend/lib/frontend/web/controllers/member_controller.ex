@@ -5,6 +5,8 @@ defmodule Frontend.Page.MemberController do
   alias KuikkaDB.Users
   alias Steamex.Profile
   alias Plug.Conn
+  alias HTTPoison.Response
+  alias Frontend.Utils
 
   @doc """
   List all users.
@@ -74,52 +76,63 @@ defmodule Frontend.Page.MemberController do
   end
 
   defp validate_payload(payload) do
+    with {:ok, signed_params} <- get_signed_params(payload),
+         {:ok, params} <- validate_signed_params(signed_params, payload),
+         {:ok, response} <- send_login_request(params)
+    do
+      case response do
+        %Response{status_code: 200, body: body} ->
+          if String.contains? body, "is_valid:true" do
+            "http://steamcommunity.com/openid/id/" <> steamid64_str =
+                                                      payload["openid.identity"]
+
+            {steamid64, ""} = Integer.parse(steamid64_str)
+
+            {:ok, steamid64}
+          else
+            {:error, "Steam returned is_valid:false"}
+          end
+        %Response{status_code: code} ->
+          {:error, "Steam returned invalid response, code: #{code}"}
+      end
+    end
+  end
+
+  defp get_signed_params(payload) do
     payload
     |> Map.get("openid.signed", "")
     |> String.split(",")
     |> Enum.map(&"openid.#{&1}")
     |> case do
       [] -> {:error, "failed to find any openid.signed values"}
-      signed ->
-        handle = Map.get(payload, "openid.assoc_handle", nil)
-        sig = Map.get(payload, "openid.sig", nil)
-        ns = Map.get(payload, "openid.ns", nil)
-        params = Map.take(payload, signed)
-
-        cond do
-          is_nil(handle) -> {:error, "openid.assoc_handle is nil"}
-          is_nil(sig) -> {:error, "openid.sig is nil"}
-          is_nil(ns) -> {:error, "openid.ns is nil"}
-          true ->
-            Map.merge(params, %{
-              "openid.assoc_handle" => handle,
-              "openid.sig" => sig,
-              "openid.ns" => ns,
-              "openid.mode" => "check_authentication"
-            })
-        end
+      params -> {:ok, params}
     end
-    |> case do
-      {:error, msg} -> {:error, msg}
-      params ->
-        url = Frontend.Utils.steam_login_url_base()
-        HTTPoison.post(url, URI.encode_query(params), [
-          {"Content-Type", "application/x-www-form-urlencoded"}
-        ])
-    end
-    |> case do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        if String.contains? body, "is_valid:true" do
-          "http://steamcommunity.com/openid/id/" <> steamid64_str =
-                                                    payload["openid.identity"]
+  end
 
-          {steamid64, ""} = Integer.parse(steamid64_str)
+  defp validate_signed_params(signed, payload) do
+    handle = Map.get(payload, "openid.assoc_handle", nil)
+    sig = Map.get(payload, "openid.sig", nil)
+    ns = Map.get(payload, "openid.ns", nil)
+    params = Map.take(payload, signed)
 
-          {:ok, steamid64}
-        else
-          {:error, "Steam returned is_valid:false"}
-        end
-      tuple -> tuple
+    cond do
+      is_nil(handle) -> {:error, "openid.assoc_handle is nil"}
+      is_nil(sig) -> {:error, "openid.sig is nil"}
+      is_nil(ns) -> {:error, "openid.ns is nil"}
+      true ->
+        {:ok, Map.merge(params, %{
+          "openid.assoc_handle" => handle,
+          "openid.sig" => sig,
+          "openid.ns" => ns,
+          "openid.mode" => "check_authentication"
+        })}
     end
+  end
+
+  defp send_login_request(params) do
+    url = Utils.steam_login_url_base()
+    HTTPoison.post(url, URI.encode_query(params), [
+      {"Content-Type", "application/x-www-form-urlencoded"}
+    ])
   end
 end

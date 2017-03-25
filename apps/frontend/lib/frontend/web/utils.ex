@@ -4,6 +4,8 @@ defmodule Frontend.Utils do
   """
   import Phoenix.HTML
   alias Phoenix.HTML.Form
+  alias Frontend.Router.Helpers
+  alias Steamex.Auth
   require Frontend.Gettext
 
   @doc """
@@ -79,9 +81,9 @@ defmodule Frontend.Utils do
   """
   @spec auth_url(Plug.Conn.t) :: String.t
   def auth_url(conn) do
-    realm = realm_url(Frontend.Router.Helpers.url(conn))
+    realm = realm_url(Helpers.url(conn))
     return_to = realm <> "/members?" <> URI.encode_query(%{"login" => "true"})
-    Steamex.Auth.auth_url(realm, return_to)
+    Auth.auth_url(realm, return_to)
   end
 
   defp realm_url("http://localhost:4000"), do: "http://localhost:4000"
