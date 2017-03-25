@@ -44,6 +44,7 @@ defmodule KuikkaWebsite.Mixfile do
 
   defp aliases do
     [
+      "compile": ["compile --warnings-as-errors"],
       "setup": ["deps.get", "compile", "db.setup", "frontend.install"],
       "setup.min": ["deps.get", "compile"],
       "db.setup": ["ecto.create", "ecto.migrate"],
