@@ -18,7 +18,7 @@ defmodule Frontend.Plug.GetUser do
   @spec call(Plug.Conn.t, term) :: Plug.Conn.t
   def call(conn, _options) do
     conn
-    |> get_session(:steamex_steamid64)
+    |> get_session(:steamid64)
     |> query()
     |> get_user(conn)
     |> add_profile()
@@ -47,7 +47,7 @@ defmodule Frontend.Plug.GetUser do
   defp assign(user, conn), do: assign(conn, :user, user)
 
   defp insert(conn) do
-    steamid = get_session(conn, :steamex_steamid64)
+    steamid = get_session(conn, :steamid64)
     {:ok, [role]} = Roles.get(name: "user")
     {:ok, [user]} = Users.insert(steamid: steamid, role_id: role.id)
     user

@@ -17,9 +17,6 @@ defmodule Frontend.Router do
     plug Frontend.Plug.RequireUser
   end
 
-  # Generate steamex auth route
-  steamex_route_auth()
-
   scope "/", Frontend do
     pipe_through [:browser]
 

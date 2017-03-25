@@ -34,7 +34,7 @@
               </a>
               <div id="header-nav-right">
                 <%= if is_nil(@user) do %>
-                  <a class="header-link" href="<%= steamex_auth_url(@conn) %>">
+                  <a class="header-link" href="<%= Frontend.Utils.auth_url(@conn) %>">
                     <img class="steam-image" src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" />
                   </a>
                 <% else %>
