@@ -1,6 +1,6 @@
 <%= render Frontend.SharedView, "banner.html", assigns %>
 
-<main class="columns" id="home-content">
+<main id="home-content">
   <div class="row align-middle">
     <div class="home-content-block">
       <h1>Osasto Kuikka</h1>

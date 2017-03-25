@@ -1,5 +1,5 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
-<main class="columns" id="event-content">
+<main id="event-content">
   <div class="row">
     <div class="btn-left">
     </div>

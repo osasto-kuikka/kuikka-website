@@ -1,5 +1,5 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
-<main class="columns" id="event-single-content">
+<main id="event-single-content">
   <%= if Frontend.Utils.has_permission?(@conn, "create_event") do %>
     <button onclick="location.href='<%= event_path(@conn, :show, @event.id, %{"editor" => "true"}) %>'"
             class="edit-event-btn">

@@ -1,5 +1,5 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
-<main class="columns" id="member-content">
+<main id="member-content">
   <div class="row">
     <div class="colums twelve member-username">
       <a href="<%= get_steam_url(@member.profile) %>">

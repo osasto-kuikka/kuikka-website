@@ -1,5 +1,5 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
-<main class="columns" id="forum-topic-content">
+<main id="forum-topic-content">
   <div class="row topic">
       <span class="title"><%= @topic.title %></span>
       <span class="category" style="background-color:#<%= @topic.category_color %>">

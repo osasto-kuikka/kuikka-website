@@ -1,5 +1,5 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
-<main class="columns" id="editor-content">
+<main id="editor-content">
   <%= form_for @conn, event_path(@conn, :create), [as: :event], fn f -> %>
     <div class="title">
       <%= label f, :title, dgettext("event", "Title"), class: "label" %>

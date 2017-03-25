@@ -1,5 +1,5 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
-<main class="columns" id="wiki-content">
+<main id="wiki-content">
   <div class="row">
     <div class="btn-left">
       <%= if Frontend.Utils.has_permission?(@conn, "modify_wiki") do %>

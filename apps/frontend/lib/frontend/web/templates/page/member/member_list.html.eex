@@ -1,5 +1,5 @@
 <%= render Frontend.SharedView, "banner_small.html", assigns %>
-<main class="columns" id="member-list-content">
+<main id="member-list-content">
   <table>
     <thead>
       <tr>
