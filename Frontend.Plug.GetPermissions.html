@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Frontend.Page.WikiController – Kuikka Website v0.0.1</title>
+    <title>Frontend.Plug.GetPermissions – Kuikka Website v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-537fd027bd.js"></script>
@@ -59,15 +59,22 @@
 
       <h1>
         <small class="visible-xs">Kuikka Website v0.0.1</small>
-        Frontend.Page.WikiController
+        Frontend.Plug.GetPermissions
         
         
-          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/wiki_controller.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/plug/get_permissions.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
       </h1>
 
+      
+        <section id="moduledoc">
+          <p>Plug for checking if user is not nil.
+When user is nil, home page will be shown with error message
+that tells user to login.</p>
+
+        </section>
       
 
       
@@ -87,29 +94,14 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#create/2">create(conn, map)</a>
+    <a href="#call/2">call(map, options)</a>
   </div>
-  
-    <div class="summary-synopsis"><p>Create or update wiki page</p>
-</div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#index/2">index(conn, arg2)</a>
+    <a href="#init/1">init()</a>
   </div>
-  
-    <div class="summary-synopsis"><p>Wiki home page controller</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#show/2">show(conn, map)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Wiki page controller</p>
-</div>
   
 </div>
 
@@ -133,15 +125,15 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="create/2">
+          <div class="detail" id="call/2">
   
   <div class="detail-header">
-    <a href="#create/2" class="detail-link" title="Link to this function">
+    <a href="#call/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">create(conn, map)</span>
+    <span class="signature">call(map, options)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/wiki_controller.ex#L98" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/plug/get_permissions.ex#L15" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -149,25 +141,24 @@
     
       <div class="specs">
         
-          <pre>create(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
+          <pre>call(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, term) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Create or update wiki page</p>
-
+    
   </section>
 </div>
-<div class="detail" id="index/2">
+<div class="detail" id="init/1">
   
   <div class="detail-header">
-    <a href="#index/2" class="detail-link" title="Link to this function">
+    <a href="#init/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">index(conn, arg2)</span>
+    <span class="signature">init()</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/wiki_controller.ex#L10" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/plug/get_permissions.ex#L12" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -175,40 +166,13 @@
     
       <div class="specs">
         
-          <pre>index(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
+          <pre>init(term) :: <a href="https://hexdocs.pm/elixir/List.html#t:t/0">List.t</a></pre>
         
       </div>
     
   </div>
   <section class="docstring">
-    <p>Wiki home page controller.</p>
-
-  </section>
-</div>
-<div class="detail" id="show/2">
-  
-  <div class="detail-header">
-    <a href="#show/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">show(conn, map)</span>
     
-      <a href="https://github.com/osasto-kuikka/kuikka-website/blob/master/apps/frontend/lib/frontend/web/controllers/wiki_controller.ex#L49" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-      <div class="specs">
-        
-          <pre>show(<a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>, <a href="https://hexdocs.pm/elixir/Map.html#t:t/0">Map.t</a>) :: <a href="https://hexdocs.pm/plug/1.3.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a></pre>
-        
-      </div>
-    
-  </div>
-  <section class="docstring">
-    <p>Wiki page controller.</p>
-
   </section>
 </div>
 
