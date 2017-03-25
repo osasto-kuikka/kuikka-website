@@ -16,7 +16,7 @@ defmodule KuikkaDB.Repo.Migrations.SeedDefaultRolePermission do
     {:ok, [admin]} = Roles.get(name: "admin")
     RP.delete(role_id: admin.id)
     {:ok, [user]} = Roles.get(name: "user")
-    RP.delete(role_id: user.id )
+    RP.delete(role_id: user.id)
   end
 
   @spec insert_role_permissions(binary, binary | list) ::
@@ -32,7 +32,7 @@ defmodule KuikkaDB.Repo.Migrations.SeedDefaultRolePermission do
 
   @spec insert_role_permissions(binary, map) ::
                                         {:ok, Ecto.Schema.t} | {:error, map}
-  defp insert_role_permissions(role_name, {:ok, permissions = [perm | _]} )
+  defp insert_role_permissions(role_name, {:ok, permissions = [perm | _]})
                                                 when is_map(perm) do
     {:ok, [role]} = Roles.get(name: role_name)
     for p <- permissions do

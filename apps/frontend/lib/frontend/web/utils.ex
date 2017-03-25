@@ -4,10 +4,6 @@ defmodule Frontend.Utils do
   """
   import Phoenix.HTML
   alias Phoenix.HTML.Form
-  alias KuikkaDB.RolePermissions, as: RP
-  alias KuikkaDB.Roles
-  alias KuikkaDB.Permissions
-  alias KuikkaDB.Users
   require Frontend.Gettext
 
   @doc """

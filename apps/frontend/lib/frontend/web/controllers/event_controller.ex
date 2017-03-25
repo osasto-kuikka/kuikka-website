@@ -51,7 +51,7 @@ defmodule Frontend.Page.EventController do
   """
   @spec show(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def show(conn, %{"id" => event, "editor" => "true"}) do
-      if(Utils.has_permission?(conn, "create_event")) do
+      if Utils.has_permission?(conn, "create_event") do
         with {eventid, ""} <- Integer.parse(event),
             {:ok, [event]} <- Events.get(id: eventid)
             do

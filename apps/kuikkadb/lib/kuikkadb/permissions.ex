@@ -43,7 +43,7 @@ defmodule KuikkaDB.Permissions do
     "select * from permissions"
   end
 
-  @spec get_reads() :: {:ok, List.t} | { :error, String.t}
+  @spec get_reads() :: {:ok, List.t} | {:error, String.t}
   defquery get_reads() do
     """
     select * from permissions p

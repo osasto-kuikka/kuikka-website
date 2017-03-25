@@ -29,16 +29,17 @@ defmodule Frontend.Page.WikiController do
         {:ok, content} -> content
         {:error, _} -> default_sidebar()
       end
+
+      conn
+      |> assign(:page, "index")
+      |> assign(:content, content)
+      |> assign(:sidebar, sidebar)
+      |> render("page.html")
     else
       conn
       |> put_flash(:error, dgettext("wiki", "You don't have permission to access wiki"))
       |> redirect(to: home_path(conn, :index))
     end
-    conn
-    |> assign(:page, "index")
-    |> assign(:content, content)
-    |> assign(:sidebar, sidebar)
-    |> render("page.html")
   end
 
   @doc """

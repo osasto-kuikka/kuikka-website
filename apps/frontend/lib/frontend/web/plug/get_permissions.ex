@@ -21,13 +21,11 @@ defmodule Frontend.Plug.GetPermissions do
   def call(conn = %{assigns: %{user: user}}, _options) do
     case Permissions.get_user(user.id) do
       {:ok, perms} -> assign(conn, :permissions, to_list(perms))
-      {:error, msg} ->
-        IO.inspect msg
-        assign(conn, :permissions, [])
+      {:error, _msg} -> assign(conn, :permissions, [])
     end
   end
 
   defp to_list(perms) do
-    Enum.map(perms, fn %{name: name} -> name end) |> IO.inspect
+    Enum.map(perms, fn %{name: name} -> name end)
   end
 end
