@@ -1,7 +1,0 @@
-<div class="mdl-card mdl-shadow--2dp" style="width: 100%''">
-  <div class="mdl-grid mdl-cell mdl-cell--12-col">
-    <h2 class="center">
-      <%= dgettext "errors", "Invalid route, plese return to last page" %>
-    </h2>
-  </div>
-</div>

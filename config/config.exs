@@ -1,17 +1,27 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
+#
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
 use Mix.Config
 
-# By default, the umbrella project as well as each child
-# application will require this configuration file, ensuring
-# they all use the same configuration. While one could
-# configure all applications here, we prefer to delegate
-# back to each application for organization purposes.
-import_config "../apps/*/config/config.exs"
+# General application configuration
+config :kuikka_website,
+  ecto_repos: [KuikkaWebsite.Repo]
 
-# Sample configuration (overrides the imported configuration above):
-#
-#     config :logger, :console,
-#       level: :info,
-#       format: "$date $time [$level] $metadata$message\n",
-#       metadata: [:user_id]
+# Configures the endpoint
+config :kuikka_website, KuikkaWebsite.Web.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "KU/TmQnYY26fLduJxtF6VgZoFX7gQBSgRfT85VeNsu+lBulRhVtXsAvK/eB8aC26",
+  render_errors: [view: KuikkaWebsite.Web.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: KuikkaWebsite.PubSub,
+           adapter: Phoenix.PubSub.PG2]
+
+# Configures Elixir's Logger
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"

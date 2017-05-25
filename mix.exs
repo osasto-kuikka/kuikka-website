@@ -2,45 +2,59 @@ defmodule KuikkaWebsite.Mixfile do
   use Mix.Project
 
   def project do
-    [apps_path: "apps",
-     app: :kuikka_website,
+    [app: :kuikka_website,
      version: "0.0.1",
      elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
+     elixirc_paths: elixirc_paths(Mix.env),
+     compilers: [:phoenix, :gettext] ++ Mix.compilers,
      start_permanent: Mix.env == :prod,
-     test_coverage: [tool: ExCoveralls],
      aliases: aliases(),
-     deps: deps(),
-
-     # Docs
-     name: "Kuikka Website",
-     source_url: "https://github.com/osasto-kuikka/kuikka-website",
-     homepage_url: "http://osastokuikka.com",
-     docs: [main: "readme",
-            extras: ["README.md"]]
-    ]
+     deps: deps()]
   end
 
+  # Configuration for the OTP application.
+  #
+  # Type `mix help compile.app` for more information.
+  def application do
+    [mod: {KuikkaWebsite.Application, []},
+     extra_applications: [:logger, :runtime_tools]]
+  end
+
+  # Specifies which paths to compile per environment.
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
+
+  # Specifies your project dependencies.
+  #
+  # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:distillery, "~> 1.1"},
-      {:credo, "~> 0.6", only: [:dev, :test]},
-      {:excoveralls, "~> 0.6", only: :test},
-      {:inch_ex, "~> 0.5", only: [:dev, :test]},
-      {:ex_doc, "~> 0.14", only: :dev},
+      {:phoenix, "~> 1.3.0-rc"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix_ecto, "~> 3.2"},
+      {:postgrex, ">= 0.0.0"},
+      {:phoenix_html, "~> 2.6"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:gettext, "~> 0.11"},
+      {:cowboy, "~> 1.0"}
     ]
   end
 
+  # Aliases are shortcuts or tasks specific to the current project.
+  # For example, to create, migrate and run the seeds file at once:
+  #
+  #     $ mix ecto.setup
+  #
+  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
       "compile": ["compile --warnings-as-errors"],
-      "setup": ["deps.get", "compile", "db.setup", "npm.install"],
+      "setup": ["deps.get", "compile", "ecto.setup", "npm.install"],
       "setup.min": ["deps.get", "compile"],
-      "db.setup": ["ecto.create", "ecto.migrate"],
-      "db.setup.quiet": ["ecto.create --quiet", "ecto.migrate --quiet"],
-      "db.reset": ["ecto.drop", "db.setup"],
+      "ecto.setup": ["ecto.create", "ecto.migrate"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
       "release": ["npm.build", "release"],
-      "test": ["db.setup.quiet", "test"],
+      "test": ["ecto.create --quiet", "ecto.migrate", "test"],
       "lint": ["credo -a --strict"]
     ]
   end
