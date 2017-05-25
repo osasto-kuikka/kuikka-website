@@ -1,0 +1,32 @@
+<%= form_for @changeset, @path, [as: :event], fn f -> %>
+  <div class="textfield center">
+    <%= label f, :title, dgettext("editor", "Title") %>
+    <%= text_input f, :title %>
+
+    <%= if message = f.errors[:title] do %>
+      <p class="error-msg"><%= translate_error(message) %></p>
+    <% end %>
+  </div>
+
+  <div class="textfield center">
+    <%= label f, :content, dgettext("editor", "Content") %>
+    <%= text_input f, :content %>
+
+    <%= if message = f.errors[:content] do %>
+      <p class="error-msg"><%= translate_error(message) %></p>
+    <% end %>
+  </div>
+
+  <div class="center">
+    <%= label f, :date, dgettext("editor", "Date") %>
+    <%= datetime_select f, :date, get_datetime_options() %>
+
+    <%= if message = f.errors[:date] do %>
+      <p class="error-msg"><%= translate_error(message) %></p>
+    <% end %>
+  </div>
+
+  <div class="center">
+    <%= submit dgettext("editor", "Submit"), class: "button-primary" %>
+  </div>
+<% end %>

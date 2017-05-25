@@ -1,34 +1,32 @@
 defmodule KuikkaDB.Repo.Migrations.AddDefaultCategory do
   use Ecto.Migration
 
-  alias KuikkaDB.Categories
+  alias KuikkaDB.{Repo, CategorySchema}
 
-  @doc """
-  Insert default categories
-  """
   def up do
-    insert_category("Uncategorized", "No category defined", "111111")
-    insert_category("Offtopic", "Offtopic conversation", "4CAF50")
-    insert_category("Admin", "Admin only conversation", "F44336")
+    insert("Uncategorized", "No category defined", "111111")
+    insert("Offtopic", "Offtopic conversation", "4CAF50")
+    insert("Admin", "Admin only conversation", "F44336")
   end
 
-  @doc """
-  Remove default categories
-  """
   def down do
-    remove_category("Uncategorized")
-    remove_category("Offtopic")
-    remove_category("Admin")
+    delete("Uncategorized")
+    delete("Offtopic")
+    delete("Admin")
   end
 
-  @spec insert_category(binary, binary, binary) ::
-                                        {:ok, Ecto.Schema.t} | {:error, binary}
-  defp insert_category(name, description, color) do
-    Categories.insert(name: name, description: description, color: color)
+  defp insert(name, description, color) do
+    %CategorySchema{
+      name: name,
+      description: description,
+      color: color
+    } |> Repo.insert!()
   end
 
-  @spec remove_category(binary) :: nil | :ok
-  defp remove_category(name) do
-    Categories.delete(name: name)
+  defp delete(name) do
+    case Repo.get_by(CategorySchema, name: name) do
+      nil -> nil
+      role -> Repo.delete!(role)
+    end
   end
 end

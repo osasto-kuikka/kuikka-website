@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Osasto Kuikka official website">
+    <meta name="author" content="Osasto Kuikka">
+
+    <title>Osasto Kuikka</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="//cdn.muicss.com/mui-0.9.15/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <script src="//cdn.muicss.com/mui-0.9.15/js/mui.min.js"></script>
+  </head>
+
+  <body>
+    <%= render Web.LayoutView, "header.html", assigns %>
+    <main class="container">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <%= render Web.LayoutView, "toast.html", assigns %>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<%= case get_event(@conn) do %>
+<% nil -> %>
+  <%= render Web.SharedView, "invalid_route.html" %>
+<% event -> %>
+  <div class="row topic">
+      <span class="title"><%= event.title %></span>
+  </div>
+  <div class="row content">
+    <p><%= markdown_to_html(event.content) %></p>
+  </div>
+  <%= for comment <- event.comments do %>
+    <div class="row comment">
+      <div class="columns one image">
+        <img src="<%= comment.profile.avatar_medium %>"</img>
+      </div>
+      <div class="columns eleven area">
+        <div class="row title">
+          <span class="user"><%= comment.profile.steam_id %></span>
+          <span class="time"><%= to_date_time(comment.createtime) %></span>
+        </div>
+        <div class="row comment-content">
+          <p><%= markdown_to_html(comment.text) %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= if User.has_permission?(@current_user, "create_event_comment") do %>
+    <%= form_for @conn, event_path(@conn, :update, event.id), [as: :comment], fn f -> %>
+      <%= label f, :content, dgettext("event", "New comment") %>
+      <%= textarea f, :content %>
+
+      <%= submit dgettext("event", "New comment"), class: "submit" %>
+    <% end %>
+  <% end %>
+<% end %>

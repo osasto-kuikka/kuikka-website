@@ -11,29 +11,13 @@ defmodule KuikkaDB.EventUsers do
   index(:event_users, [:event_id, :user_id], unique: true)
   ```
   """
-  use Defql
+  use Ecto.Schema
 
-  @doc """
-  Get row
-  """
-  @spec get(Keyword.t) :: {:ok | :error, term}
-  defselect get(conds), table: :event_users
+  @type t :: %__MODULE__{}
+  @type return :: {:ok, t} | {:error, Changeset}
 
-  @doc """
-  Insert new row
-  """
-  @spec insert(Keyword.t) :: {:ok | :error, term}
-  definsert insert(params), table: :event_users
-
-  @doc """
-  Update row
-  """
-  @spec update(Keyword.t, Keyword.t) :: {:ok | :error, term}
-  defupdate update(params, conds), table: :event_users
-
-  @doc """
-  Delete row
-  """
-  @spec delete(Keyword.t) :: {:ok | :error, term}
-  defdelete delete(conds), table: :event_users
+  schema "event_users" do
+    belongs_to :event, KuikkaDB.EventSchema
+    belongs_to :user, KuikkaDB.UserSchema
+  end
 end

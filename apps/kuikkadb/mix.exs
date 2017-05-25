@@ -8,7 +8,7 @@ defmodule KuikkaDB.Mixfile do
      config_path: "../../config/config.exs",
      deps_path: "../../deps",
      lockfile: "../../mix.lock",
-     elixir: "~> 1.3",
+     elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -18,8 +18,7 @@ defmodule KuikkaDB.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [applications: [:logger, :postgrex, :timex, :timex_ecto, :defql, :ecto],
-     mod: {KuikkaDB, []}]
+     [mod: {KuikkaDB, []}]
   end
 
   # Specifies which paths to compile per environment.
@@ -33,7 +32,6 @@ defmodule KuikkaDB.Mixfile do
       {:ecto, "~> 2.1.3"},
       {:timex, "~> 3.1"},
       {:timex_ecto, "~> 3.1"},
-      {:defql, "~> 0.1.0"}
     ]
   end
 end

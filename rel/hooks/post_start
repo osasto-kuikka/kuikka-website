@@ -12,5 +12,5 @@ done
 set -e
 
 echo "Running migrations for kuikkdb"
-bin/kuikka_website rpc Elixir.KuikkaDB.Tasks migrate
+bin/kuikka_website rpc Elixir.KuikkaDB migrate
 echo "Migrations run successfully for kuikkadb"

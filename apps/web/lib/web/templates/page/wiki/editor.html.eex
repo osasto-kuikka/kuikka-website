@@ -1,0 +1,29 @@
+<main id="editor-content">
+  <%= form_for @conn, wiki_path(@conn, :create), [as: :page], fn f -> %>
+    <%= if is_nil(@page) do %>
+      <div class="page">
+        <%= label f, :name, dgettext("wiki", "Name"), class: "label" %>
+        <%= text_input f, :name, class: "input" %>
+      </div>
+    <% else %>
+      <div class="page">
+        <%= hidden_input f, :name, value: @page %>
+        <%= label f, :name, dgettext("wiki", "Name"), class: "label" %>
+        <span class="name"><%= @page %></span>
+      </div>
+    <% end %>
+
+    <div class="content">
+      <%= label f, :content, dgettext("wiki", "Content"), class: "label" %>
+      <%= textarea f, :content, class: "input", id: "body-editor", value: @content %>
+    </div>
+
+    <%= label f, :commit, dgettext("wiki", "Commit message"), class: "label" %>
+    <%= text_input f, :commit, class: "input" %>
+
+    <%= submit gettext("Submit"), class: "submit" %>
+  <% end %>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script>var simplemde = new SimpleMDE();</script>
+</main>

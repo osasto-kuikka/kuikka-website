@@ -1,0 +1,38 @@
+<main id="wiki-content">
+  <div class="row">
+    <div class="btn-left">
+      <%= if User.has_permission?(@current_user, "modify_wiki") do %>
+        <button onclick="location.href='<%= wiki_path(@conn, :show, "sidebar", %{"editor" => "true"}) %>'"
+              class="edit-sidebar-btn">
+          <i class="material-icons">mode_edit</i><%= dgettext("wiki", "Edit sidebar") %>
+        </button>
+      <% end %>
+    </div>
+    <div class="btn-right">
+      <%= if User.has_permission?(@current_user, "modify_wiki") do %>
+        <button onclick="location.href='<%= wiki_path(@conn, :show, @page, %{"editor" => "true"}) %>'"
+              class="edit-sidebar-btn">
+          <i class="material-icons">mode_edit</i><%= dgettext("wiki", "Edit page") %>
+        </button>
+      <% end %>
+      <%= if User.has_permission?(@current_user, "create_wiki_page") do %>
+        <button onclick="location.href='<%= wiki_path(@conn, :index, %{"editor" => "true"}) %>'"
+              class="edit-sidebar-btn">
+        <i class="material-icons">add</i><%= dgettext("wiki", "New page") %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns three">
+      <div class="row sidebar">
+        <p><%= markdown_to_html(@sidebar) %></p>
+      </div>
+    </div>
+    <div class="columns nine">
+      <div class="row content">
+        <p><%= markdown_to_html(@content) %></p>
+      </div>
+    </div>
+  </div>
+</main>

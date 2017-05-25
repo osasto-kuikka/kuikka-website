@@ -1,0 +1,10 @@
+<%= form_for @changeset, @path, [as: :comment], fn f -> %>
+  <div class="textfield center">
+    <%= label f, :content, dgettext("editor", "Content") %>
+    <%= text_input f, :content %>
+  </div>
+
+  <div class="center">
+    <%= submit dgettext("editor", "Submit"), class: "button-primary" %>
+  </div>
+<% end %>

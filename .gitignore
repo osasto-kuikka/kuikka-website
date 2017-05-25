@@ -17,5 +17,7 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-# Ignore released binary
-rel/kuikka_website
+# Ignore static files
+apps/web/assets/node_modules
+apps/web/priv/static
+

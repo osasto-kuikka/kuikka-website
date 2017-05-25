@@ -5,6 +5,7 @@ defmodule KuikkaWebsite.Mixfile do
     [apps_path: "apps",
      app: :kuikka_website,
      version: "0.0.1",
+     elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
@@ -20,18 +21,6 @@ defmodule KuikkaWebsite.Mixfile do
     ]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options.
-  #
-  # Dependencies listed here are available only for this project
-  # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
       {:distillery, "~> 1.1"},
@@ -45,12 +34,12 @@ defmodule KuikkaWebsite.Mixfile do
   defp aliases do
     [
       "compile": ["compile --warnings-as-errors"],
-      "setup": ["deps.get", "compile", "db.setup", "frontend.install"],
+      "setup": ["deps.get", "compile", "db.setup", "npm.install"],
       "setup.min": ["deps.get", "compile"],
       "db.setup": ["ecto.create", "ecto.migrate"],
       "db.setup.quiet": ["ecto.create --quiet", "ecto.migrate --quiet"],
       "db.reset": ["ecto.drop", "db.setup"],
-      "release": ["frontend.build", "release"],
+      "release": ["npm.build", "release"],
       "test": ["db.setup.quiet", "test"],
       "lint": ["credo -a --strict"]
     ]

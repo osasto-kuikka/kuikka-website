@@ -5,3 +5,6 @@ config :kuikkadb, KuikkaDB.Repo,
   url: System.get_env("KUIKKADB_URL") ||
         "postgres://postgres:postgres@localhost/kuikka_dev",
   pool_size: 10
+
+config :kuikkadb, Logger,
+  level: :info
