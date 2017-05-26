@@ -7,14 +7,15 @@ defmodule KuikkaWebsite.Repo do
   """
   def init(_, opts) do
     pool_size = case System.get_env("POOL_SIZE") do
+      nil -> 10
       "" -> 10
       val -> String.to_integer(val)
     end
 
     opts =
       opts
-      |> Keyword.put(opts, :url, System.get_env("DATABASE_URL"))
-      |> Keyword.put(opts, :pool_size, pool_size)
+      |> Keyword.put(:url, System.get_env("DATABASE_URL"))
+      |> Keyword.put(:pool_size, pool_size)
 
     {:ok, opts}
   end

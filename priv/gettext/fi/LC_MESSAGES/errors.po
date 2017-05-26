@@ -1,0 +1,86 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: fi\n"
+
+msgid "can't be blank"
+msgstr "Ei voi olla tyhjä"
+
+msgid "has already been taken"
+msgstr "On jo käytetty"
+
+msgid "is invalid"
+msgstr "virheellinen"
+
+msgid "must be accepted"
+msgstr "pitää olla hyväksyttävä"
+
+msgid "has invalid format"
+msgstr "virheelinen formaatti"
+
+msgid "has an invalid entry"
+msgstr "virheellinen arvo"
+
+msgid "is reserved"
+msgstr "ei käytettävissä"
+
+msgid "does not match confirmation"
+msgstr "ei vastaa vahvistusta"
+
+msgid "is still associated with this entry"
+msgstr "on vielä liitetty tähän arvoon"
+
+msgid "are still associated with this entry"
+msgstr "on vielä liitettynä tähän arvoon"
+
+msgid "should be %{count} character(s)"
+msgid_plural "pitäisi %{count} kirjainta"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "should have %{count} item(s)"
+msgid_plural "pitäisi sisältää %{count} arvoa"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "pitäisi olla ainakin %{count} kirjaint"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "should have at least %{count} item(s)"
+msgid_plural "pitäisi olla vähintään %{count} arvoa"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "pitäisi olla maksimissaan %{count} kirjainta"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "should have at most %{count} item(s)"
+msgid_plural "pitäisi olla maksimissaan %{count} arvoa"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "pitäisi olla vähemmän kuin %{number}"
+msgstr ""
+
+msgid "pitäisi olla suurempi kuin %{number}"
+msgstr ""
+
+msgid "pitäisi olla yhtäkuin tai vähemmän kuin %{number}"
+msgstr ""
+
+msgid "pitäisi olla yhtäkuin tai enemmän kuin %{number}"
+msgstr ""
+
+msgid "pitäis olla yhtäkuin %{number}"
+msgstr ""

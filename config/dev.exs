@@ -11,6 +11,8 @@ config :kuikka_website, KuikkaWebsite.Web.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
+  server: true,
+  root: ".",
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../assets", __DIR__)]]
 
