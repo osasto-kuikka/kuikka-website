@@ -8,4 +8,7 @@ defmodule KuikkaWebsite.Web.ErrorView do
   def render("500.html", _assigns) do
     "Internal server error"
   end
+  def render("505.html", _assigns) do
+    "Internal server error"
+  end
 end
