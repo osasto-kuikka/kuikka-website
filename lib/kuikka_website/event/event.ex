@@ -19,6 +19,8 @@ defmodule KuikkaWebsite.Event do
     field :date, :utc_datetime
     many_to_many :comments, KuikkaWebsite.Event.Comment,
                                                 join_through: "event_comments"
+
+    timestamps()
   end
 
   @doc """

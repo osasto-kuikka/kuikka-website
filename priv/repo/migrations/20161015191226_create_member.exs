@@ -7,9 +7,9 @@ defmodule KuikkaDB.Repo.Migrations.CreateMember do
   def change do
     create table(:members) do
       add :steamid, :decimal, size: 64, null: false
-      add :createtime, :utc_datetime, default: fragment("now()"), null: false
-      add :modifytime, :utc_datetime
       add :role_id, references(:roles), null: false
+
+      timestamps()
     end
     create index(:members, :steamid, unique: true)
   end

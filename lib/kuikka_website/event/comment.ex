@@ -16,12 +16,12 @@ defmodule KuikkaWebsite.Event.Comment do
 
   schema "comments" do
     field :content, :string
-    field :createtime, :utc_datetime
-    field :modifytime, :utc_datetime
     belongs_to :user, KuikkaWebsite.Member, on_replace: :nilify
     many_to_many :event, KuikkaWebsite.Event,
                  join_through: "event_comments",
                  on_replace: :delete
+
+    timestamps()
   end
 
   @doc """
@@ -33,18 +33,12 @@ defmodule KuikkaWebsite.Event.Comment do
     |> cast(params, [:content, :createtime, :modifytime])
     |> validate_required(:content)
     |> validate_length(:content, min: 1)
-    |> add_time()
-    |> add_user(params["user"])
+    |> add_user(params)
   end
 
-  defp add_time(changeset) do
-    if is_nil(get_change(changeset, :createtime)) do
-      put_change(changeset, :createtime, Timex.now())
-    else
-      put_change(changeset, :modifytime, Timex.now())
-    end
-  end
-
-  defp add_user(changeset, nil), do: changeset
-  defp add_user(changeset, user), do: put_assoc(changeset, :user, user)
+  defp add_user(changeset, %{user: user}),
+    do: put_assoc(changeset, :user, user)
+  defp add_user(changeset, %{"user" => user}),
+    do: put_assoc(changeset, :user, user)
+  defp add_user(changeset, _), do: changeset
 end

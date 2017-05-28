@@ -21,12 +21,12 @@ defmodule KuikkaWebsite.Member do
 
   schema "users" do
     field :steamid, :decimal
-    field :createtime, :utc_datetime
-    field :modifytime, :utc_datetime
     belongs_to :role, KuikkaWebsite.Member.RoleSchema, on_replace: :raise
     has_many :forum_comments, KuikkaWebsite.Forum.Comment
     has_many :event_comments, KuikkaWebsite.Event.Comment
     field :profile, :map, virtual: true
+
+    timestamps()
   end
 
   @doc """

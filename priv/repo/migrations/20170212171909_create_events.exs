@@ -6,6 +6,8 @@ defmodule KuikkaDB.Repo.Migrations.CreateEvents do
       add :title, :text, null: false
       add :content, :string, null: false
       add :date, :utc_datetime, default: fragment("now()"), null: false
+
+      timestamps()
     end
   end
 end

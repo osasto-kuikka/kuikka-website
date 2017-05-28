@@ -7,6 +7,8 @@ defmodule KuikkaWebsite.Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug KuikkaWebsite.Web.Plug.GetLayout
+    plug KuikkaWebsite.Web.Plug.Locale
   end
 
   pipeline :api do
@@ -21,6 +23,7 @@ defmodule KuikkaWebsite.Web.Router do
     resources "/events", EventController
     resources "/members", MemberController
     resources "/wiki", WikiController
+    resources "/custom", CustomController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.

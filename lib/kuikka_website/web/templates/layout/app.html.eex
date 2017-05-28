@@ -1,3 +1,4 @@
+<%= if is_nil(@custom_layout) do %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello KuikkaWebsite!</title>
+    <title>Osasto Kuikka</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
@@ -35,25 +36,27 @@
       </header>
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">
-          <img id="header-logo" src="/images/logo.svg" />
+          <a href="<%= home_path(@conn, :index) %>">
+            <img id="header-logo" src="/images/logo.svg" />
+          </a>
         </span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link capitalize" href="">
+          <a class="mdl-navigation__link capitalize" href="<%= forum_path(@conn, :index) %>">
             <%= dgettext "sidepanel", "forums" %>
           </a>
-          <a class="mdl-navigation__link capitalize" href="">
+          <a class="mdl-navigation__link capitalize" href="<%= event_path(@conn, :index) %>">
             <%= dgettext "sidepanel", "events" %>
           </a>
-          <a class="mdl-navigation__link capitalize" href="">
+          <a class="mdl-navigation__link capitalize" href="<%= member_path(@conn, :index) %>">
             <%= dgettext "sidepanel", "members" %>
           </a>
-          <a class="mdl-navigation__link capitalize" href="">
+          <a class="mdl-navigation__link capitalize" href="<%= wiki_path(@conn, :index) %>">
             <%= dgettext "sidepanel", "wiki" %>
           </a>
         </nav>
       </div>
       <main class="mdl-layout__content">
-        <div class="page-content mdl-grid">
+        <div class="page-content">
           <%= render @view_module, @view_template, assigns %>
         </div>
       </main>
@@ -61,3 +64,6 @@
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
+<%= else %>
+
+<% end %>

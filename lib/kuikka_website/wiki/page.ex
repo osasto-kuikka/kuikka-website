@@ -19,11 +19,11 @@ defmodule KuikkaWebsite.Wiki.Page do
   schema "wikipages" do
     field :title, :string
     field :content, :string
-    field :createtime, :utc_datetime
-    field :edittime, :utc_datetime
     field :public, :boolean
     many_to_many :members, KuikkaWebsite.Member,
                                         join_through: KuikkaWebsite.Wiki.Member
+
+    timestamps()
   end
 
   @doc """
