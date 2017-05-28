@@ -8,6 +8,7 @@ defmodule KuikkaWebsite.Web.ErrorHelpers do
   @doc """
   Generates tag for inlined form input errors.
   """
+  @spec error_tag(Phoenix.HTML.From, atom) :: [String.t]
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn (error) ->
       content_tag :span, translate_error(error), class: "help-block"
@@ -17,6 +18,7 @@ defmodule KuikkaWebsite.Web.ErrorHelpers do
   @doc """
   Translates an error message using gettext.
   """
+  @spec translate_error({String.t, Keyword.t}) :: String.t
   def translate_error({msg, opts}) do
     # Because error messages were defined within Ecto, we must
     # call the Gettext module passing our Gettext backend. We

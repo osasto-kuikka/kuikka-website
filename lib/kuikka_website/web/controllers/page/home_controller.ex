@@ -5,12 +5,14 @@ defmodule KuikkaWebsite.Web.Page.HomeController do
   alias KuikkaWebsite.Repo
   alias KuikkaWebsite.Page.Home
 
+  @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def index(conn, _params) do
     conn
     |> assign(:page, get_homepage())
     |> render("index.html")
   end
 
+  @spec get_homepage() :: Home.t | nil
   defp get_homepage do
     Home
     |> preload([:type])

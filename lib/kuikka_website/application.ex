@@ -1,8 +1,12 @@
 defmodule KuikkaWebsite.Application do
+  @moduledoc """
+  Application defines
+  """
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
+  @spec start(term, term) :: Supervisor.on_start
   def start(_type, _args) do
     import Supervisor.Spec
 
@@ -12,8 +16,6 @@ defmodule KuikkaWebsite.Application do
       supervisor(KuikkaWebsite.Repo, []),
       # Start the endpoint when the application starts
       supervisor(KuikkaWebsite.Web.Endpoint, []),
-      # Start your own worker by calling: KuikkaWebsite.Worker.start_link(arg1, arg2, arg3)
-      # worker(KuikkaWebsite.Worker, [arg1, arg2, arg3]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

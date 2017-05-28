@@ -1,5 +1,5 @@
 <%= if is_nil(@page) do %>
   <p align="center">Default homepage</p>
 <% else %>
-  <%= render_homepage(@page) %>
+  <%= render_page(@page) %>
 <% end %>

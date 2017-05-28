@@ -5,6 +5,7 @@ defmodule KuikkaWebsite.Repo do
   Dynamically loads the repository url from the
   DATABASE_URL environment variable.
   """
+  @spec init(term, Keyword.t) :: {:ok, Keyword.t}
   def init(_, opts) do
     pool_size = case System.get_env("POOL_SIZE") do
       nil -> 10

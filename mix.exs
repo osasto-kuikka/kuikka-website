@@ -45,6 +45,7 @@ defmodule KuikkaWebsite.Mixfile do
       {:timex, "~> 3.0"},
       {:timex_ecto, "~> 3.0"},
       {:distillery, "~> 1.4"},
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:credo, "~> 0.8-rc", only: [:dev, :test], runtime: false}
     ]
   end
@@ -63,8 +64,7 @@ defmodule KuikkaWebsite.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "release": ["npm.build", "release"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"],
-      "lint": ["credo -a --strict"]
+      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end
