@@ -6,6 +6,6 @@ defmodule Mix.Tasks.Npm.Clean do
   @doc "Install frontend npm packages"
   @spec run(term) :: term
   def run(_) do
-    Mix.Shell.IO.cmd("rm -rf assets/node_modules")
+    File.rm_rf("assets/node_modules")
   end
 end

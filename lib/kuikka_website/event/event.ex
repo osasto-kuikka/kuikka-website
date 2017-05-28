@@ -11,7 +11,7 @@ defmodule KuikkaWebsite.Event do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Changeset}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
 
   schema "events" do
     field :title, :string
@@ -26,7 +26,8 @@ defmodule KuikkaWebsite.Event do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, Map.t) :: Ecto.Changeset.t
+  @spec changeset(t) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:title, :content, :date])
@@ -37,6 +38,7 @@ defmodule KuikkaWebsite.Event do
     |> add_comment(params)
   end
 
+  @spec validate_date(term) :: [Ecto.Changeset.error]
   defp validate_date(date) do
     case Timex.compare(date, Timex.now()) do
       1 -> []
@@ -44,6 +46,7 @@ defmodule KuikkaWebsite.Event do
     end
   end
 
+  @spec add_comment(Ecto.Changeset.t, map) :: Ecto.Changeset.t
   defp add_comment(changeset, %{comments: comments}),
     do: put_assoc(changeset, :comments, comments)
   defp add_comment(changeset, %{"comments" => comments}),

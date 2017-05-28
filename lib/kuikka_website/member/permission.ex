@@ -17,7 +17,7 @@ defmodule KuikkaWebsite.Member.Permission do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Changeset}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
 
   schema "permissions" do
     field :name, :string
@@ -30,7 +30,7 @@ defmodule KuikkaWebsite.Member.Permission do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, Map.t) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params) when is_map(params) do
     schema
     |> cast(params, [:name, :description, :no_login])

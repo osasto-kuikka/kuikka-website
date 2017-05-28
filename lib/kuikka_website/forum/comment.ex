@@ -12,7 +12,7 @@ defmodule KuikkaWebsite.Forum.Comment do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Changeset}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
 
   schema "comments" do
     field :content, :string
@@ -27,7 +27,7 @@ defmodule KuikkaWebsite.Forum.Comment do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, Map.t) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:content, :createtime, :modifytime])

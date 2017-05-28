@@ -47,7 +47,7 @@ defmodule KuikkaWebsite.Web.Endpoint do
   It receives the endpoint configuration from the config files
   and must return the updated configuration.
   """
-  @spec load_from_system_env(Keyword.t) :: Keyword.t
+  @spec load_from_system_env(keyword) :: {:ok, keyword}
   def load_from_system_env(config) do
     port = System.get_env("PORT") ||
                   raise "expected the PORT environment variable to be set"

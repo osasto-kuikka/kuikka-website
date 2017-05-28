@@ -14,7 +14,7 @@ defmodule KuikkaWebsite.Wiki.User do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Changeset}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
 
   schema "wikipage_members" do
     field :read, :boolean
@@ -26,7 +26,7 @@ defmodule KuikkaWebsite.Wiki.User do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, Map.t) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:read, :write, :member_id, :wikipage_id])

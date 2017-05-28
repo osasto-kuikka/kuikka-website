@@ -4,10 +4,10 @@ defmodule KuikkaWebsite.Web.Plug.Locale do
   """
   import Plug.Conn
 
-  @spec init(term) :: List.t
+  @spec init(term) :: keyword
   def init(_), do: []
 
-  @spec call(Plug.Conn.t, term) :: Plug.Conn.t
+  @spec call(Plug.Conn.t, keyword) :: Plug.Conn.t
   def call(conn, _options) do
     case Map.get(conn.params, "locale", get_session(conn, :locale)) do
       nil     -> conn

@@ -5,11 +5,7 @@ defmodule Mix.Tasks.Npm.Install do
 
   @doc "Install frontend npm packages"
   @spec run(term) :: term
-  def run([]) do
-    Mix.Shell.IO.cmd("cd assets && npm install")
-  end
-  def run(list) do
-    packages = Enum.join(list, " ")
-    Mix.Shell.IO.cmd("cd assets && npm install --save #{packages}")
+  def run(packages) do
+    System.cmd "npm", ["install"] ++ packages, cd: "assets"
   end
 end

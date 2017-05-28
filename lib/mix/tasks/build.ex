@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Npm.Build do
   @doc "Build npm packages and digest them for phoenix"
   @spec run(term) :: term
   def run(_) do
-    Mix.Shell.IO.cmd("cd assets && npm run deploy")
-    Mix.Shell.IO.cmd("mix phx.digest")
+    System.cmd "npm", ["run", "deploy"], cd: "assets"
+    System.cmd "mix", ["phx.digest"]
   end
 end

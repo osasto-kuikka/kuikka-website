@@ -5,7 +5,7 @@ defmodule KuikkaWebsite.Web.Page.HomeController do
   alias KuikkaWebsite.Repo
   alias KuikkaWebsite.Page.Home
 
-  @spec index(Plug.Conn.t, Map.t) :: Plug.Conn.t
+  @spec index(Plug.Conn.t, map) :: Plug.Conn.t
   def index(conn, _params) do
     conn
     |> assign(:page, get_homepage())

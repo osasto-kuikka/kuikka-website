@@ -8,10 +8,10 @@ defmodule KuikkaWebsite.Web.Plug.GetLayout do
   alias KuikkaWebsite.Repo
   alias KuikkaWebsite.Page.Layout
 
-  @spec init(term) :: List.t
+  @spec init(term) :: keyword
   def init(_), do: []
 
-  @spec call(Plug.Conn.t, term) :: Plug.Conn.t
+  @spec call(Plug.Conn.t, keyword) :: Plug.Conn.t
   def call(conn, _options) do
     assign(conn, :custom_layout, get_layout())
   end

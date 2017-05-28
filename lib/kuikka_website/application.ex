@@ -4,9 +4,12 @@ defmodule KuikkaWebsite.Application do
   """
   use Application
 
+  @type on_start :: {:ok, pid} |
+                    {:error, {:already_started, pid} | {:shutdown, term} | term}
+
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
-  @spec start(term, term) :: Supervisor.on_start
+  @spec start(term, term) :: on_start
   def start(_type, _args) do
     import Supervisor.Spec
 

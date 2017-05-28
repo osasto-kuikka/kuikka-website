@@ -19,7 +19,7 @@ defmodule KuikkaWebsite.Web.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  @spec connect(Map.t, Phoenix.Socket.t) :: {:ok, Phoenix.Socket.t}
+  @spec connect(map, Phoenix.Socket.t) :: {:ok, Phoenix.Socket.t}
   def connect(_params, socket) do
     {:ok, socket}
   end
