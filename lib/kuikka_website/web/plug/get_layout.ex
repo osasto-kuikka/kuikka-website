@@ -18,6 +18,7 @@ defmodule KuikkaWebsite.Web.Plug.GetLayout do
 
   defp get_layout do
     Layout
+    |> preload([:type])
     |> order_by(desc: :version)
     |> limit(1)
     |> Repo.one()

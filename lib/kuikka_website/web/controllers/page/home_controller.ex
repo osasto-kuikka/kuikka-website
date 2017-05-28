@@ -13,6 +13,7 @@ defmodule KuikkaWebsite.Web.Page.HomeController do
 
   defp get_homepage do
     Home
+    |> preload([:type])
     |> order_by(desc: :version)
     |> limit(1)
     |> Repo.one()

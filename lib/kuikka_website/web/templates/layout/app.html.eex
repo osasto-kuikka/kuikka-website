@@ -65,5 +65,5 @@
   </body>
 </html>
 <%= else %>
-
+  <%= render_page(@layout) %>
 <% end %>
