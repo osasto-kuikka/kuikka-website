@@ -1,14 +1,10 @@
 defmodule KuikkaWebsite.Web.LayoutView do
   use KuikkaWebsite.Web, :view
 
-  @type page :: KuikkaWebsite.Page |
-                KuikkaWebsite.Page.Home |
-                KuikkaWebsite.Page.Layout
-
   @doc """
   Render different types of content to html format
   """
-  @spec render_page(page) :: Phoenix.HTML.safe
+  @spec render_page(map) :: Phoenix.HTML.safe
   def render_page(%{type: %{name: "markdown"}, content: content}) do
     content
     |> Earmark.as_html!()

@@ -34,16 +34,29 @@ defmodule KuikkaWebsite.Event do
     |> validate_required([:title, :content, :date])
     |> validate_length(:title, min: 1)
     |> validate_length(:content, min: 1)
-    |> validate_change(:date, &validate_date(&1))
+    |> validate_date(params)
     |> add_comment(params)
   end
 
-  @spec validate_date(term) :: [Ecto.Changeset.error]
-  defp validate_date(date) do
+  @spec validate_date(Ecto.Changeset.t, map) :: Ecto.Changeset.t
+  defp validate_date(changeset, %{date: date}) do
     case Timex.compare(date, Timex.now()) do
-      1 -> []
-      _ -> [date: "Event date must greater than current time"]
+      1 ->
+        changeset
+      _ ->
+        add_error(changeset, :date, "Event date must greater than current time")
     end
+  end
+  defp validate_date(changeset, %{"date" => date}) do
+    case Timex.compare(date, Timex.now()) do
+      1 ->
+        changeset
+      _ ->
+        add_error(changeset, :date, "Event date must greater than current time")
+    end
+  end
+  defp validate_date(changeset, _) do
+    changeset
   end
 
   @spec add_comment(Ecto.Changeset.t, map) :: Ecto.Changeset.t
