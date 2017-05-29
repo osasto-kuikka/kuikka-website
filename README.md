@@ -6,8 +6,8 @@
     <a href="https://travis-ci.org/osasto-kuikka/kuikka-website">
         <img src="https://img.shields.io/travis/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Build" alt="Build Status">
     </a>
-    <a href="https://osasto-kuikka.github.io/kuikka-website/">
-        <img src="https://img.shields.io/badge/docs-github-green.svg?style=flat-square" alt="Docs">
+    <a href='https://coveralls.io/github/osasto-kuikka/kuikka-website?branch=master'>
+      <img src='https://coveralls.io/repos/github/osasto-kuikka/kuikka-website/badge.svg?branch=master' alt='Coverage Status' />
     </a>
     <a href="https://github.com/osasto-kuikka/kuikka-website/issues">
         <img src="https://img.shields.io/github/issues-raw/osasto-kuikka/kuikka-website.svg?style=flat-square&label=Issues" alt="Issues">
