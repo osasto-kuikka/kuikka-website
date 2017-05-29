@@ -10,7 +10,15 @@ defmodule KuikkaWebsite.Mixfile do
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        "coveralls": :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -46,7 +54,9 @@ defmodule KuikkaWebsite.Mixfile do
       {:timex_ecto, "~> 3.0"},
       {:distillery, "~> 1.4"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:credo, "~> 0.8-rc", only: [:dev, :test], runtime: false}
+      {:credo, "~> 0.8-rc", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.5.7", only: :test, runtime: false},
+      {:inch_ex, ">= 0.0.0", only: :docs}
     ]
   end
 
