@@ -22,7 +22,7 @@ Required:
 * [Erlang 19.2](http://www.erlang.org/)
 * [Elixir 1.4.4](http://elixir-lang.org/)
 * [Nodejs 6.9](https://nodejs.org/en/)
-* [postgresql 9.5](https://www.postgresql.org/)
+* [Postgresql 9.5](https://www.postgresql.org/)
 
 ### Windows
 Install with [Chocolatey](https://chocolatey.org/install)
@@ -60,41 +60,4 @@ mix run --no-halt (Run program)
 ```
 mix test (Run unit tests)
 mix lint (Run linter)
-```
-
-## Create release build for deployment
-Create release build
-```
-MIX_ENV=prod COOKIE=*secret cookie* mix release --env=prod
-```
-Copy tar.gz to rel/files
-```
-cp _build/prod/rel/kuikka_website/releases/*version*/kuikka_website.tar.gz
-rel/files
-```
-Now you can pack rel/files to either zip or tar.gz
-
-## Deploying release
-
-### Install
-```
-sudo make install
-```
-Now you can change the setting
-```
-sudo vi /etc/kuikka-website/kuikka-website.conf
-```
-Then start
-```
-sudo systemctl start kuikka-website
-```
-
-### Update
-```
-sudo make update
-```
-
-### Uninstall
-```
-sudo make uninstall
 ```
