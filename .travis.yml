@@ -9,7 +9,7 @@ services:
   - postgresql
 script:
   - mix deps.get
-  - mix compile
+  - mix compile --warnings-as-errors
   - mix test
   - mix dialyzer
   - mix credo

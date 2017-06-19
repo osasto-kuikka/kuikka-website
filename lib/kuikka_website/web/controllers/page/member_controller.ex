@@ -2,6 +2,13 @@ defmodule KuikkaWebsite.Web.Page.MemberController do
   use KuikkaWebsite.Web, :controller
 
   @spec index(Plug.Conn.t, map) :: Plug.Conn.t
+  def index(conn, %{"logout" => "true"}) do
+    conn
+    |> fetch_session
+    |> delete_session(:steamex_steamid64)
+    |> put_flash(:info, dgettext("member", "You have been logged out"))
+    |> redirect(to: home_path(conn, :index))
+  end
   def index(conn, _params) do
     render conn, "index.html"
   end

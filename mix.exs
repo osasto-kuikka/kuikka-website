@@ -51,7 +51,7 @@ defmodule KuikkaWebsite.Mixfile do
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.2"},
       {:timex, "~> 3.0"},
-      {:timex_ecto, "~> 3.0"},
+      {:steamex, "~> 0.0.7"},
       {:distillery, "~> 1.4"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:credo, "~> 0.8-rc", only: [:dev, :test], runtime: false},
@@ -68,7 +68,6 @@ defmodule KuikkaWebsite.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      "compile": ["compile --warnings-as-errors"],
       "setup": ["deps.get", "compile", "ecto.setup", "npm.install"],
       "setup.min": ["deps.get", "compile"],
       "ecto.setup": ["ecto.create", "ecto.migrate"],

@@ -16,7 +16,7 @@ defmodule KuikkaWebsite.Event.Comment do
 
   schema "comments" do
     field :content, :string
-    belongs_to :user, KuikkaWebsite.Member, on_replace: :nilify
+    belongs_to :member, KuikkaWebsite.Member, on_replace: :nilify
     many_to_many :event, KuikkaWebsite.Event,
                  join_through: "event_comments",
                  on_replace: :delete

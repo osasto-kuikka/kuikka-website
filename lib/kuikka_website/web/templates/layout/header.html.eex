@@ -1,0 +1,19 @@
+<header class="container">
+  <h3 class="m--1 g--2">Navigation</h3>
+  <nav class="m--8 g--5 nav--horizontal">
+    <ul>
+      <%= if is_nil(@current_user) do %>
+        <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"
+        onclick="window.location.href = '<%= steamex_auth_url(@conn) %>';"/>
+      <%= else %>
+        <li class="dropdown">
+          <p><%= @current_user.steamid %></>
+          <ul>
+            <li><a href="<%= member_path(@conn, :show, @current_user.steamid) %>">Profile</a></li>
+            <li><a href="<%= member_path(@conn, :index, %{logout: true}) %>">Log out</a></li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>

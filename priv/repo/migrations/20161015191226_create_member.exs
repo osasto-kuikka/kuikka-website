@@ -6,7 +6,7 @@ defmodule KuikkaDB.Repo.Migrations.CreateMember do
 
   def change do
     create table(:members) do
-      add :steamid, :decimal, size: 64, null: false
+      add :steamid, :text, null: false
       add :role_id, references(:roles), null: false
 
       timestamps()

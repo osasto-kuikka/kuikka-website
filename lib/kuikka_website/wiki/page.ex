@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Wiki.Page do
+defmodule KuikkaWebsite.Wiki do
   @moduledoc """
   ## Table
   ```
@@ -20,8 +20,6 @@ defmodule KuikkaWebsite.Wiki.Page do
     field :title, :string
     field :content, :string
     field :public, :boolean
-    many_to_many :members, KuikkaWebsite.Member,
-                                        join_through: KuikkaWebsite.Wiki.Member
 
     timestamps()
   end
@@ -35,14 +33,5 @@ defmodule KuikkaWebsite.Wiki.Page do
     |> cast(params, [:title, :content, :public])
     |> validate_length(:title, min: 1, max: 60)
     |> validate_length(:content, min: 1)
-    |> add_time()
-  end
-
-  defp add_time(changeset) do
-    if is_nil(get_change(changeset, :createtime)) do
-      put_change(changeset, :createtime, Timex.now())
-    else
-      put_change(changeset, :modifytime, Timex.now())
-    end
   end
 end

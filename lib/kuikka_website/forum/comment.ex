@@ -16,12 +16,11 @@ defmodule KuikkaWebsite.Forum.Comment do
 
   schema "comments" do
     field :content, :string
-    field :createtime, :utc_datetime
-    field :modifytime, :utc_datetime
     belongs_to :member, KuikkaWebsite.Member, on_replace: :nilify
     many_to_many :topic, KuikkaWebsite.Forum.Topic,
                  join_through: "topic_comments",
                  on_replace: :delete
+    timestamps()
   end
 
   @doc """
@@ -30,7 +29,7 @@ defmodule KuikkaWebsite.Forum.Comment do
   @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
-    |> cast(params, [:content, :createtime, :modifytime])
+    |> cast(params, [:content])
     |> validate_required(:content)
     |> validate_length(:content, min: 1)
     |> add_time()

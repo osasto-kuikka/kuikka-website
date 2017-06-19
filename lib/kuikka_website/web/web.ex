@@ -33,6 +33,8 @@ defmodule KuikkaWebsite.Web do
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2,
                                         view_module: 1]
+      # Add steamex authentication
+      use Steamex.Auth.Phoenix, :view
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
@@ -40,12 +42,14 @@ defmodule KuikkaWebsite.Web do
       import KuikkaWebsite.Web.Router.Helpers
       import KuikkaWebsite.Web.ErrorHelpers
       import KuikkaWebsite.Web.Gettext
+      import KuikkaWebsite.Web.Utils.View
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
+      use Steamex.Auth.Phoenix, :router
       import Plug.Conn
       import Phoenix.Controller
     end

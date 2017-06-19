@@ -19,9 +19,9 @@ defmodule KuikkaWebsite.Member do
   @type t :: %__MODULE__{}
   @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
 
-  schema "users" do
-    field :steamid, :decimal
-    belongs_to :role, KuikkaWebsite.Member.RoleSchema, on_replace: :raise
+  schema "members" do
+    field :steamid, :string
+    belongs_to :role, KuikkaWebsite.Member.Role, on_replace: :raise
     has_many :forum_comments, KuikkaWebsite.Forum.Comment
     has_many :event_comments, KuikkaWebsite.Event.Comment
     field :profile, :map, virtual: true
@@ -35,16 +35,23 @@ defmodule KuikkaWebsite.Member do
   @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
-    |> cast(params, [:steamid, :createtime, :modifytime])
+    |> cast(params, [:steamid])
     |> validate_required([:steamid])
-    |> add_time()
+    |> add_role(params[:role])
   end
 
-  defp add_time(changeset) do
-    if is_nil(get_change(changeset, :createtime)) do
-      put_change(changeset, :createtime, Timex.now())
-    else
-      put_change(changeset, :modifytime, Timex.now())
-    end
+  @doc """
+  Load profile to member struct
+  """
+  @spec load_profile(__MODULE__.t) :: __MODULE__.t
+  def load_profile(member) do
+    profile =
+      member.steamid
+      |> String.to_integer()
+      |> Steamex.Profile.fetch()
+    %{member | profile: profile}
   end
+
+  defp add_role(changeset, nil), do: changeset
+  defp add_role(changeset, role), do: put_assoc(changeset, :role, role)
 end

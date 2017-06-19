@@ -8,12 +8,16 @@ defmodule KuikkaWebsite.Web.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug KuikkaWebsite.Web.Plug.GetLayout
+    plug KuikkaWebsite.Web.Plug.CurrentUser
     plug KuikkaWebsite.Web.Plug.Locale
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
+
+  # Steamex login
+  steamex_route_auth()
 
   scope "/", KuikkaWebsite.Web.Page do
     pipe_through :browser # Use the default browser stack
