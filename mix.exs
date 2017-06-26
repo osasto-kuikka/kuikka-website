@@ -50,7 +50,6 @@ defmodule KuikkaWebsite.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.2"},
-      {:timex, "~> 3.0"},
       {:steamex, "~> 0.0.7"},
       {:distillery, "~> 1.4"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},

@@ -14,7 +14,7 @@ defmodule KuikkaWebsite.Web.Utils.View do
   @spec custom_datetime_select(Phoenix.HTML.Form.t, atom, DateTime.t) ::
                                                                       Keyword.t
   def custom_datetime_select(form, field, time) do
-    date = Timex.now()
+    date = DateTime.utc_now()
     builder = fn b ->
       ~E"""
       <%= KuikkaWebsite.Web.Gettext.dgettext("editor", "Time") %>:
@@ -39,8 +39,7 @@ defmodule KuikkaWebsite.Web.Utils.View do
   """
   @spec to_date(DateTime.t) :: String.t
   def to_date(date) do
-    date = transform_to_date(date)
-    Timex.format!(date, "{0D}.{0M}.{YYYY}")
+    "#{pad(date.day)}.#{pad(date.month)}.#{date.year}"
   end
 
   @doc """
@@ -48,20 +47,14 @@ defmodule KuikkaWebsite.Web.Utils.View do
   """
   @spec to_date_time(DateTime.t) :: String.t
   def to_date_time(date) do
-    date = transform_to_date(date)
-    Timex.format!(date, "{h24}:{0m} {0D}.{0M}.{YYYY}")
+    "#{pad(date.hour)}:#{date.minute} " <>
+    "#{pad(date.day)}.#{pad(date.month)}.#{date.year}"
   end
 
-  @spec transform_to_date({term, term}) :: Datetime.t
-  defp transform_to_date({{d,m,y}, {t1,t2,t3,_}}) do
-    Timex.to_datetime({{d,m,y},{t1,t2,t3}})
-  end
-  defp transform_to_date(date = {{_,_,_}, {_,_,_,}}) do
-    Timex.to_datetime(date)
-  end
-  defp transform_to_date(date) do
-    date
-  end
+  # Add zero before value if value is smaller than 10
+  @spec pad(integer) :: String.t
+  defp pad(int) when int < 10, do: "#{int}"
+  defp pad(int), do: "0#{int}"
 
   @doc """
   Check if user has required permission

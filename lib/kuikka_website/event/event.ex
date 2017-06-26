@@ -40,20 +40,15 @@ defmodule KuikkaWebsite.Event do
 
   @spec validate_date(Ecto.Changeset.t, map) :: Ecto.Changeset.t
   defp validate_date(changeset, %{date: date}) do
-    case Timex.compare(date, Timex.now()) do
-      1 ->
+    case DateTime.compare(date, DateTime.utc_now()) do
+      :gt ->
         changeset
       _ ->
         add_error(changeset, :date, "Event date must greater than current time")
     end
   end
   defp validate_date(changeset, %{"date" => date}) do
-    case Timex.compare(date, Timex.now()) do
-      1 ->
-        changeset
-      _ ->
-        add_error(changeset, :date, "Event date must greater than current time")
-    end
+    validate_date(changeset, %{date: date})
   end
   defp validate_date(changeset, _) do
     changeset
