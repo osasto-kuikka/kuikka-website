@@ -1,0 +1,20 @@
+<h1>New forum topic</h1>
+
+<%= form_for @changeset, forum_path(@conn, :create), fn f -> %>
+  <%= label f, :title, "Title", class: "g--10" %>
+  <div class="clear"></div>
+  <%= text_input f, :title, class: "g--10" %>
+
+  <%= label f, :content, "Content", class: "g--10" %>
+  <div class="clear"></div>
+  <%= textarea f, :content, class: "g--10", rows: 50 %>
+
+<!--  <div class="g--12">
+    <%= label f, :public, "Public" %>
+    <%=  checkbox f, :public %>
+  </div> -->
+
+  <div class="g--12">
+    <%= submit "Submit", class: "btn--raised" %>
+  </div>
+<% end %>

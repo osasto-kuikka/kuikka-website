@@ -5,7 +5,20 @@
     <img src="/images/logo.svg" />
   </div>
   <nav class="g--12">
-    <a href="<%= forum_path(@conn, :index) %>">Forums</a>
+    <%= if topics = forum_topics()  do %>
+      <div class="nav-collapsible">
+        <input type="checkbox" id="nav-collapsible-pages">
+        <label for="nav-collapsible-pages">Topics> </label>
+        <div class="nav-collapsible-links">
+          <%= for topic <- topics do %>
+            <a href="<%= forum_path(@conn, :show, topic.title) %>"><%= topic.title %></a>
+          <% end %>
+        </div>
+      </div>
+    <%= else %>
+      <a href="<%= forum_path(@conn, :index, %{view: "new"}) %>">Forums</a>
+    <% end %>
+<!--    <a href="<%= forum_path(@conn, :index) %>">Forums</a> -->
     <a href="<%= event_path(@conn, :index) %>">Events</a>
     <a href="<%= member_path(@conn, :index) %>">Members</a>
     <%= if pages = wiki_pages() do %>

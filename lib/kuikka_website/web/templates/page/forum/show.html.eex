@@ -1,1 +1,7 @@
-<h1>TODO</h1>
+<!-- <h1>TODO</h1> -->
+<button onclick="window.location.href = '<%= forum_path(@conn, :index, %{view: "new"}) %>'">New Topic</button>
+<!-- <button onclick="window.location.href = '<%= forum_path(@conn, :show, @topic.title, %{view: "edit"}) %>'">Edit Topic</button> -->
+
+<h1><%= @topic.title %></h1>
+
+<p><%= @topic.content %></p>
