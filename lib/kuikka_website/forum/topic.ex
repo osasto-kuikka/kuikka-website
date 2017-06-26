@@ -38,6 +38,7 @@ defmodule KuikkaWebsite.Forum.Topic do
     |> validate_required([:title, :content])
     |> validate_length(:title, min: 1)
     |> validate_length(:content, min: 1)
+    |> put_assoc(:member, KuikkaWebsite.Member)
     |> add_time()
     |> add_comment(params)
   end

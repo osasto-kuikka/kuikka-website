@@ -31,7 +31,7 @@ defmodule KuikkaWebsite.Web.Page.ForumController do
       topic ->
         conn
         |> assign(:changeset, Topic.changeset(topic))
-        |> render("edit.html")
+        |> render("index.html")
     end
   end
   def show(conn, %{"id" => title}) do
