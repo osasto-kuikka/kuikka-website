@@ -33,12 +33,12 @@ defmodule KuikkaWebsite.Event.Comment do
     |> cast(params, [:content, :createtime, :modifytime])
     |> validate_required(:content)
     |> validate_length(:content, min: 1)
-    |> add_user(params)
+    |> add_user(params[:member] || params["member"])
+    |> foreign_key_constraint(:member)
   end
 
-  defp add_user(changeset, %{user: user}),
-    do: put_assoc(changeset, :user, user)
-  defp add_user(changeset, %{"user" => user}),
-    do: put_assoc(changeset, :user, user)
-  defp add_user(changeset, _), do: changeset
+  @spec add_user(Ecto.Changeset, nil | KuikkaWebsite.Member.t) :: Ecto.Changeset
+  defp add_user(changeset, nil), do: changeset
+  defp add_user(changeset, user),
+    do: put_assoc(changeset, :member, user)
 end
