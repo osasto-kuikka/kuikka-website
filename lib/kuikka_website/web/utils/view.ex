@@ -59,7 +59,7 @@ defmodule KuikkaWebsite.Web.Utils.View do
   @doc """
   Check if user has required permission
   """
-  @spec has_permission?(Plug.Conn.t, String.t) :: Boolean.t
+  @spec has_permission?(Plug.Conn.t, String.t) :: boolean
   def has_permission?(%{assigns: %{permissions: perms}}, permission) do
     Enum.member?(perms, permission)
   end

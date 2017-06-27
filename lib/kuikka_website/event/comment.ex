@@ -37,7 +37,7 @@ defmodule KuikkaWebsite.Event.Comment do
     |> foreign_key_constraint(:member)
   end
 
-  @spec add_user(Ecto.Changeset, nil | KuikkaWebsite.Member.t) :: Ecto.Changeset
+  @spec add_user(Ecto.Changeset.t, KuikkaWebsite.Member.t) :: Ecto.Changeset.t
   defp add_user(changeset, nil), do: changeset
   defp add_user(changeset, user),
     do: put_assoc(changeset, :member, user)

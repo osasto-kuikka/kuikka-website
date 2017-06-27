@@ -12,6 +12,7 @@ defmodule KuikkaWebsite.Mixfile do
       aliases: aliases(),
       deps: deps(),
 
+      dialyzer: [ignore_warnings: ".dialyzerignore"],
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         "coveralls": :test,
