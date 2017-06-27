@@ -13,11 +13,13 @@ defmodule KuikkaWebsite.Web.Page.EventController do
 
   @spec create(Plug.Conn.t, map) :: Plug.Conn.t
   def create(conn, _params) do
+    # TODO
     render conn, "show.html"
   end
 
   @spec update(Plug.Conn.t, map) :: Plug.Conn.t
   def update(conn, _params) do
+    # TODO
     render conn, "show.html"
   end
 end
