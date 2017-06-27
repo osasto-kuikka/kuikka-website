@@ -28,7 +28,7 @@ defmodule KuikkaWebsite.Mixfile do
   def application do
     [
       mod: {KuikkaWebsite.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :sweet_xml]
     ]
   end
 
@@ -71,7 +71,7 @@ defmodule KuikkaWebsite.Mixfile do
       "setup.min": ["deps.get", "compile"],
       "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "release": ["npm.build", "release"],
+      "release": ["compile", "npm.build", "release"],
       "test": ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end

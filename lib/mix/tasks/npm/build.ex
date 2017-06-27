@@ -12,9 +12,13 @@ defmodule Mix.Tasks.Npm.Build do
 
   @spec run([binary]) :: any
   def run(_) do
-    ## Run npm deploy on assets folder
+    # Run npm deploy on assets folder
     System.cmd "npm", ["run", "deploy"],
       cd: "assets",
+      into: IO.stream(:stdio, :line)
+
+    # Clean old assets
+    System.cmd "mix", ["phx.digest.clean"],
       into: IO.stream(:stdio, :line)
 
     # Generate cache_manifest.json with phoenix digest

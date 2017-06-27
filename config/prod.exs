@@ -21,7 +21,7 @@ config :kuikka_website, KuikkaWebsite.Web.Endpoint,
 
 # Configure your database
 config :kuikka_website, KuikkaWebsite.Repo,
-  adapter: Ecto.Adapters.Postgres,
+  adapter: Ecto.Adapters.Postgres
 
 # Do not print debug messages in production
 config :logger, level: :info
