@@ -16,7 +16,7 @@ defmodule KuikkaWebsite.Member do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Stemex.Profile
+  alias Steamex.Profile
 
   @type t :: %__MODULE__{}
   @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
