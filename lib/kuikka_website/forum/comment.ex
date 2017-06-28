@@ -32,16 +32,7 @@ defmodule KuikkaWebsite.Forum.Comment do
     |> cast(params, [:content])
     |> validate_required(:content)
     |> validate_length(:content, min: 1)
-    |> add_time()
     |> add_user(params["user"])
-  end
-
-  defp add_time(changeset) do
-    if is_nil(get_change(changeset, :createtime)) do
-      put_change(changeset, :createtime, Timex.now())
-    else
-      put_change(changeset, :modifytime, Timex.now())
-    end
   end
 
   defp add_user(changeset, nil), do: changeset

@@ -12,6 +12,7 @@ defmodule KuikkaWebsite.Mixfile do
       aliases: aliases(),
       deps: deps(),
 
+      dialyzer: [ignore_warnings: ".dialyzerignore"],
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         "coveralls": :test,
@@ -28,7 +29,7 @@ defmodule KuikkaWebsite.Mixfile do
   def application do
     [
       mod: {KuikkaWebsite.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :sweet_xml]
     ]
   end
 
@@ -50,11 +51,10 @@ defmodule KuikkaWebsite.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.2"},
-      {:timex, "~> 3.0"},
       {:steamex, "~> 0.0.7"},
       {:distillery, "~> 1.4"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:credo, "~> 0.8-rc", only: [:dev, :test], runtime: false},
+      {:credo, "~> 0.8.1", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.5.7", only: :test, runtime: false},
       {:inch_ex, ">= 0.0.0", only: :docs}
     ]
@@ -72,7 +72,7 @@ defmodule KuikkaWebsite.Mixfile do
       "setup.min": ["deps.get", "compile"],
       "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "release": ["npm.build", "release"],
+      "release": ["compile", "npm.build", "release"],
       "test": ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end

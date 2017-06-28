@@ -34,36 +34,25 @@ defmodule KuikkaWebsite.Event do
     |> validate_required([:title, :content, :date])
     |> validate_length(:title, min: 1)
     |> validate_length(:content, min: 1)
-    |> validate_date(params)
-    |> add_comment(params)
+    |> validate_date(params[:date] || params["date"])
+    |> add_comment(params[:comments] || params["comments"])
   end
 
+  # Validate that given date is greater than current time
   @spec validate_date(Ecto.Changeset.t, map) :: Ecto.Changeset.t
-  defp validate_date(changeset, %{date: date}) do
-    case Timex.compare(date, Timex.now()) do
-      1 ->
+  defp validate_date(changeset, nil), do: changeset
+  defp validate_date(changeset, date) do
+    case DateTime.compare(date, DateTime.utc_now()) do
+      :gt ->
         changeset
       _ ->
         add_error(changeset, :date, "Event date must greater than current time")
     end
-  end
-  defp validate_date(changeset, %{"date" => date}) do
-    case Timex.compare(date, Timex.now()) do
-      1 ->
-        changeset
-      _ ->
-        add_error(changeset, :date, "Event date must greater than current time")
-    end
-  end
-  defp validate_date(changeset, _) do
-    changeset
   end
 
+  # Add comments if given in params
   @spec add_comment(Ecto.Changeset.t, map) :: Ecto.Changeset.t
-  defp add_comment(changeset, %{comments: comments}),
+  defp add_comment(changeset, nil), do: changeset
+  defp add_comment(changeset, comments),
     do: put_assoc(changeset, :comments, comments)
-  defp add_comment(changeset, %{"comments" => comments}),
-    do: put_assoc(changeset, :comments, comments)
-  defp add_comment(changeset, _),
-    do: changeset
 end

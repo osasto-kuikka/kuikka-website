@@ -1,0 +1,4 @@
+elixir:
+  enabled: true
+  config_file: .credo.exs
+fail_on_violations: true

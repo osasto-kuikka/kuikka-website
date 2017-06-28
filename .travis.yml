@@ -1,6 +1,6 @@
 language: elixir
-elixir: 1.4.4
-otp_release: 19.3
+elixir: 1.4.5
+otp_release: 20.0
 sudo: false
 dist: trusty
 addons:
@@ -12,7 +12,6 @@ script:
   - mix compile --warnings-as-errors
   - mix test
   - mix dialyzer
-  - mix credo
 after_script:
   - MIX_ENV=docs mix deps.get
   - MIX_ENV=docs mix inch.report

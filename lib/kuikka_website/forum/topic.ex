@@ -25,6 +25,8 @@ defmodule KuikkaWebsite.Forum.Topic do
     belongs_to :category, KuikkaWebsite.Forum.Category, on_replace: :nilify
     many_to_many :comments, KuikkaWebsite.Forum.Comment,
                                                 join_through: "topic_comments"
+
+    timestamps()
   end
 
   @doc """
@@ -43,14 +45,6 @@ defmodule KuikkaWebsite.Forum.Topic do
     |> assoc(:member, params[:member] || params["member"])
     |> add_time()
     |> add_comment(params)
-  end
-
-  defp add_time(changeset) do
-    if is_nil(get_change(changeset, :createtime)) do
-      put_change(changeset, :createtime, Timex.now())
-    else
-      put_change(changeset, :modifytime, Timex.now())
-    end
   end
 
   defp add_comment(changeset, %{comments: comments}),

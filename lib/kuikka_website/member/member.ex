@@ -16,6 +16,8 @@ defmodule KuikkaWebsite.Member do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Steamex.Profile
+
   @type t :: %__MODULE__{}
   @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
 
@@ -48,7 +50,7 @@ defmodule KuikkaWebsite.Member do
     profile =
       member.steamid
       |> String.to_integer()
-      |> Steamex.Profile.fetch()
+      |> Profile.fetch()
     %{member | profile: profile}
   end
 

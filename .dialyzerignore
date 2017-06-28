@@ -1,0 +1,7 @@
+lib/mix/tasks/npm/build.ex:1: Callback info about the 'Elixir.Mix.Task' behaviour is not a
+vailable
+lib/mix/tasks/npm/clean.ex:1: Callback info about the 'Elixir.Mix.Task' behaviour is not a
+vailable
+lib/mix/tasks/npm/install.ex:1: Callback info about the 'Elixir.Mix.Task' behaviour is not
+ available
+
