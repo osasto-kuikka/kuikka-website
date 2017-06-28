@@ -3,7 +3,7 @@ defmodule KuikkaWebsite.Web.LayoutView do
 
   alias KuikkaWebsite.Repo
   alias KuikkaWebsite.Wiki
-  alias KuikkaWebsite.Forum
+  alias KuikkaWebsite.Forum.Topic
 
   @doc """
   Render different types of content to html format
@@ -31,7 +31,7 @@ defmodule KuikkaWebsite.Web.LayoutView do
     end
   end
   def forum_topics do
-    Forum.Topic
+    Topic
     |> Repo.all()
     |> case do
       [] -> nil

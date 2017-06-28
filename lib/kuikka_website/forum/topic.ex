@@ -39,6 +39,8 @@ defmodule KuikkaWebsite.Forum.Topic do
     |> validate_length(:title, min: 1)
     |> validate_length(:content, min: 1)
     |> put_assoc(:member, KuikkaWebsite.Member)
+    |> foreign_key_constraint(:member)
+    |> assoc(:member, params[:member] || params["member"])
     |> add_time()
     |> add_comment(params)
   end
@@ -57,4 +59,7 @@ defmodule KuikkaWebsite.Forum.Topic do
     do: put_assoc(changeset, :comments, comments)
   defp add_comment(changeset, _),
     do: changeset
+
+  defp assoc(changeset, _key, nil), do: changeset
+  defp assoc(changeset, key, val), do: put_assoc(changeset, key, val)
 end

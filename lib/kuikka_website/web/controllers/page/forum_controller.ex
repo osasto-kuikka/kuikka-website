@@ -49,6 +49,7 @@ defmodule KuikkaWebsite.Web.Page.ForumController do
   end
   @spec create(Plug.Conn.t, map) :: Plug.Conn.t
   def create(conn, %{"topic" => params}) do
+    params = Map.put(params, "member", conn.assigns.current_user)
     %Topic{}
     |> Topic.changeset(params)
     |> Repo.insert()
@@ -58,7 +59,7 @@ defmodule KuikkaWebsite.Web.Page.ForumController do
       {:error, changeset} ->
         conn
         |> assign(:changeset, changeset)
-        |> render("new.html")
+        |> render("error.html")
     end
   end
 

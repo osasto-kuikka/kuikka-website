@@ -5,7 +5,7 @@
     <img src="/images/logo.svg" />
   </div>
   <nav class="g--12">
-    <%= if topics = forum_topics()  do %>
+    <%= if topics = forum_topics() do %>
       <div class="nav-collapsible">
         <input type="checkbox" id="nav-collapsible-pages">
         <label for="nav-collapsible-pages">Topics> </label>
@@ -16,7 +16,7 @@
         </div>
       </div>
     <%= else %>
-      <a href="<%= forum_path(@conn, :index, %{view: "new"}) %>">Forums</a>
+      <a href="<%= forum_path(@conn, :index, %{view: "new"}) %>">Forums Ei linkkejä </a>
     <% end %>
 <!--    <a href="<%= forum_path(@conn, :index) %>">Forums</a> -->
     <a href="<%= event_path(@conn, :index) %>">Events</a>
