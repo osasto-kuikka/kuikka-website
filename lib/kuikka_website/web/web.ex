@@ -22,6 +22,7 @@ defmodule KuikkaWebsite.Web do
       import Plug.Conn
       import KuikkaWebsite.Web.Router.Helpers
       import KuikkaWebsite.Web.Gettext
+      import Ecto.Query
     end
   end
 
