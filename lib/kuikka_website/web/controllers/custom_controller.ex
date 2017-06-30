@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Web.Page.CustomController do
+defmodule KuikkaWebsite.Web.CustomController do
   use KuikkaWebsite.Web, :controller
 
   @spec index(Plug.Conn.t, map) :: Plug.Conn.t

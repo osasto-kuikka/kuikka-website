@@ -2,17 +2,15 @@ defmodule KuikkaWebsite.Web.Utils.View do
   @moduledoc """
   Helper functions for frontend modules/templates
   """
-  import Phoenix.HTML
-
-  require KuikkaWebsite.Web.Gettext
+  use Phoenix.HTML
 
   alias Phoenix.HTML.Form
+  alias KuikkaWebsite.Web.Gettext
 
   @doc """
   Add more sensible values to datetime select
   """
-  @spec custom_datetime_select(Phoenix.HTML.Form.t, atom, DateTime.t) ::
-                                                                      Keyword.t
+  @spec custom_datetime_select(Form.t, atom, DateTime.t) :: Keyword.t
   def custom_datetime_select(form, field, time) do
     date = DateTime.utc_now()
     builder = fn b ->
@@ -62,5 +60,27 @@ defmodule KuikkaWebsite.Web.Utils.View do
   @spec has_permission?(Plug.Conn.t, String.t) :: boolean
   def has_permission?(%{assigns: %{permissions: perms}}, permission) do
     Enum.member?(perms, permission)
+  end
+
+  @doc """
+  Generates tag for inlined form input errors
+  """
+  @spec error_tag(Phoenix.HTML.From, atom) :: [String.t]
+  def error_tag(form, field) do
+    Enum.map(Keyword.get_values(form.errors, field), fn (error) ->
+      content_tag :span, translate_error(error), class: ""
+    end)
+  end
+
+  @doc """
+  Translates an error message using gettext
+  """
+  @spec translate_error({String.t, Keyword.t}) :: String.t
+  def translate_error({msg, opts}) do
+    if count = opts[:count] do
+      Gettext.capitalize("errors", msg, msg, count, opts)
+    else
+      Gettext.capitalize("errors", msg, opts)
+    end
   end
 end

@@ -20,9 +20,14 @@ defmodule KuikkaWebsite.Web do
     quote do
       use Phoenix.Controller, namespace: KuikkaWebsite.Web
       import Plug.Conn
+
       import KuikkaWebsite.Web.Router.Helpers
       import KuikkaWebsite.Web.Gettext
+      import KuikkaWebsite.Web.Utils.Auth
+
       import Ecto.Query
+
+      KuikkaWebsite.Web.shared()
     end
   end
 
@@ -41,9 +46,10 @@ defmodule KuikkaWebsite.Web do
       use Phoenix.HTML
 
       import KuikkaWebsite.Web.Router.Helpers
-      import KuikkaWebsite.Web.ErrorHelpers
       import KuikkaWebsite.Web.Gettext
       import KuikkaWebsite.Web.Utils.View
+
+      KuikkaWebsite.Web.shared()
     end
   end
 
@@ -53,6 +59,8 @@ defmodule KuikkaWebsite.Web do
       use Steamex.Auth.Phoenix, :router
       import Plug.Conn
       import Phoenix.Controller
+
+      KuikkaWebsite.Web.shared()
     end
   end
 
@@ -60,6 +68,22 @@ defmodule KuikkaWebsite.Web do
     quote do
       use Phoenix.Channel
       import KuikkaWebsite.Web.Gettext
+
+      KuikkaWebsite.Web.shared()
+    end
+  end
+
+  defmacro shared do
+    quote do
+      alias KuikkaWebsite.{
+        Event,
+        Forum,
+        Member,
+        Page,
+        Settings,
+        Web.Gettext,
+        Repo
+      }
     end
   end
 

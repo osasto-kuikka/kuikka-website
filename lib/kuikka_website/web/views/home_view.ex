@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Web.Page.HomeView do
+defmodule KuikkaWebsite.Web.HomeView do
   use KuikkaWebsite.Web, :view
 
   alias KuikkaWebsite.Web.LayoutView

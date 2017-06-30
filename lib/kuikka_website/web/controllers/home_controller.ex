@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Web.Page.HomeController do
+defmodule KuikkaWebsite.Web.HomeController do
   use KuikkaWebsite.Web, :controller
   import Ecto.Query
 

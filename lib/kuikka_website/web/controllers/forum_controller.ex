@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Web.Page.ForumController do
+defmodule KuikkaWebsite.Web.ForumController do
   use KuikkaWebsite.Web, :controller
 
   @spec index(Plug.Conn.t, map) :: Plug.Conn.t
