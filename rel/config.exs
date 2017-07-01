@@ -37,8 +37,8 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
-release :kuikka_website do
-  set version: current_version(:kuikka_website)
+release :kuikka do
+  set version: current_version(:kuikka)
   set applications: [
     :runtime_tools
   ]

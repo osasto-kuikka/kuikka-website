@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Repo.Migrations.AddHomepage do
+defmodule Kuikka.Repo.Migrations.AddHomepage do
   use Ecto.Migration
 
   def change do

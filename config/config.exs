@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :kuikka_website,
-  ecto_repos: [KuikkaWebsite.Repo]
+config :kuikka,
+  ecto_repos: [Kuikka.Repo]
 
 # Configures the endpoint
-config :kuikka_website, KuikkaWebsite.Web.Endpoint,
+config :kuikka, Kuikka.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "KU/TmQnYY26fLduJxtF6VgZoFX7gQBSgRfT85VeNsu+lBulRhVtXsAvK/eB8aC26",
-  render_errors: [view: KuikkaWebsite.Web.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: KuikkaWebsite.PubSub,
+  render_errors: [view: Kuikka.Web.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Kuikka.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

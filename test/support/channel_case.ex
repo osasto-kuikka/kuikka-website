@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Web.ChannelCase do
+defmodule Kuikka.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule KuikkaWebsite.Web.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint KuikkaWebsite.Web.Endpoint
+      @endpoint Kuikka.Web.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(KuikkaWebsite.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Kuikka.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(KuikkaWebsite.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Kuikka.Repo, {:shared, self()})
     end
     :ok
   end

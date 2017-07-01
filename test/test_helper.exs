@@ -1,4 +1,4 @@
 ExUnit.start()
 
-Ecto.Adapters.SQL.Sandbox.mode(KuikkaWebsite.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Kuikka.Repo, :manual)
 

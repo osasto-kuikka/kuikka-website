@@ -40,47 +40,55 @@ msgstr "on vielä liitetty tähän arvoon"
 msgid "are still associated with this entry"
 msgstr "on vielä liitettynä tähän arvoon"
 
+## From Ecto.Changeset.validate_length/3
+#, fuzzy
 msgid "should be %{count} character(s)"
-msgid_plural "pitäisi %{count} kirjainta"
+msgid_plural "should be %{count} character(s)"
 msgstr[0] ""
 msgstr[1] ""
 
+#, fuzzy
 msgid "should have %{count} item(s)"
-msgid_plural "pitäisi sisältää %{count} arvoa"
+msgid_plural "should have %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
+#, fuzzy
 msgid "should be at least %{count} character(s)"
-msgid_plural "pitäisi olla ainakin %{count} kirjaint"
+msgid_plural "should be at least %{count} character(s)"
 msgstr[0] ""
 msgstr[1] ""
 
+#, fuzzy
 msgid "should have at least %{count} item(s)"
-msgid_plural "pitäisi olla vähintään %{count} arvoa"
+msgid_plural "should have at least %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
+#, fuzzy
 msgid "should be at most %{count} character(s)"
-msgid_plural "pitäisi olla maksimissaan %{count} kirjainta"
+msgid_plural "should be at most %{count} character(s)"
 msgstr[0] ""
 msgstr[1] ""
 
+#, fuzzy
 msgid "should have at most %{count} item(s)"
-msgid_plural "pitäisi olla maksimissaan %{count} arvoa"
+msgid_plural "should have at most %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "pitäisi olla vähemmän kuin %{number}"
+## From Ecto.Changeset.validate_number/3
+msgid "must be less than %{number}"
 msgstr ""
 
-msgid "pitäisi olla suurempi kuin %{number}"
+msgid "must be greater than %{number}"
 msgstr ""
 
-msgid "pitäisi olla yhtäkuin tai vähemmän kuin %{number}"
+msgid "must be less than or equal to %{number}"
 msgstr ""
 
-msgid "pitäisi olla yhtäkuin tai enemmän kuin %{number}"
+msgid "must be greater than or equal to %{number}"
 msgstr ""
 
-msgid "pitäis olla yhtäkuin %{number}"
+msgid "must be equal to %{number}"
 msgstr ""

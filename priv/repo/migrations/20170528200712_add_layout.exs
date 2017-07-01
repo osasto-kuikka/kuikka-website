@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Repo.Migrations.AddLayout do
+defmodule Kuikka.Repo.Migrations.AddLayout do
   use Ecto.Migration
 
   def change do

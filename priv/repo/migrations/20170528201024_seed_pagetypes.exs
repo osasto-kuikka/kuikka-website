@@ -1,8 +1,8 @@
-defmodule KuikkaWebsite.Repo.Migrations.SeedPagetypes do
+defmodule Kuikka.Repo.Migrations.SeedPagetypes do
   use Ecto.Migration
 
-  alias KuikkaWebsite.Repo
-  alias KuikkaWebsite.Page.Type
+  alias Kuikka.Repo
+  alias Kuikka.Page.Type
 
   def up do
     ins("markdown")

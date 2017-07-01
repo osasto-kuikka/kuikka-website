@@ -3,8 +3,8 @@ defmodule KuikkaDB.Repo.Migrations.AddPermissions do
     Add seed files to kuikkadb.
   """
   use Ecto.Migration
-  alias KuikkaWebsite.Repo
-  alias KuikkaWebsite.Member.Permission
+  alias Kuikka.Repo
+  alias Kuikka.Member.Permission
 
   def up do
     ins("read_wiki", "Permission to read wiki pages", false)

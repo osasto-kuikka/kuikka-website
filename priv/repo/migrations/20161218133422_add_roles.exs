@@ -4,8 +4,8 @@ defmodule KuikkaDB.Repo.Migrations.AddRoles do
   """
   use Ecto.Migration
 
-  alias KuikkaWebsite.Repo
-  alias KuikkaWebsite.Member.Role
+  alias Kuikka.Repo
+  alias Kuikka.Member.Role
 
   def up do
     insert("user", "Basic User")

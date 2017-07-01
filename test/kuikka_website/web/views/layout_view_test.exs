@@ -1,3 +1,3 @@
-defmodule KuikkaWebsite.Web.LayoutViewTest do
-  use KuikkaWebsite.Web.ConnCase, async: true
+defmodule Kuikka.Web.LayoutViewTest do
+  use Kuikka.Web.ConnCase, async: true
 end

@@ -1,8 +1,8 @@
 defmodule KuikkaDB.Repo.Migrations.AddDefaultCategory do
   use Ecto.Migration
 
-  alias KuikkaWebsite.Repo
-  alias KuikkaWebsite.Forum.Category
+  alias Kuikka.Repo
+  alias Kuikka.Forum.Category
 
   def up do
     insert("Uncategorized", "No category defined", "111111")

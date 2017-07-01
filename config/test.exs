@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :kuikka_website, KuikkaWebsite.Web.Endpoint,
+config :kuikka, Kuikka.Web.Endpoint,
   http: [port: 4001],
   server: false
 
@@ -10,7 +10,7 @@ config :kuikka_website, KuikkaWebsite.Web.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :kuikka_website, KuikkaWebsite.Repo,
+config :kuikka, Kuikka.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",

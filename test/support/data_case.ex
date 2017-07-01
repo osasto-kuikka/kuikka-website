@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.DataCase do
+defmodule Kuikka.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule KuikkaWebsite.DataCase do
 
   using do
     quote do
-      alias KuikkaWebsite.Repo
+      alias Kuikka.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import KuikkaWebsite.DataCase
+      import Kuikka.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(KuikkaWebsite.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Kuikka.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(KuikkaWebsite.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Kuikka.Repo, {:shared, self()})
     end
 
     :ok

@@ -1,4 +1,4 @@
-defmodule KuikkaWebsite.Web.ConnCase do
+defmodule Kuikka.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,18 +19,18 @@ defmodule KuikkaWebsite.Web.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import KuikkaWebsite.Web.Router.Helpers
+      import Kuikka.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint KuikkaWebsite.Web.Endpoint
+      @endpoint Kuikka.Web.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(KuikkaWebsite.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Kuikka.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(KuikkaWebsite.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Kuikka.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

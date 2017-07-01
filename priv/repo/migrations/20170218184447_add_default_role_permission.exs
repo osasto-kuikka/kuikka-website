@@ -2,8 +2,8 @@ defmodule KuikkaDB.Repo.Migrations.SeedDefaultRolePermission do
   use Ecto.Migration
   import Ecto.Query
 
-  alias KuikkaWebsite.Repo
-  alias KuikkaWebsite.Member.{Role, Permission}
+  alias Kuikka.Repo
+  alias Kuikka.Member.{Role, Permission}
 
   def up do
     permissions = Repo.all(Permission)
