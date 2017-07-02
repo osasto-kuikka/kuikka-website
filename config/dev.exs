@@ -38,8 +38,8 @@ config :kuikka, Kuikka.Web.Endpoint,
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/kuikka_website/web/views/.*(ex)$},
-      ~r{lib/kuikka_website/web/templates/.*(eex)$}
+      ~r{lib/kuikka/web/views/.*(ex)$},
+      ~r{lib/kuikka/web/templates/.*(eex)$}
     ]
   ]
 

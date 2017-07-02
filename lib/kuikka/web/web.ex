@@ -33,7 +33,7 @@ defmodule Kuikka.Web do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/kuikka_website/web/templates",
+      use Phoenix.View, root: "lib/kuikka/web/templates",
                         namespace: Kuikka.Web
 
       # Import convenience functions from controllers
