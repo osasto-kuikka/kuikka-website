@@ -52,7 +52,7 @@ defmodule Kuikka.Web.Router do
     get  "/events",                 EventController, :index
     post "/events",                 EventController, :create
     get  "/events/new",             EventController, :new
-    put  "/events/:id",             EventController, :event
+    get  "/events/:id",             EventController, :event
     put  "/events/:id",             EventController, :update
     post "/events/:id",             EventController, :create_comment
     get  "/events/:id/edit",        EventController, :edit

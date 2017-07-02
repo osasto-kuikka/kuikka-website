@@ -11,7 +11,7 @@ defmodule Kuikka.Web.WikiController do
   end
 
   @spec new(Plug.Conn.t, map) :: Plug.Conn.t
-  def new(conn, params) do
+  def new(conn, _params) do
     conn
     |> assign(:changeset, Wiki.changeset(%Wiki{}))
     |> render("new.html")
@@ -35,7 +35,7 @@ defmodule Kuikka.Web.WikiController do
     end
   end
 
-  @spec show(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec edit(Plug.Conn.t, map) :: Plug.Conn.t
   def edit(conn, %{"id" => id}) do
     Wiki
     |> where([w], w.id == ^id)

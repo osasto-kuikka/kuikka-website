@@ -23,7 +23,7 @@ defmodule Kuikka.Web do
 
       import Kuikka.Web.Router.Helpers
       import Kuikka.Web.Gettext
-      import Kuikka.Web.Utils.Auth
+      import Kuikka.Web.Utils.{Auth, Controller}
 
       import Ecto.Query
 
