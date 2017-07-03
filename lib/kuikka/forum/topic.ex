@@ -33,7 +33,8 @@ defmodule Kuikka.Forum.Topic do
   @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
-    |> cast(params, [:title, :content, :createtime, :modifytime])
+    #|> cast(params, [:title, :content, :createtime, :modifytime])
+    |> cast(params, [:title, :content])
     |> validate_required([:title, :content])
     |> validate_length(:title, min: 1)
     |> validate_length(:content, min: 1)
