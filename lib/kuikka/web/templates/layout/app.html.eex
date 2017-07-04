@@ -14,14 +14,14 @@
   </head>
 
   <body>
-    <%= render KuikkaWebsite.Web.LayoutView, "sidebar.html", assigns %>
+    <%= render Kuikka.Web.LayoutView, "sidebar.html", assigns %>
     <main class="g--10 m--2 g-m--12 m-m--0 no-margin-vertical">
-      <%= render KuikkaWebsite.Web.LayoutView, "header.html", assigns %>
+      <%= render Kuikka.Web.LayoutView, "header.html", assigns %>
       <div class="g--12 m--1">
         <%= render @view_module, @view_template, assigns %>
       </div>
     </main>
-    <%= render KuikkaWebsite.Web.LayoutView, "footer.html", assigns %>
+    <%= render Kuikka.Web.LayoutView, "footer.html", assigns %>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
