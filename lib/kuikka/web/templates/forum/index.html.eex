@@ -1,3 +1,14 @@
 <h1>Kuikan Foorumit</h1>
 
 <button onclick="window.location.href = '<%= forum_path(@conn, :new, %{view: "new"}) %>'">New topic</button>
+<%= if topics = forum_topics() do %>
+  <div class="nav-collapsible">
+    <input type="checkbox" id="nav-collapsible-pages">
+    <label for="nav-collapsible-pages">Wiki</label>
+    <div class="nav-collapsible-links">
+      <%= for topic <- topics do %>
+        <a href="<%= forum_path(@conn, :show, topic.title) %>"><%= topic.title %></a>
+      <% end %>
+    </div>
+  </div>
+<% end %>

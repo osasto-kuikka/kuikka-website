@@ -10,8 +10,21 @@ defmodule Kuikka.Web.ForumController do
   end
 
   @spec show(Plug.Conn.t, map) :: Plug.Conn.t
-  def show(conn, _params) do
-    render conn, "show.html"
+  def show(conn, %{"id" => id}) do
+    Topic
+    |> where([t], t.id == ^id)
+    |> Repo.one()
+    |> case do
+      nil ->
+        conn
+        |> put_flash(:error, "failed to find topic you were looking for")
+        |> put_status(404)
+        |> redirect(to: forum_path(conn, :index))
+      topic ->
+        conn
+        |> assign(:topic, topic)
+        |> render("show.html")
+    end
   end
 
   @spec new(Plug.Conn.t, map) :: Plug.Conn.t

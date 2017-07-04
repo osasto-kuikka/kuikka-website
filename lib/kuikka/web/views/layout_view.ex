@@ -3,6 +3,7 @@ defmodule Kuikka.Web.LayoutView do
 
   alias Kuikka.Repo
   alias Kuikka.Wiki
+  alias Kuikka.Forum.Topic
 
   @doc """
   Render different types of content to html format

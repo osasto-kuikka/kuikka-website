@@ -19,7 +19,7 @@ defmodule Kuikka.Forum.Topic do
   schema "topics" do
     field :title, :string
     field :content, :string
-    belongs_to :user, Kuikka.Member, on_replace: :nilify
+    belongs_to :member, Kuikka.Member, on_replace: :nilify
     belongs_to :category, Kuikka.Forum.Category, on_replace: :nilify
     many_to_many :comments, Kuikka.Forum.Comment,
                                                 join_through: "topic_comments"
