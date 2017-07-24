@@ -64,7 +64,7 @@ defmodule Kuikka.Web.Plug.CurrentUser do
 
   defp create_insert_params(steamid) do
     role = Repo.get_by!(Role, name: "user")
-    profile = load_profile("#{steamid}") |> IO.inspect
+    profile = load_profile("#{steamid}")
 
     %{
       steamid: "#{steamid}",

@@ -14,7 +14,7 @@ defmodule Kuikka.Repo.Migrations.CreateEvent do
     end
 
     create table(:event_members) do
-      add :event_id, references(:forums), null: false
+      add :event_id, references(:events), null: false
       add :member_id, references(:members), null: false
     end
     create index(:event_members, [:event_id, :member_id], unique: true)

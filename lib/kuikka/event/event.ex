@@ -23,8 +23,9 @@ defmodule Kuikka.Event do
 
     has_many :comments, Kuikka.Event.Comment
 
-    many_to_many :attendees, Kuikka.Member,
-      join_through: "event_members"
+    many_to_many :attending, Kuikka.Member,
+      join_through: "event_members",
+      on_replace: :delete
 
     timestamps()
   end
@@ -40,6 +41,7 @@ defmodule Kuikka.Event do
     |> add_assoc(:comments, params)
     |> add_assoc(:creator, params)
     |> add_assoc(:modified, params)
+    |> add_assoc(:attending, params)
     |> validate_required([:title, :content, :date, :creator])
     |> validate_length(:title, min: 1)
     |> validate_length(:content, min: 1)

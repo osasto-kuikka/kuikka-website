@@ -28,7 +28,7 @@ defmodule Kuikka.Web.EventController do
   def index(conn, _params) do
     events =
       Event
-      |> preload([:comments, :attendees])
+      |> preload([:comments, :attending])
       |> Repo.all()
 
     conn
@@ -62,7 +62,7 @@ defmodule Kuikka.Web.EventController do
   @spec event(Plug.Conn.t, map) :: Plug.Conn.t
   def event(conn, %{"id" => id}) do
     Event
-    |> preload([:attendees, :creator, :modified, comments: [:member]])
+    |> preload([:attending, :creator, :modified, comments: [:member]])
     |> where([e], e.id == ^id)
     |> Repo.one()
     |> case do
@@ -76,6 +76,65 @@ defmodule Kuikka.Web.EventController do
         |> assign(:event, event)
         |> render("event.html")
     end
+  end
+
+  @doc """
+  Attend to event
+
+  ## Route
+  ```
+  get /events/:id/attend
+  ```
+  """
+  @spec attend(Plug.Conn.t, map) :: Plug.Conn.t
+  def attend(conn, %{"id" => id}) do
+    user = conn.assigns.current_user
+    Event
+    |> preload([:attending, :creator, :modified])
+    |> where([e], e.id == ^id)
+    |> Repo.one()
+    |> case do
+      nil ->
+        conn
+        |> put_flash(:error, "event not found")
+        |> redirect(to: event_path(conn, :index))
+      event ->
+        event
+        |> Event.changeset(%{attending: [user | event.attending]})
+        |> Repo.update!()
+
+        redirect(conn, to: event_path(conn, :event, id))
+    end
+  end
+
+  @doc """
+  Unattend from event
+
+  ## Route
+  ```
+  get /events/:id/unattend
+  ```
+  """
+  @spec unattend(Plug.Conn.t, map) :: Plug.Conn.t
+  def unattend(conn, %{"id" => id}) do
+    user = conn.assigns.current_user
+    Event
+    |> preload([:attending, :creator, :modified])
+    |> where([e], e.id == ^id)
+    |> Repo.one()
+    |> case do
+         nil ->
+           conn
+           |> put_flash(:error, "event not found")
+           |> redirect(to: event_path(conn, :index))
+         event ->
+           attending =  Enum.reject(event.attending, &(&1.id == user.id))
+           event
+           |> Event.changeset(%{attending: attending})
+           |> Repo.update!()
+
+           redirect(conn, to: event_path(conn, :event, id))
+       end
   end
 
   @doc """

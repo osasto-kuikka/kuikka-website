@@ -52,6 +52,8 @@ defmodule Kuikka.Web.Router do
     post   "/events/new",             EventController, :create
     get    "/events/new",             EventController, :new
     get    "/events/:id",             EventController, :event
+    get    "/events/:id/attend",      EventController, :attend
+    get    "/events/:id/unattend",    EventController, :unattend
     post   "/events/:id",             EventController, :create_comment
     delete "/events/:id",             EventController, :delete
     put    "/events/:id/edit",        EventController, :update

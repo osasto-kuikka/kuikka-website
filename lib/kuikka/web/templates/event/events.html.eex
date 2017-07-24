@@ -23,7 +23,7 @@
         <tr onclick="location.href='<%= event_path(@conn, :event, event.id) %>'">
             <td><%= event.title %></td>
             <td><%= event.date %></td>
-            <td><%= length(event.attendees) %></td>
+            <td><%= length(event.attending) %></td>
         </tr>
         <% end %>
     </tbody>

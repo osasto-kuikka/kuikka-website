@@ -55,11 +55,11 @@ defmodule Kuikka.Web.ProfileController do
   def profile(conn, %{"id" => id}) do
     current = conn.assigns.current_user
 
-    if not is_nil(current) and id == "#{current.id}" do
+    if not is_nil(current) and id == "#{Map.get(current, :id, -1)}" do
       # For current user render current_profile page
       conn
       |> assign(:member, current)
-      |> render("current_profile.html")
+      |> render("current.html")
     else
       # For another user render normal profile page
       Member
@@ -74,7 +74,7 @@ defmodule Kuikka.Web.ProfileController do
         member ->
           conn
           |> assign(:member, member)
-          |> render("profile.html")
+          |> render("another.html")
       end
     end
   end

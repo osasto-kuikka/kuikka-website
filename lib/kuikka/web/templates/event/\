@@ -2,35 +2,34 @@
 <h1 class="title has-text-centered"><%= to_date_time(@event.date) %></h1>
 
 <%= unless is_nil(@current_user) do %>
-    <%= if Enum.any?(@event.attending, &(&1.id == Map.get(@current_user, :id))) do %>
-        <%= link id: "attend-btn", class: "button is-danger is-fullwidth", to: event_path(@conn, :unattend, @event.id) do %>
-          <span class="capitalize"><%= dgettext "event", "not attending" %></span>
-        <% end %>
-    <%= else %>
-        <%= link id: "attend-btn", class: "button is-success is-fullwidth", to: event_path(@conn, :attend, @event.id) do %>
-          <span class="capitalize"><%= dgettext "event", "attend" %></span>
-        <% end %>
-    <% end %>
+<%= if Enum.any?(@event.attending, &(&1.id, Map.get(@current_user, :id))) do %>
+    <%= link dgettext("event", "not attending"),
+            id: "attend-btn",
+            class: "button is-danger is-fullwidth",
+            to: event_path(@conn, :unattend, @event.id) %>
+<%= else %>
+    <%= link dgettext("event", "attending"),
+            id: "attend-btn",
+            class: "button is-success is-fullwidth",
+            to: event_path(@conn, :attend, @event.id) %>
+<% end %>
 <% end %>
 
 <%= unless length(@event.attending) == 0 do %>
-<div id="attending" class="column is-half is-offset-one-quarter">
-    <h3 class="subtitle has-text-centered">
-        <span class="capitalize"><%= dgettext "event", "attending" %></span>
-    </h3>
+<div id="attending">
+    <h3 class="subtitle has-text-centered">attending</h3>
     <%= for member <- @event.attending do %>
-    <%= link to: profile_path(@conn, :profile, member.id), class: "tooltip", data: [tooltip: member.username] do %>
-      <%= img_tag member.avatar_medium %>
-    <% end %>
+      <% member.username %>
     <% end %>
 </div>
 <% end %>
 
 <article class="media">
   <figure class="media-left">
-      <%= link to: profile_path(@conn, :profile, @event.creator.id), class: "tooltip", data: [tooltip: @event.creator.username] do %>
-        <%= img_tag @event.creator.avatar_medium %>
-      <% end %>
+    <p class="image is-64x64">
+      <img src="<%= @event.creator.avatar_full %>">
+    </p>
+    <p><%= @event.creator.username %></p>
   </figure>
   <div class="media-content">
     <div id="event-content" class="content">
@@ -48,13 +47,11 @@
     </nav>
   </div>
   <div class="media-right">
-      <%= unless is_nil(@current_user) do %>
-      <%= if @event.creator.id == Map.get(@current_user, :id) do %>
+      <%= if @event.creator.id == @current_user.id do %>
         <%= form_for @conn, event_path(@conn, :delete, @event.id),
                     [as: "comment", method: :delete], fn f -> %>
             <%= submit "", class: "delete" %>
         <%= end %>
-      <% end %>
       <% end %>
   </div>
 </article>
@@ -93,7 +90,6 @@
 </article>
 <% end %>
 
-<%= unless is_nil(@current_user) do %>
 <%= form_for @changeset, event_path(@conn, :create_comment, @event.id), [method: :post], fn f -> %>
 
     <div class="field">
@@ -105,5 +101,4 @@
     </div>
 
     <%= submit dgettext("event", "add comment"), class: "button is-success capitalize" %>
-<% end %>
 <% end %>
