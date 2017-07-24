@@ -81,7 +81,6 @@ defmodule Kuikka.Web do
         Member,
         Page,
         Settings,
-        Web.Gettext,
         Repo
       }
     end

@@ -22,7 +22,6 @@ defmodule Kuikka.Member.Permission do
   schema "permissions" do
     field :name, :string
     field :description, :string
-    field :require_login, :boolean
     many_to_many :roles, Kuikka.Member.Role,
                                       join_through: "role_permissions"
   end
@@ -33,7 +32,7 @@ defmodule Kuikka.Member.Permission do
   @spec changeset(t, map) :: Ecto.Changeset.t
   def changeset(schema = %__MODULE__{}, params) when is_map(params) do
     schema
-    |> cast(params, [:name, :description, :no_login])
+    |> cast(params, [:name, :description])
     |> validate_required([:name, :description])
     |> validate_length(:name, min: 1)
     |> validate_length(:description, min: 1)

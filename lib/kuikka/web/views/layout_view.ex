@@ -3,6 +3,7 @@ defmodule Kuikka.Web.LayoutView do
 
   alias Kuikka.Repo
   alias Kuikka.Wiki
+  alias Kuikka.Web.Gettext, as: KGettext
 
   @doc """
   Render different types of content to html format
@@ -34,5 +35,6 @@ defmodule Kuikka.Web.LayoutView do
   def title([]), do: "home"
   def title([page]), do: page
   def title([page | _]), do: page
-  def title(conn), do: capitalize("header", title(conn.path_info))
+  def title(conn),
+    do: Gettext.dgettext(KGettext, "header", title(conn.path_info))
 end

@@ -26,7 +26,7 @@ defmodule Kuikka.Web.Utils.Controller do
   ```
   """
   @spec param_check(Plug.Conn.t, keyword) :: Plug.Conn.t
-  def param_check(conn, opts) do
+  def param_check(conn, opts \\ []) do
     param = Keyword.get(opts, :param, "id")
     to = Keyword.get(opts, :to, Helpers.home_path(conn, :index))
     type = Keyword.get(opts, :type)

@@ -1,22 +1,48 @@
 <header class="container">
-  <nav class="g--12 nav--horizontal">
-    <h3 class="breadcrumbs"><%= title(@conn) %></h3>
-    <ul style="profile">
-      <li class="dropdown">
-      <%= if is_nil(@current_user) do %>
-        <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"
-        onclick="window.location.href = '<%= steamex_auth_url(@conn) %>';"/>
-      <%= else %>
-        <p><%= @current_user.profile.steam_id %></p>
-        <ul>
-          <li><a href="<%= profile_path(@conn, :profile, @current_user.id) %>">Profile</a></li>
-          <li><a href="<%= profile_path(@conn, :logout) %>">Log out</a></li>
-        </ul>
-      <% end %>
-      </li>
-      <li>
-        <img src="<%= @current_user.profile.avatar_medium %>" class="g--6" />
-      </li>
-    </ul>
-  </nav>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="<%= home_path(@conn, :index) %>">
+                <img id="kuikka-logo" src="/images/logo.svg" alt="kuikka logo" width="112" height="28">
+            </a>
+            <div class="navbar-burger burger" data-target="header-nav">
+               <span></span>
+               <span></span>
+               <span></span>
+            </div>
+        </div>
+
+        <div id="header-nav" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="<%= forum_path(@conn, :index) %>">
+                    <span class="capitalize"><%= dgettext "menu", "forums" %></span>
+                </a>
+                <a class="navbar-item" href="<%= event_path(@conn, :index) %>">
+                    <span class="capitalize"><%= dgettext "menu", "events" %></span>
+                </a>
+                <a class="navbar-item" href="<%= wiki_path(@conn, :index) %>">
+                    <span class="capitalize"><%= dgettext "menu", "wiki" %></span>
+                </a>
+            </div>
+            <div class="navbar-end">
+                <%= if is_nil(@current_user) do %>
+
+                <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"
+                    onclick="window.location.href = '<%= steamex_auth_url(@conn) %>';"
+                    class="navbar-item"/>
+
+                <%= else %>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="<%= profile_path(@conn, :profile, @current_user) %>">
+                        <%= @current_user.username %>
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="<%= profile_path(@conn, :logout) %>">Log out</a>
+                    </div>
+                </div>
+                <img class="navbar-item profile-image" src="<%= @current_user.avatar_medium %>" alt="steam profile image" width="80" height="55"/>
+                <% end %>
+            </div>
+        </div>
+    </nav>
 </header>

@@ -1,63 +1,52 @@
-@import './imports/variables';
+@import 'imports/variables';
 
-// Main classes
 @for $i from 1 through $grid-columns {
-    .g--#{$i} {
-        width: 100%/$grid-columns*$i;
-        margin-top: $space-big;
-        margin-bottom: $space-big;
-    }
-    .m--#{$i} {
-        margin-left: 100%/$grid-columns*$i;
-    }
-}
+	.g--#{$i} {
+		width: 100%/$grid-columns*$i;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	@media screen and (max-width: $media-med) {
+		.g-m--#{$i} {
+			width: 100%/$grid-columns*$i;
+      margin-top: 10px;
+      margin-bottom: 10px;
+		}
+	}
+	@media screen and (max-width: $media-small) {
+		.g-s--#{$i} {
+			width: 100%/$grid-columns*$i;
+      margin-top: 10px;
+      margin-bottom: 10px;
+		}
+	}
+	@media screen and (max-width: $media-tiny) {
+		.g-t--#{$i} {
+			width: 100%/$grid-columns*$i;
+      margin-top: 10px;
+      margin-bottom: 10px;
+		}
+	}
+	.m--#{$i} {
+		margin-left: 100%/$grid-columns*$i;
 
-// Media queries margin classes - Using while we invert the ordering
-// which was problematic
-$j: $grid-columns;
-@while $j > 0 {
-    @media screen and (max-width: $media-med) {
-        .m-m--#{$j} {
-            margin-left: 100%/$grid-columns*$j;
-        }
-    }
-    @media screen and (max-width: $media-small) {
-        .m-s--#{$j} {
-            margin-left: 100%/$grid-columns*$j;
+	}
+	@media screen and (max-width: $media-med) {
+		.m-m--#{$i} {
+			margin-left: 100%/$grid-columns*$i;
+		}
+	}
+	@media screen and (max-width: $media-small) {
+		.m-s--#{$i} {
+			margin-left: 100%/$grid-columns*$i;
 
-        }
-    }
-    @media screen and (max-width: $media-tiny) {
-        .m-t--#{$j} {
-            margin-left: 100%/$grid-columns*$j;
-        }
-    }
-    $j: $j - 1;
-}
-
-// Media queries width classes
-@for $k from 1 through $grid-columns {
-    @media screen and (max-width: $media-med) {
-        .g-m--#{$k} {
-            width: 100%/$grid-columns*$k;
-            margin-top: $space-med*1.3;
-            margin-bottom: $space-med*1.3;
-        }
-    }
-    @media screen and (max-width: $media-small) {
-        .g-s--#{$k} {
-            width: 100%/$grid-columns*$k;
-            margin-top: $space-med*0.9;
-            margin-bottom: $space-med*0.9;
-        }
-    }
-    @media screen and (max-width: $media-tiny) {
-        .g-t--#{$k} {
-            width: 100%/$grid-columns*$k;
-            margin-top: $space-small;
-            margin-bottom: $space-small;
-        }
-    }
+		}
+	}
+	@media screen and (max-width: $media-tiny) {
+		.m-t--#{$i} {
+			margin-left: 100%/$grid-columns*$i;
+		}
+	}
 }
 
 @media screen and (max-width: $media-med) {

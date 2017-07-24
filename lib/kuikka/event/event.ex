@@ -17,8 +17,14 @@ defmodule Kuikka.Event do
     field :title, :string
     field :content, :string
     field :date, :utc_datetime
-    many_to_many :comments, Kuikka.Event.Comment,
-                                                join_through: "event_comments"
+
+    belongs_to :creator, Kuikka.Member
+    belongs_to :modified, Kuikka.Member
+
+    has_many :comments, Kuikka.Event.Comment
+
+    many_to_many :attendees, Kuikka.Member,
+      join_through: "event_members"
 
     timestamps()
   end
@@ -31,28 +37,44 @@ defmodule Kuikka.Event do
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:title, :content, :date])
-    |> validate_required([:title, :content, :date])
+    |> add_assoc(:comments, params)
+    |> add_assoc(:creator, params)
+    |> add_assoc(:modified, params)
+    |> validate_required([:title, :content, :date, :creator])
     |> validate_length(:title, min: 1)
     |> validate_length(:content, min: 1)
-    |> validate_date(params[:date] || params["date"])
-    |> add_comment(params[:comments] || params["comments"])
+    |> validate_date()
   end
 
   # Validate that given date is greater than current time
-  @spec validate_date(Ecto.Changeset.t, map) :: Ecto.Changeset.t
-  defp validate_date(changeset, nil), do: changeset
-  defp validate_date(changeset, date) do
-    case DateTime.compare(date, DateTime.utc_now()) do
-      :gt ->
-        changeset
-      _ ->
-        add_error(changeset, :date, "Event date must greater than current time")
+  @spec validate_date(Ecto.Changeset.t) :: Ecto.Changeset.t
+  defp validate_date(changeset) do
+    if date = get_change(changeset, :date) do
+      case DateTime.compare(get_change(changeset, :date), DateTime.utc_now()) do
+        :gt -> changeset
+        _ -> add_error(changeset, :date, "must greater than current date")
+      end
+    else
+      changeset
+    end
+  end
+
+  defp add_assoc(changeset, field, params) do
+    if val = params[field] || params["#{field}"] do
+      put_assoc(changeset, field, val)
+    else
+      changeset
     end
   end
 
   # Add comments if given in params
-  @spec add_comment(Ecto.Changeset.t, map) :: Ecto.Changeset.t
-  defp add_comment(changeset, nil), do: changeset
-  defp add_comment(changeset, comments),
-    do: put_assoc(changeset, :comments, comments)
+  @spec add_comments(Ecto.Changeset.t, map) :: Ecto.Changeset.t
+  defp add_comments(changeset, params) do
+    comments = params[:comments] || params["comments"]  
+    if not is_nil(comments) do
+      put_assoc(changeset, :comments, comments)
+    else
+      changeset
+    end
+  end
 end
