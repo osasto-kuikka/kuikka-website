@@ -13,6 +13,7 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html";
 import toMarkdown from "to-markdown";
+import Socket from "./socket"
 
 // Import local files
 //
@@ -34,6 +35,20 @@ window.onReply = function(id) {
     if (el != undefined) {
         let content = toMarkdown(`<blockquote>${el.innerHTML}</blockquote>`)
         to.innerText = content;
+    }
+}
+
+window.openModal = function(id) {
+    const el = document.getElementById(id);
+    if (el != undefined) {
+        el.className = 'modal is-active';
+    }
+}
+
+window.closeModal = function(id) {
+    const el = document.getElementById(id);
+    if (el != undefined) {
+        el.className = 'modal';
     }
 }
 

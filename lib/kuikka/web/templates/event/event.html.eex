@@ -1,18 +1,21 @@
+<%# Event title and date %>
 <h1 class="title has-text-centered"><%= @event.title %></h1>
 <h1 class="title has-text-centered"><%= to_date_time(@event.date) %></h1>
 
+<%# Attend and don't atten buttons %>
 <%= unless is_nil(@current_user) do %>
     <%= if Enum.any?(@event.attending, &(&1.id == Map.get(@current_user, :id))) do %>
-        <%= link id: "attend-btn", class: "button is-danger is-fullwidth", to: event_path(@conn, :unattend, @event.id) do %>
+        <%= link class: "button is-danger is-fullwidth attend-btn", to: event_path(@conn, :unattend, @event.id) do %>
           <span class="capitalize"><%= dgettext "event", "not attending" %></span>
         <% end %>
-    <%= else %>
-        <%= link id: "attend-btn", class: "button is-success is-fullwidth", to: event_path(@conn, :attend, @event.id) do %>
+    <% else %>
+        <%= link class: "button is-success is-fullwidth attend-btn", to: event_path(@conn, :attend, @event.id) do %>
           <span class="capitalize"><%= dgettext "event", "attend" %></span>
         <% end %>
     <% end %>
 <% end %>
 
+<%# Attending member avatars %>
 <%= unless length(@event.attending) == 0 do %>
 <div id="attending" class="column is-half is-offset-one-quarter">
     <h3 class="subtitle has-text-centered">
@@ -26,6 +29,7 @@
 </div>
 <% end %>
 
+<%# Event content %>
 <article class="media">
   <figure class="media-left">
       <%= link to: profile_path(@conn, :profile, @event.creator.id), class: "tooltip", data: [tooltip: @event.creator.username] do %>
@@ -50,22 +54,42 @@
   <div class="media-right">
       <%= unless is_nil(@current_user) do %>
       <%= if @event.creator.id == Map.get(@current_user, :id) do %>
-        <%= form_for @conn, event_path(@conn, :delete, @event.id),
-                    [as: "comment", method: :delete], fn f -> %>
-            <%= submit "", class: "delete" %>
-        <%= end %>
+        <button class="delete" onclick="openModal('modal-event')"></button>
       <% end %>
       <% end %>
   </div>
 </article>
 
+<%# Modal for event deletion %>
+<%= unless is_nil(@current_user) do %>
+<%= if @event.creator.id == @current_user.id do %>
+<div id="modal-event" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+          <div class="has-text-centered">
+          <p class="capitalize"><%= dgettext "event", "confirm event deletion" %></p>
+          </div>
+          <%= link dgettext("event", "confirm"),
+                class: "button is-success is-fullwidth",
+                to: event_path(@conn, :delete, @event.id),
+                method: :delete %>
+          <button class="button is-danger is-fullwidth" onclick="closeModal('modal-event')">
+            <%= dgettext "event", "cancel" %>
+          </button>
+        </div>
+    </div>
+</div>
+<% end %>
+<% end %>
+
+<%# Comment boxex %>
 <%= for comment <- @event.comments do %>
 <article class="media">
   <figure class="media-left">
-    <p class="image is-64x64">
-      <img id="<%= "#{comment.id}-image" %>" src="<%= comment.member.avatar_full %>">
-    </p>
-    <p id="<%= "#{comment.id}-username" %>"><%= comment.member.username %></p>
+    <%= link to: profile_path(@conn, :profile, comment.member.id), class: "tooltip", data: [tooltip: comment.member.username] do %>
+    <%= img_tag comment.member.avatar_medium %>
+    <% end %>
   </figure>
   <div class="media-content">
     <div id="<%= "#{comment.id}-content" %>" class="content">
@@ -84,15 +108,34 @@
   </div>
   <div class="media-right">
       <%= if comment.member.id == @current_user.id do %>
-        <%= form_for @conn, event_path(@conn, :delete_comment, @event.id, comment.id),
-                    [as: "comment", method: :delete], fn f -> %>
-            <%= submit "", class: "delete" %>
-        <%= end %>
+      <button class="delete" onclick="openModal('modal-comment-<%= comment.id %>')"></button>
       <% end %>
   </div>
 </article>
+
+<%# Modal for comment deletion %>
+<%= if comment.member.id == @current_user.id do %>
+<div id="modal-comment-<%= comment.id %>" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+          <div class="has-text-centered">
+          <p class="capitalize"><%= dgettext "event", "confirm comment deletion" %></p>
+          </div>
+          <%= link dgettext("event", "confirm"),
+                class: "button is-success is-fullwidth",
+                to: event_path(@conn, :delete_comment, @event.id, comment.id),
+                method: :delete %>
+          <button class="button is-danger is-fullwidth" onclick="closeModal('modal-comment-<%= comment.id %>')">
+            <%= dgettext "event", "cancel" %>
+          </button>
+        </div>
+    </div>
+</div>
+<% end %>
 <% end %>
 
+<%# New comment form %>
 <%= unless is_nil(@current_user) do %>
 <%= form_for @changeset, event_path(@conn, :create_comment, @event.id), [method: :post], fn f -> %>
 

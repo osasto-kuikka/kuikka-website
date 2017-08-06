@@ -52,7 +52,7 @@ defmodule Kuikka.Event do
   @spec validate_date(Ecto.Changeset.t) :: Ecto.Changeset.t
   defp validate_date(changeset) do
     if date = get_change(changeset, :date) do
-      case DateTime.compare(get_change(changeset, :date), DateTime.utc_now()) do
+      case DateTime.compare(date, DateTime.utc_now()) do
         :gt -> changeset
         _ -> add_error(changeset, :date, "must greater than current date")
       end
@@ -64,17 +64,6 @@ defmodule Kuikka.Event do
   defp add_assoc(changeset, field, params) do
     if val = params[field] || params["#{field}"] do
       put_assoc(changeset, field, val)
-    else
-      changeset
-    end
-  end
-
-  # Add comments if given in params
-  @spec add_comments(Ecto.Changeset.t, map) :: Ecto.Changeset.t
-  defp add_comments(changeset, params) do
-    comments = params[:comments] || params["comments"]  
-    if not is_nil(comments) do
-      put_assoc(changeset, :comments, comments)
     else
       changeset
     end

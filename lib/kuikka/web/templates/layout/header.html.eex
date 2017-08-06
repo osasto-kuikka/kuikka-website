@@ -33,14 +33,17 @@
                 <%= else %>
 
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="<%= profile_path(@conn, :profile, @current_user) %>">
+                    <a class="navbar-link" href="<%= profile_path(@conn, :profile, @current_user.id) %>">
                         <%= @current_user.username %>
                     </a>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" href="<%= profile_path(@conn, :logout) %>">Log out</a>
                     </div>
                 </div>
-                <img class="navbar-item profile-image" src="<%= @current_user.avatar_medium %>" alt="steam profile image" width="80" height="55"/>
+                <img class="navbar-item profile-image"
+                     src="<%= @current_user.avatar_medium %>"
+                     alt="steam profile image"
+                     width="80" height="55"/>
                 <% end %>
             </div>
         </div>

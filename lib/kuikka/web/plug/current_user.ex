@@ -29,9 +29,7 @@ defmodule Kuikka.Web.Plug.CurrentUser do
   end
 
   @spec get_member_database(integer | nil) :: Member.t | nil
-  defp get_member_database(nil) do
-    nil
-  end
+  defp get_member_database(nil), do: nil
   defp get_member_database(steamid) do
     Member
     |> preload([:forum_comments, :event_comments, role: [:permissions]])
@@ -42,16 +40,16 @@ defmodule Kuikka.Web.Plug.CurrentUser do
 
   defp create_or_load(nil, steamid) do
     %Member{}
-    |> Member.changeset(create_insert_params(steamid))
+    |> Member.changeset(insert_params(steamid))
     |> Repo.insert!()
   end
   defp create_or_load(member, steamid) do
     member
-    |> Member.changeset(create_update_params(steamid))
+    |> Member.changeset(update_params(steamid))
     |> Repo.update!()
   end
 
-  defp create_update_params(steamid) do
+  defp update_params(steamid) do
     profile = load_profile("#{steamid}")
     %{
       username: profile.steam_id,
@@ -62,7 +60,7 @@ defmodule Kuikka.Web.Plug.CurrentUser do
     }
   end
 
-  defp create_insert_params(steamid) do
+  defp insert_params(steamid) do
     role = Repo.get_by!(Role, name: "user")
     profile = load_profile("#{steamid}")
 
@@ -76,7 +74,7 @@ defmodule Kuikka.Web.Plug.CurrentUser do
       locale: "en",
 
       role: role
-    } |> IO.inspect
+    }
   end
 
   defp load_profile(steamid) do
