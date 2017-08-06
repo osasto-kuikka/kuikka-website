@@ -37,25 +37,25 @@ main {
   position: relative;
 
   &::after {
-    @include prefixer(transform, translate(-50%, 1rem), ("webkit", "ms"));
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    z-index: 200;
+    display: block;
+    max-width: 32rem;
+    padding: .4rem .8rem;
+    overflow: hidden;
+    font-size: $size-7;
+    color: #fff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
     background: rgba(69, 77, 93, .9);
     border-radius: $radius;
-    bottom: 100%;
-    color: #fff;
-    content: attr(data-tooltip);
-    display: block;
-    font-size: $size-7;
-    left: 50%;
-    max-width: 32rem;
     opacity: 0;
-    overflow: hidden;
-    padding: .4rem .8rem;
-    pointer-events: none;
-    position: absolute;
-    text-overflow: ellipsis;
     transition: all .2s ease;
-    white-space: nowrap;
-    z-index: 200;
+    @include prefixer(transform, translate(-50%, 1rem), ("webkit", "ms"));
   }
 
   &:focus::after,

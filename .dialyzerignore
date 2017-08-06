@@ -9,6 +9,7 @@ me_select(f@1::'Elixir.Phoenix.HTML.From','date') will never return since the su
 _struct__':='Elixir.Phoenix.HTML.Form', 'id':=_, 'impl':=_, 'name':=_, 'source':=atom() | #{'changes'
 :=map(), _=>_}, _=>_},atom()) -> any() and the contract is ('Elixir.Phoenix.HTML.Form':t(),atom()) ->
  'Elixir.Phoenix.HTML':safe()                                                                       
+lib/kuikka/web/templates/event/event.html.eex:1: Function 'event.html'/1 has no local retur
 lib/kuikka/web/templates/event/event.html.eex:87: The created fun has no local return
 lib/kuikka/web/templates/event/new.html.eex:1: The created fun has no local return
 lib/kuikka/web/utils/view.ex:101: Function markdown/1 has no local return
