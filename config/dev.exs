@@ -57,6 +57,6 @@ config :kuikka, Kuikka.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "kuikka_website_dev",
+  database: "kuikka_dev",
   hostname: "localhost",
   pool_size: 10

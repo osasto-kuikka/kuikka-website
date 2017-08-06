@@ -1,0 +1,44 @@
+@charset "UTF-8";
+///   .element {
+///     @include prefixer(appearance, none, ("webkit", "moz"));
+///   }
+///
+///   // CSS Output
+///   .element {
+///     -webkit-appearance: none;
+///     -moz-appearance: none;
+///     appearance: none;
+///   }
+
+@mixin prefixer(
+  $property,
+  $value,
+  $prefixes: ()
+) {
+  @each $prefix in $prefixes {
+    #{"-" + $prefix + "-" + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+///   .element {
+///     @include value-prefixer(cursor, grab, ("webkit", "moz"));
+///   }
+///
+///   // CSS Output
+///   .element {
+///     cursor: -webkit-grab;
+///     cursor: -moz-grab;
+///     cursor: grab;
+///   }
+
+@mixin value-prefixer(
+  $property,
+  $value,
+  $prefixes: ()
+) {
+  @each $prefix in $prefixes {
+    #{$property}: #{"-" + $prefix + "-" + $value};
+  }
+  #{$property}: $value;
+}

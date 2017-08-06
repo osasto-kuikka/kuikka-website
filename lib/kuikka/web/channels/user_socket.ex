@@ -1,8 +1,13 @@
 defmodule Kuikka.Web.UserSocket do
   use Phoenix.Socket
+  import Ecto.Query
+
+  alias Phoenix.Token
+  alias Kuikka.Repo
+  alias Kuikka.Member
 
   ## Channels
-  # channel "room:*", Kuikka.Web.RoomChannel
+  channel "room:*", Kuikka.Web.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -19,22 +24,68 @@ defmodule Kuikka.Web.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
+  @doc """
+  Connect user to websocket with token
+
+  Token can have user id as value or nil if user has not logged in
+
+  This will add current_user assign to channels to use
+
+  ## Example
+
+  # Testing user is logged in channel
+  ```
+  def join("room:lobby", _, socket) do
+    if is_nil(socket.assigns.current_user) do
+      # User is nil so allow connect but don't send data
+      {:ok, socket}
+    else
+      # User is logged in so start after join event
+      send(self(), :after_join)
+      {:ok, socket}
+    end
+  end
+  ```
+  """
   @spec connect(map, Phoenix.Socket.t) :: {:ok, Phoenix.Socket.t}
-  def connect(_params, socket) do
+  def connect(%{"token" => token}, socket) do
+    user = case Token.verify(socket, salt(), token, max_age: 86_400) do
+      {:ok, id} when is_integer(id) ->
+        Member
+        |> preload([:forum_comments, :event_comments, role: [:permissions]])
+        |> where([m], m.id == ^id)
+        |> Repo.one()
+      _ -> nil
+    end
+
+    socket = assign(socket, :current_user, user)
     {:ok, socket}
   end
+  def connect(_params, _socket) do
+    :error
+  end
 
-  # Socket id's allow you to identify all sockets for a given user:
-  #
-  #     def id(socket), do: "user_socket:#{socket.assigns.user_id}"
-  #
-  # Would allow you to broadcast a "disconnect" event and terminate
-  # all active sockets and channels for a given user:
-  #
-  #     Kuikka.Web.Endpoint.broadcast("user_socket:#{user.id}",
-  #                                          "disconnect", %{})
-  #
-  # Returning `nil` makes this socket anonymous.
-  @spec id(Phoenix.Socket.t) :: nil
-  def id(_socket), do: nil
+  defp salt do
+    Application.get_env(:kuikka, Kuikka.Web.Endpoint)[:secret_key_base]
+  end
+
+  @doc """
+  Allow identifying socket to specific user
+
+  Guest accounts are all under "user_socket:guest" id
+
+  ## Example
+  ```
+  alias Kuikka.Web.Endpoint
+
+  # Disconnect all guests
+  Endpoint.broadcast("user_socket:guest", "disconnect", %{})
+
+  # Dosconnect one user with id 1
+  Endpoint.broadcast("user_socket:1", "disconnect", %{})
+  ```
+  """
+  @spec id(Phoenix.Socket.t) :: String.t
+  def id(%{assigns: %{current_user: nil}}), do: "user_socket:guest"
+  def id(%{assigns: %{current_user: user}}), do: "user_socket:#{user.id}"
 end

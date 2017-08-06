@@ -1,0 +1,15 @@
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Website by <a href="https://osastokuikka.com">Osasto Kuikka</a>. The source code is licensed
+        as <a href="https://opensource.org/licenses/GPL-2.0">GPLv2</a>.
+      </p>
+      <p>
+        <a class="icon" href="https://github.com/osasto-kuikka/kuikka-website">
+          <i class="fa fa-github"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

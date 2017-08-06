@@ -17,7 +17,7 @@ defmodule Kuikka.Web.Utils.Auth do
   ```
   """
   @spec require_user(Plug.Conn.t, any) :: Plug.Conn.t
-  def require_user(conn, _opts) do
+  def require_user(conn, _opts \\ []) do
     if is_nil(conn.assigns.current_user) do
       # Current user is nil so redirect user to home page
       conn

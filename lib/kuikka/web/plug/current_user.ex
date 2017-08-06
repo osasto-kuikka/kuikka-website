@@ -12,6 +12,8 @@ defmodule Kuikka.Web.Plug.CurrentUser do
   alias Kuikka.Member.Role
   alias Kuikka.Repo
 
+  alias Steamex.Profile
+
   @spec init(any) :: keyword
   def init(_), do: []
 
@@ -27,9 +29,7 @@ defmodule Kuikka.Web.Plug.CurrentUser do
   end
 
   @spec get_member_database(integer | nil) :: Member.t | nil
-  defp get_member_database(nil) do
-    nil
-  end
+  defp get_member_database(nil), do: nil
   defp get_member_database(steamid) do
     Member
     |> preload([:forum_comments, :event_comments, role: [:permissions]])
@@ -39,13 +39,47 @@ defmodule Kuikka.Web.Plug.CurrentUser do
   end
 
   defp create_or_load(nil, steamid) do
-    role = Repo.get_by!(Role, name: "user")
     %Member{}
-    |> Member.changeset(%{steamid: "#{steamid}", role: role})
+    |> Member.changeset(insert_params(steamid))
     |> Repo.insert!()
-    |> Member.load_profile()
   end
-  defp create_or_load(member, _) do
-    Member.load_profile(member)
+  defp create_or_load(member, steamid) do
+    member
+    |> Member.changeset(update_params(steamid))
+    |> Repo.update!()
+  end
+
+  defp update_params(steamid) do
+    profile = load_profile("#{steamid}")
+    %{
+      username: profile.steam_id,
+      avatar: profile.avatar_icon,
+      avatar_medium: profile.avatar_medium,
+      avatar_full: profile.avatar_full,
+      url: profile.custom_url || "http://steamcommunity.com/profiles/#{steamid}"
+    }
+  end
+
+  defp insert_params(steamid) do
+    role = Repo.get_by!(Role, name: "user")
+    profile = load_profile("#{steamid}")
+
+    %{
+      steamid: "#{steamid}",
+      username: profile.steam_id,
+      avatar: profile.avatar_icon,
+      avatar_medium: profile.avatar_medium,
+      avatar_full: profile.avatar_full,
+      url: profile.custom_url || "http://steamcommunity.com/profiles/#{steamid}",
+      locale: "en",
+
+      role: role
+    }
+  end
+
+  defp load_profile(steamid) do
+    steamid
+    |> String.to_integer()
+    |> Profile.fetch()
   end
 end

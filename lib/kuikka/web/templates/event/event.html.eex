@@ -1,1 +1,151 @@
-<h1>TODO</h1>
+<%# Event title and date %>
+<h1 class="title has-text-centered"><%= @event.title %></h1>
+<h1 class="title has-text-centered"><%= to_date_time(@event.date) %></h1>
+
+<%# Attend and don't atten buttons %>
+<%= unless is_nil(@current_user) do %>
+  <%= if Enum.any?(@event.attending, &(&1.id == Map.get(@current_user, :id))) do %>
+    <%= link class: "button is-danger is-fullwidth attend-btn", to: event_path(@conn, :unattend, @event.id) do %>
+      <span class="capitalize"><%= dgettext "event", "not attending" %></span>
+    <% end %>
+  <% else %>
+    <%= link class: "button is-success is-fullwidth attend-btn", to: event_path(@conn, :attend, @event.id) do %>
+      <span class="capitalize"><%= dgettext "event", "attend" %></span>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Attending member avatars %>
+<%= unless length(@event.attending) == 0 do %>
+<div id="attending" class="column is-half is-offset-one-quarter">
+  <h3 class="subtitle has-text-centered">
+      <span class="capitalize"><%= dgettext "event", "attending" %></span>
+  </h3>
+  <%= for member <- @event.attending do %>
+  <%= link to: profile_path(@conn, :profile, member.id), class: "tooltip", data: [tooltip: member.username] do %>
+    <%= img_tag member.avatar_medium %>
+  <% end %>
+  <% end %>
+</div>
+<% end %>
+
+<%# Event content %>
+<article class="media">
+  <figure class="media-left">
+    <%= link to: profile_path(@conn, :profile, @event.creator.id), class: "tooltip", data: [tooltip: @event.creator.username] do %>
+      <%= img_tag @event.creator.avatar_medium %>
+    <% end %>
+  </figure>
+  <div class="media-content">
+    <div id="event-content" class="content">
+      <%= markdown(@event.content) %>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <a class="level-item">
+          <span class="icon is-small reply"
+                onclick="<%= "onReply('event-content')" %>">
+            <i class="fa fa-reply"></i>
+          </span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="media-right">
+    <%= unless is_nil(@current_user) do %>
+    <%= if @event.creator.id == Map.get(@current_user, :id) do %>
+      <button class="delete" onclick="openModal('modal-event')"></button>
+    <% end %>
+    <% end %>
+  </div>
+</article>
+
+<%# Modal for event deletion %>
+<%= unless is_nil(@current_user) do %>
+<%= if @event.creator.id == @current_user.id do %>
+<div id="modal-event" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <div class="has-text-centered">
+        <p class="capitalize"><%= dgettext "event", "confirm event deletion" %></p>
+      </div>
+      <%= link dgettext("event", "confirm"),
+            class: "button is-success is-fullwidth",
+            to: event_path(@conn, :delete, @event.id),
+            method: :delete %>
+      <button class="button is-danger is-fullwidth" onclick="closeModal('modal-event')">
+        <%= dgettext "event", "cancel" %>
+      </button>
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>
+
+<%# Comment boxex %>
+<%= for comment <- @event.comments do %>
+  <article class="media">
+    <figure class="media-left">
+      <%= link to: profile_path(@conn, :profile, comment.member.id), class: "tooltip", data: [tooltip: comment.member.username] do %>
+        <%= img_tag comment.member.avatar_medium %>
+      <% end %>
+    </figure>
+    <div class="media-content">
+      <div id="<%= "#{comment.id}-content" %>" class="content">
+        <%= markdown(comment.content) %>
+      </div>
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <a class="level-item">
+            <span class="icon is-small reply"
+                onclick="<%= "onReply('#{comment.id}-content')" %>">
+                <i class="fa fa-reply"></i>
+            </span>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="media-right">
+      <%= if comment.member.id == @current_user.id do %>
+      <button class="delete" onclick="openModal('modal-comment-<%= comment.id %>')"></button>
+      <% end %>
+    </div>
+  </article>
+
+  <%# Modal for comment deletion %>
+  <%= if comment.member.id == @current_user.id do %>
+  <div id="modal-comment-<%= comment.id %>" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <div class="has-text-centered">
+        <p class="capitalize"><%= dgettext "event", "confirm comment deletion" %></p>
+        </div>
+        <%= link dgettext("event", "confirm"),
+              class: "button is-success is-fullwidth",
+              to: event_path(@conn, :delete_comment, @event.id, comment.id),
+              method: :delete %>
+        <button class="button is-danger is-fullwidth" onclick="closeModal('modal-comment-<%= comment.id %>')">
+          <%= dgettext "event", "cancel" %>
+        </button>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+
+<%# New comment form %>
+<%= unless is_nil(@current_user) do %>
+<%= form_for @changeset, event_path(@conn, :create_comment, @event.id), [method: :post], fn f -> %>
+  <div class="field">
+    <label class="label capitalize"><%= dgettext "event", "new comment" %></label>
+    <div class="control">
+      <%= textarea f, :content, rows: 5, id: "new-comment-content", class: "textarea" %>
+    </div>
+    <%= error_tag f, :content %>
+  </div>
+
+  <%= submit dgettext("event", "add comment"), class: "button is-success capitalize" %>
+<% end %>
+<% end %>

@@ -15,6 +15,7 @@ defmodule Kuikka.Web do
   Do NOT define functions inside the quoted expressions
   below.
   """
+  alias Kuikka.Web
 
   def controller do
     quote do
@@ -27,7 +28,7 @@ defmodule Kuikka.Web do
 
       import Ecto.Query
 
-      Kuikka.Web.shared()
+      Web.shared()
     end
   end
 
@@ -49,7 +50,7 @@ defmodule Kuikka.Web do
       import Kuikka.Web.Gettext
       import Kuikka.Web.Utils.View
 
-      Kuikka.Web.shared()
+      Web.shared()
     end
   end
 
@@ -60,7 +61,7 @@ defmodule Kuikka.Web do
       import Plug.Conn
       import Phoenix.Controller
 
-      Kuikka.Web.shared()
+      Web.shared()
     end
   end
 
@@ -69,7 +70,9 @@ defmodule Kuikka.Web do
       use Phoenix.Channel
       import Kuikka.Web.Gettext
 
-      Kuikka.Web.shared()
+      import Ecto.Query
+
+      Web.shared()
     end
   end
 
@@ -81,7 +84,6 @@ defmodule Kuikka.Web do
         Member,
         Page,
         Settings,
-        Web.Gettext,
         Repo
       }
     end

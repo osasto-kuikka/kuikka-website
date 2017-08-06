@@ -1,9 +1,111 @@
-@import "surface";
+@import "../node_modules/bulma/bulma";
+@import "tooltip";
+@import "mixins";
 
-.page-content {
-  width: 100%
+body {
+  margin: 0;
 }
 
 .capitalize {
-  text-transform: capitalize;
+  display: inline-block;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+main {
+  min-height: 79vh;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: .5rem 1.5rem;
+
+  .content p {
+    margin-bottom: 0;
+  }
+}
+
+.attend-btn {
+  margin-bottom: 1em;
+}
+
+.tooltip {
+  position: relative;
+
+  &::after {
+    @include prefixer(transform, translate(-50%, 1rem), ("webkit", "ms"));
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    z-index: 200;
+    display: block;
+    max-width: 32rem;
+    padding: .4rem .8rem;
+    overflow: hidden;
+    font-size: $size-7;
+    color: #fff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+    background: rgba(69, 77, 93, .9);
+    border-radius: $radius;
+    opacity: 0;
+    transition: all .2s ease;
+  }
+
+  &:focus::after,
+  &:hover::after {
+    @include prefixer(transform, translate(-50%, -.5rem), ("webkit", "ms"));
+    opacity: 1;
+  }
+
+  &[disabled],
+  &.disabled {
+    pointer-events: auto;
+  }
+
+  &.tooltip-right {
+    &::after {
+      @include prefixer(transform, translate(-1rem, 50%), ("webkit", "ms"));
+      bottom: 50%;
+      left: 100%;
+    }
+
+    &:focus::after,
+    &:hover::after {
+      @include prefixer(transform, translate(.5rem, 50%), ("webkit", "ms"));
+    }
+  }
+
+  &.tooltip-bottom {
+    &::after {
+      @include prefixer(transform, translate(-50%, -1rem), ("webkit", "ms"));
+      top: 100%;
+      bottom: auto;
+    }
+
+    &:focus::after,
+    &:hover::after {
+      @include prefixer(transform, translate(-50%, .5rem), ("webkit", "ms"));
+    }
+  }
+
+  &.tooltip-left {
+    &::after {
+      @include prefixer(transform, translate(1rem, 50%), ("webkit", "ms"));
+      right: 100%;
+      bottom: 50%;
+      left: auto;
+    }
+
+    &:focus::after,
+    &:hover::after {
+      @include prefixer(transform, translate(-.5rem, 50%), ("webkit", "ms"));
+    }
+  }
 }
