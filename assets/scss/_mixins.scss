@@ -11,14 +11,14 @@
 ///   }
 
 @mixin prefixer(
-    $property,
-    $value,
-    $prefixes: ()
+  $property,
+  $value,
+  $prefixes: ()
 ) {
-    @each $prefix in $prefixes {
-        #{"-" + $prefix + "-" + $property}: $value;
-    }
-    #{$property}: $value;
+  @each $prefix in $prefixes {
+    #{"-" + $prefix + "-" + $property}: $value;
+  }
+  #{$property}: $value;
 }
 
 ///   .element {
@@ -33,12 +33,12 @@
 ///   }
 
 @mixin value-prefixer(
-    $property,
-    $value,
-    $prefixes: ()
+  $property,
+  $value,
+  $prefixes: ()
 ) {
-    @each $prefix in $prefixes {
-        #{$property}: #{"-" + $prefix + "-" + $value};
-    }
-    #{$property}: $value;
+  @each $prefix in $prefixes {
+    #{$property}: #{"-" + $prefix + "-" + $value};
+  }
+  #{$property}: $value;
 }

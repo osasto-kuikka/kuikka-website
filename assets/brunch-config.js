@@ -5,7 +5,7 @@ exports.config = {
       joinTo: "js/app.js"
     },
     stylesheets: {
-      joinTo: 'css/app.css',
+      joinTo: "css/app.css",
       order: {
         after: ["scss/app.scss"] // concat app.css last
       }

@@ -37,7 +37,7 @@ main {
   position: relative;
 
   &::after {
-    @include prefixer(transform, translate(-50%, 1rem), ("webkit", "ms"))
+    @include prefixer(transform, translate(-50%, 1rem), ("webkit", "ms"));
     background: rgba(69, 77, 93, .9);
     border-radius: $radius;
     bottom: 100%;
@@ -60,7 +60,7 @@ main {
 
   &:focus::after,
   &:hover::after {
-    @include prefixer(transform, translate(-50%, -.5rem), ("webkit", "ms"))
+    @include prefixer(transform, translate(-50%, -.5rem), ("webkit", "ms"));
     opacity: 1;
   }
 
@@ -71,33 +71,33 @@ main {
 
   &.tooltip-right {
     &::after {
-      @include prefixer(transform, translate(-1rem, 50%), ("webkit", "ms"))
+      @include prefixer(transform, translate(-1rem, 50%), ("webkit", "ms"));
       bottom: 50%;
       left: 100%;
     }
 
     &:focus::after,
     &:hover::after {
-      @include prefixer(transform, translate(.5rem, 50%), ("webkit", "ms"))
+      @include prefixer(transform, translate(.5rem, 50%), ("webkit", "ms"));
     }
   }
 
   &.tooltip-bottom {
     &::after {
-      @include prefixer(transform, translate(-50%, -1rem), ("webkit", "ms"))
+      @include prefixer(transform, translate(-50%, -1rem), ("webkit", "ms"));
       bottom: auto;
       top: 100%;
     }
 
     &:focus::after,
     &:hover::after {
-      @include prefixer(transform, translate(-50%, .5rem), ("webkit", "ms"))
+      @include prefixer(transform, translate(-50%, .5rem), ("webkit", "ms"));
     }
   }
 
   &.tooltip-left {
     &::after {
-      @include prefixer(transform, translate(1rem, 50%), ("webkit", "ms"))
+      @include prefixer(transform, translate(1rem, 50%), ("webkit", "ms"));
       right: 100%;
       bottom: 50%;
       left: auto;
@@ -105,7 +105,7 @@ main {
 
     &:focus::after,
     &:hover::after {
-      @include prefixer(transform, translate(-.5rem, 50%), ("webkit", "ms"))
+      @include prefixer(transform, translate(-.5rem, 50%), ("webkit", "ms"));
     }
   }
 }

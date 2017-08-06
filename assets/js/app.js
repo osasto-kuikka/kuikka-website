@@ -30,26 +30,26 @@ export default class App {
 // Copies content from comment to new comment textarea
 // and adds > on everyline for quote
 window.onReply = function(id) {
-    const el = document.getElementById(id);
-    const to = document.getElementById("new-comment-content");
-    if (el != undefined) {
-        let content = toMarkdown(`<blockquote>${el.innerHTML}</blockquote>`)
-        to.innerText = content;
-    }
+  const el = document.getElementById(id);
+  const to = document.getElementById("new-comment-content");
+  if (el != undefined) {
+    let content = toMarkdown(`<blockquote>${el.innerHTML}</blockquote>`);
+    to.innerText = content;
+  }
 }
 
 window.openModal = function(id) {
-    const el = document.getElementById(id);
-    if (el != undefined) {
-        el.className = 'modal is-active';
-    }
+  const el = document.getElementById(id);
+  if (el != undefined) {
+    el.className = "modal is-active";
+  }
 }
 
 window.closeModal = function(id) {
-    const el = document.getElementById(id);
-    if (el != undefined) {
-        el.className = 'modal';
-    }
+  const el = document.getElementById(id);
+  if (el != undefined) {
+    el.className = "modal";
+  }
 }
 
-new App()
+new App();
