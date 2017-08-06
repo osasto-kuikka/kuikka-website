@@ -65,7 +65,7 @@ defmodule Kuikka.Mixfile do
       {:distillery, "~> 1.4"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:credo, "~> 0.8.1", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.5.7", only: :test, runtime: false},
+      {:excoveralls, "~> 0.7.2", only: :test, runtime: false},
       {:inch_ex, ">= 0.0.0", only: :docs}
     ]
   end
