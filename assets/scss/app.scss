@@ -15,22 +15,22 @@ body {
 }
 
 main {
-    min-height: 79vh;
+  min-height: 79vh;
 }
 
 .footer {
-    position: relative;
-    width: 100%;
-    bottom: 0px;
-    padding: .5rem 1.5rem .5rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: .5rem 1.5rem;
 
-    .content p {
-      margin-bottom: 0;
-    }
+  .content p {
+    margin-bottom: 0;
+  }
 }
 
 .attend-btn {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .tooltip {
@@ -85,8 +85,8 @@ main {
   &.tooltip-bottom {
     &::after {
       @include prefixer(transform, translate(-50%, -1rem), ("webkit", "ms"));
-      bottom: auto;
       top: 100%;
+      bottom: auto;
     }
 
     &:focus::after,

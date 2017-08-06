@@ -11,8 +11,8 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "phoenix_html";
-import toMarkdown from "to-markdown";
+import "phoenix_html"
+import toMarkdown from "to-markdown"
 import Socket from "./socket"
 
 // Import local files
@@ -23,33 +23,33 @@ import Socket from "./socket"
 // import socket from "./socket"
 
 export default class App {
-    constructor() {}
+  constructor() {}
 }
 
 // Function that is run when pressing reply button
 // Copies content from comment to new comment textarea
 // and adds > on everyline for quote
 window.onReply = function(id) {
-  const el = document.getElementById(id);
-  const to = document.getElementById("new-comment-content");
-  if (el != undefined) {
-    let content = toMarkdown(`<blockquote>${el.innerHTML}</blockquote>`);
-    to.innerText = content;
+  const el = document.getElementById(id)
+  const to = document.getElementById("new-comment-content")
+  if (el !== undefined) {
+    let content = toMarkdown(`<blockquote>${el.innerHTML}</blockquote>`)
+    to.innerText = content
   }
 }
 
 window.openModal = function(id) {
-  const el = document.getElementById(id);
-  if (el != undefined) {
-    el.className = "modal is-active";
+  const el = document.getElementById(id)
+  if (el !== undefined) {
+    el.className = "modal is-active"
   }
 }
 
 window.closeModal = function(id) {
-  const el = document.getElementById(id);
-  if (el != undefined) {
-    el.className = "modal";
+  const el = document.getElementById(id)
+  if (el !== undefined) {
+    el.className = "modal"
   }
 }
 
-new App();
+new App()
