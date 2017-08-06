@@ -37,6 +37,7 @@ main {
   position: relative;
 
   &::after {
+    @include prefixer(transform, translate(-50%, 1rem), ("webkit", "ms"));
     content: attr(data-tooltip);
     position: absolute;
     bottom: 100%;
@@ -55,7 +56,6 @@ main {
     border-radius: $radius;
     opacity: 0;
     transition: all .2s ease;
-    @include prefixer(transform, translate(-50%, 1rem), ("webkit", "ms"));
   }
 
   &:focus::after,
