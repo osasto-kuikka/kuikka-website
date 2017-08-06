@@ -5,14 +5,15 @@ defmodule Kuikka.Web.Utils.View do
   use Phoenix.HTML
   require Kuikka.Web.Gettext
 
+  alias Phoenix.HTML
   alias Phoenix.HTML.Form
   alias Kuikka.Web.Gettext, as: KGettext
 
   @doc """
   Add more sensible values to datetime select
   """
-  @spec custom_datetime_select(Form.t, atom) :: Keyword.t
-  def custom_datetime_select(form, field) do
+  @spec custom_datetime_select(Form.t, atom) :: HTML.safe
+  def custom_datetime_select(form = %Form{}, field) when is_atom(field) do
     now = DateTime.utc_now()
     time = Map.get(form.source.changes, field) || now
     builder = fn b ->
@@ -94,12 +95,17 @@ defmodule Kuikka.Web.Utils.View do
   end
 
   @doc """
-
+  Change markdown string to html
   """
-  @spec markdown(String.t) :: String.t
+  @spec markdown(String.t) :: HTML.safe | HTML.unsafe
   def markdown(content) do
     content
-    |> Earmark.as_html!()
-    |> Phoenix.HTML.raw()
+    |> Earmark.as_html()
+    |> case do
+      {:ok, html} ->
+        HTML.raw(html)
+      _ ->
+        HTML.raw("Failed to parse comment, please contact admin")
+    end
   end
 end

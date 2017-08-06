@@ -12,7 +12,7 @@ defmodule Kuikka.Mixfile do
       aliases: aliases(),
       deps: deps(),
 
-      dialyzer: [ignore_warnings: ".dialyzerignore"],
+      dialyzer: dialyzer(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         "coveralls": :test,
@@ -30,6 +30,16 @@ defmodule Kuikka.Mixfile do
     [
       mod: {Kuikka.Application, []},
       extra_applications: [:logger, :runtime_tools, :sweet_xml]
+    ]
+  end
+
+  # Dialyzer configs
+  #
+  # See https://github.com/jeremyjh/dialyxir for more info
+  def dialyzer do
+    [
+      flags: [:unmatched_returns,:error_handling,:race_conditions, :no_opaque],
+      ignore_warnings: ".dialyzerignore"
     ]
   end
 

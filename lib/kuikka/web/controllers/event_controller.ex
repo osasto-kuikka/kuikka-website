@@ -295,7 +295,8 @@ defmodule Kuikka.Web.EventController do
         |> redirect(to: event_path(conn, :event, id))
       {:error, err} ->
         # Failed to delete comment
-        Logger.error("#{__MODULE__}: #{inspect err}")
+        :ok = Logger.error("#{__MODULE__}: #{inspect err}")
+           
         conn
         |> put_flash(:error, "failed to delete comment")
         |> redirect(to: event_path(conn, :event, id))

@@ -10,19 +10,21 @@ defmodule Mix.Tasks.Npm.Build do
   ```
   """
 
-  @spec run([binary]) :: any
+  @spec run([binary]) :: :ok | {:error, integer}
   def run(_) do
-    # Run npm deploy on assets folder
-    System.cmd "npm", ["run", "deploy"],
-      cd: "assets",
-      into: IO.stream(:stdio, :line)
+    with {_, 0} <- cmd(~w(npm run deploy), [cd: "assets"]),
+         {_, 0} <- cmd(~w(mix phx.digest.clean)),
+         {_, 0} <- cmd(~w(mix phx.digest))
+    do
+      :ok
+    else
+      {_, code} -> {:error, code}
+    end
+  end
 
-    # Clean old assets
-    System.cmd "mix", ["phx.digest.clean"],
-      into: IO.stream(:stdio, :line)
-
-    # Generate cache_manifest.json with phoenix digest
-    System.cmd "mix", ["phx.digest"],
-      into: IO.stream(:stdio, :line)
+  @spec cmd([binary], keyword) :: :ok | {:error, integer}
+  defp cmd([head | tail], opts \\ []) do
+    opts = [{:into, IO.stream(:stdio, :line)} | opts]
+    System.cmd(head, tail, opts)
   end
 end
