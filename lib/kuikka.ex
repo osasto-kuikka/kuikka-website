@@ -1,12 +1,18 @@
-defmodule Kuikka.Application do
+defmodule Kuikka do
   @moduledoc """
   Application defines
   """
   use Application
 
+  @typedoc """
+  Becouse Application module doesn't have on_start type
+  we need to manually add one for dialyzer
+  """
+  @type on_start :: {:ok, pid} | {:ok, pid, any} | {:error, any}
+
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
-  @spec start(term, term) :: Supervisor.on_start
+  @spec start(term, term) :: on_start
   def start(_type, _args) do
     import Supervisor.Spec
 

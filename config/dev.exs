@@ -39,7 +39,7 @@ config :kuikka, KuikkaWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/kuikka/web/views/.*(ex)$},
-      ~r{lib/kuikka/web/templates/.*(eex)$}
+      ~r{lib/kuikka/web/templates/.*(eex|md)$}
     ]
   ]
 

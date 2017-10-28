@@ -38,7 +38,7 @@
   </figure>
   <div class="media-content">
     <div id="event-content" class="content">
-      <%= markdown(@event.content) %>
+       <%= markdown @event.content %>
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
@@ -93,7 +93,7 @@
     </figure>
     <div class="media-content">
       <div id="<%= "#{comment.id}-content" %>" class="content">
-        <%= markdown(comment.content) %>
+        <%= markdown comment.content %>
       </div>
       <nav class="level is-mobile">
         <div class="level-left">

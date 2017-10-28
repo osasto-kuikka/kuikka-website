@@ -17,6 +17,10 @@ config :kuikka, KuikkaWeb.Endpoint,
   pubsub: [name: Kuikka.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Add markdown renderer for markdown files
+config :phoenix, :template_engines,
+  md: PhoenixMarkdown.Engine
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

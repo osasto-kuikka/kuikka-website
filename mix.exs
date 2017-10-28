@@ -39,7 +39,7 @@ defmodule Kuikka.Mixfile do
   def dialyzer do
     [
       flags: [:unmatched_returns, :error_handling,
-              :race_conditions, :no_opaque],
+              :race_conditions, :no_opaque, :no_return],
       ignore_warnings: ".dialyzerignore"
     ]
   end
@@ -56,6 +56,7 @@ defmodule Kuikka.Mixfile do
       {:phoenix, "~> 1.3.0", override: true},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
+      {:phoenix_markdown, "~> 0.1.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},

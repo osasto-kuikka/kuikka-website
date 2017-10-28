@@ -4,6 +4,7 @@ defmodule KuikkaWeb.Utils.View do
   """
   use Phoenix.HTML
   require KuikkaWeb.Gettext
+  require Logger
 
   alias Phoenix.HTML
   alias Phoenix.HTML.Form
@@ -95,17 +96,17 @@ defmodule KuikkaWeb.Utils.View do
   end
 
   @doc """
-  Change markdown string to html
+  Render markdown text as html
   """
-  @spec markdown(String.t) :: HTML.safe | HTML.unsafe
+  @spec markdown(String.t) :: HTML.safe
   def markdown(content) do
-    content
-    |> Earmark.as_html()
-    |> case do
-      {:ok, html} ->
+    case Earmark.as_html(content) do
+      {:ok, html, _errors} ->
         HTML.raw(html)
-      _ ->
-        HTML.raw("Failed to parse comment, please contact admin")
+
+      {:err, err} ->
+        Logger.error(inspect err)
+        content
     end
   end
 end
