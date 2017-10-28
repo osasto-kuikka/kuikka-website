@@ -246,7 +246,6 @@ defmodule KuikkaWeb.EventController do
   """
   @spec update(Plug.Conn.t, map) :: Plug.Conn.t
   def update(conn, _params) do
-    # TODO
     render conn, "show.html"
   end
 
@@ -260,7 +259,6 @@ defmodule KuikkaWeb.EventController do
   """
   @spec update_comment(Plug.Conn.t, map) :: Plug.Conn.t
   def update_comment(conn, %{"id" => _id, "comment_id" => _comment_id}) do
-    # TODO
     render conn, "show.html"
   end
 
