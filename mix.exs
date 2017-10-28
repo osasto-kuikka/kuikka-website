@@ -38,7 +38,8 @@ defmodule Kuikka.Mixfile do
   # See https://github.com/jeremyjh/dialyxir for more info
   def dialyzer do
     [
-      flags: [:unmatched_returns, :error_handling, :race_conditions, :no_opaque],
+      flags: [:unmatched_returns, :error_handling,
+              :race_conditions, :no_opaque],
       ignore_warnings: ".dialyzerignore"
     ]
   end
