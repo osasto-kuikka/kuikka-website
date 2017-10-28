@@ -33,7 +33,7 @@ exports.config = {
     },
     sass: {
       mode: "native",
-      includePaths: ['node_modules']
+      includePaths: ["node_modules"]
     }
   },
 
