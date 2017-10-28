@@ -10,12 +10,16 @@ config :kuikka,
   ecto_repos: [Kuikka.Repo]
 
 # Configures the endpoint
-config :kuikka, Kuikka.Web.Endpoint,
+config :kuikka, KuikkaWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "KU/TmQnYY26fLduJxtF6VgZoFX7gQBSgRfT85VeNsu+lBulRhVtXsAvK/eB8aC26",
-  render_errors: [view: Kuikka.Web.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: KuikkaWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Kuikka.PubSub,
            adapter: Phoenix.PubSub.PG2]
+
+# Add markdown renderer for markdown files
+config :phoenix, :template_engines,
+  md: PhoenixMarkdown.Engine
 
 # Configures Elixir's Logger
 config :logger, :console,

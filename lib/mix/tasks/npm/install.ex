@@ -14,7 +14,7 @@ defmodule Mix.Tasks.Npm.Install do
 
   @spec run([binary]) :: any
   def run(packages) do
-    System.cmd "npm", ["install"] ++ packages,
+    System.cmd "npm", ["install" | packages],
       cd: "assets",
       into: IO.stream(:stdio, :line)
   end

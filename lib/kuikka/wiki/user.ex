@@ -20,7 +20,7 @@ defmodule Kuikka.Wiki.User do
     field :read, :boolean
     field :write, :boolean
     belongs_to :member, Kuikka.Member
-    belongs_to :wikipage, Kuikka.Wiki.Page
+    belongs_to :wikipage, Kuikka.Wiki
   end
 
   @doc """

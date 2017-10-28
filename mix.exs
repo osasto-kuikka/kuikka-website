@@ -5,7 +5,7 @@ defmodule Kuikka.Mixfile do
     [
       app: :kuikka,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.5.2",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -28,7 +28,7 @@ defmodule Kuikka.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Kuikka.Application, []},
+      mod: {Kuikka, []},
       extra_applications: [:logger, :runtime_tools, :sweet_xml]
     ]
   end
@@ -38,7 +38,8 @@ defmodule Kuikka.Mixfile do
   # See https://github.com/jeremyjh/dialyxir for more info
   def dialyzer do
     [
-      flags: [:unmatched_returns,:error_handling,:race_conditions, :no_opaque],
+      flags: [:unmatched_returns, :error_handling,
+              :race_conditions, :no_opaque, :no_return],
       ignore_warnings: ".dialyzerignore"
     ]
   end
@@ -55,6 +56,7 @@ defmodule Kuikka.Mixfile do
       {:phoenix, "~> 1.3.0", override: true},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
+      {:phoenix_markdown, "~> 0.1.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},

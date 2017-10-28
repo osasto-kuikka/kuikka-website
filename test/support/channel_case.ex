@@ -1,4 +1,4 @@
-defmodule Kuikka.Web.ChannelCase do
+defmodule KuikkaWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,7 +21,7 @@ defmodule Kuikka.Web.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint Kuikka.Web.Endpoint
+      @endpoint KuikkaWeb.Endpoint
     end
   end
 
