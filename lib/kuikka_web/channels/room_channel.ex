@@ -1,4 +1,7 @@
 defmodule KuikkaWeb.RoomChannel do
+  @moduledoc """
+  TODO: Update
+  """
   use KuikkaWeb, :channel
   alias Phoenix.Socket
 

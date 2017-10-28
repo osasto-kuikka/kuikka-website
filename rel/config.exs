@@ -2,7 +2,8 @@
 # They can then be used by adding `plugin MyPlugin` to
 # either an environment, or release definition, where
 # `MyPlugin` is the name of the plugin module.
-Path.join(["rel", "plugins", "*.exs"])
+~w(rel plugins *.exs)
+|> Path.join()
 |> Path.wildcard()
 |> Enum.map(&Code.eval_file(&1))
 
@@ -36,11 +37,9 @@ end
 # If you have not set a default release, or selected one
 # when running `mix release`, the first release in the file
 # will be used by default
-
 release :kuikka do
   set version: current_version(:kuikka)
   set applications: [
     :runtime_tools
   ]
 end
-

@@ -5,8 +5,8 @@ defmodule KuikkaWeb.EventController do
   alias Event.Comment
 
   # Check that user is logged in
-  plug :require_user, []
-    when action in [:new, :edit, :create, :update, :update_comment, :delete_comment]
+  plug :require_user, [] when action in [:new, :edit, :create, :update,
+                                        :update_comment, :delete_comment]
 
   # Check that id is integer
   plug :param_check, [type: :integer]
@@ -211,7 +211,6 @@ defmodule KuikkaWeb.EventController do
           comment
           |> Map.put("event", event)
           |> Map.put("member", user)
-          |> IO.inspect
         # Event found so try to insert comment
         %Comment{}
         |> Comment.changeset(params)
