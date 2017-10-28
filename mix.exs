@@ -28,7 +28,7 @@ defmodule Kuikka.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Kuikka.Application, []},
+      mod: {Kuikka, []},
       extra_applications: [:logger, :runtime_tools, :sweet_xml]
     ]
   end
