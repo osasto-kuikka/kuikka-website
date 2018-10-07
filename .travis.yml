@@ -11,7 +11,7 @@ script:
   - mix deps.get
   - mix compile --warnings-as-errors
   - mix test
-  - mix dialyzer
+  #- mix dialyzer
 after_script:
   - MIX_ENV=docs mix deps.get
   - MIX_ENV=docs mix inch.report
