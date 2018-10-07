@@ -11,21 +11,22 @@ defmodule Kuikka.Event do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "events" do
-    field :title, :string
-    field :content, :string
-    field :date, :utc_datetime
+    field(:title, :string)
+    field(:content, :string)
+    field(:date, :utc_datetime)
 
-    belongs_to :creator, Kuikka.Member
-    belongs_to :modified, Kuikka.Member
+    belongs_to(:creator, Kuikka.Member)
+    belongs_to(:modified, Kuikka.Member)
 
-    has_many :comments, Kuikka.Event.Comment
+    has_many(:comments, Kuikka.Event.Comment)
 
-    many_to_many :attending, Kuikka.Member,
+    many_to_many(:attending, Kuikka.Member,
       join_through: "event_members",
       on_replace: :delete
+    )
 
     timestamps()
   end
@@ -33,8 +34,8 @@ defmodule Kuikka.Event do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t) :: Ecto.Changeset.t
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t) :: Ecto.Changeset.t()
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:title, :content, :date])
@@ -49,7 +50,7 @@ defmodule Kuikka.Event do
   end
 
   # Validate that given date is greater than current time
-  @spec validate_date(Ecto.Changeset.t) :: Ecto.Changeset.t
+  @spec validate_date(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_date(changeset) do
     if date = get_change(changeset, :date) do
       case DateTime.compare(date, DateTime.utc_now()) do

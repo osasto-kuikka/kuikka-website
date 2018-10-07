@@ -10,11 +10,11 @@ defmodule Kuikka.Settings do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "settings" do
-    field :version, :integer
-    field :attributes, :map
+    field(:version, :integer)
+    field(:attributes, :map)
 
     timestamps()
   end
@@ -22,7 +22,7 @@ defmodule Kuikka.Settings do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:version, :attributes])

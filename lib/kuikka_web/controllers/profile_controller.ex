@@ -1,9 +1,9 @@
 defmodule KuikkaWeb.ProfileController do
   use KuikkaWeb, :controller
 
-  plug :require_user when action in [:logout]
+  plug(:require_user when action in [:logout])
 
-  @spec index(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, _params) do
     members = Repo.all(Member)
 
@@ -23,12 +23,13 @@ defmodule KuikkaWeb.ProfileController do
   home_path(conn, :login, %{to: "/events"}) # "/events"
   ```
   """
-  @spec login(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec login(Plug.Conn.t(), map) :: Plug.Conn.t()
   def login(conn, %{"to" => to}) do
     conn
     |> put_flash(:info, "you have been logged in")
     |> redirect(to: to)
   end
+
   def login(conn, params) do
     login(conn, Map.put(params, "to", home_path(conn, :index)))
   end
@@ -36,7 +37,7 @@ defmodule KuikkaWeb.ProfileController do
   @doc """
   Logout path which removes steamid key from session
   """
-  @spec logout(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec logout(Plug.Conn.t(), map) :: Plug.Conn.t()
   def logout(conn, %{"to" => to}) do
     conn
     |> fetch_session()
@@ -44,6 +45,7 @@ defmodule KuikkaWeb.ProfileController do
     |> put_flash(:info, "you have been logged out")
     |> redirect(to: to)
   end
+
   def logout(conn, params) do
     logout(conn, Map.put(params, "to", home_path(conn, :index)))
   end
@@ -51,7 +53,7 @@ defmodule KuikkaWeb.ProfileController do
   @doc """
   Profile path for member
   """
-  @spec profile(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec profile(Plug.Conn.t(), map) :: Plug.Conn.t()
   def profile(conn, %{"id" => id}) do
     current = conn.assigns.current_user
 
@@ -71,6 +73,7 @@ defmodule KuikkaWeb.ProfileController do
           |> put_flash(:error, "failed to find profile")
           |> put_status(404)
           |> redirect(to: profile_path(conn, :index))
+
         member ->
           conn
           |> assign(:member, member)
@@ -82,7 +85,7 @@ defmodule KuikkaWeb.ProfileController do
   @doc """
   Update path for user
   """
-  @spec update(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec update(Plug.Conn.t(), map) :: Plug.Conn.t()
   def update(conn, %{"id" => id, "params" => params}) do
     Member
     |> where([u], u.id == ^id)
@@ -94,6 +97,7 @@ defmodule KuikkaWeb.ProfileController do
         conn
         |> put_flash(:info, "profile info updated")
         |> redirect(to: profile_path(conn, :profile, member.id))
+
       {:error, changeset} ->
         conn
         |> assign(:changeset, changeset)

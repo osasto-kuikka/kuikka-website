@@ -20,8 +20,7 @@ config :kuikka, KuikkaWeb.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # Configure your database
-config :kuikka, Kuikka.Repo,
-  adapter: Ecto.Adapters.Postgres
+config :kuikka, Kuikka.Repo, adapter: Ecto.Adapters.Postgres
 
 # Do not print debug messages in production
 config :logger, level: :info

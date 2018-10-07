@@ -17,7 +17,7 @@ defmodule KuikkaWeb.Plug.CurrentUser do
   @spec init(any) :: keyword
   def init(_), do: []
 
-  @spec call(Plug.Conn.t, keyword) :: Plug.Conn.t
+  @spec call(Plug.Conn.t(), keyword) :: Plug.Conn.t()
   def call(conn, _options) do
     assign(conn, :current_user, get_member(conn))
   end
@@ -28,8 +28,9 @@ defmodule KuikkaWeb.Plug.CurrentUser do
     |> get_member_database()
   end
 
-  @spec get_member_database(integer | nil) :: Member.t | nil
+  @spec get_member_database(integer | nil) :: Member.t() | nil
   defp get_member_database(nil), do: nil
+
   defp get_member_database(steamid) do
     Member
     |> preload([:forum_comments, :event_comments, role: [:permissions]])
@@ -43,6 +44,7 @@ defmodule KuikkaWeb.Plug.CurrentUser do
     |> Member.changeset(insert_params(steamid))
     |> Repo.insert!()
   end
+
   defp create_or_load(member, steamid) do
     member
     |> Member.changeset(update_params(steamid))
@@ -51,6 +53,7 @@ defmodule KuikkaWeb.Plug.CurrentUser do
 
   defp update_params(steamid) do
     profile = load_profile("#{steamid}")
+
     %{
       username: profile.steam_id,
       avatar: profile.avatar_icon,
@@ -72,7 +75,6 @@ defmodule KuikkaWeb.Plug.CurrentUser do
       avatar_full: profile.avatar_full,
       url: profile.custom_url || "http://steamcommunity.com/profiles/#{steamid}",
       locale: "en",
-
       role: role
     }
   end

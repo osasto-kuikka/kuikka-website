@@ -14,19 +14,19 @@ defmodule Kuikka.Wiki.User do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "wikipage_members" do
-    field :read, :boolean
-    field :write, :boolean
-    belongs_to :member, Kuikka.Member
-    belongs_to :wikipage, Kuikka.Wiki
+    field(:read, :boolean)
+    field(:write, :boolean)
+    belongs_to(:member, Kuikka.Member)
+    belongs_to(:wikipage, Kuikka.Wiki)
   end
 
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:read, :write, :member_id, :wikipage_id])

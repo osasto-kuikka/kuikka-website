@@ -32,12 +32,12 @@ defmodule KuikkaWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/kuikka_web/templates",
-                        namespace: KuikkaWeb
+      use Phoenix.View,
+        root: "lib/kuikka_web/templates",
+        namespace: KuikkaWeb
 
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2,
-                                        view_module: 1]
+      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
       # Add steamex authentication
       use Steamex.Auth.Phoenix, :view
 

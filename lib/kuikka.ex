@@ -21,7 +21,7 @@ defmodule Kuikka do
       # Start the Ecto repository
       supervisor(Kuikka.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(KuikkaWeb.Endpoint, []),
+      supervisor(KuikkaWeb.Endpoint, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

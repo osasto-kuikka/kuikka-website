@@ -7,11 +7,12 @@ defmodule Kuikka.Repo do
   """
   @spec init(term, keyword) :: {:ok, keyword}
   def init(_, opts) do
-    pool_size = case System.get_env("POOL_SIZE") do
-      nil -> 10
-      "" -> 10
-      val -> String.to_integer(val)
-    end
+    pool_size =
+      case System.get_env("POOL_SIZE") do
+        nil -> 10
+        "" -> 10
+        val -> String.to_integer(val)
+      end
 
     opts =
       opts
