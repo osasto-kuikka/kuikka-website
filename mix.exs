@@ -5,17 +5,16 @@ defmodule Kuikka.Mixfile do
     [
       app: :kuikka,
       version: "0.0.1",
-      elixir: "~> 1.5.2",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      elixir: "~> 1.7",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-
       dialyzer: dialyzer(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
-        "coveralls": :test,
+        coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
@@ -38,15 +37,14 @@ defmodule Kuikka.Mixfile do
   # See https://github.com/jeremyjh/dialyxir for more info
   def dialyzer do
     [
-      flags: [:unmatched_returns, :error_handling,
-              :race_conditions, :no_opaque, :no_return],
+      flags: [:unmatched_returns, :error_handling, :race_conditions, :no_opaque, :no_return],
       ignore_warnings: ".dialyzerignore"
     ]
   end
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -80,12 +78,12 @@ defmodule Kuikka.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      "setup": ["deps.get", "compile", "ecto.setup", "npm.install"],
+      setup: ["deps.get", "compile", "ecto.setup", "npm.install"],
       "setup.min": ["deps.get", "compile"],
       "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "release": ["compile", "npm.build", "release"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      release: ["compile", "npm.build", "release"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end
