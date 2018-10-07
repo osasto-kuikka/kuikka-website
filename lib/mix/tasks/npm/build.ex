@@ -12,10 +12,9 @@ defmodule Mix.Tasks.Npm.Build do
 
   @spec run([binary]) :: :ok | {:error, integer}
   def run(_) do
-    with {_, 0} <- cmd(~w(npm run deploy), [cd: "assets"]),
+    with {_, 0} <- cmd(~w(npm run deploy), cd: "assets"),
          {_, 0} <- cmd(~w(mix phx.digest.clean)),
-         {_, 0} <- cmd(~w(mix phx.digest))
-    do
+         {_, 0} <- cmd(~w(mix phx.digest)) do
       :ok
     else
       {_, code} -> {:error, code}

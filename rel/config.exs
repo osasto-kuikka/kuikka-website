@@ -8,10 +8,10 @@
 |> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
-    # This sets the default release built by `mix release`
-    default_release: :default,
-    # This sets the default environment used by `mix release`
-    default_environment: Mix.env()
+  # This sets the default release built by `mix release`
+  default_release: :default,
+  # This sets the default environment used by `mix release`
+  default_environment: Mix.env()
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/configuration.html
@@ -22,15 +22,15 @@ use Mix.Releases.Config,
 # and environment configuration is called a profile
 
 environment :dev do
-  set dev_mode: true
-  set include_erts: false
-  set cookie: :"8S~y4wlLX^1~@DBb)ae<}cEkP;a7T}$X]vyJ1k$<W@ui~2T~O(Xt/SjxpFBGS4ul"
+  set(dev_mode: true)
+  set(include_erts: false)
+  set(cookie: :"8S~y4wlLX^1~@DBb)ae<}cEkP;a7T}$X]vyJ1k$<W@ui~2T~O(Xt/SjxpFBGS4ul")
 end
 
 environment :prod do
-  set include_erts: true
-  set include_src: false
-  set cookie: :"#{System.get_env("COOKIE")}"
+  set(include_erts: true)
+  set(include_src: false)
+  set(cookie: :"#{System.get_env("COOKIE")}")
 end
 
 # You may define one or more releases in this file.
@@ -38,8 +38,11 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 release :kuikka do
-  set version: current_version(:kuikka)
-  set applications: [
-    :runtime_tools
-  ]
+  set(version: current_version(:kuikka))
+
+  set(
+    applications: [
+      :runtime_tools
+    ]
+  )
 end

@@ -13,8 +13,14 @@ config :kuikka, KuikkaWeb.Endpoint,
   check_origin: false,
   server: true,
   root: ".",
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]
+  watchers: [
+    node: [
+      "node_modules/brunch/bin/brunch",
+      "watch",
+      "--stdin",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
 
 # ## SSL Support
 #
@@ -45,8 +51,8 @@ config :kuikka, KuikkaWeb.Endpoint,
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console,
-       format: "[$level] $message\n",
-       level: :info
+  format: "[$level] $message\n",
+  level: :info
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.

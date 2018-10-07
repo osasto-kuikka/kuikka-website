@@ -5,16 +5,24 @@ defmodule KuikkaWeb.EventController do
   alias Event.Comment
 
   # Check that user is logged in
-  plug :require_user, [] when action in [:new, :edit, :create, :update,
-                                        :update_comment, :delete_comment]
+  plug(
+    :require_user,
+    [] when action in [:new, :edit, :create, :update, :update_comment, :delete_comment]
+  )
 
   # Check that id is integer
-  plug :param_check, [type: :integer]
+  plug(
+    :param_check,
+    [type: :integer]
     when action in [:event, :update, :update_comment, :delete_comment]
+  )
 
   # Check that comment_id is integer
-  plug :param_check, [param: "comment_id", type: :integer]
+  plug(
+    :param_check,
+    [param: "comment_id", type: :integer]
     when action in [:update_comment, :delete_comment]
+  )
 
   @doc """
   Show all events
@@ -24,7 +32,7 @@ defmodule KuikkaWeb.EventController do
   get /events
   ```
   """
-  @spec index(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, _params) do
     events =
       Event
@@ -44,7 +52,7 @@ defmodule KuikkaWeb.EventController do
   get /events/new
   ```
   """
-  @spec new(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec new(Plug.Conn.t(), map) :: Plug.Conn.t()
   def new(conn, _params) do
     conn
     |> assign(:changeset, Event.changeset(%Event{}))
@@ -59,7 +67,7 @@ defmodule KuikkaWeb.EventController do
   get /events/:id
   ```
   """
-  @spec event(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec event(Plug.Conn.t(), map) :: Plug.Conn.t()
   def event(conn, %{"id" => id}) do
     Event
     |> preload([:attending, :creator, :modified, comments: [:member]])
@@ -70,6 +78,7 @@ defmodule KuikkaWeb.EventController do
         conn
         |> put_flash(:error, "event not found")
         |> redirect(to: event_path(conn, :index))
+
       event ->
         conn
         |> assign(:changeset, Comment.changeset(%Comment{}))
@@ -86,9 +95,10 @@ defmodule KuikkaWeb.EventController do
   get /events/:id/attend
   ```
   """
-  @spec attend(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec attend(Plug.Conn.t(), map) :: Plug.Conn.t()
   def attend(conn, %{"id" => id}) do
     user = conn.assigns.current_user
+
     Event
     |> preload([:attending, :creator, :modified])
     |> where([e], e.id == ^id)
@@ -98,6 +108,7 @@ defmodule KuikkaWeb.EventController do
         conn
         |> put_flash(:error, "event not found")
         |> redirect(to: event_path(conn, :index))
+
       event ->
         event
         |> Event.changeset(%{attending: [user | event.attending]})
@@ -115,26 +126,29 @@ defmodule KuikkaWeb.EventController do
   get /events/:id/unattend
   ```
   """
-  @spec unattend(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec unattend(Plug.Conn.t(), map) :: Plug.Conn.t()
   def unattend(conn, %{"id" => id}) do
     user = conn.assigns.current_user
+
     Event
     |> preload([:attending, :creator, :modified])
     |> where([e], e.id == ^id)
     |> Repo.one()
     |> case do
-         nil ->
-           conn
-           |> put_flash(:error, "event not found")
-           |> redirect(to: event_path(conn, :index))
-         event ->
-           attending =  Enum.reject(event.attending, &(&1.id == user.id))
-           event
-           |> Event.changeset(%{attending: attending})
-           |> Repo.update!()
+      nil ->
+        conn
+        |> put_flash(:error, "event not found")
+        |> redirect(to: event_path(conn, :index))
 
-           redirect(conn, to: event_path(conn, :event, id))
-       end
+      event ->
+        attending = Enum.reject(event.attending, &(&1.id == user.id))
+
+        event
+        |> Event.changeset(%{attending: attending})
+        |> Repo.update!()
+
+        redirect(conn, to: event_path(conn, :event, id))
+    end
   end
 
   @doc """
@@ -145,7 +159,7 @@ defmodule KuikkaWeb.EventController do
   get /events/:id/edit
   ```
   """
-  @spec edit(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec edit(Plug.Conn.t(), map) :: Plug.Conn.t()
   def edit(conn, %{"id" => id, "edit" => "true"}) do
     Event
     |> where([e], e.id == ^id)
@@ -156,6 +170,7 @@ defmodule KuikkaWeb.EventController do
         |> put_flash(:error, "event not found")
         |> put_status(404)
         |> redirect(to: event_path(conn, :index))
+
       event ->
         conn
         |> assign(:changeset, Event.changeset(event))
@@ -171,9 +186,10 @@ defmodule KuikkaWeb.EventController do
   post /events
   ```
   """
-  @spec create(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec create(Plug.Conn.t(), map) :: Plug.Conn.t()
   def create(conn, %{"event" => params}) do
     user = conn.assigns.current_user
+
     %Event{}
     |> Event.changeset(Map.put(params, "creator", user))
     |> Repo.insert()
@@ -182,6 +198,7 @@ defmodule KuikkaWeb.EventController do
         conn
         |> put_flash(:info, "new event created")
         |> redirect(to: event_path(conn, :event, event.id))
+
       {:error, changeset} ->
         conn
         |> assign(:changeset, changeset)
@@ -197,20 +214,24 @@ defmodule KuikkaWeb.EventController do
   post /events/:id
   ```
   """
-  @spec create_comment(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec create_comment(Plug.Conn.t(), map) :: Plug.Conn.t()
   def create_comment(conn, %{"id" => id, "comment" => comment}) do
     user = conn.assigns.current_user
+
     Event
     |> preload([:comments])
     |> where([e], e.id == ^id)
     |> Repo.one()
     |> case do
-      nil -> nil
+      nil ->
+        nil
+
       event ->
         params =
           comment
           |> Map.put("event", event)
           |> Map.put("member", user)
+
         # Event found so try to insert comment
         %Comment{}
         |> Comment.changeset(params)
@@ -222,11 +243,13 @@ defmodule KuikkaWeb.EventController do
         conn
         |> put_flash(:error, "event not found")
         |> redirect(to: event_path(conn, :index))
+
       {:ok, _comment} ->
         # Comment inserted succefully
         conn
         |> put_flash(:info, "new comment added")
         |> redirect(to: event_path(conn, :event, id))
+
       {:error, changeset} ->
         # Failed to insert comment
         conn
@@ -244,9 +267,9 @@ defmodule KuikkaWeb.EventController do
   put /events/:id
   ```
   """
-  @spec update(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec update(Plug.Conn.t(), map) :: Plug.Conn.t()
   def update(conn, _params) do
-    render conn, "show.html"
+    render(conn, "show.html")
   end
 
   @doc """
@@ -257,9 +280,9 @@ defmodule KuikkaWeb.EventController do
   put /events/:id/:comment_id
   ```
   """
-  @spec update_comment(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec update_comment(Plug.Conn.t(), map) :: Plug.Conn.t()
   def update_comment(conn, %{"id" => _id, "comment_id" => _comment_id}) do
-    render conn, "show.html"
+    render(conn, "show.html")
   end
 
   @doc """
@@ -270,7 +293,7 @@ defmodule KuikkaWeb.EventController do
   put /events/:id/:comment_id
   ```
   """
-  @spec delete_comment(Plug.Conn.t, map) :: Plug.Conn.t
+  @spec delete_comment(Plug.Conn.t(), map) :: Plug.Conn.t()
   def delete_comment(conn, %{"id" => id, "comment_id" => comment_id}) do
     Comment
     |> where([c], c.id == ^comment_id)
@@ -285,14 +308,16 @@ defmodule KuikkaWeb.EventController do
         conn
         |> put_flash(:error, "comment not found")
         |> redirect(to: event_path(conn, :event, id))
+
       {:ok, _} ->
         # Comment deleted succefully
         conn
         |> put_flash(:info, "comment deleted")
         |> redirect(to: event_path(conn, :event, id))
+
       {:error, err} ->
         # Failed to delete comment
-        :ok = Logger.error("#{__MODULE__}: #{inspect err}")
+        :ok = Logger.error("#{__MODULE__}: #{inspect(err)}")
 
         conn
         |> put_flash(:error, "failed to delete comment")

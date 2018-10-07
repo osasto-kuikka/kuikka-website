@@ -12,13 +12,13 @@ defmodule Kuikka.Event.Comment do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "comments" do
-    field :content, :string
+    field(:content, :string)
 
-    belongs_to :member, Kuikka.Member, on_replace: :nilify
-    belongs_to :event, Kuikka.Event, on_replace: :delete
+    belongs_to(:member, Kuikka.Member, on_replace: :nilify)
+    belongs_to(:event, Kuikka.Event, on_replace: :delete)
 
     timestamps()
   end
@@ -26,7 +26,7 @@ defmodule Kuikka.Event.Comment do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:content])
@@ -37,7 +37,7 @@ defmodule Kuikka.Event.Comment do
     |> foreign_key_constraint(:member)
   end
 
-  @spec add_assoc(Ecto.Changeset.t, atom, map) :: Ecto.Changeset.t
+  @spec add_assoc(Ecto.Changeset.t(), atom, map) :: Ecto.Changeset.t()
   defp add_assoc(changeset, field, params) do
     if val = params[field] || params["#{field}"] do
       put_assoc(changeset, field, val)

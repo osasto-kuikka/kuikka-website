@@ -14,12 +14,12 @@ defmodule Kuikka.Wiki do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "wikipages" do
-    field :title, :string
-    field :content, :string
-    field :public, :boolean
+    field(:title, :string)
+    field(:content, :string)
+    field(:public, :boolean)
 
     timestamps()
   end
@@ -27,7 +27,7 @@ defmodule Kuikka.Wiki do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:title, :content, :public])

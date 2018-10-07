@@ -14,15 +14,14 @@ defmodule Kuikka.Forum.Topic do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "topics" do
-    field :title, :string
-    field :content, :string
-    belongs_to :user, Kuikka.Member, on_replace: :nilify
-    belongs_to :category, Kuikka.Forum.Category, on_replace: :nilify
-    many_to_many :comments, Kuikka.Forum.Comment,
-                                                join_through: "topic_comments"
+    field(:title, :string)
+    field(:content, :string)
+    belongs_to(:user, Kuikka.Member, on_replace: :nilify)
+    belongs_to(:category, Kuikka.Forum.Category, on_replace: :nilify)
+    many_to_many(:comments, Kuikka.Forum.Comment, join_through: "topic_comments")
 
     timestamps()
   end
@@ -30,7 +29,7 @@ defmodule Kuikka.Forum.Topic do
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:title, :content, :createtime, :modifytime])
@@ -42,8 +41,10 @@ defmodule Kuikka.Forum.Topic do
 
   defp add_comment(changeset, %{comments: comments}),
     do: put_assoc(changeset, :comments, comments)
+
   defp add_comment(changeset, %{"comments" => comments}),
     do: put_assoc(changeset, :comments, comments)
+
   defp add_comment(changeset, _),
     do: changeset
 end

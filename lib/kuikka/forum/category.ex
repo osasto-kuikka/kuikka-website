@@ -16,18 +16,18 @@ defmodule Kuikka.Forum.Category do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "categories" do
-    field :name, :string
-    field :description, :string
-    field :color, :string
+    field(:name, :string)
+    field(:description, :string)
+    field(:color, :string)
   end
 
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:name, :description, :color])

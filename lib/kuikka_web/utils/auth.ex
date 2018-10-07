@@ -16,7 +16,7 @@ defmodule KuikkaWeb.Utils.Auth do
   plug :require_user when action in [:create, :update]
   ```
   """
-  @spec require_user(Plug.Conn.t, any) :: Plug.Conn.t
+  @spec require_user(Plug.Conn.t(), any) :: Plug.Conn.t()
   def require_user(conn, _opts \\ []) do
     if is_nil(conn.assigns.current_user) do
       # Current user is nil so redirect user to home page
@@ -31,7 +31,7 @@ defmodule KuikkaWeb.Utils.Auth do
     end
   end
 
-  @spec require_permission(Plug.Conn.t, any) :: Plug.Conn.t
+  @spec require_permission(Plug.Conn.t(), any) :: Plug.Conn.t()
   def require_permission(conn, permission) do
     permissions = conn.assigns[:current_user][:permissions] || []
 

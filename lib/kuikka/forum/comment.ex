@@ -12,21 +12,24 @@ defmodule Kuikka.Forum.Comment do
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
-  @type return :: {:ok, t} | {:error, Ecto.Changeset.t}
+  @type return :: {:ok, t} | {:error, Ecto.Changeset.t()}
 
   schema "comments" do
-    field :content, :string
-    belongs_to :member, Kuikka.Member, on_replace: :nilify
-    many_to_many :topic, Kuikka.Forum.Topic,
-                 join_through: "topic_comments",
-                 on_replace: :delete
+    field(:content, :string)
+    belongs_to(:member, Kuikka.Member, on_replace: :nilify)
+
+    many_to_many(:topic, Kuikka.Forum.Topic,
+      join_through: "topic_comments",
+      on_replace: :delete
+    )
+
     timestamps()
   end
 
   @doc """
   Changeset for inserting and updating schema
   """
-  @spec changeset(t, map) :: Ecto.Changeset.t
+  @spec changeset(t, map) :: Ecto.Changeset.t()
   def changeset(schema = %__MODULE__{}, params \\ %{}) do
     schema
     |> cast(params, [:content])

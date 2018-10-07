@@ -7,10 +7,10 @@ defmodule KuikkaWeb.UserSocket do
   alias Kuikka.Member
 
   ## Channels
-  channel "room:*", KuikkaWeb.RoomChannel
+  channel("room:*", KuikkaWeb.RoomChannel)
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport(:websocket, Phoenix.Transports.WebSocket)
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can
@@ -47,20 +47,24 @@ defmodule KuikkaWeb.UserSocket do
   end
   ```
   """
-  @spec connect(map, Phoenix.Socket.t) :: {:ok, Phoenix.Socket.t}
+  @spec connect(map, Phoenix.Socket.t()) :: {:ok, Phoenix.Socket.t()}
   def connect(%{"token" => token}, socket) do
-    user = case Token.verify(socket, salt(), token, max_age: 86_400) do
-      {:ok, id} when is_integer(id) ->
-        Member
-        |> preload([:forum_comments, :event_comments, role: [:permissions]])
-        |> where([m], m.id == ^id)
-        |> Repo.one()
-      _ -> nil
-    end
+    user =
+      case Token.verify(socket, salt(), token, max_age: 86_400) do
+        {:ok, id} when is_integer(id) ->
+          Member
+          |> preload([:forum_comments, :event_comments, role: [:permissions]])
+          |> where([m], m.id == ^id)
+          |> Repo.one()
+
+        _ ->
+          nil
+      end
 
     socket = assign(socket, :current_user, user)
     {:ok, socket}
   end
+
   def connect(_params, _socket) do
     :error
   end
@@ -85,7 +89,7 @@ defmodule KuikkaWeb.UserSocket do
   Endpoint.broadcast("user_socket:1", "disconnect", %{})
   ```
   """
-  @spec id(Phoenix.Socket.t) :: String.t
+  @spec id(Phoenix.Socket.t()) :: String.t()
   def id(%{assigns: %{current_user: nil}}), do: "user_socket:guest"
   def id(%{assigns: %{current_user: user}}), do: "user_socket:#{user.id}"
 end
